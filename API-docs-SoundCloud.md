@@ -332,6 +332,7 @@ Returns the details of a song specified by its id.
 Creates and returns a new song.
 
 * Require Authentication: true
+* Require proper authorization: Album must belong to the current user
 * Request
   * Method: ?
   * URL: ?
@@ -363,7 +364,8 @@ Creates and returns a new song.
       "description": "A song about the past.",
       "url": "audio url",
       "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36"
+      "updatedAt": "2021-11-19 20:39:36", 
+      "previewImage": "image url"
     }
     ```
 
@@ -1389,7 +1391,7 @@ Updates and returns an existing playlist.
       "message": "Validation Error",
       "statusCode": 400,
       "errors": {
-        "title": "Playlist name is required"
+        "name": "Playlist name is required"
       }
     }
     ```
@@ -1446,7 +1448,7 @@ Deletes an existing playlist.
 
 ## Get all Playlists created by the Current User
 
-Returns all the Albums created by the current user.
+Returns all the playlists created by the current user.
 
 * Require Authentication: true
 * Request
