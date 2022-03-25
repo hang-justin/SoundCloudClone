@@ -64,7 +64,8 @@ Returns the information about the current user that is logged in.
       "id": 1,
       "firstName": "John",
       "lastName": "Smith",
-      "email": "john.smith@gmail.com"
+      "email": "john.smith@gmail.com",
+      "username": "JohnSmith"
     }
     ```
 
@@ -100,6 +101,7 @@ information.
       "firstName": "John",
       "lastName": "Smith",
       "email": "john.smith@gmail.com",
+      "username": "JohnSmith",
       "token": ""
     }
     ```
@@ -151,6 +153,7 @@ user's information.
     {
       "firstName": "John",
       "lastName": "Smith",
+      "username": "JohnSmith",
       "email": "john.smith@gmail.com",
       "password": "secret password"
     }
@@ -167,6 +170,7 @@ user's information.
       "id": 1,
       "firstName": "John",
       "lastName": "Smith",
+      "username": "JohnSmith",
       "email": "john.smith@gmail.com",
       "token": ""
     }
@@ -188,6 +192,22 @@ user's information.
     }
     ```
 
+* Error response: User already exists with the specified username
+  * Status Code: 403
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "User already exists",
+      "statusCode": 403,
+      "errors": {
+        "username": "User with that username already exists"
+      }
+    }
+    ```
+
 * Error response: Body validation errors
   * Status Code: 400
   * Headers:
@@ -200,6 +220,7 @@ user's information.
       "statusCode": 400,
       "errors": {
         "email": "Invalid email",
+        "username": "Username is required",
         "firstName": "First Name is required",
         "lastName": "Last Name is required"
       }

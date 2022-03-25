@@ -39,11 +39,11 @@ user's information.
 
 - [ ] New user exists in the database after request
 - [ ] Successful response includes newly created `id`, `firstName`, `lastName`, 
-  `email`, and `token`
+  `username`, `email`, and `token`
 - [ ] Error response with status 403 is given when the specified email already 
 exists
 - [ ] Error response with status 400 is given when body validations for the 
-  `email`, `firstName`, or `lastName` are violated
+  `email`, `username`, `firstName`, or `lastName` are violated
 
 
 ### Log In a User
@@ -52,10 +52,10 @@ Logs in a current user with valid credentials and returns the current user's
 information.
 
 - [ ] Successful response includes the user's `id`, `firstName`, `lastName`, 
-  `email`, and `token`
+  `username`, `email`, and `token`
 - [ ] Error response with status 401 is given when invalid credentials are given
 - [ ] Error response with status 400 is given when body validations for the 
-  `email`, `firstName`, or `lastName` are violated
+  `email`, `username`, `firstName`, or `lastName` are violated
 
 
 ### Get the Current User
@@ -64,7 +64,7 @@ Returns the information about the current user that is logged in.
 
 - [ ] An authenticated user is required for a successful response
 - [ ] Successful response includes the user's `id`, `firstName`, `lastName`, 
-  `email`, and `token`
+  `username`, `email`, and `token`
 
 
 ### Get all Songs
