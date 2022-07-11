@@ -6,7 +6,9 @@
 
 ## API Documentation
 
-## All endpoints that require authentication
+## FEATURE 0: USER AUTHORIXATION
+
+### All endpoints that require authentication
 
 All endpoints that require a current user to be logged in.
 
@@ -24,7 +26,7 @@ All endpoints that require a current user to be logged in.
     }
     ```
 
-## All endpoints that require proper authorization
+### All endpoints that require proper authorization
 
 All endpoints that require authentication and the current user does not have the
 correct role(s) or permission(s).
@@ -43,7 +45,7 @@ correct role(s) or permission(s).
     }
     ```
 
-## Get the Current User
+### Get the Current User
 
 Returns the information about the current user that is logged in.
 
@@ -69,7 +71,7 @@ Returns the information about the current user that is logged in.
     }
     ```
 
-## Log In a User
+### Log In a User
 
 Logs in a current user with valid credentials and returns the current user's
 information.
@@ -136,7 +138,7 @@ information.
     }
     ```
 
-## Sign Up a User
+### Sign Up a User
 
 Creates a new user, logs them in as the current user, and returns the current
 user's information.
@@ -227,7 +229,9 @@ user's information.
     }
     ```
 
-## Get all Songs
+## FEATURE 1: SONGS FEATURE
+
+### Get all Songs
 
 Returns all the songs.
 
@@ -261,7 +265,7 @@ Returns all the songs.
     }
     ```
 
-## Get all Songs created by the Current User
+### Get all Songs created by the Current User
 
 Returns all the songs created by the current user.
 
@@ -295,7 +299,7 @@ Returns all the songs created by the current user.
     }
     ```
 
-## Get details of a Song from an id
+### Get details of a Song from an id
 
 Returns the details of a song specified by its id.
 
@@ -348,7 +352,7 @@ Returns the details of a song specified by its id.
     }
     ```
 
-## Create a Song for an Album based on the Album's id
+### Create a Song for an Album based on the Album's id
 
 Creates and returns a new song.
 
@@ -385,7 +389,7 @@ Creates and returns a new song.
       "description": "A song about the past.",
       "url": "audio url",
       "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36", 
+      "updatedAt": "2021-11-19 20:39:36",
       "previewImage": "image url"
     }
     ```
@@ -420,7 +424,7 @@ Creates and returns a new song.
     }
     ```
 
-## Edit a Song
+### Edit a Song
 
 Updates and returns an existing song.
 
@@ -457,7 +461,7 @@ Updates and returns an existing song.
       "description": "A song about the past.",
       "url": "audio url",
       "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-20 20:00:00", 
+      "updatedAt": "2021-11-20 20:00:00",
       "previewImage": "image url"
     }
     ```
@@ -492,7 +496,7 @@ Updates and returns an existing song.
     }
     ```
 
-## Delete a Song
+### Delete a Song
 
 Deletes an existing song.
 
@@ -512,7 +516,7 @@ Deletes an existing song.
     ```json
     {
       "message": "Successfully deleted",
-      "statusCode": 200 
+      "statusCode": 200
     }
     ```
 
@@ -529,7 +533,9 @@ Deletes an existing song.
     }
     ```
 
-## Get all Albums
+## FEATURE 2: ALBUMS FEATURE
+
+### Get all Albums
 
 Returns all the Albums.
 
@@ -561,7 +567,7 @@ Returns all the Albums.
     }
     ```
 
-## Get all Albums created by the Current User
+### Get all Albums created by the Current User
 
 Returns all the Albums created by the current user.
 
@@ -593,7 +599,7 @@ Returns all the Albums created by the current user.
     }
     ```
 
-## Get details of an Album from an id
+### Get details of an Album from an id
 
 Returns the details of an album specified by its id.
 
@@ -652,7 +658,7 @@ Returns the details of an album specified by its id.
     }
     ```
 
-## Create an Album
+### Create an Album
 
 Creates and returns a new album.
 
@@ -706,7 +712,7 @@ Creates and returns a new album.
     }
     ```
 
-## Edit an Album
+### Edit an Album
 
 Updates and returns an existing album.
 
@@ -774,7 +780,7 @@ Updates and returns an existing album.
     }
     ```
 
-## Delete an Album
+### Delete an Album
 
 Deletes an existing album.
 
@@ -794,7 +800,7 @@ Deletes an existing album.
     ```json
     {
       "message": "Successfully deleted",
-      "statusCode": 200 
+      "statusCode": 200
     }
     ```
 
@@ -810,8 +816,9 @@ Deletes an existing album.
       "statusCode": 404
     }
     ```
+## FEATURE 3: COMMENTS FEATURE
 
-## Get all Comments by a Song's id
+### Get all Comments by a Song's id
 
 Returns all the comments that belong to a song specified by id.
 
@@ -859,7 +866,7 @@ Returns all the comments that belong to a song specified by id.
     }
     ```
 
-## Create a Comment for a Song based on the Song's id
+### Create a Comment for a Song based on the Song's id
 
 Create and return a new comment for a song specified by id.
 
@@ -923,7 +930,7 @@ Create and return a new comment for a song specified by id.
     }
     ```
 
-## Edit a Comment
+### Edit a Comment
 
 Update and return an existing comment.
 
@@ -988,7 +995,7 @@ Update and return an existing comment.
     }
     ```
 
-## Delete a Comment
+### Delete a Comment
 
 Delete an existing comment.
 
@@ -1008,7 +1015,7 @@ Delete an existing comment.
     ```json
     {
       "message": "Successfully deleted",
-      "statusCode": 200 
+      "statusCode": 200
     }
     ```
 
@@ -1025,7 +1032,9 @@ Delete an existing comment.
     }
     ```
 
-## Get details of an Artist from an id
+## FEATURE 4: ARTISTS FEATURE
+
+### Get details of an Artist from an id
 
 Returns the details of an artist specified by their id.
 
@@ -1064,7 +1073,7 @@ Returns the details of an artist specified by their id.
     }
     ```
 
-## Get all Songs of an Artist from an id
+### Get all Songs of an Artist from an id
 
 Returns all the songs created by the specified artist.
 
@@ -1111,7 +1120,7 @@ Returns all the songs created by the specified artist.
     }
     ```
 
-## Get all Albums of an Artist from an id
+### Get all Albums of an Artist from an id
 
 Returns all the albums created by the specified artist.
 
@@ -1156,7 +1165,9 @@ Returns all the albums created by the specified artist.
     }
     ```
 
-## Get all Playlists of an Artist from an id
+## FEATURE 5: PLAYLISTS FEATURE
+
+### Get all Playlists of an Artist from an id
 
 Returns all the playlists created by the specified artist.
 
@@ -1200,7 +1211,7 @@ Returns all the playlists created by the specified artist.
     }
     ```
 
-## Create a Playlist
+### Create a Playlist
 
 Creates and returns a new playlist.
 
@@ -1252,7 +1263,7 @@ Creates and returns a new playlist.
     }
     ```
 
-## Add a Song to a Playlist based on the Playlists's id
+### Add a Song to a Playlist based on the Playlists's id
 
 Add a song to a playlist specified by the playlist's id.
 
@@ -1311,7 +1322,7 @@ Add a song to a playlist specified by the playlist's id.
     }
     ```
 
-## Get details of a Playlist from an id
+### Get details of a Playlist from an id
 
 Returns the details of a playlist specified by its id.
 
@@ -1364,7 +1375,7 @@ Returns the details of a playlist specified by its id.
     }
     ```
 
-## Edit a Playlist
+### Edit a Playlist
 
 Updates and returns an existing playlist.
 
@@ -1430,7 +1441,7 @@ Updates and returns an existing playlist.
     }
     ```
 
-## Delete a Playlist
+### Delete a Playlist
 
 Deletes an existing playlist.
 
@@ -1450,7 +1461,7 @@ Deletes an existing playlist.
     ```json
     {
       "message": "Successfully deleted",
-      "statusCode": 200 
+      "statusCode": 200
     }
     ```
 
@@ -1467,7 +1478,7 @@ Deletes an existing playlist.
     }
     ```
 
-## Get all Playlists created by the Current User
+### Get all Playlists created by the Current User
 
 Returns all the playlists created by the current user.
 
@@ -1498,7 +1509,7 @@ Returns all the playlists created by the current user.
     }
     ```
 
-## Add Query Filters to Get All Songs
+### Add Query Filters to Get All Songs
 
 Return songs filtered by query parameters.
 
@@ -1556,4 +1567,3 @@ Return songs filtered by query parameters.
       }
     }
     ```
-    
