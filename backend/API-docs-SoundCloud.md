@@ -1,12 +1,12 @@
-# `<name of application here>`
+# SoundCloud Clone
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+![soundcloud-database-schema](../assets/soundcloud_dbdiagram.png)
 
 ## API Documentation
 
-## FEATURE 0: USER AUTHORIXATION
+## USER AUTHENTICATION/AUTHORIZATION
 
 ### All endpoints that require authentication
 
@@ -51,8 +51,8 @@ Returns the information about the current user that is logged in.
 
 * Require Authentication: true
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: GET
+  * URL: /api/session
   * Body: none
 
 * Successful Response
@@ -78,15 +78,15 @@ information.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: POST
+  * URL: /api/session
   * Headers:
     * Content-Type: application/json
   * Body:
 
     ```json
     {
-      "email": "john.smith@gmail.com",
+      "credential": "john.smith@gmail.com",
       "password": "secret password"
     }
     ```
@@ -132,7 +132,7 @@ information.
       "message": "Validation error",
       "statusCode": 400,
       "errors": {
-        "email": "Email is required",
+        "credential": "Email or username is required",
         "password": "Password is required"
       }
     }
@@ -145,8 +145,8 @@ user's information.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: POST
+  * URL: /api/users
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -229,7 +229,7 @@ user's information.
     }
     ```
 
-## FEATURE 1: SONGS FEATURE
+## SONGS
 
 ### Get all Songs
 
@@ -237,42 +237,8 @@ Returns all the songs.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
-  * Body: none
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "Songs":[
-        {
-          "id": 1,
-          "userId": 1,
-          "albumId": 1,
-          "title": "Yesterday",
-          "description": "A song about the past.",
-          "url": "audio url",
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36",
-          "previewImage": "image url"
-        }
-      ]
-    }
-    ```
-
-### Get all Songs created by the Current User
-
-Returns all the songs created by the current user.
-
-* Require Authentication: true
-* Request
-  * Method: ?
-  * URL: ?
+  * Method: GET
+  * URL: /api/songs
   * Body: none
 
 * Successful Response
@@ -299,14 +265,95 @@ Returns all the songs created by the current user.
     }
     ```
 
+### Get all Songs created by the Current User
+
+Returns all the songs created by the current user.
+
+* Require Authentication: true
+* Request
+  * Method: GET
+  * URL: /api/songs/current
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "Songs": [
+        {
+          "id": 1,
+          "userId": 1,
+          "albumId": 1,
+          "title": "Yesterday",
+          "description": "A song about the past.",
+          "url": "audio url",
+          "createdAt": "2021-11-19 20:39:36",
+          "updatedAt": "2021-11-19 20:39:36",
+          "previewImage": "image url"
+        }
+      ]
+    }
+    ```
+
+### Get all Songs of an Artist from an id
+
+Returns all the songs created by the specified artist.
+
+* Require Authentication: false
+* Request
+  * Method: GET
+  * URL: /api/artists/:artistId/songs
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "Songs": [
+        {
+          "id": 1,
+          "userId": 1,
+          "albumId": 1,
+          "title": "Yesterday",
+          "description": "A song about the past.",
+          "url": "audio url",
+          "createdAt": "2021-11-19 20:39:36",
+          "updatedAt": "2021-11-19 20:39:36",
+          "previewImage": "image url"
+        }
+      ]
+    }
+    ```
+
+* Error response: Couldn't find an Artist with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Artist couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
 ### Get details of a Song from an id
 
 Returns the details of a song specified by its id.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: GET
+  * URL: /api/songs/:songId
   * Body: none
 
 * Successful Response
@@ -352,25 +399,37 @@ Returns the details of a song specified by its id.
     }
     ```
 
-### Create a Song for an Album based on the Album's id
+### Create a Song
 
-Creates and returns a new song.
+Creates and returns a new song with or without an album.
 
 * Require Authentication: true
-* Require proper authorization: Album must belong to the current user
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: POST
+  * URL: /api/songs
   * Headers:
     * Content-Type: application/json
-  * Body:
+  * Body without an album:
 
     ```json
     {
       "title": "Yesterday",
       "description": "A song about the past.",
       "url": "audio url",
-      "imageUrl": "image url"
+      "imageUrl": "image url",
+      "albumId": null
+    }
+    ```
+
+  * Body with an album:
+
+    ```json
+    {
+      "title": "Tomorrow",
+      "description": "A song about the future.",
+      "url": "audio url",
+      "imageUrl": "image url",
+      "albumId": 1
     }
     ```
 
@@ -384,7 +443,7 @@ Creates and returns a new song.
     {
       "id": 1,
       "userId": 1,
-      "albumId": 1,
+      "albumId": null,
       "title": "Yesterday",
       "description": "A song about the past.",
       "url": "audio url",
@@ -411,7 +470,8 @@ Creates and returns a new song.
     }
     ```
 
-* Error response: Couldn't find an Album with the specified id
+* Error response: Couldn't find an Album with the specified albumId if albumId
+  is not null
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -431,8 +491,8 @@ Updates and returns an existing song.
 * Require Authentication: true
 * Require proper authorization: Song must belong to the current user
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: PUT
+  * URL: /api/songs/:songId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -442,7 +502,8 @@ Updates and returns an existing song.
       "title": "Yesterday",
       "description": "A song about the past.",
       "url": "audio url",
-      "imageUrl": "image url"
+      "imageUrl": "image url",
+      "albumId": null
     }
     ```
 
@@ -456,7 +517,7 @@ Updates and returns an existing song.
     {
       "id": 1,
       "userId": 1,
-      "albumId": 1,
+      "albumId": null,
       "title": "Yesterday",
       "description": "A song about the past.",
       "url": "audio url",
@@ -503,8 +564,8 @@ Deletes an existing song.
 * Require Authentication: true
 * Require proper authorization: Song must belong to the current user
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: DELETE
+  * URL: /api/songs/:songId
   * Body: none
 
 * Successful Response
@@ -533,7 +594,567 @@ Deletes an existing song.
     }
     ```
 
-## FEATURE 2: ALBUMS FEATURE
+## PLAYLISTS
+
+### Get all Playlists of an Artist from an id
+
+Returns all the playlists created by the specified artist.
+
+* Require Authentication: false
+* Request
+  * Method: GET
+  * URL: /api/artists/:artistId/playlists
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "Playlists": [
+        {
+          "id": 1,
+          "userId": 1,
+          "name": "Current Favorites",
+          "createdAt": "2021-11-19 20:39:36",
+          "updatedAt": "2021-11-19 20:39:36",
+          "previewImage": "image url"
+        }
+      ]
+    }
+    ```
+
+* Error response: Couldn't find an Artist with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Artist couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Create a Playlist
+
+Creates and returns a new playlist.
+
+* Require Authentication: true
+* Request
+  * Method: POST
+  * URL: /api/playlists
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "name": "Current Favorites",
+      "imageUrl": "image url"
+    }
+    ```
+
+* Successful Response
+  * Status Code: 201
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "userId": 1,
+      "name": "Current Favorites",
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36",
+      "previewImage": "image url"
+    }
+    ```
+
+* Error Response: Body validation error
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "name": "Playlist name is required"
+      }
+    }
+    ```
+
+### Add a Song to a Playlist based on the Playlists's id
+
+Add a song to a playlist specified by the playlist's id.
+
+* Require Authentication: true
+* Require proper authorization: Playlist must belong to the current user
+* Request
+  * Method: POST
+  * URL: /api/playlists/:playlistId/songs
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "songId": 1
+    }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "playlistId": 1,
+      "songId": 1
+    }
+    ```
+
+* Error response: Couldn't find a Playlist with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Playlist couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+* Error response: Couldn't find a Song with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Song couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Get details of a Playlist from an id
+
+Returns the details of a playlist specified by its id.
+
+* Require Authentication: false
+* Request
+  * Method: GET
+  * URL: /api/playlists/:playlistId
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "userId": 1,
+      "name": "Current Favorites",
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36",
+      "previewImage": "image url",
+      "Songs": [
+        {
+          "id": 1,
+          "userId": 1,
+          "albumId": 1,
+          "title": "Yesterday",
+          "description": "A song about the past.",
+          "url": "audio url",
+          "createdAt": "2021-11-19 20:39:36",
+          "updatedAt": "2021-11-19 20:39:36",
+          "previewImage": "image url"
+        }
+      ]
+    }
+    ```
+
+* Error response: Couldn't find a Playlist with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Playlist couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Edit a Playlist
+
+Updates and returns an existing playlist.
+
+* Require Authentication: true
+* Require proper authorization: Playlist must belong to the current user
+* Request
+  * Method: PUT
+  * URL: /api/playlists/:playlistId
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "name": "Current Favorites",
+      "imageUrl": "image url"
+    }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "userId": 1,
+      "name": "Current Favorites",
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-20 20:00:00",
+      "previewImage": "image url"
+    }
+    ```
+
+* Error Response: Body validation error
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "name": "Playlist name is required"
+      }
+    }
+    ```
+
+* Error response: Couldn't find a Playlist with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Playlist couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Delete a Playlist
+
+Deletes an existing playlist.
+
+* Require Authentication: true
+* Require proper authorization: Playlist must belong to the current user
+* Request
+  * Method: DELETE
+  * URL: /api/playlists/:playlistId
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Successfully deleted",
+      "statusCode": 200
+    }
+    ```
+
+* Error response: Couldn't find a Playlist with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Playlist couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Get all Playlists created by the Current User
+
+Returns all the playlists created by the current user.
+
+* Require Authentication: true
+* Request
+  * Method: GET
+  * URL: /api/playlists/current
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "Playlists":[
+        {
+          "id": 1,
+          "userId": 1,
+          "name": "Current Favorites",
+          "createdAt": "2021-11-19 20:39:36",
+          "updatedAt": "2021-11-19 20:39:36",
+          "previewImage": "image url"
+        }
+      ]
+    }
+    ```
+
+## COMMENTS
+
+### Get all Comments by a Song's id
+
+Returns all the comments that belong to a song specified by id.
+
+* Require Authentication: false
+* Request
+  * Method: GET
+  * URL: /api/songs/:songId/comments
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "Comments": [
+        {
+          "id": 1,
+          "userId": 1,
+          "songId": 1,
+          "body": "I love this song!",
+          "createdAt": "2021-11-19 20:39:36",
+          "updatedAt": "2021-11-19 20:39:36" ,
+          "User": {
+            "id": 1,
+            "username": "JohnSmith"
+          },
+        }
+      ]
+    }
+    ```
+
+* Error response: Couldn't find a Song with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Song couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Create a Comment for a Song based on the Song's id
+
+Create and return a new comment for a song specified by id.
+
+* Require Authentication: true
+* Request
+  * Method: POST
+  * URL: /api/songs/:songId/comments
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "body": "I love this song!"
+    }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "userId": 1,
+      "songId": 1,
+      "body": "I love this song!",
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36" ,
+    }
+    ```
+
+* Error Response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Validation error",
+      "statusCode": 400,
+      "errors": {
+        "body": "Comment body text is required"
+      }
+    }
+    ```
+
+* Error response: Couldn't find a Song with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Song couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Edit a Comment
+
+Update and return an existing comment.
+
+* Require Authentication: true
+* Require proper authorization: Comment must belong to the current user
+* Request
+  * Method: PUT
+  * URL: /api/comments/:commentId
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "body": "I love this song!"
+    }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "userId": 1,
+      "songId": 1,
+      "body": "I love this song!",
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-20 20:00:00"
+    }
+    ```
+
+* Error Response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Validation error",
+      "statusCode": 400,
+      "errors": {
+        "body": "Comment body text is required",
+      }
+    }
+    ```
+
+* Error response: Couldn't find a Comment with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Comment couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Delete a Comment
+
+Delete an existing comment.
+
+* Require Authentication: true
+* Require proper authorization: Comment must belong to the current user
+* Request
+  * Method: DELETE
+  * URL: /api/comments/:commentId
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Successfully deleted",
+      "statusCode": 200
+    }
+    ```
+
+* Error response: Couldn't find a Comment with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Comment couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+## ALBUMS
 
 ### Get all Albums
 
@@ -541,8 +1162,8 @@ Returns all the Albums.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: GET
+  * URL: /api/albums
   * Body: none
 
 * Successful Response
@@ -573,8 +1194,8 @@ Returns all the Albums created by the current user.
 
 * Require Authentication: true
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: GET
+  * URL: /api/albums/current
   * Body: none
 
 * Successful Response
@@ -599,14 +1220,59 @@ Returns all the Albums created by the current user.
     }
     ```
 
+### Get all Albums of an Artist from an id
+
+Returns all the albums created by the specified artist.
+
+* Require Authentication: false
+* Request
+  * Method: GET
+  * URL: /api/artists/:artistId/albums
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "Albums": [
+        {
+          "id": 1,
+          "userId": 1,
+          "title": "Time",
+          "description": "An album about time.",
+          "createdAt": "2021-11-19 20:39:36",
+          "updatedAt": "2021-11-19 20:39:36",
+          "previewImage": "image url"
+        }
+      ]
+    }
+    ```
+
+* Error response: Couldn't find an Artist with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Artist couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
 ### Get details of an Album from an id
 
 Returns the details of an album specified by its id.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: GET
+  * URL: /api/albums/:albumId
   * Body: none
 
 * Successful Response
@@ -634,8 +1300,8 @@ Returns the details of an album specified by its id.
           "id": 1,
           "userId": 1,
           "albumId": 1,
-          "title": "Yesterday",
-          "description": "A song about the past.",
+          "title": "Tomorrow",
+          "description": "A song about the future.",
           "url": "audio url",
           "createdAt": "2021-11-19 20:39:36",
           "updatedAt": "2021-11-19 20:39:36",
@@ -664,8 +1330,8 @@ Creates and returns a new album.
 
 * Require Authentication: true
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: POST
+  * URL: /api/albums
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -719,8 +1385,8 @@ Updates and returns an existing album.
 * Require Authentication: true
 * Require proper authorization: Album must belong to the current user
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: PUT
+  * URL: /api/albums/:albumId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -787,8 +1453,8 @@ Deletes an existing album.
 * Require Authentication: true
 * Require proper authorization: Album must belong to the current user
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: DELETE
+  * URL: /api/albums/:albumId
   * Body: none
 
 * Successful Response
@@ -816,223 +1482,8 @@ Deletes an existing album.
       "statusCode": 404
     }
     ```
-## FEATURE 3: COMMENTS FEATURE
 
-### Get all Comments by a Song's id
-
-Returns all the comments that belong to a song specified by id.
-
-* Require Authentication: false
-* Request
-  * Method: ?
-  * URL: ?
-  * Body: none
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "Comments": [
-        {
-          "id": 1,
-          "userId": 1,
-          "songId": 1,
-          "body": "I love this song!",
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36" ,
-          "User": {
-            "id": 1,
-            "username": "JohnSmith"
-          },
-        }
-      ]
-    }
-    ```
-
-* Error response: Couldn't find a Song with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Song couldn't be found",
-      "statusCode": 404
-    }
-    ```
-
-### Create a Comment for a Song based on the Song's id
-
-Create and return a new comment for a song specified by id.
-
-* Require Authentication: true
-* Request
-  * Method: ?
-  * URL: ?
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "body": "I love this song!"
-    }
-    ```
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "id": 1,
-      "userId": 1,
-      "songId": 1,
-      "body": "I love this song!",
-      "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36" ,
-    }
-    ```
-
-* Error Response: Body validation errors
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Validation error",
-      "statusCode": 400,
-      "errors": {
-        "body": "Comment body text is required"
-      }
-    }
-    ```
-
-* Error response: Couldn't find a Song with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Song couldn't be found",
-      "statusCode": 404
-    }
-    ```
-
-### Edit a Comment
-
-Update and return an existing comment.
-
-* Require Authentication: true
-* Require proper authorization: Comment must belong to the current user
-* Request
-  * Method: ?
-  * URL: ?
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "body": "I love this song!"
-    }
-    ```
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "id": 1,
-      "userId": 1,
-      "songId": 1,
-      "body": "I love this song!",
-      "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-20 20:00:00"
-    }
-    ```
-
-* Error Response: Body validation errors
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Validation error",
-      "statusCode": 400,
-      "errors": {
-        "body": "Comment body text is required",
-      }
-    }
-    ```
-
-* Error response: Couldn't find a Comment with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Comment couldn't be found",
-      "statusCode": 404
-    }
-    ```
-
-### Delete a Comment
-
-Delete an existing comment.
-
-* Require Authentication: true
-* Require proper authorization: Comment must belong to the current user
-* Request
-  * Method: ?
-  * URL: ?
-  * Body: none
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Successfully deleted",
-      "statusCode": 200
-    }
-    ```
-
-* Error response: Couldn't find a Comment with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Comment couldn't be found",
-      "statusCode": 404
-    }
-    ```
-
-## FEATURE 4: ARTISTS FEATURE
+## ARTISTS
 
 ### Get details of an Artist from an id
 
@@ -1040,8 +1491,8 @@ Returns the details of an artist specified by their id.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: GET
+  * URL: /api/artists/:artistId
   * Body: none
 
 * Successful Response
@@ -1073,450 +1524,14 @@ Returns the details of an artist specified by their id.
     }
     ```
 
-### Get all Songs of an Artist from an id
-
-Returns all the songs created by the specified artist.
-
-* Require Authentication: false
-* Request
-  * Method: ?
-  * URL: ?
-  * Body: none
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "Songs": [
-        {
-          "id": 1,
-          "userId": 1,
-          "albumId": 1,
-          "title": "Yesterday",
-          "description": "A song about the past.",
-          "url": "audio url",
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36",
-          "previewImage": "image url"
-        }
-      ]
-    }
-    ```
-
-* Error response: Couldn't find an Artist with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Artist couldn't be found",
-      "statusCode": 404
-    }
-    ```
-
-### Get all Albums of an Artist from an id
-
-Returns all the albums created by the specified artist.
-
-* Require Authentication: false
-* Request
-  * Method: ?
-  * URL: ?
-  * Body: none
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "Albums": [
-        {
-          "id": 1,
-          "userId": 1,
-          "title": "Time",
-          "description": "An album about time.",
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36",
-          "previewImage": "image url"
-        }
-      ]
-    }
-    ```
-
-* Error response: Couldn't find an Artist with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Artist couldn't be found",
-      "statusCode": 404
-    }
-    ```
-
-## FEATURE 5: PLAYLISTS FEATURE
-
-### Get all Playlists of an Artist from an id
-
-Returns all the playlists created by the specified artist.
-
-* Require Authentication: false
-* Request
-  * Method: ?
-  * URL: ?
-  * Body: none
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "Playlists": [
-        {
-          "id": 1,
-          "userId": 1,
-          "name": "Current Favorites",
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36",
-          "previewImage": "image url"
-        }
-      ]
-    }
-    ```
-
-* Error response: Couldn't find an Artist with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Artist couldn't be found",
-      "statusCode": 404
-    }
-    ```
-
-### Create a Playlist
-
-Creates and returns a new playlist.
-
-* Require Authentication: true
-* Request
-  * Method: ?
-  * URL: ?
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "name": "Current Favorites",
-      "imageUrl": "image url"
-    }
-    ```
-
-* Successful Response
-  * Status Code: 201
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "id": 1,
-      "userId": 1,
-      "name": "Current Favorites",
-      "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36",
-      "previewImage": "image url"
-    }
-    ```
-
-* Error Response: Body validation error
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Validation Error",
-      "statusCode": 400,
-      "errors": {
-        "name": "Playlist name is required"
-      }
-    }
-    ```
-
-### Add a Song to a Playlist based on the Playlists's id
-
-Add a song to a playlist specified by the playlist's id.
-
-* Require Authentication: true
-* Require proper authorization: Playlist must belong to the current user
-* Request
-  * Method: ?
-  * URL: ?
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "songId": 1
-    }
-    ```
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "id": 1,
-      "playlistId": 1,
-      "songId": 1
-    }
-    ```
-
-* Error response: Couldn't find a Playlist with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Playlist couldn't be found",
-      "statusCode": 404
-    }
-    ```
-
-* Error response: Couldn't find a Song with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Song couldn't be found",
-      "statusCode": 404
-    }
-    ```
-
-### Get details of a Playlist from an id
-
-Returns the details of a playlist specified by its id.
-
-* Require Authentication: false
-* Request
-  * Method: ?
-  * URL: ?
-  * Body: none
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "id": 1,
-      "userId": 1,
-      "name": "Current Favorites",
-      "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36",
-      "previewImage": "image url",
-      "Songs": [
-        {
-          "id": 1,
-          "userId": 1,
-          "albumId": 1,
-          "title": "Yesterday",
-          "description": "A song about the past.",
-          "url": "audio url",
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36",
-          "previewImage": "image url"
-        }
-      ]
-    }
-    ```
-
-* Error response: Couldn't find a Playlist with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Playlist couldn't be found",
-      "statusCode": 404
-    }
-    ```
-
-### Edit a Playlist
-
-Updates and returns an existing playlist.
-
-* Require Authentication: true
-* Require proper authorization: Playlist must belong to the current user
-* Request
-  * Method: ?
-  * URL: ?
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "name": "Current Favorites",
-      "imageUrl": "image url"
-    }
-    ```
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "id": 1,
-      "userId": 1,
-      "name": "Current Favorites",
-      "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-20 20:00:00",
-      "previewImage": "image url"
-    }
-    ```
-
-* Error Response: Body validation error
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Validation Error",
-      "statusCode": 400,
-      "errors": {
-        "name": "Playlist name is required"
-      }
-    }
-    ```
-
-* Error response: Couldn't find a Playlist with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Playlist couldn't be found",
-      "statusCode": 404
-    }
-    ```
-
-### Delete a Playlist
-
-Deletes an existing playlist.
-
-* Require Authentication: true
-* Require proper authorization: Playlist must belong to the current user
-* Request
-  * Method: ?
-  * URL: ?
-  * Body: none
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Successfully deleted",
-      "statusCode": 200
-    }
-    ```
-
-* Error response: Couldn't find a Playlist with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Playlist couldn't be found",
-      "statusCode": 404
-    }
-    ```
-
-### Get all Playlists created by the Current User
-
-Returns all the playlists created by the current user.
-
-* Require Authentication: true
-* Request
-  * Method: ?
-  * URL: ?
-  * Body: none
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "Playlists":[
-        {
-          "id": 1,
-          "userId": 1,
-          "name": "Current Favorites",
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36",
-          "previewImage": "image url"
-        }
-      ]
-    }
-    ```
-
 ### Add Query Filters to Get All Songs
 
 Return songs filtered by query parameters.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: GET
+  * URL: /api/songs
   * Query Parameters
     * page: integer, minimum: 0, maximum: 10, default: 0
     * size: integer, minimum: 0, maximum: 20, default: 20

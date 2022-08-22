@@ -334,7 +334,7 @@ Creates and returns a new playlist.
   `name` are violated
 
 
-## Add a Song to a Playlist based on the Playlist's id (Feature 5)
+### Add a Song to a Playlist based on the Playlist's id (Feature 5)
 
 Add a song to a playlist specified by the playlist's id.
 

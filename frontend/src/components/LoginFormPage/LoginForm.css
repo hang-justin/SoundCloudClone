@@ -1,0 +1,14 @@
+button {
+  color: white;
+  background-color: red;
+}
+
+form {
+  outline: orange dotted 2px;
+  background-color: #224367;
+}
+
+label {
+  background-color: #224367;
+  color: white;
+}

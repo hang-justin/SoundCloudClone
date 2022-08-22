@@ -1,0 +1,8 @@
+/* Question: How to select li tags with custom attribute */
+/* li[attribute] for li[key] doesn't seem to be selecting */
+/* regular li tag selector works though */
+
+li[logInPage] {
+  border: 3px black solid;
+  background-color: green;
+}
