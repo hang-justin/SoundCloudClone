@@ -14,6 +14,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(state => state.session.user);
 
+  // If there is a user, this loads the user's playlists in state
   if (isLoaded && user) dispatch(playlistsActions.getCurrentUserPlaylists());
 
   // const activeSession = useSelector(state => state.session.user);

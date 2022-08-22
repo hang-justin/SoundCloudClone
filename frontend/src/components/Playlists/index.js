@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from 'react-router-dom';
+
 import * as playlistsActions from '../../store/playlists';
 
 import './Playlists.css'
@@ -29,17 +31,19 @@ const Playlists = () => {
 
   // }
 
-  console.log('userPlaylists is ', userPlaylists)
   let playlistDiv = [];
   for (let playlistId in userPlaylists) {
-    let playlist = userPlaylists[playlistId]
-    console.log(playlist)
+    let playlist = userPlaylists[playlistId];
+
+    // To render current user's playlists
     playlistDiv.push(
-      <div className='playlist-container' id={`playlistDiv${playlistId}`}>
-        <div>
-          <img className='playlist-img' src={playlist.imageUrl} alt={`Playlist ${playlistId} Img`} />
-        </div>
-        {playlist.name}
+      <div className='playlist-container' id={`playlistDiv${playlist.id}`}>
+        <NavLink className='playlist-link' to={`/playlists/${playlist.id}`}>
+          <div>
+            <img className='playlist-img' src={playlist.imageUrl} alt={`Playlist ${playlist.id} Img`} />
+          </div>
+          {playlist.name}
+        </NavLink>
       </div>
     )
   }
@@ -52,7 +56,7 @@ const Playlists = () => {
       <button>Create a playlist</button>
       <button>Select Playlist</button>
 
-<p>{`${user.username}'s wack playlists`}</p>
+      <p>{`${user.username}'s wack playlists`}</p>
       <div className='all-playlist-container'>
         {playlistDiv}
       </div>
