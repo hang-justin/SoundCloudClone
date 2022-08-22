@@ -1,0 +1,8 @@
+.all-playlist-container {
+  display: flex;
+}
+
+.playlist-img {
+  height: 180px;
+  width: 180px;
+}

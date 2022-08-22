@@ -4,7 +4,7 @@ const demoPlaylists = [
   {
     userId: 1,
     name: 'Number 1 playlist',
-    imageUrl: 'mind yo own biz'
+    imageUrl: 'https://i.imgur.com/vM4dsRJ.jpeg'
   },
   {
     userId: 2,
@@ -19,7 +19,7 @@ const demoPlaylists = [
   {
     userId: 1,
     name: 'Number 4 playlist',
-    imageUrl: `Really`
+    imageUrl: `https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/7010633a-fbb6-4a19-869a-91a8611c03f4/d8cyp4f-b6888ff4-9fc7-4b10-91c6-607ddea741cf.png`
   },
   {
     userId: 2,

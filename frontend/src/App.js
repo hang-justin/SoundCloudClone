@@ -6,11 +6,16 @@ import SignUpFormPage from './components/SignUpFormPage';
 import Navigation from './components/Navigation';
 import UserHome from './components/UserHome';
 
-import * as sessionActions from './store/session'
+import * as sessionActions from './store/session';
+import * as playlistsActions from './store/playlists';
 
 function App() {
   let dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const user = useSelector(state => state.session.user);
+
+  if (isLoaded && user) dispatch(playlistsActions.getCurrentUserPlaylists());
+
   // const activeSession = useSelector(state => state.session.user);
   // let sessionStyle = !activeSession ?
   //   { display: 'block' } : { visibility: 'hidden' };
