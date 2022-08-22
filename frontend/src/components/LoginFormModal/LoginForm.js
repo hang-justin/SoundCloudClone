@@ -5,13 +5,7 @@ import { logIn } from '../../store/session';
 
 import './LoginForm.css'
 
-const LoginFormPage = () => {
-  let history = useHistory();
-
-  let user = useSelector(state => state.session.user)
-
-  if (user) history.push('/');
-
+const LoginForm = () => {
   const dispatch = useDispatch();
 
   const [usernameOrEmail, setUsernameOrEmail] = useState('')
@@ -77,4 +71,4 @@ const LoginFormPage = () => {
   );
 }
 
-export default LoginFormPage;
+export default LoginForm;
