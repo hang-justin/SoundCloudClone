@@ -20,16 +20,15 @@ router.use('/api', apiRouter);
 
 // Allows any dev to re-set CSRF token cookie XSRF-TOKEN
 // Response includes new token
-// Commented out the below prior to frontend deployment
-// if (process.env.NODE_ENV !== 'production') {
-//   router.get('/api/csrf/restore', (req, res) => {
-//     const csrfToken = req.csrfToken();
-//     res.cookie('XSRF-TOKEN', csrfToken);
-//     res.status(200).json({
-//       'XSRF-Token': csrfToken
-//     });
-//   });
-// }
+if (process.env.NODE_ENV !== 'production') {
+  router.get('/api/csrf/restore', (req, res) => {
+    const csrfToken = req.csrfToken();
+    res.cookie('XSRF-TOKEN', csrfToken);
+    res.status(200).json({
+      'XSRF-Token': csrfToken
+    });
+  });
+}
 
 // Static routes
 // Serve React build files in production
