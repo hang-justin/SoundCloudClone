@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 // import LoginFormPage from "./components/LoginFormPage";
 import SignUpFormPage from './components/SignUpFormPage';
 import Navigation from './components/Navigation';
+import UserHome from './components/UserHome';
+
 import * as sessionActions from './store/session'
 
 function App() {
@@ -30,8 +32,8 @@ function App() {
       <Navigation />
 
       <Switch>
-        {/* <Route exact path='/login' component={LoginFormPage} /> */}
         <Route exact path='/signup' component={SignUpFormPage} />
+        <Route path='/you' component={UserHome} />
       </Switch>
     </>
   );

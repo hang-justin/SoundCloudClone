@@ -34,7 +34,7 @@ const ProfileButton = () => {
   return (
     <>
       <button onClick={() => openMenu()}>
-        <i class="fa-solid fa-user-ninja"></i>
+        <i className="fa-solid fa-user-ninja"></i>
       </button>
 
       {

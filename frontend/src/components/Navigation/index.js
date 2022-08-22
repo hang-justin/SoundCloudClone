@@ -10,16 +10,21 @@ const Navigation = () => {
 
   let navlinks = [
     <LoginFormModal />,
-    <NavLink to='/signup'>Sign Up</NavLink>
+    <NavLink className='header__navlink' to='/signup'>Sign Up</NavLink>
   ];
 
   return (
-    <ul className='Navigation'>
-      <li key='nav'><NavLink to='/'>Home</NavLink>
-        {user && <ProfileButton />}
-        {!user && navlinks}
-      </li>
-    </ul>
+    <header className='header__nav'>
+      <div className='header__nav__container'>
+        <ul className='Navigation'>
+          <li key='nav-home'><NavLink className='header__navlink' to='/'>Home</NavLink>
+          <li key='nav-discover'><NavLink className='header__navlink' to='/you'>Profile</NavLink></li>
+            {user && <ProfileButton />}
+            {!user && navlinks}
+          </li>
+        </ul>
+      </div>
+    </header>
   );
 }
 

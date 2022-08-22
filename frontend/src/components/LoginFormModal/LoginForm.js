@@ -12,7 +12,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState([]);
 
-  // for testing log in and log outs
+  // Testing purposes: Ease for testing log in and log outs
   useEffect(() => {
     setUsernameOrEmail('demo');
     setPassword('password');

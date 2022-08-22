@@ -2,6 +2,17 @@
 /* li[attribute] for li[key] doesn't seem to be selecting */
 /* regular li tag selector works though */
 
+header {
+  background-color: #333;
+  color: #cccccc;
+
+  display: flex;
+}
+
+.header__navlink {
+  color: #cccccc;
+}
+
 li[logInPage] {
   border: 3px black solid;
   background-color: green;
