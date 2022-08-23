@@ -6,6 +6,7 @@ import SignUpFormPage from './components/SignUpFormPage';
 import Navigation from './components/Navigation';
 import Library from './components/Library';
 import { SinglePlaylist } from './components/Playlists';
+import UploadSong from './components/UploadSong';
 
 import * as sessionActions from './store/session';
 import * as playlistsActions from './store/playlists';
@@ -14,9 +15,13 @@ function App() {
   let dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(state => state.session.user);
+  console.log(`user from App.js is : ${user}`)
 
   // If there is a user, this loads the user's playlists in state
-  if (isLoaded && user) dispatch(playlistsActions.getCurrentUserPlaylists());
+  if (isLoaded && user) {
+    dispatch(playlistsActions.getCurrentUserPlaylists());
+    console.log('user in if statement: ', user)
+  }
   // Note: May want to adjust the endpoint /api/playlists/current
   //       to return playlists WITH songs to avoid N+1 queries
 
@@ -35,6 +40,8 @@ function App() {
 
   if (!isLoaded) return <div>Loading...</div>
 
+  console.log('user in App.js', user)
+  console.log('App.js', user.id)
   return isLoaded && (
     <>
       <h1>Hello from SonusNimbus</h1>
@@ -45,8 +52,10 @@ function App() {
 
         {/* Note: path='/you' should redirect to /sessionUserId */}
         <Route exact path='/you/:field' component={Library} />
-        <Route exact path='/:userId/:playlistId' component={SinglePlaylist} />
-        <Route exact path='/upload' />
+        <Route exact path='/:userId/playlist/:playlistId' component={SinglePlaylist} />
+
+        <Route exact path='/upload' component={UploadSong} />
+
       </Switch>
     </>
   );

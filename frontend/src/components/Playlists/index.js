@@ -14,11 +14,11 @@ export const SinglePlaylist = () => {
   // will want to hit /api/:playlistId
   // will return said playlist with included songs
 
+  if (!currentPlaylist) dispatch(playlistsActions.getOnePlaylistWithSongs(playlistId))
   useEffect(() => {
     dispatch(playlistsActions.getOnePlaylistWithSongs(playlistId))
   }, [playlistId])
 
-  console.log(currentPlaylist)
   const needToImplement = () => {
     alert('need to implement')
   }
@@ -68,7 +68,7 @@ const Playlists = () => {
     // To render current user's playlists
     playlistDiv.push(
       <div className='playlist-container' id={`playlistDiv${playlist.id}`}>
-        <NavLink className='playlist-link' to={`/${playlist.userId}/${playlist.id}`}>
+        <NavLink className='playlist-link' to={`/${playlist.userId}/playlist/${playlist.id}`}>
           <div>
             <img className='playlist-img' src={playlist.imageUrl} alt={`${playlist.name} Img`} />
           </div>

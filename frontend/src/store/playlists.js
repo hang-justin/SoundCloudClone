@@ -28,7 +28,7 @@ export const getCurrentUserPlaylists = () => async dispatch => {
   // data.Playlists is an array
   let data = await response.json();
 
-  dispatch(setCurrentUserPlaylists(data.Playlists));
+  await dispatch(setCurrentUserPlaylists(data.Playlists));
 
   return data;
 }
@@ -49,7 +49,7 @@ export const getOnePlaylistWithSongs = (playlistId) => async dispatch => {
     playlist = await response.json();
   }
 
-  dispatch(setCurrentPlaylistBeingViewed(playlist))
+  await dispatch(setCurrentPlaylistBeingViewed(playlist))
 }
 
 const initialState = { currentUser: null };
