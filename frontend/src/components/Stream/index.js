@@ -6,6 +6,7 @@ import './Stream.css';
 
 const Stream = () => {
   const dispatch = useDispatch();
+  let sessionUser = useSelector(state => state.session.user)
   let songsObj = useSelector(state => state.songs)
   let songs = Object.values(songsObj);
 
@@ -19,6 +20,10 @@ const Stream = () => {
 
   let clickHandler = () => {
     alert('Working on it... Stay tuned')
+  }
+
+  let deleteTrack = () => {
+    alert(`ARE YOU SURE YOU WANT TO DELETE? PLEASE DON'T BECAUSE I DIDN'T IMPLEMENT IT YET`)
   }
 
   // Note: For img src... implement as something similar to:
@@ -40,6 +45,7 @@ const Stream = () => {
           <button onClick={clickHandler}>Share</button>
           <button onClick={clickHandler}>Copy Link</button>
           <button onClick={clickHandler}>Edit</button>
+          {sessionUser?.id === song.userId && <button onClick={deleteTrack}>Delete track</button>}
         </div>
 
       </div>
