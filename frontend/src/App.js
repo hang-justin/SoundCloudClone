@@ -50,7 +50,7 @@ function App() {
         <Route exact path='/you/:field' component={Library} />
         <Route exact path='/:userId/playlist/:playlistId' component={SinglePlaylist} />
 
-        <Route exact path='/upload' component={UploadSong} />
+        <Route exact path='/upload' component={user && UploadSong} />
 
       </Switch>
     </>

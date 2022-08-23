@@ -6,6 +6,7 @@ import { uploadSong } from "../../store/song";
 
 import './UploadSong.css'
 
+// Note: Must require user to be logged in to view form
 const UploadSongForm = () => {
   const dispatch = useDispatch();
 
