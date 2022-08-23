@@ -1,10 +1,11 @@
 import { csrfFetch } from "./csrf";
 
 const GET_CURRENT_SESSION_PLAYLISTS = 'playlists/GET_CURRENT_USER_PLAYLIST';
+const GET_SINGLE_PLAYLIST_WITH_SONGS = 'playlists/GET_SINGLE_PLAYLIST_WITH_SONGS';
 
 const setCurrentUserPlaylists = (payload) => {
   let playlists = {};
-  payload.forEach( singlePlaylist => playlists[singlePlaylist.id] = singlePlaylist)
+  payload.forEach(singlePlaylist => playlists[singlePlaylist.id] = singlePlaylist)
   return {
     type: GET_CURRENT_SESSION_PLAYLISTS,
     playlists
@@ -20,18 +21,35 @@ export const getCurrentUserPlaylists = () => async dispatch => {
 
       return data.message;
     })
-  console.log(response)
 
   if (response === 'No playlists found.') return response;
 
   // data is an ojbect
   // data.Playlists is an array
   let data = await response.json();
-  console.log('data is ', data)
-  console.log('data.Playlists is ', data.Playlists)
+
   dispatch(setCurrentUserPlaylists(data.Playlists));
 
   return data;
+}
+
+const setCurrentPlaylistBeingViewed = (playlist) => {
+  return {
+    type: GET_SINGLE_PLAYLIST_WITH_SONGS,
+    playlist
+  }
+}
+
+export const getOnePlaylistWithSongs = (playlistId) => async dispatch => {
+  let response = await csrfFetch(`/api/playlists/${playlistId}`)
+  // .then(res => res.json())
+
+  let playlist;
+  if (response.ok) {
+    playlist = await response.json();
+  }
+
+  dispatch(setCurrentPlaylistBeingViewed(playlist))
 }
 
 const initialState = { currentUser: null };
@@ -42,6 +60,10 @@ const playlistsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CURRENT_SESSION_PLAYLISTS:
       newState.currentUser = action.playlists;
+      return newState;
+
+    case GET_SINGLE_PLAYLIST_WITH_SONGS:
+      newState.currentPlaylist = action.playlist;
       return newState;
 
     default: return state;

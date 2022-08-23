@@ -18,7 +18,8 @@ const Navigation = () => {
       <div className='header__nav__container'>
         <ul className='Navigation'>
           <li key='nav-home'><NavLink className='header__navlink' to='/'>Home</NavLink>
-          <li key='nav-discover'><NavLink className='header__navlink' to='/you'>Profile</NavLink></li>
+          <li key='nav-discover'><NavLink className='header__navlink' to='/you/library'>Library</NavLink></li>
+          <li key='nav-upload'><NavLink className='header__navlink' to='/upload'>Upload</NavLink></li>
             {user && <ProfileButton />}
             {!user && navlinks}
           </li>
