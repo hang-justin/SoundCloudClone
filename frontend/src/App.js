@@ -47,7 +47,7 @@ function App() {
         <Route exact path='/signup' component={SignUpFormPage} />
 
         {/* Note: path='/you' should redirect to /sessionUserId */}
-        <Route exact path='/you/:field' component={Library} />
+        <Route path='/you' component={Library} />
         <Route exact path='/:userId/playlist/:playlistId' component={SinglePlaylist} />
 
         <Route exact path='/upload' component={user && UploadSong} />

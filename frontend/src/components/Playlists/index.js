@@ -14,7 +14,6 @@ export const SinglePlaylist = () => {
   // will want to hit /api/:playlistId
   // will return said playlist with included songs
 
-  if (!currentPlaylist) dispatch(playlistsActions.getOnePlaylistWithSongs(playlistId))
   useEffect(() => {
     dispatch(playlistsActions.getOnePlaylistWithSongs(playlistId))
   }, [playlistId])
@@ -22,7 +21,7 @@ export const SinglePlaylist = () => {
   const needToImplement = () => {
     alert('need to implement')
   }
-
+  if (!currentPlaylist) return <div>Loading...</div>
   return (
     <div>
       <div>
