@@ -35,8 +35,6 @@ const UploadSongForm = () => {
       albumId
     };
 
-    // dispatch thunk remember to catch errors
-
     dispatch(uploadSong(song))
       .then((res) => setUploadedSong(res))
       .catch(async (res) => {

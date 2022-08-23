@@ -17,12 +17,12 @@ const Navigation = () => {
     <header className='header__nav'>
       <div className='header__nav__container'>
         <ul className='Navigation'>
-          <li key='nav-home'><NavLink className='header__navlink' to='/'>Home</NavLink>
-          <li key='nav-discover'><NavLink className='header__navlink' to='/you/library'>Library</NavLink></li>
+          <li key='nav-home'><NavLink className='header__navlink' to='/'>Home</NavLink></li>
+          <li key='nav-stream'><NavLink className='header__navlink' to='/stream'>Stream</NavLink></li>
+          <li key='nav-library'><NavLink className='header__navlink' to='/you/library'>Library</NavLink></li>
           <li key='nav-upload'><NavLink className='header__navlink' to='/upload'>Upload</NavLink></li>
             {user && <ProfileButton />}
             {!user && navlinks}
-          </li>
         </ul>
       </div>
     </header>

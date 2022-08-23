@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const CREATE_SONG = 'songs/CREATE_SONG';
+const GET_ALL_SONGS = 'songs/GET_ALL_SONGS';
 
 const createSong = (song) => {
   return {
@@ -34,6 +35,30 @@ export const uploadSong = (song) => async dispatch => {
 
 }
 
+const getAllSongs = (songs) => {
+  return {
+    type: GET_ALL_SONGS,
+    songs
+  }
+}
+
+export const fetchAllSongs = () => async dispatch => {
+  // Note: implement error handlers in fetch
+  let response = await csrfFetch('/api/songs')
+
+  // Note, will we have to handle errors for below?
+  //  - Thinking no, because of conditional
+  let data;
+  if (response.ok) {
+    data = await response.json();
+    // data = { Songs : songArr, page, size }
+    let songs = {};
+    data.Songs.map((songOjb => songs[songOjb.id] = songOjb))
+    dispatch(getAllSongs(songs))
+  }
+
+}
+
 const initialState = {};
 
 const songsReducer = (state = initialState, action) => {
@@ -42,6 +67,10 @@ const songsReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_SONG:
       newState[action.song.id] = action.song;
+      return newState;
+
+    case GET_ALL_SONGS:
+      newState = { ...newState, ...action.songs };
       return newState;
 
     default: return state;

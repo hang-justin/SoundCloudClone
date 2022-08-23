@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import SignUpFormPage from './components/SignUpFormPage';
 import Navigation from './components/Navigation';
 import Library from './components/Library';
+import Stream from './components/Stream';
 import { SinglePlaylist } from './components/Playlists';
 import UploadSong from './components/UploadSong';
+import Song from './components/Song';
 
 import * as sessionActions from './store/session';
 import * as playlistsActions from './store/playlists';
@@ -46,9 +48,12 @@ function App() {
       <Switch>
         <Route exact path='/signup' component={SignUpFormPage} />
 
+        <Route exact path='/stream' component={Stream} />
+
         {/* Note: path='/you' should redirect to /sessionUserId */}
         <Route path='/you' component={Library} />
         <Route exact path='/:userId/playlist/:playlistId' component={SinglePlaylist} />
+        <Route exact path='/:userId/songs/:songId' component={Song} />
 
         <Route exact path='/upload' component={user && UploadSong} />
 

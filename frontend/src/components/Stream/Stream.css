@@ -1,0 +1,13 @@
+.song-container {
+  display: inline-flex;
+}
+
+.song-image {
+  display: inline-block;
+  height: 160px;
+  width: 160px;
+}
+
+.song-content {
+  display: inline-block;
+}
