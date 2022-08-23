@@ -15,12 +15,10 @@ function App() {
   let dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(state => state.session.user);
-  console.log(`user from App.js is : ${user}`)
 
   // If there is a user, this loads the user's playlists in state
   if (isLoaded && user) {
     dispatch(playlistsActions.getCurrentUserPlaylists());
-    console.log('user in if statement: ', user)
   }
   // Note: May want to adjust the endpoint /api/playlists/current
   //       to return playlists WITH songs to avoid N+1 queries
@@ -40,8 +38,6 @@ function App() {
 
   if (!isLoaded) return <div>Loading...</div>
 
-  console.log('user in App.js', user)
-  console.log('App.js', user.id)
   return isLoaded && (
     <>
       <h1>Hello from SonusNimbus</h1>
