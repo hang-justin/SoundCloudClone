@@ -1,5 +1,7 @@
 import { csrfFetch } from "./csrf";
 
+import { getTheseArtists } from "./artists";
+
 const CREATE_SONG = 'songs/CREATE_SONG';
 const GET_ALL_SONGS = 'songs/GET_ALL_SONGS';
 
@@ -53,8 +55,15 @@ export const fetchAllSongs = () => async dispatch => {
     data = await response.json();
     // data = { Songs : songArr, page, size }
     let songs = {};
-    data.Songs.map((songOjb => songs[songOjb.id] = songOjb))
-    dispatch(getAllSongs(songs))
+    let uniqueArtists = {};
+    data.Songs.map((songOjb) => {
+      uniqueArtists[songOjb.userId] = songOjb.userId;
+      return songs[songOjb.id] = songOjb
+    })
+
+    let artistIds = Object.values(uniqueArtists);
+    dispatch(getTheseArtists(artistIds))
+      .then(() => dispatch(getAllSongs(songs)))
   }
 
 }

@@ -1,11 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as songActions from '../../store/song';
+import { getTheseArtists } from '../../store/artists';
 
 import './Stream.css';
 
 const Stream = () => {
   const dispatch = useDispatch();
+  let artists = useSelector(state => state.artists);
   let sessionUser = useSelector(state => state.session.user)
   let songsObj = useSelector(state => state.songs)
   let songs = Object.values(songsObj);
@@ -14,9 +16,6 @@ const Stream = () => {
   //    Will have to decide with how to handle page, size
   //      For now, with a small DB less than the max size returned
   //        - will just render all those songs
-  if (!songs.length) dispatch(songActions.fetchAllSongs());
-
-  if (!songs.length) return <div>Loading...</div>
 
   let clickHandler = () => {
     alert('Working on it... Stay tuned')
@@ -31,7 +30,7 @@ const Stream = () => {
   //    define defaultImage to render
   let songsRender = songs.map((song) => {
     return (
-      <div style={{ display: 'block' }} className='song-container' id={`song${song.id}`}>
+      <div style={{ display: 'block' }} className='song-container' key={`song${song.id}`} id={`song${song.id}`}>
 
         <NavLink className='song-link' to={`/${song.userId}/songs/${song.id}`}>
           <img className='song-image' src={song.imageUrl} alt={`${song.title}'s image`} />
@@ -39,7 +38,7 @@ const Stream = () => {
 
         <div className='song-content'>
           <p>Render play button here</p>
-          <p>Render artist name</p>
+          <p>{artists[song.userId].username}</p>
           <p>{song.title}</p>
           <p>Render waveform here</p>
           <button onClick={clickHandler}>Share</button>
@@ -56,7 +55,7 @@ const Stream = () => {
     <div>
       <h2>Stream Component</h2>
 
-        {songsRender}
+      {songsRender}
     </div>
   );
 };

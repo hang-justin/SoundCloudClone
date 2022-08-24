@@ -10,6 +10,7 @@ import { SinglePlaylist } from './components/Playlists';
 import UploadSong from './components/UploadSong';
 import Song from './components/Song';
 
+import * as songActions from './store/song'
 import * as sessionActions from './store/session';
 import * as playlistsActions from './store/playlists';
 
@@ -35,6 +36,7 @@ function App() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreSession())
+    .then(() => dispatch(songActions.fetchAllSongs()))
       .then(() => setIsLoaded(true));
   }, [dispatch])
 
