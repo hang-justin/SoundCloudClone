@@ -44,7 +44,6 @@ function App() {
 
   return isLoaded && (
     <>
-      <h1>Hello from SonusNimbus</h1>
       <Navigation />
 
       <Switch>

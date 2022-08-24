@@ -17,3 +17,36 @@ li[logInPage] {
   border: 3px black solid;
   background-color: green;
 }
+
+.nav-containers {
+  border: 2px red dashed;
+  width: calc(100%/3);
+
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.nav-container-outer {
+  display: inline-flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.nav-container-left.nav-icon{
+  width: 20%;
+  border: yellow solid 1px;
+}
+
+.nav-container-left.nav-text {
+  /* width: calc(80%/3); */
+  width: 100%;
+  border: yellow solid 1px;
+  color: green;
+}
+
+.navlink-div {
+
+}
