@@ -4,6 +4,7 @@ import { getTheseArtists } from "./artists";
 
 const CREATE_SONG = 'songs/CREATE_SONG';
 const GET_ALL_SONGS = 'songs/GET_ALL_SONGS';
+const DELETE_SONG = 'songs/DELETE SONG';
 
 const createSong = (song) => {
   return {
@@ -68,6 +69,24 @@ export const fetchAllSongs = () => async dispatch => {
 
 }
 
+const deleteSong = (songId) => {
+  return {
+    type: DELETE_SONG,
+    songId
+  };
+};
+
+export const deleteTrack = (songId) => async dispatch => {
+  let response = await csrfFetch(`/api/songs/${songId}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' }
+  });
+
+  if (response.ok) {
+    dispatch(deleteSong(songId));
+  }
+}
+
 const initialState = {};
 
 const songsReducer = (state = initialState, action) => {
@@ -80,6 +99,10 @@ const songsReducer = (state = initialState, action) => {
 
     case GET_ALL_SONGS:
       newState = { ...newState, ...action.songs };
+      return newState;
+
+    case DELETE_SONG:
+      delete newState[action.songId];
       return newState;
 
     default: return state;

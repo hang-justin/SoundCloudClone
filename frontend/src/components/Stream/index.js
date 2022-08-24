@@ -21,14 +21,15 @@ const Stream = () => {
     alert('Working on it... Stay tuned')
   }
 
-  let deleteTrack = () => {
-    alert(`ARE YOU SURE YOU WANT TO DELETE? PLEASE DON'T BECAUSE I DIDN'T IMPLEMENT IT YET`)
+  let deleteTrack = (songId) => {
+    dispatch(songActions.deleteTrack(songId));
   }
 
   // Note: For img src... implement as something similar to:
   //    img src={ song.imageUrl ? song.imageUrl : defaultImage }
   //    define defaultImage to render
   let songsRender = songs.map((song) => {
+    let songId = song.id;
     return (
       <div style={{ display: 'block' }} className='song-container' key={`song${song.id}`} id={`song${song.id}`}>
 
@@ -44,7 +45,7 @@ const Stream = () => {
           <button onClick={clickHandler}>Share</button>
           <button onClick={clickHandler}>Copy Link</button>
           <button onClick={clickHandler}>Edit</button>
-          {sessionUser?.id === song.userId && <button onClick={deleteTrack}>Delete track</button>}
+          {sessionUser?.id === song.userId && <button id={song.id} onClick={(e) => deleteTrack(e.target.id)}>Delete track</button>}
         </div>
 
       </div>

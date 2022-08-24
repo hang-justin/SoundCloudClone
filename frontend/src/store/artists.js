@@ -1,4 +1,4 @@
-import { csrfFetch } from '../csrf';
+import { csrfFetch } from './csrf';
 
 
 const GET_ARTIST_DETAILS = 'users/GET_ARTIST_DETAILS';
