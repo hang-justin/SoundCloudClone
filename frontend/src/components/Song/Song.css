@@ -1,3 +1,96 @@
+.song-banner {
+  border: orange 2px dotted;
+
+  height: 380px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.song-banner__left {
+  width: 100%;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.song-banner__left__top {
+  background-color: aquamarine;
+
+  display: flex;
+  width: 100%;
+}
+
+.song-banner__left__bottom {
+  background-color: grey;
+}
+
+.song-banner__top__song-info {
+  background-color: yellow;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.play-button-container {
+
+  justify-self: center;
+  align-items: center;
+}
+
+.song-banner__right {
+  background-color: gray;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 20px;
+}
+
+.banner-song-image {
+  height: 340px;
+  width: 340px;
+}
+
+.song-image-container {
+  border: green 2px solid;
+
+  height: 340px;
+  width: 340px;
+}
+
+
+.userInteraction {
+  border: green 5px dashed;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.commentForm-wrapper {
+  border: 2px blue solid;
+
+  width: 100%;
+  display: flex;
+}
+
+.commenterProfilePic {
+  height: 40px;
+  width: 40px;
+  background-color: orange;
+}
+
+.commentForm {
+  width: 100%;
+
+  background-color: rgba(165, 162, 165, 0.2);
+}
+
+.userInteraction__buttons {
+  display: flex;
+}
+
 .song-banner__song-image {
   height: 340px;
   width: 340px;
