@@ -13,10 +13,10 @@ header {
   color: #cccccc;
 }
 
-li[logInPage] {
+/* li[logInPage] {
   border: 3px black solid;
   background-color: green;
-}
+} */
 
 .nav-containers {
   border: 2px red dashed;
@@ -35,18 +35,18 @@ li[logInPage] {
   width: 100%;
 }
 
-.nav-container-left.nav-icon{
+.left-navlink-container-icon {
   width: 20%;
+}
+
+.left-navlink-container-text{
+  width: calc(80%/3);
   border: yellow solid 1px;
 }
 
-.nav-container-left.nav-text {
-  /* width: calc(80%/3); */
+
+.search-container {
   width: 100%;
-  border: yellow solid 1px;
-  color: green;
-}
-
-.navlink-div {
-
+  text-align: center;
+  align-self: center;
 }

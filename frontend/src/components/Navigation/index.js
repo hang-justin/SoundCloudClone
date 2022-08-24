@@ -10,7 +10,7 @@ const Navigation = () => {
 
   let navlinks = [
     <LoginFormModal />,
-    <NavLink className='header__navlink' to='/signup'>Sign Up</NavLink>
+    <NavLink className='header__navlink' to='/signup'>Create Account</NavLink>
   ];
 
   return (
@@ -19,13 +19,35 @@ const Navigation = () => {
 
         <div className='nav-container-left nav-containers'>
 
-          <NavLink className='header__navlink container-left-navlink' to='/'><div className='navlink-div nav-container-left nav-icon' key='nav-home'>SoundCloud Icon</div></NavLink>
-          <NavLink className='header__navlink container-left-navlink' to='/'><div className='navlink-div nav-container-left nav-text' key='nav-home'>Home</div></NavLink>
-          <NavLink className='header__navlink container-left-navlink' to='/stream'><div className='navlink-div nav-container-left nav-text' key='nav-stream'>Stream</div></NavLink>
-          <NavLink className='header__navlink container-left-navlink' to='/you/library'><div className='navlink-div nav-container-left nav-text' key='nav-library'>Library</div></NavLink>
+          <div className='left-navlink-container-icon'>
+            <NavLink className='header__navlink container-left-navlink' to='/'>
+              <div className='navlink-div nav-container-left nav-icon' key='nav-home'>Icon</div>
+            </NavLink>
+          </div>
+
+          <div className='left-navlink-container-text'>
+            <NavLink className='header__navlink container-left-navlink' to='/'>
+              <div className='navlink-div nav-container-left nav-text' key='nav-home'>Home</div>
+            </NavLink>
+          </div>
+
+          <div className='left-navlink-container-text'>
+            <NavLink className='header__navlink container-left-navlink' to='/stream'>
+              <div className='navlink-div nav-container-left nav-text' key='nav-stream'>Stream</div>
+            </NavLink>
+          </div>
+
+          <div className='left-navlink-container-text'>
+            <NavLink className='header__navlink container-left-navlink' to='/you/library'>
+              <div className='navlink-div nav-container-left nav-text' key='nav-library'>Library</div>
+            </NavLink>
+          </div>
+
         </div>
 
-        <div className='nav-container-middle nav-containers'>Search bar</div>
+        <div className='nav-container-middle nav-containers'>
+          <div className='search-container'>Search is only for premium users.</div>
+        </div>
 
         <div className='nav-container-right nav-containers'>
           <NavLink className='header__navlink' to='/upload'><div className='navlink-div' key='nav-upload'>Upload</div></NavLink>
