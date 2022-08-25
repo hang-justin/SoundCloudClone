@@ -1,0 +1,23 @@
+.comment-wrapper {
+  border: 1px red solid;
+
+  display: flex;
+  flex-direction: wrap;
+  justify-content: flex-start;
+}
+
+.commenterPic {
+  border: 1px green solid;
+
+  height: 40px;
+  width: 40px;
+  margin: 5px;
+}
+
+.commentInfo {
+  border: 1px green dashed;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

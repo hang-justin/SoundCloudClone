@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 
 import { fetchCurrentSong } from "../../store/song";
 
+import Comment from "../Comment";
+
 import './Song.css';
 
 const Song = () => {
@@ -26,6 +28,14 @@ const Song = () => {
       .then(() => setHasLoaded(true));
     return <div>Loading...</div>
   }
+
+  // array of objs
+  let commentsList = song.comments
+    .map(comment => {
+      console.log(comment)
+      return <Comment comment={comment}/>
+    });
+  console.log(commentsList)
 
   return (
     <div className='outerMost-wrapper-container'>
@@ -66,7 +76,7 @@ const Song = () => {
 
           <div className='userInteraction'>
             <div className='commentForm-wrapper'>
-              <div className='commenterProfilePic'>Profile Image - square 40x40 </div>
+              <div className='commenterProfilePic'>40 x40</div>
               <div className='commentForm'>comment field</div>
             </div>
 
@@ -77,21 +87,33 @@ const Song = () => {
           </div>
 
           <div className='discourse'>
-            <div className='discourse__sessionUserDetails'>
-              <div>sessionUser profile picture - 120x120 square div - circle picture</div>
-              <div>sessionUser name</div>
+
+            <div className='discourse__left artistDetails'>
+              <div>artist profile picture - 120x120 square div - circle picture</div>
+              <div>artist name</div>
             </div>
 
-            <div className='discourse__comments'>
-              <span># of comments</span>
-              <p>List comments here</p>
+
+            <div className='discourse__right'>
+
+              <div className='discourse__songInfo'>
+                {song.description && <div className='songDescription'>{song.description}</div>}
+              </div>
+
+              <div className='discourse__comments'>
+                <span># of comments</span>
+                <p>List comments here</p>
+                {commentsList}
+              </div>
+
             </div>
+
           </div>
 
         </div>
 
         <div className='right-mainContainer'>
-          
+
         </div>
 
       </div>                              {/* END OF MAIN-CONTAINER */}

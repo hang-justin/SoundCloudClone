@@ -113,3 +113,30 @@
 .left-mainContainer {
   width: 78%;
 }
+
+.discourse {
+  background-color: aqua;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.discourse__left.artistDetails {
+  width: 120px;
+  margin-right: 10px;
+}
+
+.discourse__right {
+  border: 1px dotted black;
+
+  width: calc(100% - 122px);
+}
+
+.discourse__songInfo {
+  border: red 1px solid;
+  padding: 10px;
+}
+
+.discourse__comments {
+  padding: 10px;
+}
