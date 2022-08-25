@@ -6,6 +6,7 @@ const CREATE_SONG = 'songs/CREATE_SONG';
 const GET_ALL_SONGS = 'songs/GET_ALL_SONGS';
 const EDIT_SONG = 'songs/EDIT_SONG';
 const DELETE_SONG = 'songs/DELETE SONG';
+const LOAD_CURRENT_SONG = 'songs/LOAD_CURRENT_SONG';
 
 const createSong = (song) => {
   return {
@@ -44,6 +45,32 @@ const getAllSongs = (songs) => {
     type: GET_ALL_SONGS,
     songs
   }
+}
+
+const loadCurrentSong = (song) => {
+  return {
+    type: LOAD_CURRENT_SONG,
+    song
+  }
+}
+export const fetchCurrentSong = (songId) => async dispatch => {
+  let songResponse = await csrfFetch(`/api/songs/${songId}`)
+
+  let commentResponse = await csrfFetch(`/api/songs/${songId}/comments`);
+
+  if (songResponse.ok && commentResponse.ok) {
+    let song;
+    await songResponse.json()
+      .then(res => song = res)
+      .then(() => commentResponse.json())
+      .then(comments => song.comments = comments)
+      .then(() => dispatch(loadCurrentSong(song)));
+  }
+
+  // Note: Be mindful of chaining multiple fetches after another
+  // What if we get the song successfully but comments fail for some reason?
+  //  Would want to display song still, but how would we handle comments error?
+
 }
 
 export const fetchAllSongs = () => async dispatch => {
@@ -119,6 +146,10 @@ const songsReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_SONG:
       newState[action.song.id] = action.song;
+      return newState;
+
+    case LOAD_CURRENT_SONG:
+      newState.current = action.song;
       return newState;
 
     case GET_ALL_SONGS:
