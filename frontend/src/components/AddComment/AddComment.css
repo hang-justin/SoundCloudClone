@@ -1,0 +1,13 @@
+.addCommentForm {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+textarea {
+  resize: none;
+
+  width: 100%;
+  height: 25px;
+}

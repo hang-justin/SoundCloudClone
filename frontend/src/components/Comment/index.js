@@ -5,13 +5,11 @@ import './Comment.css';
 
 // comment parameter => { id, userId, songId, body, createdAt, updatedAt }
 // render delete button if sessionUser matches comment.userId
-const Comment = ({ comment }) => {
+const Comment = ({ user, comment }) => {
   const dispatch = useDispatch();
 
-  const user = useSelector(state => state.session.user);
-
-  if (user.id !== comment.userId) {
-    // run dispatch to retrieve user
+    if (user.id !== comment.userId) {
+    // run dispatch to retrieve user for their username
   }
 
   return (

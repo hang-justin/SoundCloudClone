@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 import { fetchCurrentSong } from "../../store/song";
 
+import AddComment from "../AddComment";
 import Comment from "../Comment";
 
 import './Song.css';
@@ -33,7 +34,7 @@ const Song = () => {
   let commentsList = song.comments
     .map(comment => {
       console.log(comment)
-      return <Comment comment={comment}/>
+      return <Comment user={user} comment={comment}/>
     });
   console.log(commentsList)
 
@@ -77,7 +78,11 @@ const Song = () => {
           <div className='userInteraction'>
             <div className='commentForm-wrapper'>
               <div className='commenterProfilePic'>40 x40</div>
-              <div className='commentForm'>comment field</div>
+
+              <div className='commentForm'>
+                <AddComment user={user} />
+              </div>
+
             </div>
 
             <div className='userInteraction__buttons'>
