@@ -5,6 +5,7 @@ import './Comment.css';
 
 // comment parameter => { id, userId, songId, body, createdAt, updatedAt }
 // render delete button if sessionUser matches comment.userId
+// user passed in refers to sessionUser
 const Comment = ({ user, comment }) => {
   const dispatch = useDispatch();
 

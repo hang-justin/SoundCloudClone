@@ -31,12 +31,16 @@ const Song = () => {
   }
 
   // array of objs
-  let commentsList = song.comments
-    .map(comment => {
-      console.log(comment)
-      return <Comment user={user} comment={comment}/>
-    });
-  console.log(commentsList)
+  let comments = [...song.comments];
+  let commentsList = [];
+
+  while (comments.length) {
+    let comment = comments.pop();
+
+    commentsList.push(
+      <Comment user={user} comment={comment} />
+    )
+  }
 
   return (
     <div className='outerMost-wrapper-container'>
@@ -80,7 +84,7 @@ const Song = () => {
               <div className='commenterProfilePic'>40 x40</div>
 
               <div className='commentForm'>
-                <AddComment user={user} />
+                <AddComment songId={song.id} user={user} />
               </div>
 
             </div>

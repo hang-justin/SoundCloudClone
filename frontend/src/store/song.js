@@ -7,6 +7,7 @@ const GET_ALL_SONGS = 'songs/GET_ALL_SONGS';
 const EDIT_SONG = 'songs/EDIT_SONG';
 const DELETE_SONG = 'songs/DELETE SONG';
 const LOAD_CURRENT_SONG = 'songs/LOAD_CURRENT_SONG';
+const ADD_SONG_COMMENT = 'songs/ADD_SONG_COMMENT'
 
 const createSong = (song) => {
   return {
@@ -138,6 +139,28 @@ export const deleteTrack = (songId) => async dispatch => {
   }
 }
 
+const loadSongComment = comment => {
+  return {
+    type: ADD_SONG_COMMENT,
+    comment
+  }
+}
+
+export const addCommentToSongReq = (songId, comment) => async dispatch => {
+  let response = await csrfFetch(`/api/songs/${songId}/comments`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ body: comment })
+  })
+
+  // Note: handle errors
+
+  if (response.ok) {
+    await response.json()
+      .then(res => dispatch(loadSongComment(res)));
+  }
+}
+
 const initialState = {};
 
 const songsReducer = (state = initialState, action) => {
@@ -146,6 +169,10 @@ const songsReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_SONG:
       newState[action.song.id] = action.song;
+      return newState;
+
+    case ADD_SONG_COMMENT:
+      newState.current.comments.push(action.comment)
       return newState;
 
     case LOAD_CURRENT_SONG:
