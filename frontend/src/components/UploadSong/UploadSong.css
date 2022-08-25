@@ -1,15 +1,15 @@
-span {
-  color: orange;
+span.upload-req-field {
+  color: red;
 }
 
-label {
+.uploadSongForm {
   margin: 4px
 }
 
-button {
+/* button {
   margin: 4px
-}
+} */
 
-form {
+/* form {
   padding: 4px
-}
+} */

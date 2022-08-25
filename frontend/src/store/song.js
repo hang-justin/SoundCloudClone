@@ -4,6 +4,7 @@ import { getTheseArtists } from "./artists";
 
 const CREATE_SONG = 'songs/CREATE_SONG';
 const GET_ALL_SONGS = 'songs/GET_ALL_SONGS';
+const EDIT_SONG = 'songs/EDIT_SONG';
 const DELETE_SONG = 'songs/DELETE SONG';
 
 const createSong = (song) => {
@@ -69,6 +70,29 @@ export const fetchAllSongs = () => async dispatch => {
 
 }
 
+const loadSongEdits = (song) => {
+  return {
+    type: EDIT_SONG,
+    song
+  }
+}
+
+export const editSongRequest = (song) => async dispatch => {
+  // Note: Need to handle errors here
+
+  let response = await csrfFetch(`/api/songs/${song.id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(song)
+  })
+
+  if (response.ok) {
+    let newSong = await response.json();
+    dispatch(loadSongEdits(newSong));
+  }
+
+}
+
 const deleteSong = (songId) => {
   return {
     type: DELETE_SONG,
@@ -99,6 +123,11 @@ const songsReducer = (state = initialState, action) => {
 
     case GET_ALL_SONGS:
       newState = { ...newState, ...action.songs };
+      return newState;
+
+    case EDIT_SONG:
+      newState[action.song.id] = action.song;
+      console.log('IN SONG REDUCER EDIT_SONG CASE')
       return newState;
 
     case DELETE_SONG:

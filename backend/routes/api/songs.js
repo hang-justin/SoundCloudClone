@@ -175,7 +175,7 @@ const updateSong = async (req, res) => {
   if (title) song.title = title;
   if (description) song.description = description;
   if (url) song.url = url;
-  if (imageUrl) song.imageUrl = url;
+  if (imageUrl) song.imageUrl = imageUrl;
   if (albumId || albumId === null) song.albumId = albumId;
 
   song.save();

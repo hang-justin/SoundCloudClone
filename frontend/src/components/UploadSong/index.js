@@ -74,7 +74,7 @@ const UploadSongForm = () => {
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
 
-        <label>Title<span>*</span>
+        <label className='uploadSongForm'>Title<span className='upload-req-field'>*</span>
           <input
             name='title'
             type='text'
@@ -85,7 +85,7 @@ const UploadSongForm = () => {
           />
         </label>
 
-        <label>Audio URL<span>*</span>
+        <label className='uploadSongForm'>Audio URL<span className='upload-req-field'>*</span>
           <input
             name='url'
             type='text'
@@ -96,8 +96,8 @@ const UploadSongForm = () => {
           />
         </label>
 
-        <label>Description
-          <input
+        <label className='uploadSongForm'>Description
+          <textarea
             name='description'
             type='text'
             placeholder="Describe your track"
@@ -106,7 +106,7 @@ const UploadSongForm = () => {
           />
         </label>
 
-        <label>Image URL
+        <label className='uploadSongForm'>Image URL
           <input
             name='imageUrl'
             placeholder="Visualize your track"
@@ -115,7 +115,7 @@ const UploadSongForm = () => {
           />
         </label>
 
-        <label>Album Id
+        <label className='uploadSongForm'>Album Id
           <input
             name='albumId'
             placeholder="Buddy-up your track"

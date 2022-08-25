@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as songActions from '../../store/song';
 import { getTheseArtists } from '../../store/artists';
+import EditSongFormModal from '../EditSongFormModal';
 
 import './Stream.css';
 
@@ -44,7 +45,7 @@ const Stream = () => {
           <p>Render waveform here</p>
           <button onClick={clickHandler}>Share</button>
           <button onClick={clickHandler}>Copy Link</button>
-          <button onClick={clickHandler}>Edit</button>
+          {sessionUser?.id === song.userId && <EditSongFormModal song={song} />}
           {sessionUser?.id === song.userId && <button id={song.id} onClick={(e) => deleteTrack(e.target.id)}>Delete track</button>}
         </div>
 

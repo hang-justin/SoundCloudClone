@@ -8,6 +8,7 @@ const Song = () => {
   let song = useSelector(state => state.songs[songId]);
   let artists = useSelector(state => state.artists)
 
+  // Note: complete this here
   // if (!song) run a dispatch here
 
   return (

@@ -1,0 +1,30 @@
+form.editSongForm {
+  margin: 20px;
+  background-color: aqua;
+}
+
+div.editSongForm-inner-container {
+  display: flex;
+  flex-direction: row;
+}
+
+img.view-edit-song-img {
+  height: 200px;
+  width: 200px;
+}
+
+div.editSong-middleContainer {
+  width: 10px;
+}
+
+input[valid-title="invalid"] {
+  border: 4px red dashed;
+}
+
+.invalid-field-prompt {
+  color: red;
+}
+
+.title-of-req-field {
+  color: red;
+}
