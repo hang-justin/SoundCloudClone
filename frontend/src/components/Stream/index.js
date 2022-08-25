@@ -13,6 +13,8 @@ const Stream = () => {
   let songsObj = useSelector(state => state.songs)
   let songs = Object.values(songsObj);
 
+  console.log('Stream Component Rendering')
+
   // Note: Thunk fetch returns: { Songs: {songs}, page, size }
   //    Will have to decide with how to handle page, size
   //      For now, with a small DB less than the max size returned

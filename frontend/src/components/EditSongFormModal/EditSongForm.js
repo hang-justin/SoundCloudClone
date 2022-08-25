@@ -5,7 +5,7 @@ import { editSongRequest } from "../../store/song";
 
 import './EditSongForm.css';
 
-const EditSongForm = ({ song }) => {
+const EditSongForm = ({ song, display }) => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState(song.title);
@@ -33,7 +33,8 @@ const EditSongForm = ({ song }) => {
     newSong.imageUrl = imageUrl;
     console.log('newSong with new props: ', newSong)
 
-    return dispatch(editSongRequest(newSong))
+    dispatch(editSongRequest(newSong))
+      .then(() => display(false))
 
   }
 
@@ -88,7 +89,7 @@ const EditSongForm = ({ song }) => {
       </div>
 
     </form>
-  )
+  );
 };
 
 export default EditSongForm;

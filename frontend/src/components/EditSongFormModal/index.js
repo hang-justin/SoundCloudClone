@@ -5,16 +5,12 @@ import EditSongForm from './EditSongForm';
 const EditSongFormModal = ({ song }) => {
   const [showModal, setShowModal] = useState(false);
 
-  const handleEditClick = (e) => {
-    setShowModal(true);
-  }
-
   return (
     <>
-      <button onClick={(e) => handleEditClick(e)}>Edit Song</button>
+      <button onClick={() => setShowModal(true)}>Edit Song</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditSongForm song={song} />
+          <EditSongForm song={song} display={setShowModal} />
         </Modal>
       )}
     </>
