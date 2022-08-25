@@ -7,7 +7,8 @@ const GET_ALL_SONGS = 'songs/GET_ALL_SONGS';
 const EDIT_SONG = 'songs/EDIT_SONG';
 const DELETE_SONG = 'songs/DELETE SONG';
 const LOAD_CURRENT_SONG = 'songs/LOAD_CURRENT_SONG';
-const ADD_SONG_COMMENT = 'songs/ADD_SONG_COMMENT'
+const ADD_SONG_COMMENT = 'songs/ADD_SONG_COMMENT';
+const DELETE_COMMENT_FROM_SONG = 'songs/DELETE_COMMENT_FROM_SONG';
 
 const createSong = (song) => {
   return {
@@ -161,6 +162,25 @@ export const addCommentToSongReq = (songId, comment) => async dispatch => {
   }
 }
 
+const deleteComment = (commentId, commentIndex) => {
+  return {
+    type: DELETE_COMMENT_FROM_SONG,
+    commentId,
+    commentIndex
+  }
+}
+
+export const deleteCommentFromSongReq = (commentId, commentIndex) => async dispatch => {
+  let response = await csrfFetch(`/api/comments/${commentId}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' }
+  });
+
+  if (response.ok) {
+    dispatch(deleteComment(commentId, commentIndex))
+  }
+}
+
 const initialState = {};
 
 const songsReducer = (state = initialState, action) => {
@@ -190,6 +210,10 @@ const songsReducer = (state = initialState, action) => {
 
     case DELETE_SONG:
       delete newState[action.songId];
+      return newState;
+
+    case DELETE_COMMENT_FROM_SONG:
+      newState.current.comments.splice(action.commentIndex, 1);
       return newState;
 
     default: return state;

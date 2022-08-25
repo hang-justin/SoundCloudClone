@@ -3,7 +3,12 @@
 
   display: flex;
   flex-direction: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
+}
+
+.comment-wrapper__commenter-info {
+  display: flex;
+  border: orange 3px dotted;
 }
 
 .commenterPic {
@@ -15,9 +20,15 @@
 }
 
 .commentInfo {
-  border: 1px green dashed;
+  border: 1px black solid;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.delete-comment-btn-wrapper {
+  justify-self: flex-end;
+
+  border: 2px blue dotted;
 }

@@ -32,6 +32,9 @@ const Stream = () => {
   //    img src={ song.imageUrl ? song.imageUrl : defaultImage }
   //    define defaultImage to render
   let songsRender = songs.map((song) => {
+    // songs.current will have a Artist key and is already populated
+    // so the conditional below will prevent it from rendering again
+    if (song.Artist !== undefined) return;
     let songId = song.id;
     return (
       <div style={{ display: 'block' }} className='song-container' key={`song${song.id}`} id={`song${song.id}`}>

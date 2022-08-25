@@ -35,10 +35,11 @@ const Song = () => {
   let commentsList = [];
 
   while (comments.length) {
+    let commentInd = comments.length - 1;
     let comment = comments.pop();
 
     commentsList.push(
-      <Comment user={user} comment={comment} />
+      <Comment commentInd={commentInd} user={user} comment={comment} />
     )
   }
 
