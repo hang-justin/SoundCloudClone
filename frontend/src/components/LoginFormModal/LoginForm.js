@@ -32,7 +32,11 @@ const LoginForm = () => {
     return dispatch(logIn(loginInfo))
       .catch(async (res) => {
         const data = await res.json();
-        if (data && data.errors) setErrors(Object.values(data.errors))
+        console.log('data from invalid login: ', data)
+
+        if (data && data.message) {
+          setErrors([data.message])
+        }
       });
 
   }
