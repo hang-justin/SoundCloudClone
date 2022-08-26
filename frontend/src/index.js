@@ -32,6 +32,7 @@ const admin = (password) => {
   window.sessionActions = sessionActions;
 
 }
+window.admin = admin;
 
 if (process.env.NODE_ENV !== 'production') {
   restoreCSRF();
