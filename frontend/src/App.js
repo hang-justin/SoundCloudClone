@@ -47,8 +47,6 @@ function App() {
       <Navigation />
 
       <Switch>
-        <Route exact path='/signup' component={SignUpFormPage} />
-
         <Route exact path='/stream' component={Stream} />
 
         {/* Note: path='/you' should redirect to /sessionUserId */}
@@ -57,6 +55,8 @@ function App() {
         <Route exact path='/:userId/songs/:songId' component={Song} />
 
         <Route exact path='/upload' component={user && UploadSong} />
+
+        <Route>404</Route>
 
       </Switch>
     </>

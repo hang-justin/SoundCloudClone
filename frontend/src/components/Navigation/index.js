@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
+import SignUpFormModal from "../SignUpFormPage";
 
 import './Navigation.css';
 
@@ -10,7 +11,7 @@ const Navigation = () => {
 
   let navlinks = [
     <LoginFormModal />,
-    <NavLink className='header__navlink' to='/signup'>Create Account</NavLink>
+    <SignUpFormModal />
   ];
 
   return (
