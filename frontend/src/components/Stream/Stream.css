@@ -1,5 +1,15 @@
+
+.song-cards-container {
+  border: 0.5px red solid;
+
+  display: flex;
+  flex-direction: column;
+}
+
 .song-container {
   display: inline-flex;
+  margin: 2px 0;
+  border: 0.5px green solid;
 }
 
 .song-image {

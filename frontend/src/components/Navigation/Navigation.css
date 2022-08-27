@@ -2,38 +2,41 @@
 /* li[attribute] for li[key] doesn't seem to be selecting */
 /* regular li tag selector works though */
 
-header {
+.nav-header {
   background-color: #333;
   color: #cccccc;
 
+  width: 97vw;
   display: flex;
+}
+
+.nav-container-outer {
+  border: red 0.5px solid;
+
+  display: inline-flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+
+  min-width: 975px;
+  width: 100%;
+
+  height: 40px;
 }
 
 .header__navlink {
   color: #cccccc;
+
 }
 
-/* li[logInPage] {
-  border: 3px black solid;
-  background-color: green;
-} */
-
 .nav-containers {
-  border: 2px red dashed;
+  /* border: 2px red dashed; */
   width: calc(100%/3);
 
   display: inline-flex;
   justify-content: space-between;
 }
 
-.nav-container-outer {
-  display: inline-flex;
-  flex-direction: row;
-
-  justify-content: space-between;
-
-  width: 100%;
-}
 
 .left-navlink-container-icon {
   width: 20%;

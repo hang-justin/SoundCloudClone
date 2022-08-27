@@ -1,1 +1,29 @@
 /* TODO Add site wide styles */
+.site-container {
+  border: 2px orange solid;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 98vw;
+}
+
+.site-container__main {
+  border: 0.5px solid green;
+
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  max-width: 1225px;
+  width: auto;
+}
+
+.site-container__main__nav-container {
+  display: flex;
+
+  width: auto;
+}
+
+.site-container__main__component {
+  background-color: beige;
+}

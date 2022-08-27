@@ -16,7 +16,7 @@ const Navigation = () => {
 
   return (
     <header className='nav-header'>
-      <div className='nav-container-outer nav-containers'>
+      <div className='nav-container-outer'>
 
         <div className='nav-container-left nav-containers'>
 

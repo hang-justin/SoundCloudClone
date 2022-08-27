@@ -17,10 +17,10 @@
     "postgres-bytea": "^1.0.0",
     "postgres-date": "^1.0.7",
     "postgres-interval": "^1.2.0",
+    "react-h5-audio-player": "^3.8.4",
     "split2": "^4.1.0",
     "xtend": "^4.0.2"
   },
-  "devDependencies": {},
   "scripts": {
     "heroku-postbuild": "npm run build --prefix frontend",
     "install": "npm --prefix backend install backend && npm --prefix frontend install frontend",

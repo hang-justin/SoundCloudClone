@@ -9,7 +9,7 @@ import Comment from "../Comment";
 
 import './Song.css';
 
-const Song = () => {
+const Song = ({ track, setTrack }) => {
   const { songId } = useParams();
 
   const dispatch = useDispatch();
@@ -43,16 +43,21 @@ const Song = () => {
     )
   }
 
+  const playTrack = () => {
+    setTrack(song);
+  }
+
+  console.log('track is :', track)
+
   return (
     <div className='outerMost-wrapper-container'>
-      <h2>Song Component</h2>
-
+      
       <div className='song-banner'>         {/* START OF SONG-BANNER  */}
 
         <div className='song-banner__left'>
           <div className='song-banner__left__top'>
 
-            <div className="play-button-container"><p>Play button</p></div>
+            <div className="play-button-container"><button onClick={playTrack}>Play</button></div>
             {/*comment: p tags were making it center */}
 
             <div className='song-banner__top__song-info'>

@@ -1,0 +1,6 @@
+.player-wrapper {
+  max-width: 500px;
+  border: 5px red dotted;
+  justify-self: center;
+  align-self: center;
+}

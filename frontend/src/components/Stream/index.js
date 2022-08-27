@@ -31,11 +31,13 @@ const Stream = () => {
   // Note: For img src... implement as something similar to:
   //    img src={ song.imageUrl ? song.imageUrl : defaultImage }
   //    define defaultImage to render
+  // songs.current will have a Artist key and is already populated
+  // so the conditional below will prevent it from rendering again
+
   let songsRender = songs.map((song) => {
-    // songs.current will have a Artist key and is already populated
-    // so the conditional below will prevent it from rendering again
     if (song.Artist !== undefined) return;
     let songId = song.id;
+
     return (
       <div style={{ display: 'block' }} className='song-container' key={`song${song.id}`} id={`song${song.id}`}>
 
@@ -55,14 +57,19 @@ const Stream = () => {
         </div>
 
       </div>
-    )
-  })
+    );
+
+  });
 
   return (
     <div>
-      <h2>Stream Component</h2>
 
-      {songsRender}
+      <h2 className='song-cards-header'>Hear the latest posts from the people:</h2>
+
+      <div className='song-cards-container'>
+        {songsRender}
+      </div>
+
     </div>
   );
 };

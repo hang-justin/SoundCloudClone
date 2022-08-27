@@ -14,25 +14,7 @@ import './index.css';
 // For testing session actions and reducers - phase 1
 
 // FOR TESTING
-// Question
-// Refactor
-// help
-// errors
-// Set countdown timer to start console logging
-// remove before production
-
 const store = configureStore();
-
-const admin = (password) => {
-  // guard clause
-  if (password !== 'Ay, caramba') return;
-
-  window.csrfFetch = csrfFetch;
-  window.store = store;
-  window.sessionActions = sessionActions;
-
-}
-window.admin = admin;
 
 if (process.env.NODE_ENV !== 'production') {
   restoreCSRF();
