@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as songActions from '../../store/song';
 import { getTheseArtists } from '../../store/artists';
@@ -14,6 +14,7 @@ const Stream = () => {
   let songs = Object.values(songsObj);
 
   console.log('Stream Component Rendering')
+  console.log('In Stream Component', useLocation());
 
   // Note: Thunk fetch returns: { Songs: {songs}, page, size }
   //    Will have to decide with how to handle page, size
@@ -28,6 +29,18 @@ const Stream = () => {
     dispatch(songActions.deleteTrack(songId));
   }
 
+
+  const doesUserOwn = (song) => {
+    if (!(sessionUser?.id === song.userId)) return null;
+
+    const editDeleteBtns = [
+      <EditSongFormModal song={song} />,
+      <button id={song.id} onClick={(e) => deleteTrack(e.target.id)}>Delete track</button>
+    ];
+
+    return editDeleteBtns;
+  }
+
   // Note: For img src... implement as something similar to:
   //    img src={ song.imageUrl ? song.imageUrl : defaultImage }
   //    define defaultImage to render
@@ -39,21 +52,35 @@ const Stream = () => {
     let songId = song.id;
 
     return (
-      <div style={{ display: 'block' }} className='song-container' key={`song${song.id}`} id={`song${song.id}`}>
+      <div className='song-container' key={`song${song.id}`} id={`song${song.id}`}>
 
-        <NavLink className='song-link' to={`/${song.userId}/songs/${song.id}`}>
-          <img className='song-image' src={song.imageUrl} alt={`${song.title}'s image`} />
-        </NavLink>
+        <div className='song-container__song-image'>
+          <NavLink className='song-link' to={`/${song.userId}/songs/${song.id}`}>
+            <img className='song-image' src={song.imageUrl} alt={`${song.title}'s image`} />
+          </NavLink>
+        </div>
 
         <div className='song-content'>
-          <p>Render play button here</p>
-          <p>{artists[song.userId].username}</p>
-          <p>{song.title}</p>
-          <p>Render waveform here</p>
-          <button onClick={clickHandler}>Share</button>
-          <button onClick={clickHandler}>Copy Link</button>
-          {sessionUser?.id === song.userId && <EditSongFormModal song={song} />}
-          {sessionUser?.id === song.userId && <button id={song.id} onClick={(e) => deleteTrack(e.target.id)}>Delete track</button>}
+          <div className='song-content-links'>
+            <div className='song-content-links__play-button-wrapper'>
+              <button>Play/pause</button>
+            </div>
+            <div className='song-content-links__song-author-title'>
+              <div>{artists[song.userId].username}</div>
+              <div>{song.title}</div>
+            </div>
+          </div>
+          <div className='waveform-container'>
+            <img className='song-waveform-img' src='https://i.imgur.com/jsHWeIy.png' alt='waveform' />
+          </div>
+
+          <div className='stream-comp__audience-ui-btns'>
+            { /*
+            <button onClick={clickHandler}>Share</button>
+            <button onClick={clickHandler}>Copy Link</button>
+                */}
+            {doesUserOwn(song)}
+          </div>
         </div>
 
       </div>
@@ -62,13 +89,22 @@ const Stream = () => {
   });
 
   return (
-    <div>
+    <div className='stream-comp'>
+      <div className='stream-comp-left'>
+        <h2 className='song-cards-header'>
+          Hear the latest posts from the people:
+        </h2>
 
-      <h2 className='song-cards-header'>Hear the latest posts from the people:</h2>
+        <div className='song-cards-container'>
+          {songsRender}
+        </div>
 
-      <div className='song-cards-container'>
-        {songsRender}
       </div>
+
+      <div style={{ border: 'red 5px dashed', width: '300px' }} className='right-menu-container'>
+        Hey {sessionUser.username}
+      </div>
+
 
     </div>
   );

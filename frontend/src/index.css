@@ -6,6 +6,7 @@
   flex-direction: column;
 
   width: 98vw;
+  min-width: 1225px;
 }
 
 .site-container__main {
@@ -25,5 +26,6 @@
 }
 
 .site-container__main__component {
-  background-color: beige;
+  /* background-color: beige; */
+  padding-left: 25px;
 }

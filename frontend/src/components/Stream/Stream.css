@@ -1,3 +1,12 @@
+.stream-comp {
+  display: flex;
+  flex-direction: row;
+}
+
+.stream-comp-left {
+  min-width: 810px;
+}
+
 
 .song-cards-container {
   border: 0.5px red solid;
@@ -7,17 +16,47 @@
 }
 
 .song-container {
-  display: inline-flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
   margin: 2px 0;
+
   border: 0.5px green solid;
 }
 
-.song-image {
+.song-container__song-image {
   display: inline-block;
+  /* padding-right: 5px; */
+}
+
+img.song-image {
+  /* display: inline-block; */
   height: 160px;
   width: 160px;
 }
 
 .song-content {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+}
+
+.song-content-links {
+  display: flex;
+  flex-direction: row;
+}
+
+.song-content-links__song-author-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.stream-comp__audience-ui-btns {
+  flex-direction: row;
+}
+
+img.song-waveform-img {
+
+  min-width: 400px;
+  max-width: 650px;
 }
