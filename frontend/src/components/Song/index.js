@@ -50,25 +50,30 @@ const Song = ({ track, setTrack }) => {
   console.log('track is :', track)
 
   return (
-    <div className='outerMost-wrapper-container'>
-      
+    <div className='song-comp-container'>
+
       <div className='song-banner'>         {/* START OF SONG-BANNER  */}
 
         <div className='song-banner__left'>
           <div className='song-banner__left__top'>
 
-            <div className="play-button-container"><button onClick={playTrack}>Play</button></div>
-            {/*comment: p tags were making it center */}
+            <div className="play-button-container">
+              <button onClick={playTrack}>
+                <img id='song-component-toggle-play' src='https://cdn-icons-png.flaticon.com/512/1792/1792886.png' />
+              </button>
+            </div>
 
             <div className='song-banner__top__song-info'>
-              <p id='song-title'>{song.title}</p>
-              <p id='song-aritst'>{song.Artist.username}</p>
+              <div id='song-title'><span id='song-info__song-title'>{song.title}</span></div>
+              <div id='song-artist'><span id='song-info__song-artist'>{song.Artist.username}</span></div>
             </div>
 
           </div>
 
           <div className='song-banner__left__bottom'>
-            <div className='song-waveform'>Waveform goes here</div>
+            <div className='song-waveform'>
+              <img className='song-waveform-img' src='https://i.imgur.com/jsHWeIy.png' alt='waveform' />
+            </div>
           </div>
 
         </div>
@@ -132,6 +137,7 @@ const Song = ({ track, setTrack }) => {
         </div>
 
       </div>                              {/* END OF MAIN-CONTAINER */}
+
 
     </div>
   );

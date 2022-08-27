@@ -22,10 +22,19 @@
 .site-container__main__nav-container {
   display: flex;
 
-  width: auto;
+  width: 100%;
 }
 
 .site-container__main__component {
   /* background-color: beige; */
-  padding-left: 25px;
+  /* padding-left: 25px; */
+
+  display: flex;
+  flex-direction: row;
+
+  /* width: 100%; */
+}
+
+.main-component-container {
+  display: flex;
 }

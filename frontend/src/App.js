@@ -46,6 +46,7 @@ function App() {
         </div>
 
         <div className='site-container__main__component'>
+
           <Switch>
             <Route exact path='/stream' component={Stream} />
 
@@ -62,16 +63,18 @@ function App() {
             <Route>404</Route>
           </Switch>
         </div>
+      </div>
 
-        <div className='audio-footer-container'>
-          <div id='player-visibility' style={playerVisibility}>
-            <Player
-              track={track}
-              autoPlayAfterSrcChange={true}
-            />
-          </div>
+
+
+      <div className='audio-footer-container'>
+        <div id='player-visibility' style={playerVisibility}>
+          <Player
+            track={track}
+            autoPlayAfterSrcChange={true}
+          />
         </div>
-
+        <a href="https://www.flaticon.com/free-icons/play" title="play icons">Play icons created by Darius Dan - Flaticon</a>
       </div>
     </div>
   )
