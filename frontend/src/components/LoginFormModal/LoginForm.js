@@ -12,7 +12,8 @@ const LoginForm = () => {
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState([]);
 
-  const setDemoCredentials = () => {
+  const setDemoCredentials = (e) => {
+    e.preventDefault();
     setUsernameOrEmail('demo');
     setPassword('password');
   }

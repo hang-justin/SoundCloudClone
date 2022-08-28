@@ -29,7 +29,9 @@ export const logIn = (loginInfo) => async dispatch => {
     let userInfo = {
       id: user.id,
       email: user.email,
-      username: user.username
+      username: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName
     }
     dispatch(setUserSession(userInfo));
   };
