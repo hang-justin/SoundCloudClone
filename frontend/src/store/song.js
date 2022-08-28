@@ -22,7 +22,7 @@ export const uploadSong = (song) => async dispatch => {
   // If no input is passed into the form, set to null
   // Otherwise, will fail FK constraints in DB
   if (!song.description) song.description = null;
-  if (!song.imageUrl) song.imageUrl = null;
+  if (!song.imageUrl) song.imageUrl = 'https://i.imgur.com/SGy16jl.jpg';
   if (!song.albumId) song.albumId = null;
 
   let response = await csrfFetch('/api/songs', {
@@ -108,6 +108,8 @@ const loadSongEdits = (song) => {
 
 export const editSongRequest = (song) => async dispatch => {
   // Note: Need to handle errors here
+
+  if (!song.imageUrl) song.imageUrl = 'https://i.imgur.com/SGy16jl.jpg';
 
   let response = await csrfFetch(`/api/songs/${song.id}`, {
     method: 'PUT',

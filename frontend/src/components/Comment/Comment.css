@@ -1,27 +1,24 @@
 .comment-wrapper {
-  border: 1px red solid;
-
   display: flex;
-  flex-direction: wrap;
+  flex-direction: row;
   justify-content: space-between;
+  margin: 5px 0;
 }
 
 .comment-wrapper__commenter-info {
   display: flex;
-  border: orange 3px dotted;
 }
 
 .commenterPic {
-  border: 1px green solid;
-
   height: 40px;
   width: 40px;
   margin: 5px;
+  border-radius: 20px;
+  background: rgb(255, 255, 255);
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 15%, rgba(255, 120, 0, 1) 39%, rgba(255, 120, 0, 1) 65%);
 }
 
 .commentInfo {
-  border: 1px black solid;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,6 +26,9 @@
 
 .delete-comment-btn-wrapper {
   justify-self: flex-end;
+}
 
-  border: 2px blue dotted;
+button.delete-comment-btn {
+  background-color: transparent;
+  border: 0.25px solid rgba(128, 128, 128, 0.25);
 }

@@ -16,7 +16,6 @@ const Song = ({ track, setTrack }) => {
 
   let song = useSelector(state => state.songs.current);
   let user = useSelector(state => state.session.user)
-
   const [hasLoaded, setHasLoaded] = useState(false);
 
   if (isNaN(Number(songId))) return <div>404</div>
@@ -93,7 +92,7 @@ const Song = ({ track, setTrack }) => {
 
           <div className='userInteraction'>
             <div className='commentForm-wrapper'>
-              <div className='commenterProfilePic'>40 x40</div>
+              <div className='commenterProfilePic'></div>
 
               <div className='commentForm'>
                 <AddComment songId={song.id} user={user} />
@@ -101,17 +100,17 @@ const Song = ({ track, setTrack }) => {
 
             </div>
 
-            <div className='userInteraction__buttons'>
+            {/* <div className='userInteraction__buttons'>
               <button>Like</button>
               <button>Add to playlist</button>
-            </div>
+            </div> */}
           </div>
 
           <div className='discourse'>
 
             <div className='discourse__left artistDetails'>
-              <div>artist profile picture - 120x120 square div - circle picture</div>
-              <div>artist name</div>
+              <div id='song-component-artist-pic'></div>
+              <div>{song.Artist.username}</div>
             </div>
 
 
@@ -122,8 +121,6 @@ const Song = ({ track, setTrack }) => {
               </div>
 
               <div className='discourse__comments'>
-                <span># of comments</span>
-                <p>List comments here</p>
                 {commentsList}
               </div>
 

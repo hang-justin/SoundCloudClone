@@ -1,9 +1,11 @@
 /* TODO Add site wide styles */
-html, body {
+html,
+body {
   height: 100%;
 }
 
-#root, .app-container {
+#root,
+.app-container {
   height: 100%;
 }
 
@@ -14,6 +16,7 @@ html, body {
 body {
   margin: 0px;
   background-color: rgba(128, 128, 128, 0.295);
+  font-family: 'Lato', sans-serif;
 }
 
 .nav-bar-sides {
@@ -72,3 +75,12 @@ div.audio-footer-container {
 svg {
   color: black;
 }
+
+button:hover {
+  cursor: pointer;
+}
+
+a:link {
+  text-decoration: none;
+}
+

@@ -7,7 +7,9 @@ const EditSongFormModal = ({ song }) => {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Edit Song</button>
+      <button className='alter-track-btns' onClick={() => setShowModal(true)}>
+        <i class="fa-solid fa-pen-to-square"></i>
+      </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditSongForm song={song} display={setShowModal} />

@@ -35,7 +35,9 @@ const Stream = () => {
 
     const editDeleteBtns = [
       <EditSongFormModal song={song} />,
-      <button id={song.id} onClick={(e) => deleteTrack(e.target.id)}>Delete track</button>
+      <button className='alter-track-btns' id={song.id} onClick={(e) => deleteTrack(e.target.id)}>
+        <i class="fa-solid fa-trash"></i>
+      </button>
     ];
 
     return editDeleteBtns;
@@ -52,39 +54,43 @@ const Stream = () => {
     let songId = song.id;
 
     return (
-      <div className='song-container' key={`song${song.id}`} id={`song${song.id}`}>
+      <div className='song-card-container'>
+        <div className='song-card-poster'>{artists[song.userId].username} posted a track</div>
 
-        <div className='song-container__song-image'>
-          <NavLink className='song-link' to={`/${song.userId}/songs/${song.id}`}>
-            <img className='song-image' src={song.imageUrl} alt={`${song.title}'s image`} />
-          </NavLink>
-        </div>
+        <div className='song-container' key={`song${song.id}`} id={`song${song.id}`}>
 
-        <div className='song-content'>
-          <div className='song-content-links'>
-            <div className='song-content-links__play-button-wrapper'>
-              <button id='stream-card-toggle-play-btn'>
-                <img id='stream-card-toggle-play-img' src='https://cdn-icons-png.flaticon.com/512/1792/1792886.png' alt='toggle-play-button' />
-              </button>
-            </div>
-            <div className='song-content-links__song-author-title'>
-              <div>{artists[song.userId].username}</div>
-              <div>{song.title}</div>
-            </div>
-          </div>
-          <div className='waveform-container'>
-            <img className='song-waveform-img' src='https://i.imgur.com/jsHWeIy.png' alt='waveform' />
+          <div className='song-container__song-image'>
+            <NavLink className='song-link' to={`/${song.userId}/songs/${song.id}`}>
+              <img className='song-image' src={song.imageUrl} alt={`${song.title}'s image`} />
+            </NavLink>
           </div>
 
-          <div className='stream-comp__audience-ui-btns'>
-            { /*
+          <div className='song-content'>
+            <div className='song-content-links'>
+              <div className='song-content-links__play-button-wrapper'>
+                <button id='stream-card-toggle-play-btn'>
+                  <img id='stream-card-toggle-play-img' src='https://cdn-icons-png.flaticon.com/512/1792/1792886.png' alt='toggle-play-button' />
+                </button>
+              </div>
+              <div className='song-content-links__song-author-title'>
+                <div>{artists[song.userId].username}</div>
+                <div>{song.title}</div>
+              </div>
+            </div>
+            <div className='waveform-container'>
+              <img className='song-waveform-img' src='https://i.imgur.com/jsHWeIy.png' alt='waveform' />
+            </div>
+
+            <div className='stream-comp__audience-ui-btns'>
+              { /*
             <button onClick={clickHandler}>Share</button>
             <button onClick={clickHandler}>Copy Link</button>
                 */}
-            {doesUserOwn(song)}
+              {doesUserOwn(song)}
+            </div>
           </div>
-        </div>
 
+        </div>
       </div>
     );
 
@@ -103,8 +109,8 @@ const Stream = () => {
 
       </div>
 
-      <div className='stream-comp-right right-menu-container'>
-        <h3>{`Hey ${sessionUser?.firstName} ${sessionUser.lastName}`}</h3>
+      <div id='right-menu-container' className='stream-comp-right'>
+        <h3 id='stream-comp-right-header'>{`Hey ${sessionUser?.firstName} ${sessionUser?.lastName}`}</h3>
       </div>
 
 

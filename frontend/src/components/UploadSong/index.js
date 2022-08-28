@@ -123,7 +123,7 @@ const UploadSongForm = () => {
           />
         </label>
 
-        <label className='uploadSongForm-label'>Album Id
+        {/* <label className='uploadSongForm-label'>Album Id
           <input
             className='uploadSongForm-input'
             name='albumId'
@@ -131,7 +131,7 @@ const UploadSongForm = () => {
             value={albumId}
             onChange={e => setAlbumId(e.target.value)}
           />
-        </label>
+        </label> */}
 
         <button
           id='upload-song-btn'
@@ -151,9 +151,9 @@ const UploadSong = () => {
 
   return (
     <div className='upload-song-form-component'>
-      <div className='upload-song-nav'>
+      {/* <div className='upload-song-nav'>
         <span>Your tracks</span>
-      </div>
+      </div> */}
       <UploadSongForm />
     </div>
   );

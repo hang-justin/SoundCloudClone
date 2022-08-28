@@ -7,14 +7,13 @@
 .stream-comp-left {
   min-width: 810px;
   width: 80%;
+  border-right: 0.25px solid rgba(128, 128, 128, 0.25);
 }
 
-.right-menu-container {
-  width: 20%;
-  border-left: 1px solid black;
+.stream-comp-right {
+  width: 225px;
   padding-top: 40px;
   padding-left: 20px;
-
 }
 
 h2#song-cards-header {
@@ -38,10 +37,13 @@ h2#song-cards-header {
 .song-container__song-image {
   display: inline-block;
   padding-left: 15px;
+  height: 160px;
+  width: 160px;
 }
 
 img.song-image {
   /* display: inline-block; */
+  border: 0.25px solid rgba(128, 128, 128, 0.25);
   height: 160px;
   width: 160px;
 }
@@ -49,6 +51,8 @@ img.song-image {
 .song-content {
   display: flex;
   flex-direction: column;
+  padding-left: 15px;
+  height: 160px
 }
 
 .song-content-links {
@@ -76,7 +80,30 @@ img#stream-card-toggle-play-img {
 }
 
 img.song-waveform-img {
+  max-height: 104px;
 
   min-width: 400px;
   max-width: 650px;
+}
+
+div.song-card-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+}
+
+div.song-card-poster {
+  padding-left: 15px;
+}
+
+button.alter-track-btns {
+  margin: 0 5px;
+  height: 20px;
+  background-color: transparent;
+  border: 0.5px solid gray;
+  border-radius: 5px;
+}
+
+h3#stream-comp-right-header {
+  position: fixed;
 }

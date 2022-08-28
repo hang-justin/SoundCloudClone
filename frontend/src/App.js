@@ -47,9 +47,9 @@ function App() {
       <div className='site-container'>
         <div className='site-container__main-wrapper'>
 
-            <div className='site-container__main__nav-container'>
-              {user && <Navigation /> }
-            </div>
+          <div className='site-container__main__nav-container'>
+            {user && <Navigation />}
+          </div>
 
           <Switch>
 
@@ -73,8 +73,11 @@ function App() {
                 <UploadSong />
               </Route>
 
-              <Route>404</Route>
             </div>
+
+            <Route path='/:notFound'>
+              <div>HERE I AM RENDER ME</div>
+            </Route>
 
           </Switch>
 

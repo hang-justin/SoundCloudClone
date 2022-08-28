@@ -25,8 +25,8 @@ const Comment = ({ commentInd, user, comment }) => {
 
   const deleteButton = (
     <div className='delete-comment-btn-wrapper'>
-      <button onClick={deleteHandler}>
-        Delete
+      <button className='delete-comment-btn' onClick={deleteHandler}>
+        <i class="fa-solid fa-trash"></i>
       </button>
     </div>
   )
@@ -36,7 +36,7 @@ const Comment = ({ commentInd, user, comment }) => {
 
       <div className='comment-wrapper__commenter-info'>
 
-        <div className='commenterPic'>pic
+        <div className='commenterPic'>
         </div>
 
         <div className='commentInfo' id={`comment${comment.id}`}>

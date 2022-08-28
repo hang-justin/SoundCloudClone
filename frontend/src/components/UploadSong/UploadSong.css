@@ -2,6 +2,8 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  background: rgb(124, 136, 226);
+  background: radial-gradient(circle, rgba(124, 136, 226, 1) 0%, rgba(255, 120, 0, 1) 100%);
 }
 
 .upload-song-form {
