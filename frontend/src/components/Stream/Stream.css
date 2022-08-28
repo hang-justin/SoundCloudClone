@@ -7,6 +7,9 @@
   min-width: 810px;
 }
 
+h2#song-cards-header {
+  padding-left: 15px;
+}
 
 .song-cards-container {
   border: 0.5px red solid;
@@ -27,7 +30,7 @@
 
 .song-container__song-image {
   display: inline-block;
-  /* padding-right: 5px; */
+  padding-left: 15px;
 }
 
 img.song-image {
@@ -44,6 +47,16 @@ img.song-image {
 .song-content-links {
   display: flex;
   flex-direction: row;
+}
+
+button#stream-card-toggle-play-btn {
+  border-radius: 35px;
+  border: none;
+  background-color: rgb(255, 120, 0);
+}
+
+img#stream-card-toggle-play-img {
+  width: 30px;
 }
 
 .song-content-links__song-author-title {

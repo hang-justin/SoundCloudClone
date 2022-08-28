@@ -14,7 +14,18 @@ const Player = ({ track }) => {
   };
 
   const play = () => {
+    // use this to toggle play
+    console.log(player.current.isPlaying())
     player.current.audio.current.play();
+  }
+
+  const togglePlay = () => {
+    console.log(player.current.isPlaying())
+    if (player.current.isPlaying()) {
+      player.current.audio.current.pause();
+    }
+
+    else player.current.audio.current.play();
   }
 
 
@@ -28,7 +39,7 @@ const Player = ({ track }) => {
         ref={player}
       />
 
-      <button id='play-button' onClick={play} >play</button>
+      <button id='global-toggle-play-button' onClick={togglePlay} >Toggle Play</button>
       <button id='pause-button' onClick={pause} >pause</button>
     </>
 

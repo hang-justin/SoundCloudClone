@@ -53,7 +53,7 @@ const AddComment = ({ songId, user }) => {
         className='commentBody'
         id='form__comment__textarea'
         rows='1'
-        placeholder={'add some comments yo'}
+        placeholder={'Write a comment'}
         onChange={(e) => setComment(e.target.value)}
         value={comment}
       />

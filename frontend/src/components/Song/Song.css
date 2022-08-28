@@ -37,6 +37,12 @@ background: linear-gradient(135deg, rgba(190,96,96,1) 0%, rgba(149,142,177,0.932
   align-items: center;
 }
 
+button#song-banner-toggle-play {
+  border-radius: 30px;
+  border: none;
+  background-color: rgb(255, 120, 0);
+}
+
 img#song-component-toggle-play {
   height: 50px;
   width: 50px;

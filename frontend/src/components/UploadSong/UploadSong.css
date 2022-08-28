@@ -1,15 +1,74 @@
+.upload-song-form-component {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-song-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-song-nav {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+div.form-wrapper {
+  width: 800px;
+  display: flex;
+
+  align-self: center;
+  margin: 50px;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  background-color: antiquewhite;
+}
+
+form#form__upload-song-form {
+  display: flex;
+  flex-direction: column;
+
+  padding-bottom: 30px;
+}
+
+h3#upload-form-title{
+  justify-content: center;
+  align-self: center;
+}
+
+input {
+  display: block;
+  padding: 5px;
+  width: 750px;
+}
+
+textarea {
+  display: block;
+  resize: none;
+
+  width: 758px;
+  height: 100px
+}
+
+.uploadSongForm-label {
+  margin: 4px;
+  padding: 5px;
+}
+
 span.upload-req-field {
   color: red;
 }
 
-.uploadSongForm {
-  margin: 4px
+button#upload-song-btn {
+  width: 764px;
+  height: 50px;
+  margin: 9px;
+
+  justify-self: baseline;
+
+  background-color: rgb(255, 120, 0);
+  border: none;
+  color: white;
+  border-radius: 5px;
 }
-
-/* button {
-  margin: 4px
-} */
-
-/* form {
-  padding: 4px
-} */

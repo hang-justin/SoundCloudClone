@@ -5,7 +5,7 @@
   align-content: center;
 }
 
-textarea {
+textarea.commentBody {
   resize: none;
 
   width: 100%;

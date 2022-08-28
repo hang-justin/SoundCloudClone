@@ -63,7 +63,9 @@ const Stream = () => {
         <div className='song-content'>
           <div className='song-content-links'>
             <div className='song-content-links__play-button-wrapper'>
-              <button>Play/pause</button>
+              <button id='stream-card-toggle-play-btn'>
+                <img id='stream-card-toggle-play-img' src='https://cdn-icons-png.flaticon.com/512/1792/1792886.png' alt='toggle-play-button' />
+              </button>
             </div>
             <div className='song-content-links__song-author-title'>
               <div>{artists[song.userId].username}</div>
@@ -91,7 +93,7 @@ const Stream = () => {
   return (
     <div className='stream-comp'>
       <div className='stream-comp-left'>
-        <h2 className='song-cards-header'>
+        <h2 id='song-cards-header'>
           Hear the latest posts from the people:
         </h2>
 

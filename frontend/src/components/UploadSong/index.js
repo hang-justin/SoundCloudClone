@@ -41,7 +41,7 @@ const UploadSongForm = () => {
         const data = await res.json();
         // Note: check what data is here
         // Note: check for validation errors/edge cases
-        if (data.message='Forbidden') setErrors(['Invalid Album'])
+        if (data.message = 'Forbidden') setErrors(['Invalid Album'])
         else if (data && data.message) setErrors(Object.values([data.message]))
       })
 
@@ -66,16 +66,19 @@ const UploadSongForm = () => {
   )
 
   return (
-    <div>
-      <h3>Upload Form</h3>
-
-      <form onSubmit={(e) => handleSongUpload(e)}>
+    <div className='form-wrapper'>
+      <form
+        id='form__upload-song-form'
+        onSubmit={(e) => handleSongUpload(e)}>
 
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
 
-        <label className='uploadSongForm'>Title<span className='upload-req-field'>*</span>
+
+        <h3 id='upload-form-title'>Upload A Track</h3>
+
+        <label className='uploadSongForm-label'>Title<span className='upload-req-field'>*</span>
           <input
             name='title'
             type='text'
@@ -86,7 +89,7 @@ const UploadSongForm = () => {
           />
         </label>
 
-        <label className='uploadSongForm'>Audio URL<span className='upload-req-field'>*</span>
+        <label className='uploadSongForm-label'>Audio URL<span className='upload-req-field'>*</span>
           <input
             name='url'
             type='text'
@@ -97,7 +100,7 @@ const UploadSongForm = () => {
           />
         </label>
 
-        <label className='uploadSongForm'>Description
+        <label className='uploadSongForm-label'>Description
           <textarea
             name='description'
             type='text'
@@ -107,7 +110,7 @@ const UploadSongForm = () => {
           />
         </label>
 
-        <label className='uploadSongForm'>Image URL
+        <label className='uploadSongForm-label'>Image URL
           <input
             name='imageUrl'
             placeholder="Visualize your track"
@@ -116,19 +119,23 @@ const UploadSongForm = () => {
           />
         </label>
 
-        <label className='uploadSongForm'>Album Id
+        <label className='uploadSongForm-label'>Album Id
           <input
             name='albumId'
-            placeholder="Buddy-up your track"
+            placeholder="House your track"
             value={albumId}
             onChange={e => setAlbumId(e.target.value)}
           />
         </label>
 
-        <button type='submit'>So you an artist now, huh?</button>
+        <button
+          id='upload-song-btn'
+          type='submit'
+        >
+          Upload
+        </button>
 
       </form>
-
     </div>
   )
 }
@@ -138,8 +145,10 @@ const UploadSong = () => {
   // then fill out forms
 
   return (
-    <div>
-      <h2>Upload Song Form Component</h2>
+    <div className='upload-song-form-component'>
+      <div className='upload-song-nav'>
+        <span>Your tracks</span>
+      </div>
       <UploadSongForm />
     </div>
   );

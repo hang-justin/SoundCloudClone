@@ -45,6 +45,7 @@ const Song = ({ track, setTrack }) => {
 
   const playTrack = () => {
     setTrack(song);
+    console.log(document.audio)
   }
 
   console.log('track is :', track)
@@ -58,8 +59,8 @@ const Song = ({ track, setTrack }) => {
           <div className='song-banner__left__top'>
 
             <div className="play-button-container">
-              <button onClick={playTrack}>
-                <img id='song-component-toggle-play' src='https://cdn-icons-png.flaticon.com/512/1792/1792886.png' />
+              <button id='song-banner-toggle-play' onClick={playTrack}>
+                <img id='song-component-toggle-play' src='https://cdn-icons-png.flaticon.com/512/1792/1792886.png' alt='toggle-play button' />
               </button>
             </div>
 
