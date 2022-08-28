@@ -59,3 +59,16 @@ body {
 .main-component-container {
   display: flex;
 }
+
+div#modal {
+  height: 1250px;
+}
+
+div.audio-footer-container {
+  align-self: center;
+  width: 1225px;
+}
+
+svg {
+  color: black;
+}

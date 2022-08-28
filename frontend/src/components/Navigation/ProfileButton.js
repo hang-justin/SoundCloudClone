@@ -3,10 +3,9 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
 
-const ProfileButton = () => {
+const ProfileButton = ({ user }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const user = useSelector(state => state.session.user)
   const [showMenu, setShowMenu] = useState(false);
 
   const openMenu = () => {
@@ -28,25 +27,30 @@ const ProfileButton = () => {
     return () => document.removeEventListener('click', closeMenu);
   }, [showMenu]);
 
-  const logOut = e => {
+  const logOut = async e => {
     e.preventDefault();
-    dispatch(sessionActions.logOut());
-    history.push('/');
+    dispatch(sessionActions.logOut())
+      .then(() => history.push('/'));
   }
 
   return (
     <>
-      <button onClick={() => openMenu()}>
-        <i className="fa-solid fa-user-ninja"></i>
+      <button id='user-profile-btn' onClick={() => openMenu()}>
+        <div id='profile-button-user-icon'>
+          <i className="fa-solid fa-user-ninja"></i>
+        </div>
+        <div id='profile-button-username'>
+          {`${user.firstName} ${user.lastName}`}
+        </div>
       </button>
 
       {
         showMenu && (
           <ul className='profile-dropdown'>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
+            {/* <li>{user.username}</li>
+            <li>{user.email}</li> */}
             <li>
-              <button onClick={(e) => logOut(e)}>Log Out</button>
+              <button onClick={logOut}>Sign Out</button>
             </li>
           </ul>
         )

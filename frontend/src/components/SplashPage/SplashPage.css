@@ -22,13 +22,8 @@ div.splash-navbar {
 
   width: 100%;
   height: 40px;
-  border: white 1px solid;
 }
 
-div.navbar-logo {
-  padding-left: 10px;
-  color: white;
-}
 
 div.account-btns {
   display: flex;
@@ -37,4 +32,16 @@ div.account-btns {
 
 div.account-btn-wrappers {
   padding: 0 5px;
+}
+
+div.navbar-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+}
+
+img.splash-nav-logo {
+  height: 50px;
+  padding: 5px;
 }

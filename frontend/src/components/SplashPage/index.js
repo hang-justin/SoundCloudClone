@@ -16,7 +16,10 @@ const SplashPage = () => {
 
       <div id='splash-banner'>
         <div className='splash-navbar'>
-          <div className='navbar-logo'>LOGO</div>
+          <div className='navbar-logo'>
+            <img className='splash-nav-logo' src='https://i.imgur.com/9FHXDAq.png' alt='SonusNimbus Splash Icon' />
+            SonusNimbus
+          </div>
 
           <div className='account-btns'>
             <div className='account-btn-wrappers' id='splash-login-btn'>

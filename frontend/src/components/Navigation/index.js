@@ -53,9 +53,12 @@ const Navigation = () => {
         </div>
 
         <div className='nav-container-right nav-containers'>
-          <NavLink className='header__navlink' to='/upload'><div className='navlink-div' key='nav-upload'>Upload</div></NavLink>
-          {user && <ProfileButton />}
-          {!user && navlinks}
+          <div className='right-nav-links'>
+            <NavLink className='header__navlink' to='/upload'><div className='navlink-div' key='nav-upload'>Upload</div></NavLink>
+          </div>
+          <div id='user-icon' className='right-nav-links'>
+            <ProfileButton user={user}/>
+          </div>
         </div>
 
       </div>

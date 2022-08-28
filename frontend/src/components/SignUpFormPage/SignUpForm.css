@@ -1,9 +1,48 @@
-form {
-  /* background-color: greenyellow ; */
+div#signup-form-div-wrapper {
+  display: flex;
 }
-/* 
-label {
-  display: block;
-  background-color: lightblue;
-  color: rgb(9, 11, 141);
-} */
+
+form#signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-items: stretch;
+
+  width: 300px;
+
+  padding: 20px 10px;
+  background-color: white;
+}
+
+div.signup-err-div {
+  display: flex;
+  justify-content: center;
+  color: red;
+}
+
+input.signupform-input {
+  margin: 3px;
+  width: auto;
+}
+
+label.signup-label {
+  display: flex;
+  flex-direction: column;
+  justify-items: stretch;
+  width: 100%;
+}
+
+button#create-account-btn {
+  background-color: rgb(255, 120, 0);
+  border: none;
+  border-radius: 5px;
+  margin: 2px 0;
+}
+
+button#modal-create-account {
+  background-color: rgb(255, 120, 0);
+  color: white;
+  border-radius: 5px;
+  height: 40px;
+  padding: 0 20px;
+  border: none;
+}

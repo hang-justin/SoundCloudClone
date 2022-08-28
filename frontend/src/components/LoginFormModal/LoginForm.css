@@ -1,15 +1,41 @@
+form#login-form {
+  display: flex;
+  flex-direction: column;
 
-button {
-  /* color: white;
-  background-color: red; */
+  padding: 20px 10px;
+  background-color: white;
+  z-index: 2;
 }
 
-form {
-  /* outline: orange dotted 2px;
-  background-color: #224367; */
+button#modal-submit-credentials {
+  background-color: rgb(255, 120, 0);
+  border: none;
+  border-radius: 5px;
+  margin: 2px 0;
 }
 
-label {
-  /* background-color: #224367;
-  color: white; */
+button#demo-user {
+  background-color: rgb(255, 120, 0);
+  border: none;
+  border-radius: 5px;
+  margin: 2px 0;
+}
+
+div.signin-err-div {
+  display: flex;
+  justify-content: center;
+  color: red;
+}
+
+button#modal-login {
+  background-color: #333;
+  border: 1.5px solid white;
+  color: white;
+  border-radius: 5px;
+  height: 40px;
+  padding: 0 20px;
+}
+
+label.login-input {
+  margin: 5px 0;
 }

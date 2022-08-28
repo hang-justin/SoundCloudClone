@@ -104,7 +104,7 @@ const Stream = () => {
       </div>
 
       <div className='stream-comp-right right-menu-container'>
-        <h3>Hey {sessionUser.username}</h3>
+        <h3>{`Hey ${sessionUser?.firstName} ${sessionUser.lastName}`}</h3>
       </div>
 
 

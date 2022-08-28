@@ -12,11 +12,10 @@ const LoginForm = () => {
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState([]);
 
-  // Testing purposes: Ease for testing log in and log outs
-  useEffect(() => {
+  const setDemoCredentials = () => {
     setUsernameOrEmail('demo');
     setPassword('password');
-  }, [dispatch])
+  }
 
   const handleLogIn = (e) => {
     e.preventDefault();
@@ -42,36 +41,41 @@ const LoginForm = () => {
   }
 
   return (
+    <div className='login-form-div-wrapper'>
 
-    <form onSubmit={(e) => handleLogIn(e)}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
+      <form id='login-form' onSubmit={(e) => handleLogIn(e)}>
 
-      <label> Username or Email:
-        <input
-          name='credential'
-          type='text'
-          placeholder='Username or Email'
-          value={usernameOrEmail}
-          onChange={e => setUsernameOrEmail(e.target.value)}
-          required
-        />
-      </label>
+        {errors.map((error, idx) => <div className='signin-err-div' key={idx}>{error}</div>)}
 
-      <label>Password :
-        <input
-          name='password'
-          type='text'
-          placeholder='Password'
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          required
-        />
-      </label>
 
-      <button type='submit'>GET IN THE CHOPPA</button>
-    </form>
+        <label className='login-input'>
+          <input
+            className='signin-input'
+            name='credential'
+            type='text'
+            placeholder='Username or Email'
+            value={usernameOrEmail}
+            onChange={e => setUsernameOrEmail(e.target.value)}
+            required
+          />
+        </label>
+
+        <label className='login-input'>
+          <input
+            className='signin-input'
+            name='password'
+            type='text'
+            placeholder='Password'
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            required
+          />
+        </label>
+
+        <button id='modal-submit-credentials' type='submit'>Sign In</button>
+        <button id='demo-user' onClick={setDemoCredentials}>Demo user</button>
+      </form>
+    </div>
   );
 }
 
