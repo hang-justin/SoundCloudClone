@@ -22,7 +22,9 @@ const Navigation = () => {
 
           <div className='left-navlink-container-icon'>
             <NavLink className='header__navlink container-left-navlink' to='/'>
-              <div className='navlink-div nav-container-left nav-icon' key='nav-home'>Icon</div>
+              <div className='navlink-div nav-container-left nav-icon' key='nav-home'>
+                <img className='nav-icon' src='https://i.imgur.com/4KoOMTr.png' alt='SonusNimbus Nav Icon' />
+              </div>
             </NavLink>
           </div>
 

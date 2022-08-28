@@ -41,7 +41,8 @@ const UploadSongForm = () => {
         const data = await res.json();
         // Note: check what data is here
         // Note: check for validation errors/edge cases
-        if (data && data.errors) setErrors(Object.values(data.errors))
+        if (data.message='Forbidden') setErrors(['Invalid Album'])
+        else if (data && data.message) setErrors(Object.values([data.message]))
       })
 
   };

@@ -72,7 +72,7 @@ const Song = ({ track, setTrack }) => {
 
           <div className='song-banner__left__bottom'>
             <div className='song-waveform'>
-              <img className='song-waveform-img' src='https://i.imgur.com/jsHWeIy.png' alt='waveform' />
+              <img className='song-waveform-img' src='https://i.imgur.com/kcs5uEk.png' alt='waveform' />
             </div>
           </div>
 

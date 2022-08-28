@@ -102,7 +102,7 @@ const getSongById = async (req, res, next) => {
   return res.json(song)
 }
 
-const createSong = async (req, res) => {
+const createSong = async (req, res, next) => {
   const { title, description, url, imageUrl, albumId } = req.body;
 
   let album;

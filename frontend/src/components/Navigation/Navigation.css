@@ -37,6 +37,9 @@
   justify-content: space-between;
 }
 
+img.nav-icon {
+  height: 40px;
+}
 
 .left-navlink-container-icon {
   width: 20%;

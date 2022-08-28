@@ -42,10 +42,6 @@ img#song-component-toggle-play {
   width: 50px;
 }
 
-.song-banner__left__bottom {
-  background-color: grey;
-}
-
 .song-banner__top__song-info {
   display: flex;
   flex-direction: column;
@@ -67,6 +63,15 @@ span#song-info__song-artist {
   padding: 0 6px;
   width: auto;
   display: inline-block;
+}
+
+.song-banner__left__bottom {
+  display: flex;
+}
+
+.song-waveform {
+  display: flex;
+  width: auto;
 }
 
 .song-banner__right {
