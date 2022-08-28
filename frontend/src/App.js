@@ -1,15 +1,17 @@
 import { createRef, useEffect, useState } from 'react';
-import { NavLink, Route, Switch } from 'react-router-dom';
+import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-// import LoginFormPage from "./components/LoginFormPage";
-import SignUpFormPage from './components/SignUpFormPage';
 import Navigation from './components/Navigation';
-import Library from './components/Library';
 import Stream from './components/Stream';
-import { SinglePlaylist } from './components/Playlists';
 import UploadSong from './components/UploadSong';
 import Song from './components/Song';
 import Player from './components/Player';
+import SplashPage from './components/SplashPage';
+
+// import LoginFormPage from "./components/LoginFormPage";
+import SignUpFormPage from './components/SignUpFormPage';
+import Library from './components/Library';
+import { SinglePlaylist } from './components/Playlists';
 
 import * as songActions from './store/song'
 import * as sessionActions from './store/session';
@@ -39,45 +41,57 @@ function App() {
   let playerVisibility = !track ? { display: 'none' } : { display: 'block' };
 
   return isLoaded && (
-    <div className='site-container'>
-      <div className='site-container__main'>
-        <div className='site-container__main__nav-container'>
-          <Navigation />
-        </div>
+    <div className='app-container'>
 
-        <div className='site-container__main__component'>
+      <div className='nav-bar-sides'></div>
+      <div className='site-container'>
+        <div className='site-container__main-wrapper'>
+
+            <div className='site-container__main__nav-container'>
+              {user && <Navigation /> }
+            </div>
 
           <Switch>
-            <Route exact path='/stream' component={Stream} />
 
-            {/* Note: path='/you' should redirect to /sessionUserId */}
-            <Route path='/you' component={Library} />
-            <Route exact path='/:userId/playlist/:playlistId' component={SinglePlaylist} />
-
-            <Route exact path='/:userId/songs/:songId'>
-              <Song track={track} setTrack={setTrack} />
+            <Route exact path='/'>
+              {user ? <Redirect to='/stream' /> : <SplashPage />}
             </Route>
 
-            <Route exact path='/upload' component={user && UploadSong} />
+            <div className='site-container__main__component'>
+              <Route exact path='/stream'>
+                <Stream />
+              </Route>
 
-            <Route>404</Route>
+              <Route exact path='/:userId/songs/:songId'>
+                <Song track={track} setTrack={setTrack} />
+              </Route>
+
+              {/* <Route path='/you' component={Library} />
+              <Route exact path='/:userId/playlist/:playlistId' component={SinglePlaylist} /> */}
+
+              <Route exact path='/upload'>
+                <UploadSong />
+              </Route>
+
+              <Route>404</Route>
+            </div>
+
           </Switch>
+
+        </div>
+
+        <div className='audio-footer-container'>
+          <div id='player-visibility' style={playerVisibility}>
+            <Player
+              track={track}
+              autoPlayAfterSrcChange={true}
+            />
+          </div>
+          <a href="https://www.flaticon.com/free-icons/play" title="play icons">Play icons created by Darius Dan - Flaticon</a>
         </div>
       </div>
-
-
-
-      <div className='audio-footer-container'>
-        <div id='player-visibility' style={playerVisibility}>
-          <Player
-            track={track}
-            autoPlayAfterSrcChange={true}
-          />
-        </div>
-        <a href="https://www.flaticon.com/free-icons/play" title="play icons">Play icons created by Darius Dan - Flaticon</a>
-      </div>
-    </div>
-  )
+    </div >
+  );
 };
 
 export default App;

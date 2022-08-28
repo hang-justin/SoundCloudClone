@@ -94,7 +94,7 @@ const Stream = () => {
     <div className='stream-comp'>
       <div className='stream-comp-left'>
         <h2 id='song-cards-header'>
-          Hear the latest posts from the people:
+          Hear the latest posts from the people you’re following:
         </h2>
 
         <div className='song-cards-container'>
@@ -103,8 +103,8 @@ const Stream = () => {
 
       </div>
 
-      <div style={{ border: 'red 5px dashed', width: '300px' }} className='right-menu-container'>
-        Hey {sessionUser.username}
+      <div className='stream-comp-right right-menu-container'>
+        <h3>Hey {sessionUser.username}</h3>
       </div>
 
 

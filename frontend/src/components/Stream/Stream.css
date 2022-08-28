@@ -1,10 +1,20 @@
 .stream-comp {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
 .stream-comp-left {
   min-width: 810px;
+  width: 80%;
+}
+
+.right-menu-container {
+  width: 20%;
+  border-left: 1px solid black;
+  padding-top: 40px;
+  padding-left: 20px;
+
 }
 
 h2#song-cards-header {
@@ -12,10 +22,9 @@ h2#song-cards-header {
 }
 
 .song-cards-container {
-  border: 0.5px red solid;
-
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
 .song-container {
@@ -24,8 +33,6 @@ h2#song-cards-header {
   flex-wrap: wrap;
 
   margin: 2px 0;
-
-  border: 0.5px green solid;
 }
 
 .song-container__song-image {

@@ -1,6 +1,6 @@
 form.editSongForm {
   margin: 20px;
-  background-color: aqua;
+  width: 850px;
 }
 
 div.editSongForm-inner-container {
@@ -9,16 +9,49 @@ div.editSongForm-inner-container {
 }
 
 img.view-edit-song-img {
-  height: 200px;
-  width: 200px;
+  height: 250px;
+  width: 250px;
+  border: 0.5px solid rgba(0, 0, 0, 0.75);
 }
 
 div.editSong-middleContainer {
   width: 10px;
 }
 
-input[valid-title="invalid"] {
-  border: 4px red dashed;
+div.editSong-rightContainer {
+  display: flex;
+  flex-direction: column;
+  justify-items: stretch;
+  width: 600px;
+}
+
+input[valid-title="invalid"]#edit-song-title {
+  border: 2px solid red;
+}
+
+input.edit-song-input {
+  border-radius: 5px;
+  border: 1px solid gray;
+  width: 100%;
+}
+
+textarea.edit-song-textarea {
+  border-radius: 5px;
+  border: 1px solid gray;
+  width: 100%;
+  resize: vertical;
+}
+
+button#edit-song-btn {
+  display: flex;
+  align-self: flex-end;
+
+  border: none;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgb(255, 120, 0);
+  color: white;
+  border-radius: 5px;
 }
 
 .invalid-field-prompt {

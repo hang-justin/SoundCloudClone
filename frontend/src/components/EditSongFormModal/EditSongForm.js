@@ -19,8 +19,6 @@ const EditSongForm = ({ song, display }) => {
     if (title.trim().length === 0) {
       setValidTitle('invalid')
       return;
-    } else if (title.trim().length !== 0) {
-      setValidTitle('valid');
     }
 
     if (imageUrl.trim().length === 0) setImageUrl(null);
@@ -38,13 +36,20 @@ const EditSongForm = ({ song, display }) => {
 
   }
 
+  const checkTitleField = (e) => {
+    setTitle(e.target.value);
+    if (validTitle === 'valid') return;
+
+    if (e.target.value !== '') setValidTitle('valid');
+  }
+
   return (
     <form onSubmit={(e) => handleEditSong(e)} className='editSongForm'>
 
       <div className='editSongForm-inner-container'>
 
         <div className='editSong-leftContainer img-container'>
-          <img src={song.imageUrl} alt={`${song.title}'s song cover`} className='view-edit-song-img' />
+          <img id='edit-song-form-img' src={song.imageUrl} alt={`${song.title}'s song cover`} className='view-edit-song-img' />
         </div>
 
         <div className='editSong-middleContainer' />
@@ -54,11 +59,13 @@ const EditSongForm = ({ song, display }) => {
           <label>
             <p className='edit-song-field edit-title'>Title<span className='title-of-req-field'>*</span></p>
             <input
+              id='edit-song-title'
+              className='edit-song-input'
               valid-title={validTitle}
               type='text'
               placeholder='Name your track'
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={checkTitleField}
             />
           </label>
           {validTitle === 'invalid' && <span className='invalid-field-prompt'>Enter a title.</span>}
@@ -66,6 +73,7 @@ const EditSongForm = ({ song, display }) => {
           <label>
             <p className='edit-song-field edit-description'>Description</p>
             <textarea
+              className='edit-song-textarea'
               type='text'
               placeholder='Describe your track'
               value={description}
@@ -75,7 +83,8 @@ const EditSongForm = ({ song, display }) => {
 
           <label>
             <p className='edit-song-field edit-imageUrl'>Image URL</p>
-            <textarea
+            <input
+              className='edit-song-input'
               type='text'
               placeholder='Image your track'
               value={imageUrl}
@@ -83,7 +92,10 @@ const EditSongForm = ({ song, display }) => {
             />
           </label>
 
-          <button className='button-edit-song' type='submit'>Save changes</button>
+          <button id='edit-song-btn' className='button-edit-song' type='submit'>
+            Save changes
+          </button>
+
         </div>
 
       </div>

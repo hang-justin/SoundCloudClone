@@ -8,11 +8,11 @@
 
   width: 97vw;
   display: flex;
+
+  /* top: 0px; */
 }
 
 .nav-container-outer {
-  border: red 0.5px solid;
-
   display: inline-flex;
   flex-direction: row;
 
@@ -30,11 +30,11 @@
 }
 
 .nav-containers {
-  /* border: 2px red dashed; */
-  width: calc(100%/3);
-
   display: inline-flex;
   justify-content: space-between;
+  align-self: center;
+
+  width: calc(100%/3);
 }
 
 img.nav-icon {
@@ -45,11 +45,18 @@ img.nav-icon {
   width: 20%;
 }
 
-.left-navlink-container-text{
+.left-navlink-container-text {
+  display: flex;
   width: calc(80%/3);
-  border: yellow solid 1px;
+  justify-content: center;
+  align-self: center;
 }
 
+.nav-container-left__nav-text {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
 
 .search-container {
   width: 100%;

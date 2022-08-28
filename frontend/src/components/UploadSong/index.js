@@ -80,6 +80,7 @@ const UploadSongForm = () => {
 
         <label className='uploadSongForm-label'>Title<span className='upload-req-field'>*</span>
           <input
+            className='uploadSongForm-input'
             name='title'
             type='text'
             placeholder="Name your track"
@@ -91,6 +92,7 @@ const UploadSongForm = () => {
 
         <label className='uploadSongForm-label'>Audio URL<span className='upload-req-field'>*</span>
           <input
+            className='uploadSongForm-input'
             name='url'
             type='text'
             placeholder="Link your track"
@@ -102,6 +104,7 @@ const UploadSongForm = () => {
 
         <label className='uploadSongForm-label'>Description
           <textarea
+            className='uploadSongForm-textarea'
             name='description'
             type='text'
             placeholder="Describe your track"
@@ -112,6 +115,7 @@ const UploadSongForm = () => {
 
         <label className='uploadSongForm-label'>Image URL
           <input
+            className='uploadSongForm-input'
             name='imageUrl'
             placeholder="Visualize your track"
             value={imageUrl}
@@ -121,6 +125,7 @@ const UploadSongForm = () => {
 
         <label className='uploadSongForm-label'>Album Id
           <input
+            className='uploadSongForm-input'
             name='albumId'
             placeholder="House your track"
             value={albumId}

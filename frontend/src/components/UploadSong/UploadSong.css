@@ -32,18 +32,18 @@ form#form__upload-song-form {
   padding-bottom: 30px;
 }
 
-h3#upload-form-title{
+h3#upload-form-title {
   justify-content: center;
   align-self: center;
 }
 
-input {
+input.uploadSongForm-input {
   display: block;
   padding: 5px;
   width: 750px;
 }
 
-textarea {
+textarea.uploadSongForm-textarea {
   display: block;
   resize: none;
 

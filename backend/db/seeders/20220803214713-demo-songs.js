@@ -34,11 +34,59 @@ const demoSongs = [
     description: 'Logic',
     url: 'https://soundcloud.com/logic_official/till-the-end-1',
     imageUrl: 'https://i1.sndcdn.com/artworks-xA3pZ7GsbgUU-0-t500x500.jpg',
-  }
+  },
+  {
+    userId: 1,
+    albumId: 1,
+    title: 'Kangaroo Jack',
+    description: 'Kangaroo Jack',
+    url: 'http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3',
+    imageUrl: 'https://www.sbs.com.au/movies/sites/sbs.com.au.film/files/styles/full/public/kangaroo.jpeg',
+  },
+  {
+    userId: 1,
+    albumId: 1,
+    title: 'Kangaroo Jack',
+    description: 'Kangaroo Jack',
+    url: 'http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3',
+    imageUrl: 'https://www.sbs.com.au/movies/sites/sbs.com.au.film/files/styles/full/public/kangaroo.jpeg',
+  },
+  {
+    userId: 1,
+    albumId: 1,
+    title: 'Kangaroo Jack',
+    description: 'Kangaroo Jack',
+    url: 'http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3',
+    imageUrl: 'https://www.sbs.com.au/movies/sites/sbs.com.au.film/files/styles/full/public/kangaroo.jpeg',
+  },
+  {
+    userId: 1,
+    albumId: 1,
+    title: 'Kangaroo Jack',
+    description: 'Kangaroo Jack',
+    url: 'http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3',
+    imageUrl: 'https://www.sbs.com.au/movies/sites/sbs.com.au.film/files/styles/full/public/kangaroo.jpeg',
+  },
+  {
+    userId: 1,
+    albumId: 1,
+    title: 'Kangaroo Jack',
+    description: 'Kangaroo Jack',
+    url: 'http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3',
+    imageUrl: 'https://www.sbs.com.au/movies/sites/sbs.com.au.film/files/styles/full/public/kangaroo.jpeg',
+  },
+  {
+    userId: 2,
+    albumId: 2,
+    title: 'Marshallow Man',
+    description: 'Ravin time',
+    url: 'http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3',
+    imageUrl: 'https://play-lh.googleusercontent.com/Ico9ZTzAGfLKeOJ6XoncgMZmLBvZGQ3Rz8ok2Jgvp0KG5tXKEUS65TUTP_ouxXhDhw=w240-h480-rw',
+  },
 ]
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     /**
      * Add seed commands here.
      *
@@ -48,10 +96,10 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   await queryInterface.bulkInsert('Songs', demoSongs)
+    await queryInterface.bulkInsert('Songs', demoSongs)
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
      *
@@ -61,7 +109,7 @@ module.exports = {
 
     const { Op } = Sequelize;
     await queryInterface.bulkDelete('Songs', {
-      userId : { [Op.gte]: [0]}
+      userId: { [Op.gte]: [0] }
     })
   }
 };
