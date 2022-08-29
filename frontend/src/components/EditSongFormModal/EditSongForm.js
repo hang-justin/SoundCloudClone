@@ -12,6 +12,9 @@ const EditSongForm = ({ song, display }) => {
   const [description, setDescription] = useState(song.description);
   const [imageUrl, setImageUrl] = useState(song.imageUrl);
   const [validTitle, setValidTitle] = useState('valid');
+  const [validImgUrl, setValidImgUrl] = useState('valid');
+
+  const picFileTypes = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG'];
 
   const handleEditSong = (e) => {
     e.preventDefault();
@@ -20,6 +23,17 @@ const EditSongForm = ({ song, display }) => {
       setValidTitle('invalid')
       return;
     }
+
+    let validImg = picFileTypes.map(picExt => {
+      return imageUrl.includes(picExt);
+    })
+
+    if (imageUrl.trim().length !== 0 && !validImg.includes(true)) {
+      setValidImgUrl('invalid');
+      return;
+    }
+
+
 
     if (imageUrl.trim().length === 0) setImageUrl(null);
     if (description.trim().length === 0) setDescription(null);
@@ -61,7 +75,7 @@ const EditSongForm = ({ song, display }) => {
             <input
               id='edit-song-title'
               className='edit-song-input'
-              valid-title={validTitle}
+              validInput={validTitle}
               type='text'
               placeholder='Name your track'
               value={title}
@@ -85,12 +99,14 @@ const EditSongForm = ({ song, display }) => {
             <p className='edit-song-field edit-imageUrl'>Image URL</p>
             <input
               className='edit-song-input'
+              validInput={validImgUrl}
               type='text'
               placeholder='Image your track'
               value={imageUrl}
               onChange={(e) => setImageUrl(e.target.value)}
             />
           </label>
+          {validImgUrl === 'invalid' && <span className='invalid-field-prompt'>Invalid Image URL</span>}
 
           <button id='edit-song-btn' className='button-edit-song' type='submit'>
             Save changes

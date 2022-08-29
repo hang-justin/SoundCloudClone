@@ -74,13 +74,15 @@ button#stream-card-toggle-play-btn {
   width: 35px;
   border: none;
   background-color: rgb(255, 120, 0);
+  margin-right: 5px;
 }
 
 
 
 img#stream-card-toggle-play-img {
   width: 35px;
-  z-index: 2;
+  margin-left: 5px;
+  margin-top: 1px;
 }
 
 .song-content-links__song-author-title {

@@ -5,7 +5,7 @@ const REMOVE_USER = 'session/REMOVE_USER';
 
 // user is an obj with
 // id, email, username
-const setUserSession = (user) => {
+export const setUserSession = (user) => {
   return {
     type: SET_USER,
     user
@@ -86,13 +86,14 @@ export const signUp = (signUpInfo) => async dispatch => {
   })
 
 
+
   // data = { id, firstName, lastName, username, email, token }
   let data = await response.json();
 
   // destructure to retrieve needed info to pass into actionCreator
   let { id, email, username } = data;
   let user = { id, email, username }
-  dispatch(setUserSession(user))
+  // await dispatch(setUserSession(user))
 
   // Refactor: See if return value is used anywhere
   // if not, return null

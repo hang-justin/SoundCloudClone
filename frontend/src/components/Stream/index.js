@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as songActions from '../../store/song';
 import { getTheseArtists } from '../../store/artists';
 import EditSongFormModal from '../EditSongFormModal';
+import * as sessionActions from '../../store/session';
 
 import './Stream.css';
+import { useEffect } from 'react';
 
 const Stream = ({ track, setTrack, toggleBtn }) => {
   const dispatch = useDispatch();
@@ -13,8 +15,13 @@ const Stream = ({ track, setTrack, toggleBtn }) => {
   let songsObj = useSelector(state => state.songs)
   let songs = Object.values(songsObj);
 
-  console.log('Stream Component Rendering')
-  console.log('In Stream Component', useLocation());
+  useEffect(() => {
+    dispatch(sessionActions.restoreSession())
+  }, [dispatch])
+
+  if (!sessionUser) {
+    return <div>Loading...</div>
+  }
 
   // Note: Thunk fetch returns: { Songs: {songs}, page, size }
   //    Will have to decide with how to handle page, size
@@ -31,7 +38,7 @@ const Stream = ({ track, setTrack, toggleBtn }) => {
 
     const editDeleteBtns = [
       <EditSongFormModal song={song} />,
-      <button className='alter-track-btns' id={song.id} onClick={(e) => deleteTrack(e.target.id)}>
+      <button className='alter-track-btns' id={song.id} onClick={(e) => deleteTrack(song.id)}>
         <i class="fa-solid fa-trash"></i>
       </button>
     ];

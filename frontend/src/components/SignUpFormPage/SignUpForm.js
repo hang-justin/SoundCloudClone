@@ -35,6 +35,7 @@ const SignUpForm = () => {
       };
 
       return dispatch(sessionActions.signUp(signUpInfo))
+        .then((user) => dispatch(sessionActions.setUserSession(user)))
         .catch(async (res) => {
           const data = await res.json();
           console.log('data from error catcher', data)

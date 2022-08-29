@@ -25,7 +25,11 @@ div.editSong-rightContainer {
   width: 600px;
 }
 
-input[valid-title="invalid"]#edit-song-title {
+input[validInput="invalid"]#edit-song-title {
+  border: 2px solid red;
+}
+
+input[validInput="invalid"] {
   border: 2px solid red;
 }
 

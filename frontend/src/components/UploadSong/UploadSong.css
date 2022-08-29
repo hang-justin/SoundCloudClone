@@ -39,6 +39,12 @@ h3#upload-form-title {
   align-self: center;
 }
 
+div.upload-errs {
+  color: red;
+  padding-left: 9px;
+  padding-top: 5px;
+}
+
 input.uploadSongForm-input {
   display: block;
   padding: 5px;

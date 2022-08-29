@@ -62,7 +62,7 @@ function App() {
 
             <div className='site-container__main__component'>
               <Route exact path='/stream'>
-                <Stream track={track} toggleBtn={toggleBtn} setTrack={setTrack} toggleBtn={toggleBtn} />
+                <Stream track={track} toggleBtn={toggleBtn} setTrack={setTrack} />
               </Route>
 
               <Route exact path='/:userId/songs/:songId'>
