@@ -28,15 +28,15 @@ const EditSongForm = ({ song, display }) => {
       return imageUrl.includes(picExt);
     })
 
-    if (imageUrl.trim().length !== 0 && !validImg.includes(true)) {
+    if (imageUrl?.trim().length !== 0 && !validImg.includes(true)) {
       setValidImgUrl('invalid');
       return;
     }
 
 
 
-    if (imageUrl.trim().length === 0) setImageUrl(null);
-    if (description.trim().length === 0) setDescription(null);
+    if (imageUrl?.trim().length === 0) setImageUrl(null);
+    if (description?.trim().length === 0) setDescription(null);
 
     const newSong = { ...song };
     console.log('newSong copied: ', newSong)
