@@ -38,10 +38,10 @@ const demoSongs = [
   {
     userId: 1,
     albumId: 1,
-    title: 'Kangaroo Jack',
-    description: 'Kangaroo Jack',
-    url: 'http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3',
-    imageUrl: 'https://www.sbs.com.au/movies/sites/sbs.com.au.film/files/styles/full/public/kangaroo.jpeg',
+    title: 'Paza',
+    description: 'Pizzaz',
+    url: 'http://codeskulptor-demos.commondatastorage.googleapis.com/pang/paza-moduless.mp3',
+    imageUrl: 'https://ih1.redbubble.net/image.253244121.8872/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.u4.jpg',
   },
   {
     userId: 2,
