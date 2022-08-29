@@ -83,7 +83,7 @@ const SignUpForm = () => {
           <input
             className='signupform-input'
             id='signup-password'
-            type='text'
+            type='password'
             placeholder='Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -96,7 +96,7 @@ const SignUpForm = () => {
           <input
             className='signupform-input'
             id='signup-confirm_password'
-            type='text'
+            type='password'
             placeholder='Confirm Password'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -105,7 +105,7 @@ const SignUpForm = () => {
         </label>
 
         <label className='signup-label'>
-          <div>FIrst Name</div>
+          <div>First Name</div>
           <input
             className='signupform-input'
             id='signup-first_name'

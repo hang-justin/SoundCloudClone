@@ -69,7 +69,7 @@ const Stream = () => {
             <div className='song-content-links'>
               <div className='song-content-links__play-button-wrapper'>
                 <button id='stream-card-toggle-play-btn'>
-                  <img id='stream-card-toggle-play-img' src='https://cdn-icons-png.flaticon.com/512/1792/1792886.png' alt='toggle-play-button' />
+                  <img id='stream-card-toggle-play-img' src='https://cdn-icons-png.flaticon.com/512/73/73940.png' alt='toggle-play-button' />
                 </button>
               </div>
               <div className='song-content-links__song-author-title'>

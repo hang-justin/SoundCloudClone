@@ -90,7 +90,6 @@ function App() {
               autoPlayAfterSrcChange={true}
             />
           </div>
-          <a href="https://www.flaticon.com/free-icons/play" title="play icons">Play icons created by Darius Dan - Flaticon</a>
         </div>
       </div>
     </div >

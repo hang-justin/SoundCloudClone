@@ -30,13 +30,13 @@ const Navigation = () => {
 
           <div className='left-navlink-container-text'>
             <NavLink className='header__navlink container-left-navlink' to='/'>
-              <div className='navlink-div nav-container-left__nav-text' key='nav-home'>Home</div>
+              <div className='navlink-div nav-container-left__nav-text' key='nav-home'>Stream</div>
             </NavLink>
           </div>
 
           <div className='left-navlink-container-text'>
             <NavLink className='header__navlink container-left-navlink' to='/stream'>
-              <div className='navlink-div nav-container-left__nav-text' key='nav-stream'>Stream</div>
+              <div className='navlink-div nav-container-left__nav-text' key='nav-stream'></div>
             </NavLink>
           </div>
 

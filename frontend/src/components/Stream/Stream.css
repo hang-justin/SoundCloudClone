@@ -60,14 +60,26 @@ img.song-image {
   flex-direction: row;
 }
 
+div.song-content-links__play-button-wrapper {
+  display: flex;
+  align-self: center;
+  margin-right: 5px;
+}
+
 button#stream-card-toggle-play-btn {
-  border-radius: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 17.5px;
+  width: 35px;
   border: none;
   background-color: rgb(255, 120, 0);
 }
 
+
+
 img#stream-card-toggle-play-img {
-  width: 30px;
+  width: 35px;
 }
 
 .song-content-links__song-author-title {
