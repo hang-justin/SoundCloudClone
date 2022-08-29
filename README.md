@@ -5,6 +5,10 @@ Follow the link below to get started.
 
 https://sonus-nimbus.herokuapp.com/
 
+## Landing Page
+![image](https://user-images.githubusercontent.com/60123981/187151729-00fc6b2d-2ed0-46f3-b235-81c4be00c29d.png)
+
+
 ## API Routes and Database Schema
 For full documentation on API Routes with the database schema, click [API Routes with Database Schema](https://github.com/juanpunchman/SoundCloudClone/blob/main/backend/API-docs-SoundCloud.md).
 
