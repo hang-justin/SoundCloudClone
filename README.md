@@ -1,4 +1,4 @@
-# SoundCloudClone
+# SonusNimbus 
 Welcome to SonusNimbus, a SoundCloud clone in development. SonusNimbus's main features are songs and comments allowing users to create, view, update, and delete songs. Users are also able to add, view, and delete comments on songs.
 
 Follow the link below to get started.
@@ -8,17 +8,26 @@ https://sonus-nimbus.herokuapp.com/
 ## Landing Page
 ![image](https://user-images.githubusercontent.com/60123981/187151926-bf3922e2-caf8-440c-bdd0-b44330906d81.png)
 
+## Running SonusNimbus Locally
+1. Download the repository.
+2. ```cd``` into the backend folder and run ```npm install```
+3. Repeat step 2 for the frontend folder
+4. To seed your database, run the following commands:
+```
+npx dotenv sequelize db:migrate
+npx dotenv sequelize db:seed:all
+```
 
-
-## API Routes and Database Schema
-For full documentation on API Routes with the database schema, click [API Routes with Database Schema](https://github.com/juanpunchman/SoundCloudClone/blob/main/backend/API-docs-SoundCloud.md).
-
-To just view the database schema, click [Database Schema here or on the pages to the right.](https://github.com/juanpunchman/SoundCloudClone/wiki/Database-Schema)
+5. ```cd``` into the backend folder and run ```npm start```
+6. Repeat step 5 for the frontend folder
 
 ## Technologies Used
 
 * <img src="https://user-images.githubusercontent.com/60123981/187137781-0a1212e8-5ec4-4dd9-8020-f4de064b0ba0.svg" width="20"> PostgresSQL
-* <img src="https://user-images.githubusercontent.com/60123981/187138428-44a78796-e2ec-4ec1-bf63-6e74a3b0ab1b.svg" width="20"> Express
+* <img src="https://user-images.githubusercontent.com/25181517/183859966-a3462d8d-1bc7-4880-b353-e2cbed900ed6.png" width="20"> Express
 * <img src="https://user-images.githubusercontent.com/60123981/187137950-ae685ce8-b20c-4ac9-a84d-b636fb8bcae5.svg" width="20"> React
 * <img src="https://user-images.githubusercontent.com/60123981/187136616-22db5723-87da-453b-b9c8-bb1aaa415288.svg" width="20"> NodeJS
+* <img src="https://user-images.githubusercontent.com/25181517/117447155-6a868a00-af3d-11eb-9cfe-245df15c9f3f.png" width="20"> JavaScript
+* <img src="https://user-images.githubusercontent.com/25181517/183898674-75a4a1b1-f960-4ea9-abcb-637170a00a75.png" width="20"> CSS
+* <img src="https://user-images.githubusercontent.com/25181517/117447535-f00a3a00-af3d-11eb-89bf-45aaf56dbaf1.png" width="20"> HTML5
 
