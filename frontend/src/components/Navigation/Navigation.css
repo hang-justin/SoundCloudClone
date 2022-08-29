@@ -8,6 +8,8 @@
 
   width: 97vw;
   display: flex;
+  position: sticky;
+  top: 0;
 }
 
 .nav-container-outer {
