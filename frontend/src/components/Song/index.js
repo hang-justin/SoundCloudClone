@@ -9,7 +9,7 @@ import Comment from "../Comment";
 
 import './Song.css';
 
-const Song = ({ track, setTrack }) => {
+const Song = ({ toggleBtn, track, setTrack }) => {
   const { songId } = useParams();
 
   const dispatch = useDispatch();
@@ -43,11 +43,9 @@ const Song = ({ track, setTrack }) => {
   }
 
   const playTrack = () => {
-    setTrack(song);
-    console.log(document.audio)
+    if (track === song) toggleBtn.click();
+    else setTrack(song);
   }
-
-  console.log('track is :', track)
 
   return (
     <div className='song-comp-container'>

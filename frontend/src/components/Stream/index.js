@@ -6,7 +6,7 @@ import EditSongFormModal from '../EditSongFormModal';
 
 import './Stream.css';
 
-const Stream = () => {
+const Stream = ({ track, setTrack, toggleBtn }) => {
   const dispatch = useDispatch();
   let artists = useSelector(state => state.artists);
   let sessionUser = useSelector(state => state.session.user)
@@ -20,10 +20,6 @@ const Stream = () => {
   //    Will have to decide with how to handle page, size
   //      For now, with a small DB less than the max size returned
   //        - will just render all those songs
-
-  let clickHandler = () => {
-    alert('Working on it... Stay tuned')
-  }
 
   let deleteTrack = (songId) => {
     dispatch(songActions.deleteTrack(songId));
@@ -51,10 +47,14 @@ const Stream = () => {
 
   let songsRender = songs.map((song) => {
     if (song.Artist !== undefined) return;
-    let songId = song.id;
+
+    const handleStreamToggle = () => {
+      if (track === song) toggleBtn.click();
+      else setTrack(song);
+    }
 
     return (
-      <div className='song-card-container'>
+      <div key={`stream-song-${song.id}`} className='song-card-container'>
         <div className='song-card-poster'>{artists[song.userId].username} posted a track</div>
 
         <div className='song-container' key={`song${song.id}`} id={`song${song.id}`}>
@@ -67,11 +67,11 @@ const Stream = () => {
 
           <div className='song-content'>
             <div className='song-content-links'>
-              <div className='song-content-links__play-button-wrapper'>
-                <button id='stream-card-toggle-play-btn'>
+              <button onClick={handleStreamToggle} id='stream-card-toggle-play-btn'>
+                <div className='song-content-links__play-button-wrapper'>
                   <img id='stream-card-toggle-play-img' src='https://cdn-icons-png.flaticon.com/512/73/73940.png' alt='toggle-play-button' />
-                </button>
-              </div>
+                </div>
+              </button>
               <div className='song-content-links__song-author-title'>
                 <div>{artists[song.userId].username}</div>
                 <div>{song.title}</div>

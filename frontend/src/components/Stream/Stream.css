@@ -80,6 +80,7 @@ button#stream-card-toggle-play-btn {
 
 img#stream-card-toggle-play-img {
   width: 35px;
+  z-index: 2;
 }
 
 .song-content-links__song-author-title {
