@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { uploadSong } from "../../store/song";
+import { fetchAllSongs, uploadSong } from "../../store/song";
 
 import './UploadSong.css'
 
@@ -18,6 +18,9 @@ const UploadSongForm = () => {
   const [errors, setErrors] = useState([]);
   const [uploadedSong, setUploadedSong] = useState('');
 
+  const audioFileTypes = ['mp3', 'wav', 'ogg'];
+  const picFileTypes = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG'];
+
   // Question: Should I be using a useSelector to retrieve session userId
   //    Or should I be using store.getState()
   //    Or should I be passing it through props?...
@@ -27,9 +30,30 @@ const UploadSongForm = () => {
 
     setErrors([]);
 
+    let urlParts = url.split('.');
+    let audioExtension = urlParts[urlParts.length - 1];
+    if (!audioFileTypes.includes(audioExtension)) {
+      setErrors(['Invalid audio link. mp3/wav/ogg supported'])
+      return;
+    }
+
+    if (title.trim().length === 0) {
+      setErrors(['Please enter a title'])
+      return;
+    }
+
+    let validImg = picFileTypes.map( picExt => {
+      return imageUrl.includes(picExt);
+    })
+
+    if (!validImg.includes(true) && imageUrl.trim().length !== 0) {
+      setErrors(['Invalid image url']);
+      return;
+    }
+
     const song = {
       title,
-      description,
+      description: description.trim(),
       url,
       imageUrl,
       albumId
@@ -37,6 +61,7 @@ const UploadSongForm = () => {
 
     dispatch(uploadSong(song))
       .then((res) => setUploadedSong(res))
+      .then(()=> dispatch(fetchAllSongs()))
       .catch(async (res) => {
         const data = await res.json();
         // Note: check what data is here
@@ -55,7 +80,6 @@ const UploadSongForm = () => {
   // if upload is successful, render a success page
   if (uploadedSong) return (
     <div>
-
       <div>
         <img src={uploadedSong.imageUrl} alt={`${uploadedSong.title}'s Image`} />
       </div>
@@ -71,9 +95,9 @@ const UploadSongForm = () => {
         id='form__upload-song-form'
         onSubmit={(e) => handleSongUpload(e)}>
 
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
+
+        {!!errors.length && errors.map((error, idx) => <div className='upload-errs' key={idx}>{error}</div>)}
+
 
 
         <h3 id='upload-form-title'>Upload A Track</h3>

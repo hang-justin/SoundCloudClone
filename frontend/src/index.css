@@ -35,6 +35,8 @@ body {
   min-width: 1225px;
   min-height: calc(100% - 40px);
   height: 100%;
+
+  /* margin-bottom: 80px; */
 }
 
 .site-container__main-wrapper {
@@ -84,3 +86,9 @@ a:link {
   text-decoration: none;
 }
 
+div.audio-footer-container {
+  width: 1225px;
+  height: 60px;
+  position: absolute;
+  bottom: 0px;
+}

@@ -22,7 +22,10 @@ function App() {
   let dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(state => state.session.user);
+  const songs = useSelector(state => state.songs)
   const [track, setTrack] = useState('');
+
+  const toggleBtn=document.getElementById('global-toggle-play-button')
 
   const loadPlaylists = (user) => {
     if (!user) return;
@@ -59,11 +62,11 @@ function App() {
 
             <div className='site-container__main__component'>
               <Route exact path='/stream'>
-                <Stream />
+                <Stream track={track} toggleBtn={toggleBtn} setTrack={setTrack} />
               </Route>
 
               <Route exact path='/:userId/songs/:songId'>
-                <Song track={track} setTrack={setTrack} />
+                <Song toggleBtn={toggleBtn} track={track} setTrack={setTrack} />
               </Route>
 
               {/* <Route path='/you' component={Library} />
