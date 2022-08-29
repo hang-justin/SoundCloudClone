@@ -80,3 +80,11 @@ button#upload-song-btn {
   color: white;
   border-radius: 5px;
 }
+
+div.return-uploaded-song-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10px;
+  font-size: larger;
+}

@@ -53,7 +53,7 @@ const Stream = ({ track, setTrack, toggleBtn }) => {
   // so the conditional below will prevent it from rendering again
 
   let songsRender = songs.map((song) => {
-    if (song.Artist !== undefined) return;
+    if (song.Artist !== undefined) return null;
 
     const handleStreamToggle = () => {
       if (track === song) toggleBtn.click();

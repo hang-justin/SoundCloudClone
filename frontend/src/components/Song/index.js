@@ -57,7 +57,7 @@ const Song = ({ toggleBtn, track, setTrack }) => {
 
             <div className="play-button-container">
               <button id='song-banner-toggle-play' onClick={playTrack}>
-                <img id='song-component-toggle-play' src='https://cdn-icons-png.flaticon.com/512/1792/1792886.png' alt='toggle-play button' />
+                <img id='song-component-toggle-play' src='https://cdn-icons-png.flaticon.com/512/73/73940.png' alt='toggle-play button' />
               </button>
             </div>
 

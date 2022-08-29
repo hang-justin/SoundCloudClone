@@ -79,11 +79,11 @@ const UploadSongForm = () => {
 
   // if upload is successful, render a success page
   if (uploadedSong) return (
-    <div>
-      <div>
+    <div className='return-uploaded-song-container'>
+      <div className='uploaded-song-img-container'>
         <img src={uploadedSong.imageUrl} alt={`${uploadedSong.title}'s Image`} />
       </div>
-      <span>{uploadedSong.title}</span>
+      <span className='uploaded-song-title'>{uploadedSong.title}</span>
       <NavLink to={`/${uploadedSong.userId}/songs/${uploadedSong.id}`}>Go to your track</NavLink>
 
     </div>
