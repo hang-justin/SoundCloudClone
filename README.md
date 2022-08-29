@@ -6,7 +6,8 @@ Follow the link below to get started.
 https://sonus-nimbus.herokuapp.com/
 
 ## Landing Page
-![image](https://user-images.githubusercontent.com/60123981/187151729-00fc6b2d-2ed0-46f3-b235-81c4be00c29d.png)
+![image](https://user-images.githubusercontent.com/60123981/187151926-bf3922e2-caf8-440c-bdd0-b44330906d81.png)
+
 
 
 ## API Routes and Database Schema
