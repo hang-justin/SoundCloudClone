@@ -10,21 +10,14 @@ body {
 }
 
 .app-container {
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 body {
   margin: 0px;
   background-color: rgba(128, 128, 128, 0.295);
-  font-family: 'Lato', sans-serif;
-}
-
-.nav-bar-sides {
-  background-color: #333;
-  width: 100vw;
-  height: 40px;
-  position: fixed;
-  top: 0px;
+  /* font-family: 'Lato'; */
+  font-family: sans-serif;
 }
 
 .site-container {
@@ -59,6 +52,9 @@ body {
   display: flex;
   flex-direction: row;
   height: 100%;
+
+  position: relative;
+  top: 40px;
 }
 
 .main-component-container {

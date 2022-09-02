@@ -46,7 +46,6 @@ function App() {
   return isLoaded && (
     <div className='app-container'>
 
-      <div className='nav-bar-sides'></div>
       <div className='site-container'>
         <div className='site-container__main-wrapper'>
 

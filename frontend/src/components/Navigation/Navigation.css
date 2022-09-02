@@ -6,9 +6,9 @@
   background-color: #333;
   color: #cccccc;
 
-  width: 97vw;
+  width: 100vw;
   display: flex;
-  position: sticky;
+  position: fixed;
   top: 0;
 }
 
@@ -99,8 +99,8 @@ i.fa-user-ninja {
 }
 
 ul.profile-dropdown {
-  position: absolute;
-  top:40px;
+  position: fixed;
+  top: 40px;
   background-color: white;
   border: solid 1px rgba(51, 51, 51, 0.5);
   border-radius: 0 0 3px 3px;
@@ -108,11 +108,15 @@ ul.profile-dropdown {
   padding: 2px 0;
   list-style-type: none;
   width: 100px;
+
+  z-index: 5;
+  /* border: red 4px solid; */
 }
 
 button#dropdown-signout {
   background-color: transparent;
   border: none;
+  z-index: inherit;
 }
 
 div.dropdown-selection {
