@@ -16,6 +16,7 @@ form#signup-form {
 div.signup-err-div {
   display: flex;
   justify-content: center;
+  text-align: center;
   color: red;
 }
 
@@ -36,6 +37,9 @@ button#create-account-btn {
   border: none;
   border-radius: 5px;
   margin: 2px 0;
+  padding: 4px 0;
+  color: white;
+  font-size: large;
 }
 
 button#modal-create-account {

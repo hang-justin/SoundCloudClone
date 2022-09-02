@@ -3,7 +3,6 @@ div#splash {
   flex-direction: column;
 
   width: 1250px;
-  z-index: 1;
 }
 
 div#splash-banner {
