@@ -8,8 +8,11 @@
 
   width: 100vw;
   display: flex;
+  justify-content: center;
+
   position: fixed;
   top: 0;
+  left: 0;
 }
 
 .nav-container-outer {
@@ -19,6 +22,7 @@
   justify-content: space-between;
 
   min-width: 975px;
+  max-width: 1225px;
   width: 100%;
 
   height: 40px;
@@ -92,6 +96,8 @@ button#user-profile-btn {
   background-color: transparent;
   color: white;
   border: none;
+
+  z-index: 5;
 }
 
 i.fa-user-ninja {
@@ -122,6 +128,7 @@ button#dropdown-signout {
 div.dropdown-selection {
   display: flex;
   justify-content: center;
+  z-index: inherit;
 }
 
 div.dropdown-selection:hover{

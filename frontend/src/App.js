@@ -25,7 +25,7 @@ function App() {
   const songs = useSelector(state => state.songs)
   const [track, setTrack] = useState('');
 
-  const toggleBtn=document.getElementById('global-toggle-play-button')
+  const toggleBtn = document.getElementById('global-toggle-play-button')
 
   const loadPlaylists = (user) => {
     if (!user) return;
@@ -49,9 +49,7 @@ function App() {
       <div className='site-container'>
         <div className='site-container__main-wrapper'>
 
-          <div className='site-container__main__nav-container'>
-            {user && <Navigation />}
-          </div>
+          {user && <Navigation />}
 
           <Switch>
 

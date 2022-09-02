@@ -13,11 +13,13 @@ body {
   /* overflow: auto; */
 }
 
+* {
+  font-family: 'Lato';
+}
+
 body {
   margin: 0px;
   background-color: rgba(128, 128, 128, 0.295);
-  /* font-family: 'Lato'; */
-  font-family: sans-serif;
 }
 
 .site-container {
@@ -35,17 +37,11 @@ body {
 .site-container__main-wrapper {
   display: flex;
   flex-direction: column;
+  align-content: center;
   align-self: center;
   background-color: white;
 
   width: 1225px;
-}
-
-.site-container__main__nav-container {
-  display: flex;
-
-  position: sticky;
-  top: 0px;
 }
 
 .site-container__main__component {
@@ -53,8 +49,7 @@ body {
   flex-direction: row;
   height: 100%;
 
-  position: relative;
-  top: 40px;
+  margin-top: 40px;
 }
 
 .main-component-container {
