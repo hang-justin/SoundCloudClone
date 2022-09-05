@@ -5,6 +5,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignUpFormPage';
+import Carousel from './Carousel';
 
 import './SplashPage.css';
 
@@ -14,7 +15,7 @@ const SplashPage = () => {
   return (
     <div id='splash'>
 
-      <div id='splash-banner'>
+      <div id='splash-banner' className='splash-container'>
         <div className='splash-navbar'>
           <div className='navbar-logo'>
             <img className='splash-nav-logo' src='https://i.imgur.com/9FHXDAq.png' alt='SonusNimbus Splash Icon' />
@@ -31,6 +32,9 @@ const SplashPage = () => {
             </div>
           </div>
         </div>
+
+        <Carousel />
+
       </div>
 
     </div>

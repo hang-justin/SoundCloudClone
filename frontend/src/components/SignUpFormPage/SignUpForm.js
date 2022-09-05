@@ -23,27 +23,30 @@ const SignUpForm = () => {
   const handleSignUp = (e) => {
     e.preventDefault();
 
-    if (password === confirmPassword) {
-      setErrors([]);
+    if (password !== confirmPassword) {
+      setErrors(['Passwords must match.']);
+      return;
+    }
 
-      const signUpInfo = {
-        email,
-        username,
-        password,
-        firstName,
-        lastName
-      };
+    setErrors([]);
 
-      return dispatch(sessionActions.signUp(signUpInfo))
-        .then((user) => dispatch(sessionActions.setUserSession(user)))
-        .catch(async (res) => {
-          const data = await res.json();
-          console.log('data from error catcher', data)
-          if (data && data.errors) setErrors(Object.values(data.errors));
-        });
+    const signUpInfo = {
+      email,
+      username,
+      password,
+      firstName,
+      lastName
     };
 
-    return setErrors(['Passwords must match'])
+    return dispatch(sessionActions.signUp(signUpInfo))
+      .then((user) => dispatch(sessionActions.setUserSession(user)))
+      .catch(async (res) => {
+        const data = await res.json();
+        console.log('data from error catcher', data)
+        if (data && data.errors) setErrors(Object.values(data.errors));
+        console.log('errors are ', errors)
+        console.log(Object.values(data.errors))
+      });
   };
 
   // need info = { email, username, password, firstName, lastName }
@@ -51,8 +54,9 @@ const SignUpForm = () => {
     <div id='signup-form-div-wrapper'>
       <form id='signup-form' onSubmit={handleSignUp}>
 
-        {errors.map((error, idx) => <div className='signup-err-div' key={idx}>{error}</div>)}
-
+        {!!errors.length && <ul className='signup-errors'>
+          {errors.map((error, idx) => <li className='signup-err-li' key={idx}>{error}</li>)}
+        </ul>}
         <label className='signup-label'>
           <div>Email</div>
           <input

@@ -83,3 +83,13 @@ div.audio-footer-container {
   position: absolute;
   bottom: 0px;
 }
+
+.flx-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flx-col {
+  display: flex;
+  flex-direction: column;
+}
