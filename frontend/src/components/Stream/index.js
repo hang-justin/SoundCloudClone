@@ -80,8 +80,8 @@ const Stream = ({ track, setTrack, toggleBtn }) => {
                 {/* </div> */}
               </button>
               <div className='song-content-links__song-author-title'>
-                <div>{artists[song.userId].username}</div>
-                <div>{song.title}</div>
+                <div className='song-card__artist-name'>{artists[song.userId].username}</div>
+                <div className='song-card__song-title'>{song.title}</div>
               </div>
             </div>
             <div className='waveform-container'>
