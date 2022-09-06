@@ -75,9 +75,9 @@ const Stream = ({ track, setTrack, toggleBtn }) => {
           <div className='song-content'>
             <div className='song-content-links'>
               <button onClick={handleStreamToggle} id='stream-card-toggle-play-btn'>
-                <div className='song-content-links__play-button-wrapper'>
+                {/* <div className='song-content-links__play-button-wrapper'> */}
                   <img id='stream-card-toggle-play-img' src='https://cdn-icons-png.flaticon.com/512/73/73940.png' alt='toggle-play-button' />
-                </div>
+                {/* </div> */}
               </button>
               <div className='song-content-links__song-author-title'>
                 <div>{artists[song.userId].username}</div>

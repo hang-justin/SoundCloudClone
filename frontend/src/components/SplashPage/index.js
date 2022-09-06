@@ -15,6 +15,8 @@ const SplashPage = () => {
   return (
     <div id='splash'>
 
+      <div className='banner-top-offset'></div>
+
       <div id='splash-banner' className='splash-container'>
         <Carousel />
 

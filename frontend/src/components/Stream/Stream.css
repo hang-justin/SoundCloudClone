@@ -61,20 +61,23 @@ img.song-image {
   flex-direction: row;
 }
 
-div.song-content-links__play-button-wrapper {
+/* div.song-content-links__play-button-wrapper {
   display: flex;
   align-self: center;
   margin-right: 5px;
-}
+} */
 
 button#stream-card-toggle-play-btn {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 17.5px;
+  border-radius: 50%;
   width: 35px;
+  height: 35px;
   border: none;
   background-color: rgb(255, 120, 0);
+
+  padding: 0;
   margin-right: 5px;
 }
 
@@ -82,8 +85,8 @@ button#stream-card-toggle-play-btn {
 
 img#stream-card-toggle-play-img {
   width: 35px;
-  margin-left: 5px;
-  margin-top: 1px;
+  /* margin-left: 5px; */
+  /* margin-top: 1px; */
 }
 
 .song-content-links__song-author-title {
