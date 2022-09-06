@@ -16,6 +16,8 @@ const SplashPage = () => {
     <div id='splash'>
 
       <div id='splash-banner' className='splash-container'>
+        <Carousel />
+
         <div className='splash-navbar'>
           <div className='navbar-logo'>
             <img className='splash-nav-logo' src='https://i.imgur.com/9FHXDAq.png' alt='SonusNimbus Splash Icon' />
@@ -33,7 +35,6 @@ const SplashPage = () => {
           </div>
         </div>
 
-        <Carousel />
 
       </div>
 
