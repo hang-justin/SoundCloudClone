@@ -79,6 +79,10 @@ function App() {
               <div>HERE I AM RENDER ME</div>
             </Route>
 
+            <Route>
+              <h1>404</h1>
+            </Route>
+
           </Switch>
 
         </div>
