@@ -46,8 +46,9 @@ const LoginForm = () => {
 
       <form id='login-form' onSubmit={(e) => handleLogIn(e)}>
 
-        {errors.map((error, idx) => <div className='signin-err-div' key={idx}>{error}</div>)}
-
+        {!!errors.length && <ul className='signin-errors'>
+          {errors.map((error, idx) => <li className='signin-err-li' key={idx}>{error}</li>)}
+        </ul>}
 
         <label className='login-input'>
           <input

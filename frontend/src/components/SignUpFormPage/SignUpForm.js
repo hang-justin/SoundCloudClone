@@ -24,7 +24,7 @@ const SignUpForm = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      setErrors(['Passwords must match.']);
+      setErrors(['Passwords must match']);
       return;
     }
 
@@ -57,6 +57,7 @@ const SignUpForm = () => {
         {!!errors.length && <ul className='signup-errors'>
           {errors.map((error, idx) => <li className='signup-err-li' key={idx}>{error}</li>)}
         </ul>}
+
         <label className='signup-label'>
           <div>Email</div>
           <input
