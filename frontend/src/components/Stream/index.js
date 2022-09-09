@@ -37,9 +37,9 @@ const Stream = ({ track, setTrack, toggleBtn }) => {
     if (!(sessionUser?.id === song.userId)) return null;
 
     const editDeleteBtns = [
-      <EditSongFormModal song={song} />,
-      <button className='alter-track-btns' id={song.id} onClick={(e) => deleteTrack(song.id)}>
-        <i class="fa-solid fa-trash"></i>
+      <EditSongFormModal key={`edit-song-id-${song.id}`} song={song} />,
+      <button key={`delete-song-id-${song.id}`} className='alter-track-btns' id={song.id} onClick={(e) => deleteTrack(song.id)}>
+        <i className="fa-solid fa-trash"></i>
       </button>
     ];
 

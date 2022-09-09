@@ -26,7 +26,7 @@ const Comment = ({ commentInd, user, comment }) => {
   const deleteButton = (
     <div className='delete-comment-btn-wrapper'>
       <button className='delete-comment-btn' onClick={deleteHandler}>
-        <i class="fa-solid fa-trash"></i>
+        <i className="fa-solid fa-trash"></i>
       </button>
     </div>
   )

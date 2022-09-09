@@ -57,7 +57,7 @@ function App() {
               {user ? <Redirect to='/stream' /> : <SplashPage />}
             </Route>
 
-            <div className='site-container__main__component'>
+            {/* <div className='site-container__main__component'> */}
               <Route exact path='/stream'>
                 <Stream track={track} toggleBtn={toggleBtn} setTrack={setTrack} />
               </Route>
@@ -66,14 +66,11 @@ function App() {
                 <Song toggleBtn={toggleBtn} track={track} setTrack={setTrack} />
               </Route>
 
-              {/* <Route path='/you' component={Library} />
-              <Route exact path='/:userId/playlist/:playlistId' component={SinglePlaylist} /> */}
-
               <Route exact path='/upload'>
                 <UploadSong />
               </Route>
 
-            </div>
+            {/* </div> */}
 
             <Route path='/:notFound'>
               <div>HERE I AM RENDER ME</div>
