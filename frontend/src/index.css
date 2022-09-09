@@ -25,8 +25,9 @@ body {
 .site-container {
   display: flex;
   flex-direction: column;
+  align-content: center;
 
-  width: 98vw;
+  width: 100%;
   min-width: 1225px;
   min-height: calc(100% - 40px);
   height: 100%;
@@ -61,11 +62,6 @@ div#modal {
   height: 1250px;
 }
 
-div.audio-footer-container {
-  align-self: center;
-  width: 1225px;
-}
-
 svg {
   color: black;
 }
@@ -83,6 +79,10 @@ div.audio-footer-container {
   height: 60px;
   position: absolute;
   bottom: 0px;
+
+
+  align-self: center;
+  width: 1225px;
 }
 
 .flx-row {

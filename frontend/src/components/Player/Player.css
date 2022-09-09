@@ -4,3 +4,17 @@
   justify-self: center;
   align-self: center;
 }
+
+.footer-audio-container {
+  width: 1225px;
+  height: 60px;
+  position: fixed;
+  bottom: 0px;
+
+  align-self: center;
+  width: 1225px;
+}
+
+.footer-audio-container.hiddenPlayer {
+  display: none;
+}

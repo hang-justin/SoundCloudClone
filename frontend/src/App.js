@@ -24,6 +24,7 @@ function App() {
   const user = useSelector(state => state.session.user);
   const songs = useSelector(state => state.songs)
   const [track, setTrack] = useState('');
+  const [playerVisibility, setPlayerVisibility] = useState('hiddenPlayer');
 
   const toggleBtn = document.getElementById('global-toggle-play-button')
 
@@ -39,9 +40,12 @@ function App() {
       .then(() => setIsLoaded(true));
   }, [dispatch])
 
-  if (!isLoaded) return <div>Loading...</div>
+useEffect(() => {
+  if (playerVisibility === '') return;
+  if (track?.id) setPlayerVisibility('');
+  }, [track])
 
-  let playerVisibility = !track ? { display: 'none' } : { display: 'block' };
+  if (!isLoaded) return <div>Loading...</div>
 
   return isLoaded && (
     <div className='app-container'>
@@ -84,14 +88,11 @@ function App() {
 
         </div>
 
-        <div className='audio-footer-container'>
-          <div id='player-visibility' style={playerVisibility}>
-            <Player
-              track={track}
-              autoPlayAfterSrcChange={true}
-            />
-          </div>
-        </div>
+        <Player
+          track={track}
+          playerVisibility={playerVisibility}
+        />
+
       </div>
     </div >
   );
