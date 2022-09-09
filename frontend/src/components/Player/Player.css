@@ -1,17 +1,27 @@
-.player-wrapper {
-  max-width: 500px;
-  border: 5px red dotted;
-  justify-self: center;
-  align-self: center;
+/* overwrite default values */
+div.rhap_container {
+  background-color: rgb(242, 242, 242);
+  box-shadow: none;
 }
 
 .footer-audio-container {
-  width: 1225px;
+  /* width: 1225px; */
+  width: 100%;
   height: 60px;
+
   position: fixed;
   bottom: 0px;
+  left: 0px;
 
-  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  background-color: rgb(242, 242, 242);
+  border-top: 0.5px solid rgba(0, 0, 0, .1);
+}
+
+.react-audio-player-container {
   width: 1225px;
 }
 

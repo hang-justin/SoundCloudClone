@@ -20,19 +20,21 @@ const Player = ({ track, playerVisibility }) => {
 
   return (
       <div className={`footer-audio-container ${playerVisibility}`}>
+        <div className='react-audio-player-container'>
 
-        <AudioPlayer
-          layout='horizontal-reverse'
-          src={track.url}
-          ref={player}
-          autoPlayAfterSrcChange
-        />
+          <AudioPlayer
+            layout='horizontal-reverse'
+            src={track.url}
+            ref={player}
+            autoPlayAfterSrcChange
+          />
 
-        <button id='global-toggle-play-button'
-          onClick={togglePlay}
-          style={{visibility: 'hidden'}}
-        />
+          <button id='global-toggle-play-button'
+            onClick={togglePlay}
+            style={{display: 'none'}}
+          />
 
+        </div>
       </div>
 
   )
