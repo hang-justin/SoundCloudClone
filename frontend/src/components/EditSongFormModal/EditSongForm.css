@@ -46,7 +46,7 @@ textarea.edit-song-textarea {
   resize: vertical;
 }
 
-button#edit-song-btn {
+button#save-edit-song-btn {
   display: flex;
   align-self: flex-end;
 

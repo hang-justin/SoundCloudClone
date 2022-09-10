@@ -108,7 +108,7 @@ const EditSongForm = ({ song, display }) => {
           </label>
           {validImgUrl === 'invalid' && <span className='invalid-field-prompt'>Invalid Image URL</span>}
 
-          <button id='edit-song-btn' className='button-edit-song' type='submit'>
+          <button id='save-edit-song-btn' className='button-edit-song' type='submit'>
             Save changes
           </button>
 

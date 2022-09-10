@@ -64,7 +64,7 @@ const Stream = ({ track, setTrack, toggleBtn }) => {
       <div key={`stream-song-${song.id}`} className='song-card-container'>
         <div className='song-card-poster'>{artists[song.userId].username} posted a track</div>
 
-        <div className='song-container' key={`song${song.id}`} id={`song${song.id}`}>
+        <div className='song-container' id={`song${song.id}`}>
 
           <div className='song-container__song-image'>
             <NavLink className='song-link' to={`/${song.userId}/songs/${song.id}`}>

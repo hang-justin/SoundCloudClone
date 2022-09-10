@@ -9,12 +9,13 @@
 
 .stream-comp-left {
   min-width: 810px;
-  width: 80%;
+  width: 70%;
   border-right: 0.25px solid rgba(128, 128, 128, 0.25);
 }
 
 .stream-comp-right {
-  width: 225px;
+  box-sizing: border-box;
+  width: 30%;
   padding-top: 40px;
   padding-left: 20px;
 }
@@ -34,28 +35,29 @@ h2#song-cards-header {
   flex-direction: row;
   flex-wrap: wrap;
 
-  margin: 2px 0;
 }
 
 .song-container__song-image {
   display: inline-block;
   padding-left: 15px;
-  height: 160px;
-  width: 160px;
+  align-self: center;
 }
 
 img.song-image {
   /* display: inline-block; */
-  border: 0.25px solid rgba(128, 128, 128, 0.25);
-  height: 160px;
-  width: 160px;
+  /* box-sizing: border-box; */
+  border: 1px solid rgba(128, 128, 128, 0.25);
+  height: 165px;
+  width: 165px;
 }
 
 .song-content {
   display: flex;
   flex-direction: column;
   padding-left: 15px;
-  height: 160px
+  height: 165px;
+
+  width: calc(100% - 220px);
 }
 
 .song-content-links {
@@ -100,25 +102,35 @@ img#stream-card-toggle-play-img {
   flex-direction: row;
 }
 
+div.waveform-container {
+  display: flex;
+  width: 100%;
+}
+
 img.song-waveform-img {
   max-height: 104px;
+  width: 100%;
 
-  min-width: 400px;
-  max-width: 650px;
+  /* min-width: 400px; */
+  /* max-width: 650px; */
+
+  /* object-fit: cover; */
 }
 
 div.song-card-container {
   display: flex;
   flex-direction: column;
-  max-width: 1000px;
+  /* max-width: 1000px; */
+  width: 100%;
 }
 
 div.song-card-poster {
   padding-left: 15px;
+  margin-bottom: 1px;
 }
 
 button.alter-track-btns {
-  margin: 0 5px;
+  margin-right: 5px;
   height: 20px;
   background-color: transparent;
   border: 0.5px solid gray;
@@ -126,7 +138,7 @@ button.alter-track-btns {
 }
 
 h3#stream-comp-right-header {
-  position: fixed;
+  /* position: fixed; */
 }
 
 div.song-card__artist-name {
