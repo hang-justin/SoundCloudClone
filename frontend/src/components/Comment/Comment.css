@@ -9,6 +9,10 @@
   display: flex;
 }
 
+.commenterUsername {
+  color: rgba(128, 128, 128, 1)
+}
+
 .commenterPic {
   height: 40px;
   width: 40px;

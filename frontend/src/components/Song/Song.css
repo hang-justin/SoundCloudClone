@@ -81,7 +81,11 @@ span#song-info__song-artist {
 
 .song-waveform {
   display: flex;
-  width: auto;
+  width: 100%;
+}
+
+img.song-waveform-img {
+  background-color: rgba(128, 128, 128, 0.1);
 }
 
 .song-banner__right {
