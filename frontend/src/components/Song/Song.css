@@ -14,8 +14,9 @@
 }
 
 .song-banner__left {
-  width: 100%;
+  width: 70%;
   padding: 20px;
+  box-sizing: border-box;
 
   display: flex;
   flex-direction: column;
@@ -36,14 +37,18 @@
 }
 
 button#song-banner-toggle-play {
-  border-radius: 30px;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 50%;
+  height: 88px;
+  width: 88px;
   border: none;
   background-color: rgb(255, 120, 0);
 }
 
 img#song-component-toggle-play {
-  height: 50px;
-  width: 50px;
+  height: 88px;
+  width: 88px;
 }
 
 .song-banner__top__song-info {
@@ -80,10 +85,14 @@ span#song-info__song-artist {
 }
 
 .song-banner__right {
-  display: flex;
-  align-items: center;
+  width: 30%;
 
-  padding: 0 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: flex-start;
+
+  /* padding: 0 20px; */
 }
 
 .banner-song-image {
@@ -102,6 +111,8 @@ span#song-info__song-artist {
   display: flex;
   flex-direction: row;
 
+  padding-top: 20px;
+
   width: 100%;
 }
 
@@ -115,6 +126,8 @@ span#song-info__song-artist {
 .commentForm-wrapper {
   width: 100%;
   display: flex;
+  padding-bottom: 20px;
+  border-bottom: 0.25px solid rgba(128, 128, 128, 0.25)
 }
 
 .commenterProfilePic {
@@ -141,18 +154,21 @@ span#song-info__song-artist {
 }
 
 .right-mainContainer {
-  width: 22%;
+  width: 30%;
   border-left: 0.25px solid rgba(128, 128, 128, 0.25);
-  padding: 15px;
 }
 
 .left-mainContainer {
-  width: 78%;
+  width: 70%;
+
+  box-sizing: border-box;
+  padding: 0 20px;
 }
 
 .discourse {
   display: flex;
   flex-direction: row;
+  padding-top: 20px;
 }
 
 .discourse__left.artistDetails {
