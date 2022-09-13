@@ -62,10 +62,28 @@ export const fetchCurrentSong = (songId) => async dispatch => {
 
   if (songResponse.ok && commentResponse.ok) {
     let song;
+    
+    const getUniqueCommenters = (arrayOfCommentObjs) => {
+      let uniqueCommenters = [];
+      arrayOfCommentObjs.forEach(commentObj => {
+        if (uniqueCommenters.includes(commentObj.userId)) return;
+
+        uniqueCommenters.push(commentObj.userId);
+      });
+
+      return uniqueCommenters;
+    }
+
+    // Retrieves current song view and song's details
+    // Then retrieves each commenters/artists details
+    // Specifically to retrieve their username for display
+    // Then writes the username into the artist slice of state for username retrieval
+
     await songResponse.json()
       .then(res => song = res)
       .then(() => commentResponse.json())
       .then(comments => song.comments = comments)
+      .then((arrayOfCommentObjs) => dispatch(getTheseArtists(getUniqueCommenters(arrayOfCommentObjs))))
       .then(() => dispatch(loadCurrentSong(song)));
   }
 

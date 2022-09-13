@@ -11,6 +11,7 @@ import './Comment.css';
 // user passed in refers to sessionUser
 const Comment = ({ commentInd, user, comment }) => {
   const dispatch = useDispatch();
+  let artists = useSelector(state => state.artists)
 
   let commentOwner = (user?.id === comment.userId);
 
@@ -42,7 +43,7 @@ const Comment = ({ commentInd, user, comment }) => {
         <div className='commentInfo' id={`comment${comment.id}`}>
 
           <div className='commenterUsername'>
-            {comment.userId}
+            {artists[comment.userId].username}
           </div>
 
           <div className='commentBody'>
