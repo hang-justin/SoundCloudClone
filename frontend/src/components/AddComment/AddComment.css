@@ -2,12 +2,17 @@
   padding: 5px;
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 }
 
-textarea.commentBody {
+input.commentBody {
   resize: none;
 
   width: 100%;
   height: 25px;
+  outline: none;
+}
+
+input.emptyCommentField {
+  border: 2px solid red;
 }

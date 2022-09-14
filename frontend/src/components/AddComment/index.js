@@ -15,6 +15,8 @@ import './AddComment.css';
 const AddComment = ({ songId, user }) => {
   const dispatch = useDispatch();
   const [comment, setComment] = useState('');
+  const [emptyCommentErrorClass, setEmptyCommentErrorClass] = useState('');
+  const [commentPlaceHolder, setCommentPlaceholder] = useState('Write a comment');
 
   const listenForEnter = (keydown) => {
     if (keydown.key === 'Enter') {
@@ -36,10 +38,12 @@ const AddComment = ({ songId, user }) => {
     e.preventDefault();
 
     let commentSubmission = comment.trim();
-    if (commentSubmission.length === 0) return;
-    console.log('commentSubmission is :', commentSubmission)
-    console.log(typeof commentSubmission)
-    console.log('commentSubmission length is: ', commentSubmission.length)
+    if (commentSubmission.length === 0) {
+      setEmptyCommentErrorClass('emptyCommentField')
+      setCommentPlaceholder('Comment cannot be empty')
+      setComment('');
+      return
+    };
 
     dispatch(addCommentToSongReq(songId, commentSubmission))
     .then(() => setComment(''))
@@ -47,13 +51,25 @@ const AddComment = ({ songId, user }) => {
 
   }
 
+  // For removing emptyCommentField class from input upon entering characters
+  useEffect(() => {
+    if (emptyCommentErrorClass === '') return;
+
+    if (comment.trim().length > 0) {
+      setEmptyCommentErrorClass('');
+      setCommentPlaceholder('Write a comment');
+    }
+
+
+  }, [comment])
+
   return (
     <form className='addCommentForm' onSubmit={(e)=>handleCommentSubmission(e)}>
-      <textarea
-        className='commentBody'
+      <input
+        className={`commentBody ${emptyCommentErrorClass}`}
         id='form__comment__textarea'
-        rows='1'
-        placeholder={'Write a comment'}
+        // rows='1'
+        placeholder={commentPlaceHolder}
         onChange={(e) => setComment(e.target.value)}
         value={comment}
       />
