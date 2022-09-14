@@ -27,11 +27,11 @@ const AddComment = ({ songId, user }) => {
   }
 
   useEffect(() => {
-    const commentForm = document.getElementById('form__comment__textarea')
+    const addCommentField = document.getElementById('input__commentField')
 
-    commentForm.addEventListener('keydown', listenForEnter);
+    addCommentField.addEventListener('keydown', listenForEnter);
 
-    return () => commentForm.removeEventListener('keydown', listenForEnter);
+    return () => addCommentField.removeEventListener('keydown', listenForEnter);
   }, [])
 
   const handleCommentSubmission = (e) => {
@@ -44,8 +44,6 @@ const AddComment = ({ songId, user }) => {
       setComment('');
       return
     };
-
-    // if (commentSubmission.length > 95) return;
 
     dispatch(addCommentToSongReq(songId, commentSubmission))
     .then(() => setComment(''))
@@ -70,7 +68,7 @@ const AddComment = ({ songId, user }) => {
     <form className='addCommentForm' onSubmit={(e)=>handleCommentSubmission(e)}>
       <input
         className={`commentBody ${songCommentFieldErr}`}
-        id='form__comment__textarea'
+        id='input__commentField'
         placeholder={commentPlaceHolder}
         onChange={(e) => setComment(e.target.value)}
         value={comment}
