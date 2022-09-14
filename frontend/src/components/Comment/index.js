@@ -25,11 +25,9 @@ const Comment = ({ commentInd, user, comment }) => {
   }
 
   const deleteButton = (
-    <div className='delete-comment-btn-wrapper'>
       <button className='delete-comment-btn' onClick={deleteHandler}>
         <i className="fa-solid fa-trash"></i>
       </button>
-    </div>
   )
 
   return (
@@ -54,7 +52,9 @@ const Comment = ({ commentInd, user, comment }) => {
 
       </div>
 
+    <div className='comment-wrapper__right'>
       {commentOwner && deleteButton}
+    </div>
 
     </div>
   )

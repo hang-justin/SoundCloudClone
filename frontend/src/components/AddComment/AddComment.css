@@ -13,6 +13,6 @@ input.commentBody {
   outline: none;
 }
 
-input.emptyCommentField {
+input.songCommentFieldErr {
   border: 2px solid red;
 }

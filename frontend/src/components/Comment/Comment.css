@@ -3,10 +3,18 @@
   flex-direction: row;
   justify-content: space-between;
   margin: 5px 0;
+  width: 100%;
 }
 
 .comment-wrapper__commenter-info {
   display: flex;
+  width: 100%;
+}
+
+div.comment-wrapper__right {
+  height: 50px;
+  width: 50px;
+  justify-self: flex-end;
 }
 
 .commenterUsername {
@@ -26,10 +34,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: calc(100% - 50px);
 }
 
-.delete-comment-btn-wrapper {
-  justify-self: flex-end;
+.commentBody {
+  word-break: break-word;
 }
 
 button.delete-comment-btn {
