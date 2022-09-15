@@ -118,7 +118,9 @@ const Stream = ({ track, setTrack, toggleBtn }) => {
       </div>
 
       <div id='right-menu-container' className='stream-comp-right'>
-        <h3 id='stream-comp-right-header'>{`Hey ${sessionUser?.firstName} ${sessionUser?.lastName}`}</h3>
+        <div className='right-menu-content'>
+          <h3 id='stream-comp-right-header'>{`Hey ${sessionUser?.firstName} ${sessionUser?.lastName}`}</h3>
+        </div>
       </div>
 
 

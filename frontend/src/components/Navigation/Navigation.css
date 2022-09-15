@@ -13,6 +13,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1000;
 }
 
 .nav-container-outer {
@@ -115,7 +116,7 @@ ul.profile-dropdown {
   list-style-type: none;
   width: 100px;
 
-  z-index: 5;
+  z-index: inherit;
   /* border: red 4px solid; */
 }
 
