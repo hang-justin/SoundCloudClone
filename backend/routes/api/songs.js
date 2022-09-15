@@ -78,6 +78,8 @@ const getCurrentUserSongs = async (req, res) => {
 
 const getSongById = async (req, res, next) => {
   const id = req.params.songId;
+
+  // Guard clause below is so that it returns the sessionUser's songs
   if (id === 'current') return next();
 
   if (isNaN(parseInt(id))) return next(paramNotFoundErrFor('song'));

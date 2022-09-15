@@ -16,6 +16,7 @@ const Stream = ({ track, setTrack, toggleBtn }) => {
   let songs = Object.values(songsObj);
 
   useEffect(() => {
+    // Question: Do we want to restore session every time?
     dispatch(sessionActions.restoreSession())
   }, [dispatch])
 

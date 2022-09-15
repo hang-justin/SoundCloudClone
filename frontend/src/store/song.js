@@ -9,6 +9,7 @@ const DELETE_SONG = 'songs/DELETE SONG';
 const LOAD_CURRENT_SONG = 'songs/LOAD_CURRENT_SONG';
 const ADD_SONG_COMMENT = 'songs/ADD_SONG_COMMENT';
 const DELETE_COMMENT_FROM_SONG = 'songs/DELETE_COMMENT_FROM_SONG';
+const LOAD_ALL_COMMENTS_FOR_SONG = 'songs/LOAD_ALL_COMMENTS_FOR_SONG'
 
 const createSong = (song) => {
   return {
@@ -55,14 +56,46 @@ const loadCurrentSong = (song) => {
     song
   }
 }
-export const fetchCurrentSong = (songId) => async dispatch => {
-  let songResponse = await csrfFetch(`/api/songs/${songId}`)
 
+const loadAllSongComments = (comments, songId) => {
+  // comments should be an array of comment objs
+  return {
+    type: LOAD_ALL_COMMENTS_FOR_SONG,
+    comments,
+    songId
+  }
+}
+
+export const getSongComments = (songId) => async dispatch => {
+  let commentResponse = await csrfFetch(`/api/songs/${songId}/comments`);
+
+  if (commentResponse.ok) {
+    // json response below should return an array of commentObjs
+    await commentResponse.json()
+      .then(res => dispatch(loadAllSongComments(res, songId)))
+  }
+}
+
+// We can save this code by renaming it to fetchCurrentSongWithComments
+// For a (currently) unknown case where we access a song page
+// and the song doesn't or has yet to exist in the redux store
+export const fetchCurrentSongWithComments = (songId) => async dispatch => {
+
+  let songResponse = await csrfFetch(`/api/songs/${songId}`)
+    // .catch( async res => {
+    //   const errMessage = await res.json();
+    //   return errMessage;
+    //   console.log('errMessage is :', errMessage)
+    // })
+
+    // The above is commented out so that an error can just be thrown and
+    // handled in the Song component which just redirects to /404
+    
   let commentResponse = await csrfFetch(`/api/songs/${songId}/comments`);
 
   if (songResponse.ok && commentResponse.ok) {
     let song;
-    
+
     const getUniqueCommenters = (arrayOfCommentObjs) => {
       let uniqueCommenters = [];
       arrayOfCommentObjs.forEach(commentObj => {
@@ -74,16 +107,26 @@ export const fetchCurrentSong = (songId) => async dispatch => {
       return uniqueCommenters;
     }
 
+    // Old comments directly below. See comment block below this one for updates
     // Retrieves current song view and song's details
     // Then retrieves each commenters/artists details
     // Specifically to retrieve their username for display
     // Then writes the username into the artist slice of state for username retrieval
 
+    // Below was to get the commenters username by sending a fetch request to
+    // api/users/:artistId
+    // BUT it should now be handled in the Comments comp rendered in the Song comp
+    // Comments comp sends a dispatch to retrieve artist for their username
+    // So we shouldn't need the below to be so complex and should just
+    // return the song
+    //    So second to then chain can be removed
+
     await songResponse.json()
+      // .then((res) => console.log(res))
       .then(res => song = res)
       .then(() => commentResponse.json())
       .then(comments => song.comments = comments)
-      .then((arrayOfCommentObjs) => dispatch(getTheseArtists(getUniqueCommenters(arrayOfCommentObjs))))
+      // .then((arrayOfCommentObjs) => dispatch(getTheseArtists(getUniqueCommenters(arrayOfCommentObjs))))
       .then(() => dispatch(loadCurrentSong(song)));
   }
 
@@ -182,22 +225,22 @@ export const addCommentToSongReq = (songId, comment) => async dispatch => {
   }
 }
 
-const deleteComment = (commentId, commentIndex) => {
+const deleteComment = (comment, commentIndex) => {
   return {
     type: DELETE_COMMENT_FROM_SONG,
-    commentId,
+    comment,
     commentIndex
   }
 }
 
-export const deleteCommentFromSongReq = (commentId, commentIndex) => async dispatch => {
-  let response = await csrfFetch(`/api/comments/${commentId}`, {
+export const deleteCommentFromSongReq = (comment, commentIndex) => async dispatch => {
+  let response = await csrfFetch(`/api/comments/${comment.id}`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' }
   });
 
   if (response.ok) {
-    dispatch(deleteComment(commentId, commentIndex))
+    dispatch(deleteComment(comment, commentIndex))
   }
 }
 
@@ -212,11 +255,11 @@ const songsReducer = (state = initialState, action) => {
       return newState;
 
     case ADD_SONG_COMMENT:
-      newState.current.comments.push(action.comment)
+      newState[action.comment.songId].comments.push(action.comment)
       return newState;
 
     case LOAD_CURRENT_SONG:
-      newState.current = action.song;
+      newState[action.song.id] = action.song;
       return newState;
 
     case GET_ALL_SONGS:
@@ -233,8 +276,12 @@ const songsReducer = (state = initialState, action) => {
       return newState;
 
     case DELETE_COMMENT_FROM_SONG:
-      newState.current.comments.splice(action.commentIndex, 1);
+      newState[action.comment.songId].comments.splice(action.commentIndex, 1);
       return newState;
+
+      case LOAD_ALL_COMMENTS_FOR_SONG:
+        newState[action.songId].comments = action.comments;
+        return newState;
 
     default: return state;
   }

@@ -60,8 +60,6 @@ const AddComment = ({ songId, user }) => {
       setCommentPlaceholder('Write a comment');
     }
 
-
-
   }, [comment])
 
   return (

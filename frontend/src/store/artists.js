@@ -14,6 +14,7 @@ const loadArtist = (artist) => {
 
 export const getTheseArtists = (artistIds) => async dispatch => {
   // Note: handle errors
+  // this could take in an array or a int
 
   if (typeof artistIds === 'number') artistIds = [artistIds];
   let response;

@@ -1,5 +1,7 @@
 
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getTheseArtists } from '../../store/artists';
 
 import { deleteCommentFromSongReq } from '../../store/song';
 
@@ -11,7 +13,8 @@ import './Comment.css';
 // user passed in refers to sessionUser
 const Comment = ({ commentInd, user, comment }) => {
   const dispatch = useDispatch();
-  let artists = useSelector(state => state.artists)
+  let artist = useSelector(state => state.artists[comment.userId])
+  const [isLoaded, setIsLoaded] = useState(!!artist)
 
   let commentOwner = (user?.id === comment.userId);
 
@@ -21,7 +24,7 @@ const Comment = ({ commentInd, user, comment }) => {
     // thunk will have to cause a change in state in state.songs.current and
     // should cause the song component/page to re-render
 
-    dispatch(deleteCommentFromSongReq(comment.id, commentInd))
+    dispatch(deleteCommentFromSongReq(comment, commentInd))
   }
 
   const deleteButton = (
@@ -29,6 +32,20 @@ const Comment = ({ commentInd, user, comment }) => {
         <i className="fa-solid fa-trash"></i>
       </button>
   )
+
+  // if the commenter isn't in the artist/user slice of state
+  // send out a dispatch to retrieve that user's info to be able
+  // to get their username
+
+
+  useEffect(() => {
+    if (artist) return;
+    console.log('sending out a dispatch from the useEffect in Comment Component')
+    dispatch(getTheseArtists(comment.userId))
+    .then(() => setIsLoaded(true));
+  }, [artist])
+
+  if (!isLoaded) return <div>Loading...</div>
 
   return (
     <div className='comment-wrapper'>
@@ -41,7 +58,7 @@ const Comment = ({ commentInd, user, comment }) => {
         <div className='commentInfo' id={`comment${comment.id}`}>
 
           <div className='commenterUsername'>
-            {artists[comment.userId].username}
+            {artist.username}
           </div>
 
           <div className='commentBody'>
