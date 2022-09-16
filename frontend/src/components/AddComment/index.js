@@ -27,7 +27,7 @@ const AddComment = ({ songId, user, comment, setComment }) => {
   }
 
   const handleCommentField = (e) => {
-    if (e.target.value.trimStart().length <= 1000) {
+    if (e.target.value.trimStart().length <= 255) {
       setComment(e.target.value.trimStart());
     }
   }
@@ -45,7 +45,7 @@ const AddComment = ({ songId, user, comment, setComment }) => {
 
     let commentSubmission = comment.trim();
 
-    if (commentSubmission.length > 1000) return;
+    if (commentSubmission.length > 255) return;
 
     if (commentSubmission.length === 0) {
       setSongCommentFieldErr('songCommentFieldErr')

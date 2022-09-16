@@ -32,7 +32,7 @@ const Song = ({ toggleBtn, track, setTrack }) => {
   const [songNotFound, setSongNotFound] = useState(false);
 
   useEffect(() => {
-    if (comment.trimStart().length > 1000) setCommentLimitTextMod('red-text')
+    if (comment.trimStart().length > 255) setCommentLimitTextMod('red-text')
     else setCommentLimitTextMod('')
 
     if (comment.length > 0) setCommentLimitDisplay('');
@@ -192,7 +192,7 @@ const Song = ({ toggleBtn, track, setTrack }) => {
             </div>
 
             <div className='comment-char-limit flx-row'>
-              <span id='comment-char-limit' className={`${commentLimitTextMod} ${commentLimitDisplay}`}>{1000-comment.trimStart().length}/1000</span>
+              <span id='comment-char-limit' className={`${commentLimitTextMod} ${commentLimitDisplay}`}>{255-comment.trimStart().length}/255</span>
             </div>
 
             {/* <div className='userInteraction__buttons'>
