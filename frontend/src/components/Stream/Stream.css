@@ -23,7 +23,9 @@
 }
 
 div.right-menu-content {
-  position: fixed;
+  position: sticky;
+  top: 80px;
+
   width: calc(1225px * 0.3 - 20px);
   height: calc(100vh - 200px);
 }
