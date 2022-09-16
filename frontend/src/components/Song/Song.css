@@ -135,7 +135,20 @@ img.song-waveform-img {
 .commentForm-wrapper {
   width: 100%;
   display: flex;
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
+  /* border-bottom: 0.25px solid rgba(128, 128, 128, 0.25) */
+}
+
+.comment-char-limit.flx-row {
+  justify-content: flex-end;
+
+  box-sizing: border-box;
+  height: 20px;
+  width: 100%;
+  padding-right: 10px;
+
+  color: gray;
+
   border-bottom: 0.25px solid rgba(128, 128, 128, 0.25)
 }
 

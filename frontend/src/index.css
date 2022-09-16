@@ -95,3 +95,11 @@ div.audio-footer-container {
   display: flex;
   flex-direction: column;
 }
+
+.red-text {
+  color: red;
+}
+
+.hidden-span {
+  display: none;
+}

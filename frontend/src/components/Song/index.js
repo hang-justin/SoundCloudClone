@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
@@ -23,8 +24,20 @@ const Song = ({ toggleBtn, track, setTrack }) => {
   let songs = useSelector(state => state.songs);
   let artists = useSelector(state => state.artists)
   let user = useSelector(state => state.session.user)
+
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [comment, setComment] = useState('');
+  const [commentLimitTextMod, setCommentLimitTextMod] = useState('');
+  const [commentLimitDisplay, setCommentLimitDisplay] = useState('hidden-span')
   const [songNotFound, setSongNotFound] = useState(false);
+
+  useEffect(() => {
+    if (comment.trimStart().length > 1000) setCommentLimitTextMod('red-text')
+    else setCommentLimitTextMod('')
+
+    if (comment.length > 0) setCommentLimitDisplay('');
+    else setCommentLimitDisplay('hidden-span');
+  }, [comment])
 
   if (songNotFound) {
     return (
@@ -173,9 +186,13 @@ const Song = ({ toggleBtn, track, setTrack }) => {
               <div className='commenterProfilePic'></div>
 
               <div className='commentForm'>
-                <AddComment songId={song.id} user={user} />
+                <AddComment songId={song.id} user={user} comment={comment} setComment={setComment} />
               </div>
 
+            </div>
+
+            <div className='comment-char-limit flx-row'>
+              <span id='comment-char-limit' className={`${commentLimitTextMod} ${commentLimitDisplay}`}>{1000-comment.trimStart().length}/1000</span>
             </div>
 
             {/* <div className='userInteraction__buttons'>

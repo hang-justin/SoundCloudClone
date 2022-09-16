@@ -12,9 +12,9 @@ import './AddComment.css';
 // useEffect to add above eventlistener
 //      and use its return to removeEventListener
 
-const AddComment = ({ songId, user }) => {
+const AddComment = ({ songId, user, comment, setComment }) => {
   const dispatch = useDispatch();
-  const [comment, setComment] = useState('');
+  // const [comment, setComment] = useState('');
   const [songCommentFieldErr, setSongCommentFieldErr] = useState('');
   const [commentPlaceHolder, setCommentPlaceholder] = useState('Write a comment');
 
@@ -23,6 +23,12 @@ const AddComment = ({ songId, user }) => {
       keydown.preventDefault();
       let submitBtn = document.getElementById('submit-comment-btn');
       submitBtn.click();
+    }
+  }
+
+  const handleCommentField = (e) => {
+    if (e.target.value.trimStart().length <= 1000) {
+      setComment(e.target.value.trimStart());
     }
   }
 
@@ -38,12 +44,16 @@ const AddComment = ({ songId, user }) => {
     e.preventDefault();
 
     let commentSubmission = comment.trim();
+
+    if (commentSubmission.length > 1000) return;
+
     if (commentSubmission.length === 0) {
       setSongCommentFieldErr('songCommentFieldErr')
       setCommentPlaceholder('Comment cannot be empty')
       setComment('');
-      return
+      return;
     };
+
 
     dispatch(addCommentToSongReq(songId, commentSubmission))
     .then(() => setComment(''))
@@ -68,7 +78,7 @@ const AddComment = ({ songId, user }) => {
         className={`commentBody ${songCommentFieldErr}`}
         id='input__commentField'
         placeholder={commentPlaceHolder}
-        onChange={(e) => setComment(e.target.value)}
+        onChange={(e) => handleCommentField(e)}
         value={comment}
       />
       <button type='submit' id='submit-comment-btn' hidden />
