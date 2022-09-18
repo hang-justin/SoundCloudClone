@@ -6,10 +6,11 @@ import { Redirect, useHistory } from 'react-router-dom';
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignUpFormPage';
 import Carousel from './Carousel';
+import SplashSongCards from './SplashSongCards';
 
 import './SplashPage.css';
 
-const SplashPage = () => {
+const SplashPage = ({ setTrack }) => {
   const history = useHistory();
 
   return (
@@ -37,8 +38,13 @@ const SplashPage = () => {
           </div>
         </div>
 
-
       </div>
+
+      <div className='splash-middle flx-row'>
+        <h2>Hear what’s trending for free in the SonusNimbus community</h2>
+      </div>
+
+      <SplashSongCards setTrack={setTrack} />
 
     </div>
   )

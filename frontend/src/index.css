@@ -91,6 +91,12 @@ div.audio-footer-container {
   flex-direction: row;
 }
 
+.flx-row-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .flx-col {
   display: flex;
   flex-direction: column;

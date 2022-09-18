@@ -59,8 +59,8 @@ useEffect(() => {
           <Switch>
 
             <Route exact path='/'>
-              {user ? <Redirect to='/stream' /> : <SplashPage />}
-              {/* <SplashPage /> */}
+              {/* {user ? <Redirect to='/stream' /> : <SplashPage setTrack={setTrack} />} */}
+              <SplashPage />
             </Route>
 
             {/* <div className='site-container__main__component'> */}
@@ -71,9 +71,9 @@ useEffect(() => {
               </Route>
 
               <Route exact path='/:userId/songs/:songId'>
-              {!user ? <Redirect to='/' /> :
+              {/* {!user ? <Redirect to='/' /> : */}
                 <Song toggleBtn={toggleBtn} track={track} setTrack={setTrack} />
-              }
+              {/* } */}
               </Route>
 
               <Route exact path='/upload'>
