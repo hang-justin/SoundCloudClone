@@ -60,7 +60,7 @@ useEffect(() => {
 
             <Route exact path='/'>
               {/* {user ? <Redirect to='/stream' /> : <SplashPage setTrack={setTrack} />} */}
-              <SplashPage />
+              <SplashPage setTrack={setTrack} />
             </Route>
 
             {/* <div className='site-container__main__component'> */}
