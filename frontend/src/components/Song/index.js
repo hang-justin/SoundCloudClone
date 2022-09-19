@@ -39,7 +39,7 @@ const Song = ({ setOrToggleAudio }) => {
   let playPauseImg = playBtnImg;
 
   useEffect(() => {
-    if (comment.trimStart().length > 255) setCommentLimitTextMod('red-text')
+    if (comment.trimStart().length >= 255) setCommentLimitTextMod('red-text')
     else setCommentLimitTextMod('')
 
     if (comment.length > 0) setCommentLimitDisplay('');
