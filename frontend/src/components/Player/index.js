@@ -7,16 +7,20 @@ import { useSelector } from 'react-redux';
 
 import './Player.css'
 
-const Player = ({ playerVisibility, setAudioPlayerRef }) => {
+const Player = ({ setAudioPlayerRef }) => {
   const player = useRef();
   const currentTrack = useSelector(state => state.audioPlayer.currentTrack);
-
-  console.log('player component rendering')
-  console.log('track is ', currentTrack)
+  const [playerVisibility, setPlayerVisibility] = useState('hiddenPlayer');
 
   useEffect(() => {
     setAudioPlayerRef(player);
   }, [player])
+
+  useEffect(() => {
+    if (playerVisibility === '') return;
+
+    if (currentTrack) setPlayerVisibility('');
+  }, [currentTrack])
 
 
   return (
@@ -28,7 +32,6 @@ const Player = ({ playerVisibility, setAudioPlayerRef }) => {
             src={currentTrack ? currentTrack.url : ''}
             ref={player}
             autoPlayAfterSrcChange
-            onChange={() => console.log('audio player changing')}
           />
 
         </div>

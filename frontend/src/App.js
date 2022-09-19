@@ -26,7 +26,6 @@ function App() {
   const currentTrack = useSelector(state => state.audioPlayer.currentTrack)
 
   const [isLoaded, setIsLoaded] = useState(false);
-  const [playerVisibility, setPlayerVisibility] = useState('hiddenPlayer');
   const [audioPlayerRef, setAudioPlayerRef] = useState(null);
 
   const loadPlaylists = (user) => {
@@ -40,11 +39,6 @@ function App() {
       .then(() => dispatch(songActions.fetchAllSongs()))
       .then(() => setIsLoaded(true));
   }, [dispatch])
-
-useEffect(() => {
-  if (playerVisibility === '') return;
-  if (currentTrack) setPlayerVisibility('');
-  }, [currentTrack])
 
   if (!isLoaded) return <div>Loading...</div>
 
@@ -100,7 +94,6 @@ useEffect(() => {
         </div>
 
         <Player
-          playerVisibility={playerVisibility}
           setAudioPlayerRef={setAudioPlayerRef}
         />
 
