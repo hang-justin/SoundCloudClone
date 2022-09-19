@@ -152,30 +152,45 @@ div.banner-top-offset {
 .splash-song-card-img {
   width: 250px;
   height: 250px;
-
-  z-index: 1;
 }
 
 .splash-song-card-img-wrapper {
   position: relative;
-
-  z-index: 1;
 }
 
-.splash-song-card-img-wrapper::after {
-  content: "";
-
+div.song-card-img-overlay.flx-row {
   position: absolute;
   top: 0;
   left: 0;
 
-  display: block;
+  justify-content: center;
+  align-items: center;
   width: 250px;
   height: 250px;
+}
 
-  background: rgba(255, 0, 0, 0.25);
+button.song-card-toggle {
+  border-radius: 50%;
+  width: 30%;
+  height: 30%;
 
-  z-index: 2;
+  padding: 0;
+  border: 0;
+
+  background-color: orange;
+}
+
+.song-card-img-playPause {
+  height: 100%;
+  width: 100%;
+}
+
+.hidden-play-btn {
+  opacity: 0
+}
+
+div.song-card-img-overlay.hidden-play-btn:hover {
+  opacity: 1;
 }
 
 .splash-song-card-details {

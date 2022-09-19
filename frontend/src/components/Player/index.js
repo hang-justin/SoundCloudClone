@@ -3,11 +3,13 @@ import { useEffect } from 'react';
 import { useRef } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { isPlaying } from '../../store/audioPlayer';
 
 import './Player.css'
 
 const Player = ({ setAudioPlayerRef }) => {
+  const dispatch = useDispatch();
   const player = useRef();
   const currentTrack = useSelector(state => state.audioPlayer.currentTrack);
   const [playerVisibility, setPlayerVisibility] = useState('hiddenPlayer');
@@ -22,7 +24,6 @@ const Player = ({ setAudioPlayerRef }) => {
     if (currentTrack) setPlayerVisibility('');
   }, [currentTrack])
 
-
   return (
       <div className={`footer-audio-container ${playerVisibility}`}>
         <div className='react-audio-player-container'>
@@ -32,6 +33,8 @@ const Player = ({ setAudioPlayerRef }) => {
             src={currentTrack ? currentTrack.url : ''}
             ref={player}
             autoPlayAfterSrcChange
+            onPlay={() => dispatch(isPlaying(true))}
+            onPause={() => dispatch(isPlaying(false))}
           />
 
         </div>

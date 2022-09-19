@@ -16,7 +16,7 @@ import { SinglePlaylist } from './components/Playlists';
 import * as songActions from './store/song'
 import * as sessionActions from './store/session';
 import * as playlistsActions from './store/playlists';
-import { setActiveTrack } from './store/audioPlayer';
+import { isPlaying, setActiveTrack } from './store/audioPlayer';
 
 
 function App() {
@@ -43,10 +43,20 @@ function App() {
   if (!isLoaded) return <div>Loading...</div>
 
   const setOrToggleAudio = (e, song) => {
-    if (!currentTrack) return dispatch(setActiveTrack(song));
-    if (song.id === currentTrack.id) return audioPlayerRef.current.togglePlay(e);
+    if (!currentTrack) {
+      dispatch(setActiveTrack(song))
+      return
+    };
 
-    dispatch(setActiveTrack(song));
+    if (song.id === currentTrack.id) {
+      audioPlayerRef.current.togglePlay(e);
+      return;
+    }
+
+    if (song.id !== currentTrack.id) {
+      dispatch(setActiveTrack(song));
+      return;
+    }
   }
 
   return isLoaded && (
@@ -60,8 +70,8 @@ function App() {
           <Switch>
 
             <Route exact path='/'>
-              {/* {user ? <Redirect to='/stream' /> : <SplashPage setTrack={setTrack} />} */}
-              <SplashPage setOrToggleAudio={setOrToggleAudio} />
+              {user ? <Redirect to='/stream' /> : <SplashPage setOrToggleAudio={setOrToggleAudio} />}
+              {/* <SplashPage setOrToggleAudio={setOrToggleAudio} /> */}
             </Route>
 
             {/* <div className='site-container__main__component'> */}

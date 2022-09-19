@@ -1,4 +1,5 @@
 const SET_CURRENT_TRACK = 'audioPlayer/SET_CURRENT_TRACK';
+const IS_PLAYING = 'audioPlayer/IS_PLAYING';
 
 export const setActiveTrack = (track) => {
   return {
@@ -6,6 +7,13 @@ export const setActiveTrack = (track) => {
     currentTrack: track
   };
 };
+
+export const isPlaying = (isPlaying) => {
+  return {
+    type: IS_PLAYING,
+    isPlaying
+  }
+}
 
 const initialState = {};
 
@@ -18,7 +26,12 @@ const audioPlayerReducer = (state = initialState, action) => {
       newState.currentTrack = action.currentTrack;
       return newState;
 
-      default: return state;
+    case IS_PLAYING:
+      newState = {...state};
+      newState.isPlaying = action.isPlaying;
+      return newState;
+
+    default: return state;
   }
 }
 
