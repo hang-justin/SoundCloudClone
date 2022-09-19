@@ -152,6 +152,30 @@ div.banner-top-offset {
 .splash-song-card-img {
   width: 250px;
   height: 250px;
+
+  z-index: 1;
+}
+
+.splash-song-card-img-wrapper {
+  position: relative;
+
+  z-index: 1;
+}
+
+.splash-song-card-img-wrapper::after {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: block;
+  width: 250px;
+  height: 250px;
+
+  background: rgba(255, 0, 0, 0.25);
+
+  z-index: 2;
 }
 
 .splash-song-card-details {

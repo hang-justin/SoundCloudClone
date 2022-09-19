@@ -16,10 +16,12 @@ const SplashSongCards = ({ setOrToggleAudio }) => {
       {allSongsArr.map((songObj) => {
         return (
           <div key={songObj.id} className='splash-song-card flx-col'>
+            <div className='splash-song-card-img-wrapper'>
               <img className='splash-song-card-img'
                 src={`${songObj.imageUrl}`}
                 onClick={(e) => setOrToggleAudio(e, songObj)}
               />
+            </div>
 
             <NavLink to={`/${songObj.userId}/songs/${songObj.id}`}>
               <span className='splash-song-card-details'>{songObj.title}</span>

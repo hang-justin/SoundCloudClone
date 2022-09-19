@@ -1,4 +1,12 @@
 /* TODO Add site wide styles */
+* {
+  font-family: 'Lato';
+}
+
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
@@ -11,10 +19,6 @@ body {
 
 .app-container {
   /* overflow: auto; */
-}
-
-* {
-  font-family: 'Lato';
 }
 
 body {
