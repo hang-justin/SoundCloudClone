@@ -15,6 +15,10 @@ const Stream = ({ toggleBtn, setOrToggleAudio }) => {
   let songsObj = useSelector(state => state.songs)
   let songs = Object.values(songsObj);
   const currentTrack = useSelector(state => state.audioPlayer.currentTrack)
+  const isPlaying = useSelector(state => state.audioPlayer.isPlaying);
+
+  const playBtnImg = 'https://cdn-icons-png.flaticon.com/512/73/73940.png';
+  const pauseBtnImg = 'https://cdn-icons-png.flaticon.com/512/786/786279.png';
 
   useEffect(() => {
     // Question: Do we want to restore session every time?
@@ -57,6 +61,16 @@ const Stream = ({ toggleBtn, setOrToggleAudio }) => {
   let songsRender = songs.map((song) => {
     if (song.Artist !== undefined) return null;
 
+    let playPauseImg = playBtnImg;
+
+    if (currentTrack) {
+      if (currentTrack.id === song.id) {
+        isPlaying
+          ? playPauseImg=pauseBtnImg
+          : playPauseImg=playBtnImg;
+      }
+    }
+
     return (
       <div key={`stream-song-${song.id}`} className='song-card-container'>
         <div className='song-card-poster'>{artists[song.userId].username} posted a track</div>
@@ -73,7 +87,7 @@ const Stream = ({ toggleBtn, setOrToggleAudio }) => {
             <div className='song-content-links'>
               <button onClick={(e) => setOrToggleAudio(e, song)} id='stream-card-toggle-play-btn'>
                 {/* <div className='song-content-links__play-button-wrapper'> */}
-                  <img id='stream-card-toggle-play-img' src='https://cdn-icons-png.flaticon.com/512/73/73940.png' alt='toggle-play-button' />
+                  <img id='stream-card-toggle-play-img' src={playPauseImg} alt='toggle-play-button' />
                 {/* </div> */}
               </button>
               <div className='song-content-links__song-author-title'>

@@ -12,7 +12,6 @@ const SplashSongCards = ({ audioPlayerRef, setOrToggleAudio }) => {
   const currentTrack = useSelector(state => state.audioPlayer.currentTrack);
   const isPlaying = useSelector(state => state.audioPlayer.isPlaying);
   const playBtnImg = 'https://cdn-icons-png.flaticon.com/512/73/73940.png';
-  // const pauseBtnImg = 'https://cdn-icons-png.flaticon.com/512/16/16427.png';
   const pauseBtnImg = 'https://cdn-icons-png.flaticon.com/512/786/786279.png';
 
   return (

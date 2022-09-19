@@ -25,12 +25,18 @@ const Song = ({ setOrToggleAudio }) => {
   let artists = useSelector(state => state.artists)
   let user = useSelector(state => state.session.user)
   const currentTrack = useSelector(state => state.audioPlayer.currentTrack);
+  const isPlaying = useSelector(state => state.audioPlayer.isPlaying);
 
   const [hasLoaded, setHasLoaded] = useState(false);
   const [comment, setComment] = useState('');
   const [commentLimitTextMod, setCommentLimitTextMod] = useState('');
   const [commentLimitDisplay, setCommentLimitDisplay] = useState('hidden-span')
   const [songNotFound, setSongNotFound] = useState(false);
+
+  const playBtnImg = 'https://cdn-icons-png.flaticon.com/512/73/73940.png';
+  const pauseBtnImg = 'https://cdn-icons-png.flaticon.com/512/786/786279.png';
+
+  let playPauseImg = playBtnImg;
 
   useEffect(() => {
     if (comment.trimStart().length > 255) setCommentLimitTextMod('red-text')
@@ -56,6 +62,14 @@ const Song = ({ setOrToggleAudio }) => {
   //    doesn't exist, then needs to run a dispatch for that individual song
 
   let song = songs[songId];
+
+  if (currentTrack) {
+    if (currentTrack.id === song.id) {
+      isPlaying
+        ? playPauseImg=pauseBtnImg
+        : playPauseImg=playBtnImg;
+    }
+  }
 
   // Below guard clause is for when navigating to /artistId/songs/songId
   // and the songId isn't part of the initial fetchAllSongs in App.js so
@@ -146,7 +160,7 @@ const Song = ({ setOrToggleAudio }) => {
 
             {/* <div className="play-button-container"> */}
               <button id='song-banner-toggle-play' onClick={(e) => setOrToggleAudio(e, song)}>
-                <img id='song-component-toggle-play' src='https://cdn-icons-png.flaticon.com/512/73/73940.png' alt='toggle-play button' />
+                <img id='song-component-toggle-play' src={playPauseImg} alt='toggle-play button' />
               </button>
             {/* </div> */}
 
