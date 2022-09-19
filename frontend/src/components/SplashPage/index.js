@@ -10,7 +10,7 @@ import SplashSongCards from './SplashSongCards';
 
 import './SplashPage.css';
 
-const SplashPage = ({ setTrack, audioPlayerRef }) => {
+const SplashPage = ({ setOrToggleAudio }) => {
   const history = useHistory();
 
   return (
@@ -44,7 +44,7 @@ const SplashPage = ({ setTrack, audioPlayerRef }) => {
         <h2>Hear what’s trending for free in the SonusNimbus community</h2>
       </div>
 
-      <SplashSongCards audioPlayerRef={audioPlayerRef} setTrack={setTrack} />
+      <SplashSongCards setOrToggleAudio={setOrToggleAudio} />
 
     </div>
   )

@@ -16,21 +16,18 @@ import { SinglePlaylist } from './components/Playlists';
 import * as songActions from './store/song'
 import * as sessionActions from './store/session';
 import * as playlistsActions from './store/playlists';
+import { setActiveTrack } from './store/audioPlayer';
 
 
 function App() {
   console.log('APP.JS COMPONENT RENDERING')
   let dispatch = useDispatch();
-  const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(state => state.session.user);
-  // const songs = useSelector(state => state.songs)
-  const [track, setTrack] = useState('');
+  const currentTrack = useSelector(state => state.audioPlayer.currentTrack)
+
+  const [isLoaded, setIsLoaded] = useState(false);
   const [playerVisibility, setPlayerVisibility] = useState('hiddenPlayer');
   const [audioPlayerRef, setAudioPlayerRef] = useState(null);
-
-  console.log('audioPlayerRef is ', audioPlayerRef)
-
-  const toggleBtn = document.getElementById('global-toggle-play-button')
 
   const loadPlaylists = (user) => {
     if (!user) return;
@@ -46,10 +43,17 @@ function App() {
 
 useEffect(() => {
   if (playerVisibility === '') return;
-  if (track?.id) setPlayerVisibility('');
-  }, [track])
+  if (currentTrack) setPlayerVisibility('');
+  }, [currentTrack])
 
   if (!isLoaded) return <div>Loading...</div>
+
+  const setOrToggleAudio = (e, song) => {
+    if (!currentTrack) return dispatch(setActiveTrack(song));
+    if (song.id === currentTrack.id) return audioPlayerRef.current.togglePlay(e);
+
+    dispatch(setActiveTrack(song));
+  }
 
   return isLoaded && (
     <div className='app-container'>
@@ -63,19 +67,19 @@ useEffect(() => {
 
             <Route exact path='/'>
               {/* {user ? <Redirect to='/stream' /> : <SplashPage setTrack={setTrack} />} */}
-              <SplashPage setTrack={setTrack} audioPlayerRef={audioPlayerRef} />
+              <SplashPage setOrToggleAudio={setOrToggleAudio} />
             </Route>
 
             {/* <div className='site-container__main__component'> */}
               <Route exact path='/stream'>
                 {!user ? <Redirect to='/' /> :
-                  <Stream track={track} toggleBtn={toggleBtn} setTrack={setTrack} />
+                  <Stream setOrToggleAudio={setOrToggleAudio} />
                 }
               </Route>
 
               <Route exact path='/:userId/songs/:songId'>
               {/* {!user ? <Redirect to='/' /> : */}
-                <Song toggleBtn={toggleBtn} track={track} setTrack={setTrack} />
+                <Song setOrToggleAudio={setOrToggleAudio} />
               {/* } */}
               </Route>
 
@@ -96,7 +100,6 @@ useEffect(() => {
         </div>
 
         <Player
-          track={track}
           playerVisibility={playerVisibility}
           setAudioPlayerRef={setAudioPlayerRef}
         />

@@ -16,7 +16,7 @@ import './Song.css';
 // Hitting this endpoint will trigger the dispatch fetchCurrentSongsWithComments and throw
 //    an error due to it trying to retrieve comments that belong to songId === 'current'
 
-const Song = ({ toggleBtn, track, setTrack }) => {
+const Song = ({ setOrToggleAudio }) => {
   const { songId } = useParams();
 
   const dispatch = useDispatch();
@@ -24,6 +24,7 @@ const Song = ({ toggleBtn, track, setTrack }) => {
   let songs = useSelector(state => state.songs);
   let artists = useSelector(state => state.artists)
   let user = useSelector(state => state.session.user)
+  const currentTrack = useSelector(state => state.audioPlayer.currentTrack);
 
   const [hasLoaded, setHasLoaded] = useState(false);
   const [comment, setComment] = useState('');
@@ -135,11 +136,6 @@ const Song = ({ toggleBtn, track, setTrack }) => {
     )
   }
 
-  const playTrack = () => {
-    if (track === song) toggleBtn.click();
-    else setTrack(song);
-  }
-
   return (
     <div className='song-comp-container'>
 
@@ -149,7 +145,7 @@ const Song = ({ toggleBtn, track, setTrack }) => {
           <div className='song-banner__left__top'>
 
             {/* <div className="play-button-container"> */}
-              <button id='song-banner-toggle-play' onClick={playTrack}>
+              <button id='song-banner-toggle-play' onClick={(e) => setOrToggleAudio(e, song)}>
                 <img id='song-component-toggle-play' src='https://cdn-icons-png.flaticon.com/512/73/73940.png' alt='toggle-play button' />
               </button>
             {/* </div> */}
