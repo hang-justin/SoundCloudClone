@@ -1,13 +1,23 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-const SplashSongCards = ({ setTrack }) => {
+const SplashSongCards = ({ setTrack, audioPlayerRef }) => {
   const artists = useSelector(state => state.artists);
   const allSongs = useSelector(state => state.songs);
   const allSongsArr = Object.values(allSongs).slice(0, 8);
 
   const toggleAudio = (song) => {
     setTrack(song);
+  }
+
+  const toggle = e => {
+    console.log('inside song card', audioPlayerRef.current.audio.current.src)
+
+    audioPlayerRef.current.togglePlay(e);
+
+    // audioPlayerRef.current.isPlaying()
+    //   ? audioPlayerRef.current.audio.pause()
+    //   : audioPlayerRef.current.audio.play();
   }
 
   return (
@@ -20,6 +30,7 @@ const SplashSongCards = ({ setTrack }) => {
                 src={`${songObj.imageUrl}`}
                 onClick={() => toggleAudio(songObj)}
               />
+              <button onClick={toggle}>Toggle Play</button>
 
 
             <NavLink to={`/${songObj.userId}/songs/${songObj.id}`}>

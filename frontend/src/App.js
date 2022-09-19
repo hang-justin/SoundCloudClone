@@ -1,4 +1,4 @@
-import { createRef, useEffect, useState } from 'react';
+import { createRef, useEffect, useRef, useState } from 'react';
 import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Navigation from './components/Navigation';
@@ -26,6 +26,9 @@ function App() {
   // const songs = useSelector(state => state.songs)
   const [track, setTrack] = useState('');
   const [playerVisibility, setPlayerVisibility] = useState('hiddenPlayer');
+  const [audioPlayerRef, setAudioPlayerRef] = useState(null);
+
+  console.log('audioPlayerRef is ', audioPlayerRef)
 
   const toggleBtn = document.getElementById('global-toggle-play-button')
 
@@ -60,7 +63,7 @@ useEffect(() => {
 
             <Route exact path='/'>
               {/* {user ? <Redirect to='/stream' /> : <SplashPage setTrack={setTrack} />} */}
-              <SplashPage setTrack={setTrack} />
+              <SplashPage setTrack={setTrack} audioPlayerRef={audioPlayerRef} />
             </Route>
 
             {/* <div className='site-container__main__component'> */}
@@ -95,6 +98,7 @@ useEffect(() => {
         <Player
           track={track}
           playerVisibility={playerVisibility}
+          setAudioPlayerRef={setAudioPlayerRef}
         />
 
       </div>

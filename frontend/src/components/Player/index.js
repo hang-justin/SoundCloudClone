@@ -6,17 +6,24 @@ import 'react-h5-audio-player/lib/styles.css';
 
 import './Player.css'
 
-const Player = ({ track, playerVisibility }) => {
+const Player = ({ track, playerVisibility, setAudioPlayerRef }) => {
   const player = useRef();
+  console.log('player component rendering')
 
-  const togglePlay = () => {
-    console.log(player.current.isPlaying())
-    if (player.current.isPlaying()) {
-      player.current.audio.current.pause();
-    }
+  useEffect(() => {
+    setAudioPlayerRef(player);
+  }, [player])
 
-    else player.current.audio.current.play();
-  }
+  // const togglePlay = () => {
+  //   console.log(player.current.isPlaying())
+  //   if (player.current.isPlaying()) {
+  //     player.current.audio.current.pause();
+  //   }
+
+  //   else player.current.audio.current.play();
+  // }
+
+
 
   return (
       <div className={`footer-audio-container ${playerVisibility}`}>
@@ -27,10 +34,11 @@ const Player = ({ track, playerVisibility }) => {
             src={track.url}
             ref={player}
             autoPlayAfterSrcChange
+            onChange={() => console.log('audio player changing')}
           />
 
           <button id='global-toggle-play-button'
-            onClick={togglePlay}
+            // onClick={togglePlay}
             style={{display: 'none'}}
           />
 
