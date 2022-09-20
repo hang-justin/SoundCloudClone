@@ -9,6 +9,7 @@
 }
 
 .stream-comp-left {
+  box-sizing: border-box;
   min-width: 810px;
   width: 70%;
   border-right: 0.25px solid rgba(128, 128, 128, 0.25);

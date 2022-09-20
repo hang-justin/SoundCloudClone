@@ -45,7 +45,7 @@
 }
 
 .nav-container-left.flx-row {
-  width: calc(100% / 3);
+  width: 30%;
   justify-content: flex-start;
 }
 
@@ -81,7 +81,7 @@ img.nav-icon {
 }
 
 .nav-container-middle.nav-containers.flx-row {
-  width: 37%;
+  width: 40%;
   box-sizing: border-box;
 }
 
