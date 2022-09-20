@@ -11,11 +11,11 @@
 }
 
 p#feat-artist {
-  /* color: rgb(128, 128, 128); */
   padding-left: 10px;
   padding-bottom: 5px;
   border-bottom: 0.25px solid rgba(128, 128, 128, 0.5);
   font-size: large;
+  color: whitesmoke;
 }
 
 img#social-profile-pic {
@@ -31,11 +31,8 @@ img#social-profile-pic {
 span#social-name {
   align-self: center;
   font-size: larger;
+  color: whitesmoke;
 }
-
-/* .social-links.flx-row {
-  justify-content: space-evenly;
-} */
 
 a.social-link {
   align-self: center;
