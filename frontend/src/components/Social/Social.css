@@ -1,0 +1,53 @@
+.social-container.flx-col {
+  /* align-items: center; */
+
+  width: 100%;
+  height: 500px;
+  margin: 10px 0;
+
+  border-radius: 10px;
+  background-color: #333333;
+  color: whitesmoke;
+}
+
+p#feat-artist {
+  /* color: rgb(128, 128, 128); */
+  padding-left: 10px;
+  padding-bottom: 5px;
+  border-bottom: 0.25px solid rgba(128, 128, 128, 0.5);
+  font-size: large;
+}
+
+img#social-profile-pic {
+  align-self: center;
+  height: 200px;
+  width: 200px;
+
+  padding: 20px;
+
+  border-radius: 50%;
+}
+
+span#social-name {
+  align-self: center;
+  font-size: larger;
+}
+
+/* .social-links.flx-row {
+  justify-content: space-evenly;
+} */
+
+a.social-link {
+  align-self: center;
+  margin: 10px 0;
+}
+
+a.social-link:hover {
+  box-shadow: 0 0 15px rgba(245, 245, 245, 1);
+}
+
+.social-logos {
+  object-fit: scale-down;
+  /* align-self: center; */
+  height: 50px;
+}

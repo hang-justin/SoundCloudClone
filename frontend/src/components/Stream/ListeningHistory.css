@@ -1,0 +1,48 @@
+span.listening-history-text{
+  color: gray;
+  border-bottom: 0.25px solid rgba(128, 128, 128, 0.25);;
+}
+
+.listening-history-content {
+  gap: 10px;
+}
+
+div.listen-history-img-wrapper {
+  position: relative;
+}
+
+img.listen-history-img {
+  height: 50px;
+  width: 50px;
+  padding-right: 5px;
+}
+
+button.listen-history-btn-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: transparent;
+  height: 50px;
+  width: 50px;
+}
+
+button.hidden-play-btn {
+  opacity: 0;
+}
+
+button.listen-history-btn-overlay:hover {
+  opacity: 1;
+}
+
+img.history-tile-play-pause {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: rgb(255, 120, 0);
+}
+
+.history--artist-name {
+  font-size: small;
+  color: gray;
+}
