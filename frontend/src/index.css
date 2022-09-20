@@ -30,6 +30,10 @@ body {
   background-color: rgb(242, 242, 242);
 }
 
+a:visited {
+  text-decoration: none;
+}
+
 .site-container {
   display: flex;
   flex-direction: column;

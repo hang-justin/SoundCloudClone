@@ -1,3 +1,7 @@
+span {
+  color: black;
+}
+
 span.listening-history-text{
   color: gray;
   border-bottom: 0.25px solid rgba(128, 128, 128, 0.25);;
