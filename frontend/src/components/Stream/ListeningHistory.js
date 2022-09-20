@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 import './ListeningHistory.css'
 
@@ -49,8 +50,12 @@ const ListeningHistory = ({ setOrToggleAudio }) => {
         </div>
 
         <div className='listen-history-card-details flx-col'>
-          <span className='history--artist-name'>{artist.username}</span>
-          <span>{song.title}</span>
+          <NavLink to={`/${song.userId}/songs/${song.id}`}>
+            <span className='history--artist-name'>{artist.username}</span>
+          </NavLink>
+          <NavLink to={`/${song.userId}/songs/${song.id}`}>
+            <span>{song.title}</span>
+          </NavLink>
         </div>
 
       </div>
