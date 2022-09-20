@@ -63,9 +63,9 @@ function App() {
     <div className='app-container'>
 
       <div className='site-container'>
+          {user && <Navigation />}
         <div className='site-container__main-wrapper'>
 
-          {user && <Navigation />}
 
           <Switch>
 

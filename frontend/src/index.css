@@ -31,11 +31,10 @@ body {
   flex-direction: column;
   align-content: center;
 
-  /* width: 100%; */
   /* min-width: 1225px;
   min-height: calc(100% - 40px); */
+  width: 100%;
   height: 100%;
-  width: 100vw;
 
   /* margin-bottom: 80px; */
 }
@@ -47,6 +46,7 @@ body {
   align-self: center;
   background-color: white;
 
+  box-sizing: border-box;
   width: 1225px;
   margin-top: 40px;
   /* padding-bottom: 120px; */
