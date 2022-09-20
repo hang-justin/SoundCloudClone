@@ -7,6 +7,7 @@ import { fetchCurrentSongWithComments, getSongComments } from "../../store/song"
 
 import AddComment from "../AddComment";
 import Comment from "../Comment";
+import Social from "../Social";
 
 import './Song.css';
 
@@ -236,7 +237,7 @@ const Song = ({ setOrToggleAudio }) => {
         </div>
 
         <div className='right-mainContainer'>
-
+            <Social />
         </div>
 
       </div>                              {/* END OF MAIN-CONTAINER */}

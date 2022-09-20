@@ -19,6 +19,7 @@
   width: 30%;
   padding-top: 40px;
   padding-left: 20px;
+  padding-right: 20px;
   position: relative;
   border-left: 0.25px solid rgba(128, 128, 128, 0.25);
 }
@@ -27,7 +28,7 @@ div.right-menu-content {
   position: sticky;
   top: 80px;
 
-  width: calc(1225px * 0.3 - 20px);
+  width: calc(1225px * 0.3 - 40px);
   height: calc(100vh - 200px);
 }
 

@@ -177,6 +177,7 @@ img.song-waveform-img {
 
 .right-mainContainer {
   width: 30%;
+  padding: 0 20px;
   border-left: 0.25px solid rgba(128, 128, 128, 0.25);
 }
 

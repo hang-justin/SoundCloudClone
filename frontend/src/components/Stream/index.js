@@ -7,6 +7,8 @@ import * as sessionActions from '../../store/session';
 
 import './Stream.css';
 import { useEffect } from 'react';
+import Social from '../Social';
+import ListeningHistory from './ListeningHistory';
 
 const Stream = ({ toggleBtn, setOrToggleAudio }) => {
   const dispatch = useDispatch();
@@ -130,6 +132,10 @@ const Stream = ({ toggleBtn, setOrToggleAudio }) => {
       <div id='right-menu-container' className='stream-comp-right'>
         <div className='right-menu-content'>
           <h3 id='stream-comp-right-header'>{`Hey ${sessionUser?.firstName} ${sessionUser?.lastName}`}</h3>
+
+          <ListeningHistory setOrToggleAudio={setOrToggleAudio} />
+
+          <Social />
         </div>
       </div>
 
