@@ -23,8 +23,8 @@ const SplashPage = ({ setOrToggleAudio }) => {
 
         <div className='splash-navbar'>
           <div className='navbar-logo'>
-            <img className='splash-nav-logo' src='https://i.imgur.com/9FHXDAq.png' alt='SonusNimbus Splash Icon' />
-            SonusNimbus
+            <img className='splash-nav-logo' src='https://i.imgur.com/KUkoKgS.png' alt='SonusNimbus Splash Icon' />
+
           </div>
 
           <div className='account-btns'>
