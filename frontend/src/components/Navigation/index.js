@@ -14,49 +14,43 @@ const Navigation = () => {
     <SignUpFormModal />
   ];
 
+  const onLinkStyle = {backgroundColor: 'black'}
+
   return (
     <header className='nav-header'>
       <div className='nav-container-outer'>
 
-        <div className='nav-container-left nav-containers'>
+        <div className='nav-container-left nav-containers flx-row'>
 
-          <div className='left-navlink-container-icon'>
-            <NavLink className='header__navlink container-left-navlink' to='/'>
-              <div className='navlink-div nav-container-left nav-icon' key='nav-home'>
-                <img className='nav-icon' src='https://i.imgur.com/4KoOMTr.png' alt='SonusNimbus Nav Icon' />
-              </div>
+            <NavLink id='nav-left-1' activeStyle={onLinkStyle} className='header__navlink nav-container-left__navlink' to='/'>
+                <img className='nav-icon' src='https://i.imgur.com/ll6sl5v.png' alt='SonusNimbus Nav Icon' />
             </NavLink>
-          </div>
 
-          <div className='left-navlink-container-text'>
-            <NavLink className='header__navlink container-left-navlink' to='/stream'>
-              <div className='navlink-div nav-container-left__nav-text' key='nav-home'>Stream</div>
+            <NavLink id='nav-left-2' activeStyle={onLinkStyle} className='header__navlink nav-container-left__navlink' style={{display:'none'}} to='/discover'>
+              Discover
             </NavLink>
-          </div>
 
-          <div className='left-navlink-container-text'>
-            <NavLink className='header__navlink container-left-navlink' to='/stream'>
-              <div className='navlink-div nav-container-left__nav-text' key='nav-stream'></div>
+            <NavLink id='nav-left-3' activeStyle={onLinkStyle} className='header__navlink nav-container-left__navlink' to='/stream'>
+              Stream
             </NavLink>
-          </div>
 
-          <div className='left-navlink-container-text'>
-            {/* <NavLink className='header__navlink container-left-navlink' to='/you/library'>
-              <div className='navlink-div nav-container-left__nav-text' key='nav-library'>Library</div>
-            </NavLink> */}
-          </div>
+            <NavLink id='nav-left-4' activeStyle={onLinkStyle} className='header__navlink nav-container-left__navlink' style={{display:'none'}} to='/you/library'>
+              Library
+            </NavLink>
 
         </div>
 
-        <div className='nav-container-middle nav-containers'>
+        <div className='nav-container-middle nav-containers flx-row'>
           <div className='search-container'></div>
         </div>
 
-        <div className='nav-container-right nav-containers'>
-          <div className='right-nav-links'>
-            <NavLink className='header__navlink' to='/upload'><div className='navlink-div' key='nav-upload'>Upload</div></NavLink>
-          </div>
-          <div id='user-icon' className='right-nav-links'>
+        <div className='nav-container-right nav-containers flx-row'>
+
+          <NavLink id='nav-right-1' activeStyle={onLinkStyle} className='header__navlink nav-container-right-items flx-row' to='/upload'>
+              Upload
+          </NavLink>
+
+          <div id='nav-right-2' className='nav-container-right-items flx-row'>
             <ProfileButton user={user}/>
           </div>
         </div>

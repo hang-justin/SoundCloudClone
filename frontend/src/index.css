@@ -31,10 +31,11 @@ body {
   flex-direction: column;
   align-content: center;
 
-  width: 100%;
-  min-width: 1225px;
-  min-height: calc(100% - 40px);
+  /* width: 100%; */
+  /* min-width: 1225px;
+  min-height: calc(100% - 40px); */
   height: 100%;
+  width: 100vw;
 
   /* margin-bottom: 80px; */
 }
