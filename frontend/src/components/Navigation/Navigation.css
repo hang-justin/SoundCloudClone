@@ -8,7 +8,7 @@
 
   display: flex;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
 
   position: fixed;
   top: 0;
@@ -21,11 +21,12 @@
   flex-direction: row;
   justify-content: space-between;
 
+  box-sizing: border-box;
+
   /* min-width: 975px;
   max-width: 1225px;
   width: 100%; */
   width: 1225px;
-
   height: 40px;
 }
 
@@ -44,7 +45,7 @@
 }
 
 .nav-container-left.flx-row {
-  width: calc(100% / 3);
+  width: 30%;
   justify-content: flex-start;
 }
 
@@ -75,11 +76,13 @@
 }
 
 img.nav-icon {
-  height: 40px;
+  height: 35px;
+  width: 35px;
 }
 
 .nav-container-middle.nav-containers.flx-row {
-  width: 37%;
+  width: 40%;
+  box-sizing: border-box;
 }
 
 .search-container {
@@ -93,6 +96,7 @@ img.nav-icon {
   flex-direction: row;
   justify-content: flex-end;
 
+  box-sizing: border-box;
   width: 30%;
 }
 

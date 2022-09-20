@@ -9,9 +9,9 @@
 }
 
 .stream-comp-left {
+  box-sizing: border-box;
   min-width: 810px;
   width: 70%;
-  border-right: 0.25px solid rgba(128, 128, 128, 0.25);
 }
 
 .stream-comp-right {
@@ -20,6 +20,7 @@
   padding-top: 40px;
   padding-left: 20px;
   position: relative;
+  border-left: 0.25px solid rgba(128, 128, 128, 0.25);
 }
 
 div.right-menu-content {
