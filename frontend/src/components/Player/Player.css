@@ -4,6 +4,15 @@ div.rhap_container {
   box-shadow: none;
 }
 
+div.rhap_progress-filled,
+div.rhap_volume-bar {
+  background-color: rgb(255, 120, 0);
+}
+
+div.rhap_time {
+  color: rgb(255, 120, 0);
+}
+
 .footer-audio-container {
   /* width: 1225px; */
   width: 100%;
@@ -22,9 +31,39 @@ div.rhap_container {
 }
 
 .react-audio-player-container {
-  width: 1225px;
+  width: calc(1225px * 0.7);
 }
 
 .footer-audio-container.hiddenPlayer {
   display: none;
+}
+
+.audio-footer-current-track.flx-row {
+  width: calc(1225px * 0.3);
+
+  box-sizing: border-box;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 15px;
+}
+
+img#footer-track-img {
+  box-sizing: border-box;
+
+  height: 45px;
+  width: 45px;
+  margin-right: 15px;
+}
+
+div.song-details.flx-col {
+  height: 100%;
+  gap: 5px;
+}
+
+span#footer-artist-name {
+  color: gray;
+}
+
+span#footer-no-audio {
+  color: rgb(255, 120, 0);
 }

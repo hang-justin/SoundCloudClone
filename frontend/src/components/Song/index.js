@@ -53,24 +53,7 @@ const Song = ({ setOrToggleAudio }) => {
     )
   }
 
-  // Guard clauses/loading divs for when navigating directly to
-  //    songs/songId page
-  // The fetchAllSongs in App.js's useEffect needs to run to populate
-  //    redux store with initial songs and artists
-  // Edge case: Trying to access a song page directly that isn't
-  //    included in the fetchAllSongs, due to it being limited to 20 results
-  // So need to put a conditional where songs exist AND songs[songId]
-  //    doesn't exist, then needs to run a dispatch for that individual song
-
   let song = songs[songId];
-
-  if (currentTrack) {
-    if (currentTrack.id === song.id) {
-      isPlaying
-        ? playPauseImg=pauseBtnImg
-        : playPauseImg=playBtnImg;
-    }
-  }
 
   // Below guard clause is for when navigating to /artistId/songs/songId
   // and the songId isn't part of the initial fetchAllSongs in App.js so
@@ -90,7 +73,7 @@ const Song = ({ setOrToggleAudio }) => {
 
   if (Object.keys(songs).length > 0 && !song) {
     dispatch(fetchCurrentSongWithComments(songId))
-      .catch(async errRes => {
+    .catch(async errRes => {
         const errMessage = await errRes.json();
         console.log('errRes is :', errRes)
         console.log('errMessage json() is :', errMessage);
@@ -100,13 +83,32 @@ const Song = ({ setOrToggleAudio }) => {
         // then put errMessage in songNotFound with errMessage string
       })
       .then(() => setSongNotFound(true))
-  }
+    }
 
-  if (!song) return <div>Loading...</div>
-  if (!song.userId) return <div>Loading...</div>
+    if (!song) return <div>Loading...</div>
+    if (!song.userId) return <div>Loading...</div>
 
-  let artist = artists[song.userId];
-  if (!artist) return <div>Loading...</div>
+    let artist = artists[song.userId];
+    if (!artist) return <div>Loading...</div>
+    
+    // Guard clauses/loading divs for when navigating directly to
+    //    songs/songId page
+    // The fetchAllSongs in App.js's useEffect needs to run to populate
+    //    redux store with initial songs and artists
+    // Edge case: Trying to access a song page directly that isn't
+    //    included in the fetchAllSongs, due to it being limited to 20 results
+    // So need to put a conditional where songs exist AND songs[songId]
+    //    doesn't exist, then needs to run a dispatch for that individual song
+
+
+    if (currentTrack) {
+      if (currentTrack.id === song.id) {
+        isPlaying
+          ? playPauseImg=pauseBtnImg
+          : playPauseImg=playBtnImg;
+      }
+    }
+
 
   if (isNaN(Number(songId))) {
     // Error seems to be caught above....
