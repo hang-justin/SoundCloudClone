@@ -14,12 +14,16 @@ const ListeningHistory = ({ setOrToggleAudio }) => {
   const pauseBtnImg = 'https://cdn-icons-png.flaticon.com/512/786/786279.png';
 
   if (!history) return null;
-  const lastThreeSongsPlayed = history.slice(-3)
 
   let listenHistorySongIds = [];
-  while (lastThreeSongsPlayed.length) {
-    let songId = lastThreeSongsPlayed.pop();
-    listenHistorySongIds.push(songId)
+  let historyCopy = [...history];
+
+  while (listenHistorySongIds.length < 3) {
+    const lastSongId = historyCopy.pop();
+    if (allSongs[lastSongId] === undefined) continue;
+
+    listenHistorySongIds.push(lastSongId)
+    if (historyCopy.length === 0) break;
   }
 
   const songTileRenders = listenHistorySongIds.map((songId, ind) => {
