@@ -91,3 +91,8 @@ div.return-uploaded-song-container {
   padding-bottom: 10px;
   font-size: larger;
 }
+
+img#just-uploaded-song-img {
+  object-fit: scale-down;
+  max-width: 1225px;
+}
