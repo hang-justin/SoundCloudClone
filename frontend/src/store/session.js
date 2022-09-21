@@ -1,3 +1,4 @@
+import { removeListenHistory } from "./audioPlayer";
 import { csrfFetch } from "./csrf";
 
 const SET_USER = 'session/SET_USER';
@@ -44,6 +45,7 @@ export const logOut = () => async dispatch => {
   })
 
   dispatch(removeUser());
+  dispatch(removeListenHistory());
 }
 
 

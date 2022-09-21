@@ -195,7 +195,6 @@ div.song-card-img-overlay.hidden-play-btn:hover {
 
 .splash-song-card-details {
   display: block;
-  width: min-content;
 
   overflow: clip;
   text-overflow: ellipsis;

@@ -74,7 +74,7 @@ function App() {
               {/* <SplashPage setOrToggleAudio={setOrToggleAudio} /> */}
             </Route>
 
-            {/* <div className='site-container__main__component'> */}
+
               <Route exact path='/stream'>
                 {!user ? <Redirect to='/' /> :
                   <Stream setOrToggleAudio={setOrToggleAudio} />
@@ -82,9 +82,9 @@ function App() {
               </Route>
 
               <Route exact path='/:userId/songs/:songId'>
-              {/* {!user ? <Redirect to='/' /> : */}
-                <Song setOrToggleAudio={setOrToggleAudio} />
-              {/* } */}
+                {!user ? <Redirect to='/' /> :
+                  <Song setOrToggleAudio={setOrToggleAudio} />
+                }
               </Route>
 
               <Route exact path='/upload'>
@@ -92,8 +92,6 @@ function App() {
                   <UploadSong />
                 }
               </Route>
-
-            {/* </div> */}
 
             <Route>
               <h1>404</h1>
