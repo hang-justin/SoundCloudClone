@@ -4,7 +4,9 @@ import { useRef } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { isPlaying } from '../../store/audioPlayer';
+import songsReducer from '../../store/song';
 
 import './Player.css'
 
@@ -13,6 +15,9 @@ const Player = ({ setAudioPlayerRef }) => {
   const player = useRef();
   const currentTrack = useSelector(state => state.audioPlayer.currentTrack);
   const [playerVisibility, setPlayerVisibility] = useState('hiddenPlayer');
+  const artists = useSelector(state => state.artists);
+  const currentSong = useSelector(state => state.songs[currentTrack?.id])
+  console.log('current song is ', currentSong)
 
   useEffect(() => {
     setAudioPlayerRef(player);
@@ -23,6 +28,37 @@ const Player = ({ setAudioPlayerRef }) => {
 
     if (currentTrack) setPlayerVisibility('');
   }, [currentTrack])
+
+  const displayCurrentTrack = (currentTrack) => {
+    if (!currentTrack || !currentSong) return (
+      <div className='current-track-info flx-row'>
+        <span id='footer-no-audio'>No audio selected. Please select a song.</span>
+      </div>
+    );
+
+    let artist = artists[currentSong.userId];
+    return (
+      <div className='current-track-info flx-row'>
+        <NavLink to={`/${artist.id}/songs/${currentSong.id}`}>
+        <img id='footer-track-img' src={currentSong.imageUrl} />
+        </NavLink>
+
+        <div className='song-details flx-col'>
+            <NavLink to={`/${artist.id}/songs/${currentSong.id}`}>
+              <span id='footer-artist-name' className='footer-song-details'>{artist.username}</span>
+            </NavLink>
+            <NavLink to={`/${artist.id}/songs/${currentSong.id}`}>
+              <span id='footer-song-title' className='footer song-details'>{currentSong.title}</span>
+            </NavLink>
+        </div>
+      </div>
+    )
+  }
+
+  // if (player) console.log('player src is ', player.current.audio.current.src);
+  if (currentTrack && currentSong === undefined) {
+    player.current.audio.current.src = '';
+  }
 
   return (
       <div className={`footer-audio-container ${playerVisibility}`}>
@@ -37,6 +73,10 @@ const Player = ({ setAudioPlayerRef }) => {
             onPause={() => dispatch(isPlaying(false))}
           />
 
+        </div>
+
+        <div className='audio-footer-current-track flx-row'>
+          {displayCurrentTrack(currentTrack)}
         </div>
       </div>
 
