@@ -43,6 +43,8 @@ const AddComment = ({ songId, user, comment, setComment }) => {
   const handleCommentSubmission = (e) => {
     e.preventDefault();
 
+    if (!user) alert('Please sign in or create an account to add a comment.')
+
     let commentSubmission = comment.trim();
 
     if (commentSubmission.length > 255) return;

@@ -64,6 +64,7 @@ function App() {
 
       <div className='site-container'>
           {user && <Navigation />}
+          {/* <Navigation /> */}
         <div className='site-container__main-wrapper'>
 
 
@@ -82,9 +83,10 @@ function App() {
               </Route>
 
               <Route exact path='/:userId/songs/:songId'>
-                {!user ? <Redirect to='/' /> :
+                {/* {!user ? <Redirect to='/' /> : */}
+                  {!user && <Navigation />}
                   <Song setOrToggleAudio={setOrToggleAudio} />
-                }
+                {/* } */}
               </Route>
 
               <Route exact path='/upload'>
