@@ -45,6 +45,7 @@ div.rhap_time {
   justify-content: flex-start;
   align-items: center;
   padding-left: 15px;
+  min-width: fit-content;
 }
 
 img#footer-track-img {
