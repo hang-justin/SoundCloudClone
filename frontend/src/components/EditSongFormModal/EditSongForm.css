@@ -1,6 +1,20 @@
 form.editSongForm {
   margin: 20px;
-  width: 850px;
+  min-width: 850px;
+  position: relative;
+}
+
+#close-edit-song-btn {
+  background-color: transparent;
+  border: none;
+
+  position: absolute;
+  top: -15px;
+  right: -15px;
+}
+
+#close-edit-song-img {
+  height: 10px;
 }
 
 div.editSongForm-inner-container {
@@ -22,7 +36,15 @@ div.editSong-rightContainer {
   display: flex;
   flex-direction: column;
   justify-items: stretch;
-  width: 600px;
+  min-width: 600px;
+}
+
+.edit-song-input {
+  box-sizing: border-box;
+}
+
+.edit-song-input:focus {
+  background-color: rgba(255, 120, 0, 0.2);
 }
 
 input.edit-song-input {
