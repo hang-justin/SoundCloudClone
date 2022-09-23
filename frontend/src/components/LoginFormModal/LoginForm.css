@@ -1,22 +1,61 @@
+.login-form-wrapper.flx-col {
+  align-items: center;
+  /* justify-content: center; */
+  margin: 25px;
+  gap: 15px;
+
+  position: relative;
+}
+
+.login-header {
+  margin: 0;
+  font-weight: normal;
+}
+
+label.login-input {
+  padding-bottom: 10px;
+}
+
+#close-login-btn {
+  background-color: transparent;
+  border: none;
+
+  position: absolute;
+  top: -20px;
+  right: -20px;
+}
+
+#close-login-img {
+  height: 10px;
+}
+
 form#login-form {
   display: flex;
   flex-direction: column;
   justify-items: stretch;
   align-content: center;
 
-  width: 200px;
+  width: 100%;
+  gap: 5px;
 
-  padding: 20px 10px;
+  /* padding: 20px 10px; */
   background-color: white;
-
 }
 
 input.signin-input {
   /* margin: 3px 0; */
   box-sizing: border-box;
-  width: 200px;
+  min-height: fit-content;
+  height: 25px;
+  width: 100%;
   border: 1px solid rgb(134, 133, 133);
   border-radius: 5px;
+  padding: 0 5px;
+  margin: 2px 0;
+}
+
+.signin-input:focus {
+  background-color: rgba(255, 120, 0, 0.2);
 }
 
 button#modal-submit-credentials {
@@ -24,7 +63,7 @@ button#modal-submit-credentials {
   border: none;
   border-radius: 5px;
   margin: 2px 0;
-  padding: 4px 0;
+  padding: 6px 0;
   color: white;
 }
 
@@ -33,7 +72,7 @@ button#demo-user {
   border: none;
   border-radius: 5px;
   margin: 2px 0;
-  padding: 4px 0;
+  padding: 6px 0;
   color: white;
 }
 
@@ -49,7 +88,8 @@ button#modal-login {
 }
 
 label.login-input {
-  margin: 5px 0;
+  margin-bottom: 5px;
+  margin-top: 2px;
 }
 
 ul.signin-errors {

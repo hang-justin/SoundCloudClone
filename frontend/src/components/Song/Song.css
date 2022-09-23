@@ -133,7 +133,7 @@ img.song-waveform-img {
 }
 
 .commentForm-wrapper {
-  width: 100%;
+  width: calc(100% - 40px);
   display: flex;
   /* padding-bottom: 20px; */
   /* border-bottom: 0.25px solid rgba(128, 128, 128, 0.25) */
