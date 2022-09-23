@@ -62,6 +62,7 @@ button#modal-create-account {
   padding: 0 20px;
   margin: 5px 0;
   border: none;
+  min-width: fit-content;
 }
 
 label.signup-label > div {

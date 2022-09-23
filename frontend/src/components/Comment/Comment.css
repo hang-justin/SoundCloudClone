@@ -29,6 +29,15 @@ div.comment-wrapper__right {
   background: rgb(255, 255, 255);
   background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 15%, rgba(255, 120, 0, 1) 39%, rgba(255, 120, 0, 1) 65%);
 }
+div.commenterPic {
+  position: relative;
+}
+
+img.commenterPic {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+}
 
 .commentInfo {
   display: flex;

@@ -38,7 +38,13 @@ const SignUpForm = () => {
       lastName
     };
 
-    return dispatch(sessionActions.signUp(signUpInfo))
+    dispatch(sessionActions.signUp(signUpInfo))
+      .then((user) => {
+        // append firstName and lastName here so no need to run another dispatch for user info
+        user.firstName = firstName;
+        user.lastName = lastName;
+        return user;
+      })
       .then((user) => dispatch(sessionActions.setUserSession(user)))
       .catch(async (res) => {
         const data = await res.json();

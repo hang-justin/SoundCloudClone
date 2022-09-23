@@ -193,9 +193,13 @@ div.song-card-img-overlay.hidden-play-btn:hover {
   opacity: 1;
 }
 
-.splash-song-card-details {
+span.splash-song-card-details {
   display: block;
 
   overflow: clip;
   text-overflow: ellipsis;
+}
+
+span#splash-song-artist {
+  color: gray;
 }

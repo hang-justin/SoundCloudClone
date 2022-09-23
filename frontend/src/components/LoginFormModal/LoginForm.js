@@ -14,7 +14,7 @@ const LoginForm = () => {
 
   const setDemoCredentials = (e) => {
     e.preventDefault();
-    setUsernameOrEmail('demo');
+    setUsernameOrEmail('Gorillaz');
     setPassword('password');
   }
 

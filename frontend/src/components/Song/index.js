@@ -27,6 +27,7 @@ const Song = ({ setOrToggleAudio }) => {
   let user = useSelector(state => state.session.user)
   const currentTrack = useSelector(state => state.audioPlayer.currentTrack);
   const isPlaying = useSelector(state => state.audioPlayer.isPlaying);
+  const profilePics = useSelector(state => state.profilePics)
 
   const [hasLoaded, setHasLoaded] = useState(false);
   const [comment, setComment] = useState('');
@@ -90,7 +91,7 @@ const Song = ({ setOrToggleAudio }) => {
 
     let artist = artists[song.userId];
     if (!artist) return <div>Loading...</div>
-    
+
     // Guard clauses/loading divs for when navigating directly to
     //    songs/songId page
     // The fetchAllSongs in App.js's useEffect needs to run to populate
@@ -152,6 +153,24 @@ const Song = ({ setOrToggleAudio }) => {
       <Comment key={comment.id} commentInd={commentInd} user={user} comment={comment} />
     )
   }
+
+  let singularOrPluralComment = (commentsList) => {
+    if (commentsList.length === 1) return('comment')
+    else if (commentsList.length > 1) return ('comments')
+  }
+  const noCommentDiv = () => {
+    const noCommentImgSrc = 'https://i.imgur.com/jFLK95a.png';
+
+    return (
+      <div className='no-comment-field flx-col'>
+        <img id='song-no-comments' src={noCommentImgSrc} />
+        <h3>Seems a little quiet over here</h3>
+        <span className='gray-text'>Be the first to comment on this track</span>
+      </div>
+    )
+  }
+
+  const artistProfilePicSrc = profilePics[artist.username];
 
   return (
     <div className='song-comp-container'>
@@ -217,8 +236,10 @@ const Song = ({ setOrToggleAudio }) => {
           <div className='discourse'>
 
             <div className='discourse__left artistDetails'>
-              <div id='song-component-artist-pic'></div>
-              <div>{artist.username}</div>
+              <div id='song-component-artist-pic'>
+                {artistProfilePicSrc && <img id='song-component-artist-pic' src={artistProfilePicSrc} alt='artist-pic'/>}
+              </div>
+              <div className='discourse__left__artist-name'>{artist.username}</div>
             </div>
 
 
@@ -228,8 +249,15 @@ const Song = ({ setOrToggleAudio }) => {
                 {song.description && <div className='songDescription'>{song.description}</div>}
               </div>
 
-              <div className='discourse__comments'>
-                {commentsList}
+              <div className='discourse__comments flx-col'>
+                {commentsList.length > 0 &&
+                    (<div className='comment-section-header flx-row'>
+                      <img id='comment-section-header--icon' src='https://i.imgur.com/pRIVKBH.png' />
+                      <h4 id='comment-section-header--text' className='gray-text'>
+                      {commentsList.length} {singularOrPluralComment(commentsList)}
+                      </h4>
+                  </div>)}
+                {commentsList.length ? commentsList : noCommentDiv()}
               </div>
 
             </div>

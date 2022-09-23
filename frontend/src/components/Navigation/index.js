@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
 import SignUpFormModal from "../SignUpFormPage";
@@ -46,13 +46,24 @@ const Navigation = () => {
 
         <div className='nav-container-right nav-containers flx-row'>
 
+        {user &&
           <NavLink id='nav-right-1' activeStyle={onLinkStyle} className='header__navlink nav-container-right-items flx-row' to='/upload'>
               Upload
           </NavLink>
+        }
 
+        {user &&
           <div id='nav-right-2' className='nav-container-right-items flx-row'>
             <ProfileButton user={user}/>
           </div>
+        }
+
+        {!user &&
+            <div className='navbar__guest-btns flx-row'>
+              {navlinks}
+            </div>
+        }
+
         </div>
 
       </div>

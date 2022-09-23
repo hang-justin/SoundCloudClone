@@ -15,6 +15,7 @@ const Comment = ({ commentInd, user, comment }) => {
   const dispatch = useDispatch();
   let artist = useSelector(state => state.artists[comment.userId])
   const [isLoaded, setIsLoaded] = useState(!!artist)
+  const profilePics = useSelector(state => state.profilePics)
 
   let commentOwner = (user?.id === comment.userId);
 
@@ -47,12 +48,15 @@ const Comment = ({ commentInd, user, comment }) => {
 
   if (!isLoaded) return <div>Loading...</div>
 
+  const profilePicSrc = profilePics[artist.username];
+
   return (
     <div className='comment-wrapper'>
 
       <div className='comment-wrapper__commenter-info'>
 
         <div className='commenterPic'>
+          {profilePicSrc && <img className='commenterPic' src={profilePicSrc} />}
         </div>
 
         <div className='commentInfo' id={`comment${comment.id}`}>
