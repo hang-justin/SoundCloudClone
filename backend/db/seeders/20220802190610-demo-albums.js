@@ -3,15 +3,15 @@
 const demoAlbums = [
   {
     userId: 1,
-    title: `Mac's mixtape`,
-    description: `Not a real album. Came from mixtape`,
-    imageUrl: 'https://i1.sndcdn.com/avatars-000497275857-ce36i1-t500x500.jpg',
+    title: `BIG MOOD ATTITUDE`,
+    description: `With positive poise and swagger, Funky grooves and Electronica vibes, WEARETHEGOOD delivers a tour de force of energetic Hip Hop tracks.`,
+    imageUrl: 'https://i1.sndcdn.com/artworks-AYOPHdHEFMqv-0-t500x500.jpg',
   },
   {
     userId: 2,
-    title: `Shang-Chi`,
-    description: `Marvel's Shang-Chi`,
-    imageUrl: 'https://i1.sndcdn.com/artworks-jNgJzmHroki6-0-t500x500.jpg',
+    title: `Born Sinner`,
+    description: `Released on June 18, 2013, by ByStorm Entertainment, Columbia Records, Dreamville Records and Roc Nation. The album serves as the follow-up to his debut album, Cole World: The Sideline Story.`,
+    imageUrl: 'https://i1.sndcdn.com/artworks-000049987664-vmb7yk-t500x500.jpg',
   }
 ]
 
@@ -26,7 +26,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   await queryInterface.bulkInsert('Albums', demoAlbums)
+  await queryInterface.bulkInsert('Albums', demoAlbums)
   },
 
   async down (queryInterface, Sequelize) {
