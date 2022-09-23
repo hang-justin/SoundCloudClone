@@ -82,6 +82,8 @@ button#upload-song-btn {
   border: none;
   color: white;
   border-radius: 5px;
+
+  font-size: larger;
 }
 
 div.return-uploaded-song-container {
