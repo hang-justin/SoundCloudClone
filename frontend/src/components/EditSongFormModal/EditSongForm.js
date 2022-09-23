@@ -5,23 +5,29 @@ import { editSongRequest } from "../../store/song";
 
 import './EditSongForm.css';
 
-const EditSongForm = ({ song, display }) => {
+const EditSongForm = ({ song, setShowModal }) => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState(song.title);
-  const [description, setDescription] = useState(song.description);
+  const [description, setDescription] = useState(song.description === null ? '' : song.description);
   const [imageUrl, setImageUrl] = useState(song.imageUrl);
   const [validTitle, setValidTitle] = useState('valid');
   const [validImgUrl, setValidImgUrl] = useState('valid');
+  const [invalidTitle, setInvalidTitle] = useState('');
+  const [invalidImgUrl, setInvalidImgUrl] = useState('');
 
   const picFileTypes = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG'];
 
   const handleEditSong = (e) => {
     e.preventDefault();
 
+    const errors = [];
+
     if (title.trim().length === 0) {
-      setValidTitle('invalid')
-      return;
+      // setValidTitle('invalid')
+      setInvalidTitle('invalidTitle')
+      setTitle('');
+      errors.push('Invalid title field')
     }
 
     let validImg = picFileTypes.map(picExt => {
@@ -29,11 +35,12 @@ const EditSongForm = ({ song, display }) => {
     })
 
     if (imageUrl?.trim().length !== 0 && !validImg.includes(true)) {
-      setValidImgUrl('invalid');
-      return;
+      // setValidImgUrl('invalid');
+      setInvalidImgUrl('invalidImgUrl')
+      errors.push('Invalid image url field')
     }
 
-
+    if (errors.length > 0) return;
 
     if (imageUrl?.trim().length === 0) setImageUrl(null);
     if (description?.trim().length === 0) setDescription(null);
@@ -46,15 +53,36 @@ const EditSongForm = ({ song, display }) => {
     console.log('newSong with new props: ', newSong)
 
     dispatch(editSongRequest(newSong))
-      .then(() => display(false))
+      .then(() => setShowModal(false))
 
   }
 
   const checkTitleField = (e) => {
     setTitle(e.target.value);
-    if (validTitle === 'valid') return;
+    if (invalidTitle === '') return;
 
-    if (e.target.value !== '') setValidTitle('valid');
+    if (e.target.value.trim() !== '') setInvalidTitle('');
+  }
+
+  const checkImgUrlField = (e) => {
+    setImageUrl(e.target.value);
+
+    if (invalidImgUrl === '') return;
+
+    if (e.target.value === '') {
+      setInvalidImgUrl('')
+      return;
+    }
+
+    let validImg = picFileTypes.map(picExt => {
+      return e.target.value.includes(picExt);
+    })
+
+    if (validImg.includes(true)) {
+      setInvalidImgUrl('');
+      return;
+    }
+
   }
 
   return (
@@ -74,15 +102,15 @@ const EditSongForm = ({ song, display }) => {
             <p className='edit-song-field edit-title'>Title<span className='title-of-req-field'>*</span></p>
             <input
               id='edit-song-title'
-              className='edit-song-input'
-              validInput={validTitle}
+              className={`edit-song-input ${invalidTitle}`}
+              // validInput={validTitle}
               type='text'
               placeholder='Name your track'
               value={title}
               onChange={checkTitleField}
             />
           </label>
-          {validTitle === 'invalid' && <span className='invalid-field-prompt'>Enter a title.</span>}
+          {invalidTitle !== '' && <span className='invalid-field-prompt'>Enter a title.</span>}
 
           <label>
             <p className='edit-song-field edit-description'>Description</p>
@@ -98,15 +126,15 @@ const EditSongForm = ({ song, display }) => {
           <label>
             <p className='edit-song-field edit-imageUrl'>Image URL</p>
             <input
-              className='edit-song-input'
-              validInput={validImgUrl}
+              className={`edit-song-input ${invalidImgUrl}`}
+              // validInput={validImgUrl}
               type='text'
               placeholder='Image your track'
               value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
+              onChange={checkImgUrlField}
             />
           </label>
-          {validImgUrl === 'invalid' && <span className='invalid-field-prompt'>Invalid Image URL</span>}
+          {invalidImgUrl !== '' && <span className='invalid-field-prompt'>Invalid image url (jpg, jpeg, png supported)</span>}
 
           <button id='save-edit-song-btn' className='button-edit-song' type='submit'>
             Save changes

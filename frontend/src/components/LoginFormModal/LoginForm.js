@@ -44,8 +44,8 @@ const LoginForm = ({ setShowModal }) => {
 
   return (
     <div className='login-form-wrapper flx-col'>
-      <button onClick={() => setShowModal(false)}id='close-login-btn'><img id='close-login-img' src={closeBtnImgSrc} /></button>
-      <h3 className='login-header'>Welcome back!</h3>
+      <button onClick={() => setShowModal(false)} id='close-login-btn'><img id='close-login-img' src={closeBtnImgSrc} /></button>
+      <h3 className='login-header'>Welcome back</h3>
       <form id='login-form' className='form login-form flx-col' onSubmit={(e) => handleLogIn(e)}>
 
         {!!errors.length && <ul className='signin-errors'>

@@ -25,18 +25,18 @@ div.editSong-rightContainer {
   width: 600px;
 }
 
-input[validInput="invalid"]#edit-song-title {
-  border: 2px solid red;
-}
-
-input[validInput="invalid"] {
-  border: 2px solid red;
-}
-
 input.edit-song-input {
   border-radius: 5px;
   border: 1px solid gray;
   width: 100%;
+}
+
+input.edit-song-input.invalidTitle {
+  border: 2px solid red;
+}
+
+input.edit-song-input.invalidImgUrl {
+  border: 2px solid red;
 }
 
 textarea.edit-song-textarea {

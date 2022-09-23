@@ -30,16 +30,16 @@ const UploadSongForm = () => {
 
     setErrors([]);
 
+    let validationErrors = [];
+
+        if (title.trim().length === 0) {
+          validationErrors.push('Please enter a title')
+        }
+
     let urlParts = url.split('.');
     let audioExtension = urlParts[urlParts.length - 1];
     if (!audioFileTypes.includes(audioExtension)) {
-      setErrors(['Invalid audio link. mp3/wav/ogg supported'])
-      return;
-    }
-
-    if (title.trim().length === 0) {
-      setErrors(['Please enter a title'])
-      return;
+      validationErrors.push('Invalid audio link (mp3/wav/ogg supported)')
     }
 
     let validImg = picFileTypes.map( picExt => {
@@ -47,7 +47,11 @@ const UploadSongForm = () => {
     })
 
     if (!validImg.includes(true) && imageUrl.trim().length !== 0) {
-      setErrors(['Invalid image url']);
+      validationErrors.push('Invalid image url (jpg, jpeg, png supported)');
+    }
+
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors);
       return;
     }
 
@@ -95,12 +99,9 @@ const UploadSongForm = () => {
         id='form__upload-song-form'
         onSubmit={(e) => handleSongUpload(e)}>
 
+        <h3 id='upload-form-title'>Upload A Track</h3>
 
         {!!errors.length && errors.map((error, idx) => <div className='upload-errs' key={idx}>{error}</div>)}
-
-
-
-        <h3 id='upload-form-title'>Upload A Track</h3>
 
         <label className='uploadSongForm-label'>Title<span className='upload-req-field'>*</span>
           <input

@@ -172,6 +172,9 @@ const Song = ({ setOrToggleAudio }) => {
 
   const artistProfilePicSrc = profilePics[artist.username];
 
+  let userProfilePicSrc;
+  if (user) userProfilePicSrc = profilePics[user.username];
+
   return (
     <div className='song-comp-container'>
 
@@ -215,7 +218,15 @@ const Song = ({ setOrToggleAudio }) => {
 
           <div className='userInteraction'>
             <div className='commentForm-wrapper'>
-              <div className='commenterProfilePic'></div>
+              <div className='commenterProfilePic'>
+                {userProfilePicSrc &&
+                  <img
+                    id='commentForm__user-profile-pic'
+                    className='commenterProfilePic'
+                    src={userProfilePicSrc}
+                  />
+                }
+              </div>
 
               <div className='commentForm'>
                 <AddComment songId={song.id} user={user} comment={comment} setComment={setComment} />
