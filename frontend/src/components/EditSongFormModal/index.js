@@ -12,7 +12,7 @@ const EditSongFormModal = ({ song }) => {
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditSongForm song={song} display={setShowModal} />
+          <EditSongForm song={song} setShowModal={setShowModal} />
         </Modal>
       )}
     </>

@@ -1,5 +1,15 @@
-div#signup-form-div-wrapper {
-  display: flex;
+div#signup-form-div-wrapper.flx-col {
+  align-items: center;
+
+  margin: 25px;
+  gap: 15px;
+
+  position: relative;
+}
+
+.signup-header {
+  margin: 0;
+  font-weight: normal;
 }
 
 form#signup-form {
@@ -11,10 +21,9 @@ form#signup-form {
   width: auto;
   min-width: 350px;
 
+  gap: 5px;
   padding: 20px 10px;
   background-color: white;
-
-  border: 1px orange solid;
 }
 
 ul.signup-errors {
@@ -30,17 +39,23 @@ li.signup-err-li {
 }
 
 input.signupform-input {
-  /* margin: 3px 0; */
-  width: auto;
+  box-sizing: border-box;
+  min-height: fit-content;
+  height: 25px;
+  width: 100%;
   border: 1px solid rgb(134, 133, 133);
   border-radius: 5px;
+  padding: 0 5px;
+  margin: 2px 0;
 }
 
-label.signup-label {
-  display: flex;
-  flex-direction: column;
-  justify-items: stretch;
+input.signupform-input:focus {
+  background-color: rgba(255, 120, 0, 0.2);
+}
+
+label.signup-label.flx-col {
   width: 100%;
+  padding-bottom: 5px;
   margin: 2px 0;
 }
 
@@ -49,6 +64,7 @@ button#create-account-btn {
   border: none;
   border-radius: 5px;
   margin: 2px 0;
+  margin-top: 15px;
   padding: 4px 0;
   color: white;
   font-size: large;

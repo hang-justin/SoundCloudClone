@@ -161,7 +161,7 @@ img.song-waveform-img {
 }
 
 .commentForm {
-  width: 100%;
+  width: calc(100% - 40px);
 
   background-color: rgba(165, 162, 165, 0.2);
 }
