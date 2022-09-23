@@ -116,6 +116,10 @@ div.audio-footer-container {
   flex-direction: column;
 }
 
+.gray-text {
+  color: gray;
+}
+
 .red-text {
   color: red;
 }

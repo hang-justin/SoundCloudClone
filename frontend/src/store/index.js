@@ -5,13 +5,15 @@ import sessionReducer from './session';
 import songsReducer from './song';
 import artistsReducer from './artists';
 import audioPlayerReducer from './audioPlayer';
+import profilePicsReducer from './profilePics';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   playlists: playlistsReducer,
   songs: songsReducer,
   artists: artistsReducer,
-  audioPlayer: audioPlayerReducer
+  audioPlayer: audioPlayerReducer,
+  profilePics: profilePicsReducer
 })
 
 let enhancer;

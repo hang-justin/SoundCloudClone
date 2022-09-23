@@ -149,7 +149,7 @@ img.song-waveform-img {
 
   color: gray;
 
-  border-bottom: 0.25px solid rgba(128, 128, 128, 0.25)
+  border-bottom: 0.25px solid rgba(128, 128, 128, 0.25);
 }
 
 .commenterProfilePic {
@@ -204,7 +204,7 @@ img.song-waveform-img {
 }
 
 .discourse__songInfo {
-  padding: 10px;
+  padding: 20px 10px;
 }
 
 .discourse__comments {
@@ -218,4 +218,35 @@ div#song-component-artist-pic {
 
   background: rgb(255, 255, 255);
   background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 15%, rgba(255, 120, 0, 1) 39%, rgba(255, 120, 0, 1) 65%);
+}
+
+div.no-comment-field.flx-col {
+  margin-top: 50px;
+
+  align-items: center;
+}
+
+img#song-no-comments {
+  width: 240px;
+}
+
+div h3 {
+  font-weight: lighter;
+}
+
+div.comment-section-header.flx-row {
+  padding-left: 5px;
+  gap: 10px;
+  border-bottom: 0.25px solid rgba(128, 128, 128, 0.25);
+}
+
+h4#comment-section-header--text {
+  font-weight: lighter;
+  margin: 0px;
+  padding-bottom: 5px;
+}
+
+img#comment-section-header--icon {
+  height: 20px;
+  opacity: 0.6;
 }

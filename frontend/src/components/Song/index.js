@@ -90,7 +90,7 @@ const Song = ({ setOrToggleAudio }) => {
 
     let artist = artists[song.userId];
     if (!artist) return <div>Loading...</div>
-    
+
     // Guard clauses/loading divs for when navigating directly to
     //    songs/songId page
     // The fetchAllSongs in App.js's useEffect needs to run to populate
@@ -150,6 +150,22 @@ const Song = ({ setOrToggleAudio }) => {
 
     commentsList.push(
       <Comment key={comment.id} commentInd={commentInd} user={user} comment={comment} />
+    )
+  }
+
+  let singularOrPluralComment = (commentsList) => {
+    if (commentsList.length === 1) return('comment')
+    else if (commentsList.length > 1) return ('comments')
+  }
+  const noCommentDiv = () => {
+    const noCommentImgSrc = 'https://i.imgur.com/jFLK95a.png';
+
+    return (
+      <div className='no-comment-field flx-col'>
+        <img id='song-no-comments' src={noCommentImgSrc} />
+        <h3>Seems a little quiet over here</h3>
+        <span className='gray-text'>Be the first to comment on this track</span>
+      </div>
     )
   }
 
@@ -228,8 +244,15 @@ const Song = ({ setOrToggleAudio }) => {
                 {song.description && <div className='songDescription'>{song.description}</div>}
               </div>
 
-              <div className='discourse__comments'>
-                {commentsList}
+              <div className='discourse__comments flx-col'>
+                {commentsList.length &&
+                    (<div className='comment-section-header flx-row'>
+                      <img id='comment-section-header--icon' src='https://i.imgur.com/pRIVKBH.png' />
+                      <h4 id='comment-section-header--text' className='gray-text'>
+                      {commentsList.length} {singularOrPluralComment(commentsList)}
+                      </h4>
+                  </div>)}
+                {commentsList.length ? commentsList : noCommentDiv()}
               </div>
 
             </div>
