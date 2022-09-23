@@ -59,10 +59,10 @@ const SplashSongCards = ({ audioPlayerRef, setOrToggleAudio }) => {
               </div>
             </div>
 
-            {/* <NavLink to={`/${songObj.userId}/songs/${songObj.id}`}> */}
-              <span className='splash-song-card-details'>{songObj.title}</span>
-              <span className='splash-song-card-details'>{artists[songObj.userId].username}</span>
-            {/* </NavLink> */}
+            <NavLink to={`/${songObj.userId}/songs/${songObj.id}`}>
+              <span id='splash-song-title' className='splash-song-card-details'>{songObj.title}</span>
+              <span id='splash-song-artist' className='splash-song-card-details'>{artists[songObj.userId].username}</span>
+            </NavLink>
           </div>
         )
       })}

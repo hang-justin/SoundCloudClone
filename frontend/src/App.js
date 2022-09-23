@@ -34,6 +34,7 @@ function App() {
   }
 
   useEffect(() => {
+    console.log('useEffect in App.js running')
     dispatch(sessionActions.restoreSession())
       .then((user) => loadPlaylists(user))
       .then(() => dispatch(songActions.fetchAllSongs()))

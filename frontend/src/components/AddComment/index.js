@@ -16,7 +16,7 @@ const AddComment = ({ songId, user, comment, setComment }) => {
   const dispatch = useDispatch();
   // const [comment, setComment] = useState('');
   const [songCommentFieldErr, setSongCommentFieldErr] = useState('');
-  const [commentPlaceHolder, setCommentPlaceholder] = useState('Write a comment');
+  const [commentPlaceHolder, setCommentPlaceholder] = useState(user ? 'Write a comment' : 'Please log in to add a comment');
 
   const listenForEnter = (keydown) => {
     if (keydown.key === 'Enter') {
@@ -27,10 +27,16 @@ const AddComment = ({ songId, user, comment, setComment }) => {
   }
 
   const handleCommentField = (e) => {
+    if (!user) return;
+
     if (e.target.value.trimStart().length <= 255) {
       setComment(e.target.value.trimStart());
     }
   }
+
+  useEffect(() => {
+    if (user && commentPlaceHolder === 'Please log in to add a comment') setCommentPlaceholder('Write a comment');
+  }, [user])
 
   useEffect(() => {
     const addCommentField = document.getElementById('input__commentField')
