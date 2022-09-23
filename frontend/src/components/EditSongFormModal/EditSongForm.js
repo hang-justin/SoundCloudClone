@@ -17,6 +17,7 @@ const EditSongForm = ({ song, setShowModal }) => {
   const [invalidImgUrl, setInvalidImgUrl] = useState('');
 
   const picFileTypes = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG'];
+  const closeBtnImgSrc = 'https://i.imgur.com/1aSKStp.png';
 
   const handleEditSong = (e) => {
     e.preventDefault();
@@ -72,21 +73,21 @@ const EditSongForm = ({ song, setShowModal }) => {
     if (e.target.value === '') {
       setInvalidImgUrl('')
       return;
-    }
+    };
 
     let validImg = picFileTypes.map(picExt => {
       return e.target.value.includes(picExt);
-    })
+    });
 
     if (validImg.includes(true)) {
       setInvalidImgUrl('');
       return;
-    }
-
-  }
+    };
+  };
 
   return (
     <form onSubmit={(e) => handleEditSong(e)} className='editSongForm'>
+            <button onClick={() => setShowModal(false)} id='close-edit-song-btn'><img id='close-edit-song-img' src={closeBtnImgSrc} /></button>
 
       <div className='editSongForm-inner-container'>
 
@@ -115,7 +116,7 @@ const EditSongForm = ({ song, setShowModal }) => {
           <label>
             <p className='edit-song-field edit-description'>Description</p>
             <textarea
-              className='edit-song-textarea'
+              className='edit-song-textarea edit-song-input'
               type='text'
               placeholder='Describe your track'
               value={description}

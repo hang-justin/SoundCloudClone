@@ -67,6 +67,11 @@ textarea.uploadSongForm-textarea {
   padding: 5px;
 }
 
+input.uploadSongForm-input:focus,
+textarea.uploadSongForm-textarea:focus {
+  background-color: rgba(255, 120, 0, 0.2);
+}
+
 span.upload-req-field {
   color: red;
 }
