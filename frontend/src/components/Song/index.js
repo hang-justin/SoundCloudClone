@@ -27,6 +27,7 @@ const Song = ({ setOrToggleAudio }) => {
   let user = useSelector(state => state.session.user)
   const currentTrack = useSelector(state => state.audioPlayer.currentTrack);
   const isPlaying = useSelector(state => state.audioPlayer.isPlaying);
+  const profilePics = useSelector(state => state.profilePics)
 
   const [hasLoaded, setHasLoaded] = useState(false);
   const [comment, setComment] = useState('');
@@ -169,6 +170,8 @@ const Song = ({ setOrToggleAudio }) => {
     )
   }
 
+  const artistProfilePicSrc = profilePics[artist.username];
+
   return (
     <div className='song-comp-container'>
 
@@ -233,8 +236,10 @@ const Song = ({ setOrToggleAudio }) => {
           <div className='discourse'>
 
             <div className='discourse__left artistDetails'>
-              <div id='song-component-artist-pic'></div>
-              <div>{artist.username}</div>
+              <div id='song-component-artist-pic'>
+                {artistProfilePicSrc && <img id='song-component-artist-pic' src={artistProfilePicSrc} alt='artist-pic'/>}
+              </div>
+              <div className='discourse__left__artist-name'>{artist.username}</div>
             </div>
 
 
@@ -245,7 +250,7 @@ const Song = ({ setOrToggleAudio }) => {
               </div>
 
               <div className='discourse__comments flx-col'>
-                {commentsList.length &&
+                {commentsList.length > 0 &&
                     (<div className='comment-section-header flx-row'>
                       <img id='comment-section-header--icon' src='https://i.imgur.com/pRIVKBH.png' />
                       <h4 id='comment-section-header--text' className='gray-text'>

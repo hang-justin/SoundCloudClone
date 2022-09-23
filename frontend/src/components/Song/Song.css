@@ -215,9 +215,22 @@ div#song-component-artist-pic {
   height: 120px;
   width: 120px;
   border-radius: 60px;
+  margin-bottom: 10px;
 
-  background: rgb(255, 255, 255);
   background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 15%, rgba(255, 120, 0, 1) 39%, rgba(255, 120, 0, 1) 65%);
+  position: relative;
+}
+
+img#song-component-artist-pic {
+  position: absolute;
+  opacity: 1;
+
+  height: 120px;
+  width: 120px;
+}
+
+div.discourse__left__artist-name {
+  word-break: break-word;
 }
 
 div.no-comment-field.flx-col {
