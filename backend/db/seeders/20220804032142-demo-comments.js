@@ -9,37 +9,37 @@ const demoComments = [
   {
     userId: 2,
     songId: 1,
-    body: 'Not bad - J.cole'
+    body: 'Dooooooope'
   },
   {
     userId: 3,
     songId: 1,
-    body: 'You know we can see your name right above your comment right, J. Cole?'
+    body: 'certified banger'
   },
   {
     userId: 2,
     songId: 1,
-    body: '-.- And what? - J.Cole'
+    body: `Let's collab`
   },
   {
     userId: 4,
     songId: 1,
-    body: 'first comment'
+    body: 'let me get in on that collab too'
   },
   {
     userId: 5,
     songId: 1,
-    body: '2nd'
+    body: 'third on that collab'
   },
   {
     userId: 3,
     songId: 2,
-    body: 'Nice - Logic'
+    body: 'niceeee'
   },
   {
     userId: 2,
     songId: 2,
-    body: 'Real funny -J. Cole'
+    body: 'thanks'
   },{
     userId: 1,
     songId: 3,
@@ -88,7 +88,7 @@ const demoComments = [
   {
     userId: 2,
     songId: 6,
-    body: 'Wicked - J.Cole'
+    body: 'Wicked'
   },
   {
     userId: 6,
@@ -98,87 +98,87 @@ const demoComments = [
   {
     userId: 1,
     songId: 7,
-    body: 'RIP'
+    body: 'love this song'
   },
   {
     userId: 2,
     songId: 7,
-    body: 'RIP - J. Cole'
+    body: 'GOAT'
   },
   {
     userId: 3,
     songId: 7,
-    body: 'RIP'
+    body: 'wow'
   },
   {
     userId: 4,
     songId: 7,
-    body: 'RIP'
+    body: 'ur a rainbow'
   },
   {
     userId: 5,
     songId: 7,
-    body: 'RIP'
+    body: `you're a river`
   },
   {
     userId: 6,
     songId: 7,
-    body: 'RIP'
+    body: 'your a flower'
   },
   {
     userId: 8,
     songId: 7,
-    body: 'RIP'
+    body: '<3'
   },
   {
     userId: 9,
     songId: 7,
-    body: 'RIP'
+    body: 'G.O.A.T'
   },
   {
     userId: 10,
     songId: 7,
-    body: 'RIP'
+    body: 'so peaceful'
   },
   {
     userId: 11,
     songId: 7,
-    body: 'RIP'
+    body: 'love this beat and your beats on samurai champloo'
   },
   {
     userId: 12,
     songId: 7,
-    body: 'RIP'
+    body: 'favorite'
   },
   {
     userId: 13,
     songId: 7,
-    body: 'RIP'
+    body: 'on repeat'
   },
   {
     userId: 8,
     songId: 8,
-    body: 'Sorry Ms Jackson!'
+    body: 'I APOLOGIZE A TRILLION TIMES'
   },
   {
     userId: 12,
     songId: 8,
-    body: 'I AM FOR REAL'
+    body: 'NEVER MEANT TO MAKE YOUR DAUGHTER CRY'
   },
   {
     userId: 10,
     songId: 8,
-    body: 'NEVER MEANT TO MAKE YOUR DAUGHTER CRY'
+    body: 'I AM FOR REAL'
   },
   {
     userId: 13,
     songId: 8,
-    body: 'I APOLOGIZE A TRILLION TIMES'
+    body: 'Sorry Ms Jackson!'
   },
   {
     userId: 2,
     songId: 8,
-    body: '-J. Cole'
+    body: `v - haha we need some lyrics on this app!`
   }
 ]
 
