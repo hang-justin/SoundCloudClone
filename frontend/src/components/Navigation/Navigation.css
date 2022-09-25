@@ -127,9 +127,6 @@ div#nav-right-2 {
   border-right: rgba(0, 0, 0, 1) 0.5px solid;
 }
 
-div#profile-button-username {
-  padding-left: 10px;
-}
 
 button#user-profile-btn {
   display: flex;
@@ -148,8 +145,27 @@ button#user-profile-btn {
   z-index: 5;
 }
 
-i.fa-user-ninja {
+div#profile-button-user-icon.flx-row {
+  position: relative;
+
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+}
+
+div#profile-button-user-icon > i {
   color: rgb(255, 120, 0);
+}
+
+img#nav-custom-user-profile-icon {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+div#profile-button-username {
+  margin-left: 10px;
 }
 
 ul.profile-dropdown {

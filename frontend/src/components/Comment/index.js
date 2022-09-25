@@ -11,7 +11,7 @@ import './Comment.css';
 // comment parameter => { id, userId, songId, body, createdAt, updatedAt }
 // render delete button if sessionUser matches comment.userId
 // user passed in refers to sessionUser
-const Comment = ({ commentInd, user, comment }) => {
+const Comment = ({ commentInd, user, comment, song }) => {
   const dispatch = useDispatch();
   let artist = useSelector(state => state.artists[comment.userId])
   const [isLoaded, setIsLoaded] = useState(!!artist)
@@ -50,6 +50,8 @@ const Comment = ({ commentInd, user, comment }) => {
 
   const profilePicSrc = profilePics[artist.username];
 
+  const creatorComment = song.userId === comment.userId;
+
   return (
     <div className='comment-wrapper'>
 
@@ -62,7 +64,11 @@ const Comment = ({ commentInd, user, comment }) => {
         <div className='commentInfo' id={`comment${comment.id}`}>
 
           <div className='commenterUsername'>
-            {artist.username}
+            {artist.username} {creatorComment &&
+              <span className='creator-comment-indicator'>
+                CREATOR
+              </span>
+            }
           </div>
 
           <div className='commentBody'>

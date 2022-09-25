@@ -7,6 +7,10 @@ const ProfileButton = ({ user }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const profilePics = useSelector(state => state.profilePics);
+
+  let userProfilePicSrc;
+  if (user) userProfilePicSrc = profilePics[user.username];
 
   const openMenu = () => {
     if (showMenu) return;
@@ -35,9 +39,13 @@ const ProfileButton = ({ user }) => {
 
   return (
     <>
-      <button id='user-profile-btn' onClick={() => openMenu()}>
-        <div id='profile-button-user-icon'>
-          <i className="fa-solid fa-user-ninja"></i>
+      <button className='flx-row' id='user-profile-btn' onClick={() => openMenu()}>
+        <div className='flx-row' id='profile-button-user-icon'>
+        {/* <i className="fa-solid fa-user-ninja"></i> */}
+          {userProfilePicSrc
+            ? <img id='nav-custom-user-profile-icon' src={userProfilePicSrc} />
+            : <i className="fa-solid fa-user-ninja"></i>
+          }
         </div>
         <div id='profile-button-username'>
           {`${user.firstName} ${user.lastName}`}
