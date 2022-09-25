@@ -150,7 +150,7 @@ const Song = ({ setOrToggleAudio }) => {
     let comment = comments.pop();
 
     commentsList.push(
-      <Comment key={comment.id} commentInd={commentInd} user={user} comment={comment} />
+      <Comment key={comment.id} song={song} commentInd={commentInd} user={user} comment={comment} />
     )
   }
 

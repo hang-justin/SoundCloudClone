@@ -1,6 +1,10 @@
 .login-form-wrapper.flx-col {
+  justify-content: space-evenly;
   align-items: center;
-  /* justify-content: center; */
+
+  min-height: 350px;
+  min-width: 350px;
+
   margin: 25px;
   gap: 15px;
 
@@ -35,6 +39,7 @@ form#login-form {
   justify-items: stretch;
   align-content: center;
 
+  min-width: 350px;
   width: 100%;
   gap: 5px;
 
@@ -58,21 +63,23 @@ input.signin-input {
   background-color: rgba(255, 120, 0, 0.2);
 }
 
-button#modal-submit-credentials {
-  background-color: rgb(255, 120, 0);
+button.signin-modal-btns {
+  padding: 4px 0;
+  margin: 15px 0;
+
   border: none;
   border-radius: 5px;
-  margin: 2px 0;
-  padding: 6px 0;
+
+  background-color: rgb(255, 120, 0);
+  font-size: larger;
+}
+
+button#modal-submit-credentials {
   color: white;
 }
 
 button#demo-user {
-  background-color: rgb(255, 120, 0);
-  border: none;
-  border-radius: 5px;
-  margin: 2px 0;
-  padding: 6px 0;
+  margin: 0;
   color: white;
 }
 

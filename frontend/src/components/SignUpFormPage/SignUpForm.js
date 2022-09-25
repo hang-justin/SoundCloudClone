@@ -60,7 +60,7 @@ const SignUpForm = ({ setShowModal }) => {
   return (
     <div id='signup-form-div-wrapper' className='flx-col'>
       <button onClick={() => setShowModal(false)} id='close-login-btn'><img id='close-login-img' src={closeBtnImgSrc} /></button>
-      <h3 className='signup-header'>Create your SonusNimbus account</h3>
+      <h2 className='signup-header'>Create your SonusNimbus account</h2>
       <form id='signup-form' onSubmit={handleSignUp}>
 
 

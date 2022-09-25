@@ -176,6 +176,7 @@ img.song-waveform-img {
 }
 
 .right-mainContainer {
+  box-sizing: border-box;
   width: 30%;
   padding: 0 20px;
   border-left: 0.25px solid rgba(128, 128, 128, 0.25);
@@ -227,6 +228,7 @@ img#song-component-artist-pic {
 
   height: 120px;
   width: 120px;
+  border-radius: 50%;
 }
 
 div.discourse__left__artist-name {
