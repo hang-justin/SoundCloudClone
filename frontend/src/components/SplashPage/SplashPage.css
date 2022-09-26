@@ -61,7 +61,7 @@ div.carousel > ul {
 .slide {
   display: flex;
   justify-content: center;
-  
+
   position: absolute;
   inset: 0;
 
@@ -77,9 +77,15 @@ div.carousel > ul {
 .slide-text-header,
 .slide-text-desc {
   font-weight: normal;
+  margin: 0;
+}
+
+.slide-text-header {
+  max-width: 650px;
 }
 
 .slide-text-desc {
+  width: 390px;
 }
 
 .slide-text-container.flx-col {
@@ -91,7 +97,7 @@ div.carousel > ul {
   top: 0;
 
   height: 100%;
-  width: 450px;
+  gap: 20px;
 
   background-color: transparent;
   color: rgb(255, 255, 255);
