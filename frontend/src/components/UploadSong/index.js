@@ -55,12 +55,15 @@ const UploadSongForm = () => {
       return;
     }
 
+    // Note: albumId set to null
+    // Production error where empty string is invalid
+    // Possibly due to prod ORM diff from dev ORM
     const song = {
       title,
       description: description.trim(),
       url,
       imageUrl,
-      albumId
+      albumId: null
     };
 
     dispatch(uploadSong(song))
