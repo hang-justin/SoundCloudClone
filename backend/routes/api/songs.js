@@ -127,9 +127,10 @@ const createSong = async (req, res, next) => {
     }
   }
 
+  // comment out albumId so no request to create album with albumId exists
   const newSong = await Song.create({
     userId: currentUserId,
-    albumId,
+    // albumId,
     title,
     description,
     url,
