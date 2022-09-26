@@ -49,10 +49,8 @@ const SignUpForm = ({ setShowModal }) => {
       .then((user) => dispatch(sessionActions.setUserSession(user)))
       .catch(async (res) => {
         const data = await res.json();
-        console.log('data from error catcher', data)
+
         if (data && data.errors) setErrors(Object.values(data.errors));
-        console.log('errors are ', errors)
-        console.log(Object.values(data.errors))
       });
   };
 

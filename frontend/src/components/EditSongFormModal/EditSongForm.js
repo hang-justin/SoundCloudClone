@@ -47,11 +47,9 @@ const EditSongForm = ({ song, setShowModal }) => {
     if (description?.trim().length === 0) setDescription(null);
 
     const newSong = { ...song };
-    console.log('newSong copied: ', newSong)
     newSong.title = title;
     newSong.description = description;
     newSong.imageUrl = imageUrl;
-    console.log('newSong with new props: ', newSong)
 
     dispatch(editSongRequest(newSong))
       .then(() => setShowModal(false))

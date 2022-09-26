@@ -20,7 +20,6 @@ import { isPlaying, setActiveTrack } from './store/audioPlayer';
 
 
 function App() {
-  console.log('APP.JS COMPONENT RENDERING')
   let dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
   const currentTrack = useSelector(state => state.audioPlayer.currentTrack)
@@ -34,7 +33,10 @@ function App() {
   }
 
   useEffect(() => {
-    console.log('useEffect in App.js running')
+    console.log('You like to look under the hood? Why not help us build the engine? https://soundcloud.com/jobs');
+    console.log('')
+    console.log('SonusNimbus is a clone of SoundCloud built for educational purposes. Check out the code base. https://github.com/juanpunchman/SoundCloudClone')
+
     dispatch(sessionActions.restoreSession())
       .then((user) => loadPlaylists(user))
       .then(() => dispatch(songActions.fetchAllSongs()))

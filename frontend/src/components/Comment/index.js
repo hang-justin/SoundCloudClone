@@ -20,7 +20,6 @@ const Comment = ({ commentInd, user, comment, song }) => {
   let commentOwner = (user?.id === comment.userId);
 
   const deleteHandler = () => {
-    console.log(comment.id);
     // dispatch a thunk
     // thunk will have to cause a change in state in state.songs.current and
     // should cause the song component/page to re-render
@@ -41,7 +40,6 @@ const Comment = ({ commentInd, user, comment, song }) => {
 
   useEffect(() => {
     if (artist) return;
-    console.log('sending out a dispatch from the useEffect in Comment Component')
     dispatch(getTheseArtists(comment.userId))
     .then(() => setIsLoaded(true));
   }, [artist])

@@ -76,8 +76,7 @@ const Song = ({ setOrToggleAudio }) => {
     dispatch(fetchCurrentSongWithComments(songId))
     .catch(async errRes => {
         const errMessage = await errRes.json();
-        console.log('errRes is :', errRes)
-        console.log('errMessage json() is :', errMessage);
+        
         // NOTE
         // perhaps we can pass the errMessage into the redirect
         // by setting songNotFound default to empty string

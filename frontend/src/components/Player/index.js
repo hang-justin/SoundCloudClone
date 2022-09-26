@@ -17,7 +17,6 @@ const Player = ({ setAudioPlayerRef }) => {
   const [playerVisibility, setPlayerVisibility] = useState('hiddenPlayer');
   const artists = useSelector(state => state.artists);
   const currentSong = useSelector(state => state.songs[currentTrack?.id])
-  console.log('current song is ', currentSong)
 
   useEffect(() => {
     setAudioPlayerRef(player);
@@ -55,7 +54,7 @@ const Player = ({ setAudioPlayerRef }) => {
     )
   }
 
-  // if (player) console.log('player src is ', player.current.audio.current.src);
+  
   if (currentTrack && currentSong === undefined) {
     player.current.audio.current.src = '';
   }
