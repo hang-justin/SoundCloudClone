@@ -13,6 +13,10 @@ const Carousel = () => {
       return (
         <li key={`slide-image-${index + 1}`} data-active className='slide'>
           <img className='carousel-img' src={imageLink} alt={`Splash Image ${index + 1}`} />
+          <div className='slide-text-container flx-col'>
+            <h2 className='slide-text-header'>Discover more with SonusNimbus</h2>
+            <h3 className='slide-text-desc'>SonusNimbus lets you listen offline, ad-free, with over 150 million tracks — and growing.</h3>
+          </div>
         </li>
       )
 
@@ -20,6 +24,10 @@ const Carousel = () => {
       return (
         <li key={`slide-image-${index + 1}`} className='slide'>
           <img className='carousel-img' src={imageLink} alt={`Splash Image ${index + 1}`} />
+          <div className='slide-text-container flx-col'>
+            <h2 className='slide-text-header'>What's next in music is first on SoundCloud then second on SonusNimbus</h2>
+            <h3 className='slide-text-desc'>Upload your first track and begin your journey. SoundCloud gives you space to create, find your fans, and connect with other artists.</h3>
+          </div>
         </li>
       )
   });
