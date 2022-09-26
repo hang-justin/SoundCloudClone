@@ -33,7 +33,6 @@ const LoginForm = ({ setShowModal }) => {
     return dispatch(logIn(loginInfo))
       .catch(async (res) => {
         const data = await res.json();
-        console.log('data from invalid login: ', data)
 
         if (data && data.message) {
           setErrors([data.message])

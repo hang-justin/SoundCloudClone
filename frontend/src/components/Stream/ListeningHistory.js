@@ -19,11 +19,12 @@ const ListeningHistory = ({ setOrToggleAudio }) => {
   let historyCopy = [...history];
 
   while (listenHistorySongIds.length < 3) {
+    if (historyCopy.length === 0) break;
+
     const lastSongId = historyCopy.pop();
     if (allSongs[lastSongId] === undefined) continue;
 
     listenHistorySongIds.push(lastSongId)
-    if (historyCopy.length === 0) break;
   }
 
   const songTileRenders = listenHistorySongIds.map((songId, ind) => {

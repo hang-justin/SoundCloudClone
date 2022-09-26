@@ -126,7 +126,7 @@ const createSong = async (req, res, next) => {
       })
     }
   }
-  console.log(`     CURRENT USER ID IS ${currentUserId}`)
+
   const newSong = await Song.create({
     userId: currentUserId,
     albumId,

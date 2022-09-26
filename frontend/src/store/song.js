@@ -90,7 +90,7 @@ export const fetchCurrentSongWithComments = (songId) => async dispatch => {
 
     // The above is commented out so that an error can just be thrown and
     // handled in the Song component which just redirects to /404
-    
+
   let commentResponse = await csrfFetch(`/api/songs/${songId}/comments`);
 
   if (songResponse.ok && commentResponse.ok) {
@@ -122,7 +122,6 @@ export const fetchCurrentSongWithComments = (songId) => async dispatch => {
     //    So second to then chain can be removed
 
     await songResponse.json()
-      // .then((res) => console.log(res))
       .then(res => song = res)
       .then(() => commentResponse.json())
       .then(comments => song.comments = comments)
@@ -268,7 +267,6 @@ const songsReducer = (state = initialState, action) => {
 
     case EDIT_SONG:
       newState[action.song.id] = action.song;
-      console.log('IN SONG REDUCER EDIT_SONG CASE')
       return newState;
 
     case DELETE_SONG:
