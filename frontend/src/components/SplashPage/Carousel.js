@@ -3,7 +3,8 @@ import { useEffect } from "react";
 
 const Carousel = () => {
   const slideImages = [
-    'https://a-v2.sndcdn.com/assets/images/sc_landing_header_web_c-318d7eed.jpg',
+    // 'https://a-v2.sndcdn.com/assets/images/sc_landing_header_web_c-318d7eed.jpg',
+    'https://a-v2.sndcdn.com/assets/images/sc_landing_header_web_b-447230ef.jpg',
     'https://a-v2.sndcdn.com/assets/images/sc_landing_header_web_featured_artists-8081257b.jpg'
   ]
 
@@ -13,6 +14,10 @@ const Carousel = () => {
       return (
         <li key={`slide-image-${index + 1}`} data-active className='slide'>
           <img className='carousel-img' src={imageLink} alt={`Splash Image ${index + 1}`} />
+          <div className='slide-text-container flx-col'>
+            <h1 className='slide-text-header'>Discover more with SonusNimbus</h1>
+            <h3 className='slide-text-desc'>SonusNimbus doesn't let you listen offline, ad-free, with over 150 million tracks — and growing.</h3>
+          </div>
         </li>
       )
 
@@ -20,6 +25,10 @@ const Carousel = () => {
       return (
         <li key={`slide-image-${index + 1}`} className='slide'>
           <img className='carousel-img' src={imageLink} alt={`Splash Image ${index + 1}`} />
+          <div className='slide-text-container flx-col'>
+            <h1 className='slide-text-header'>What's next in music is first on SoundCloud and is second on SonusNimbus</h1>
+            <h3 className='slide-text-desc'>Upload your first track and begin your journey. SonusNimbus gives you space to create, find your fans, and connect with other artists.</h3>
+          </div>
         </li>
       )
   });
