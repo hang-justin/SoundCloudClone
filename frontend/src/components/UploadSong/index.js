@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -18,6 +18,17 @@ const UploadSongForm = () => {
   const [errors, setErrors] = useState([]);
   const [uploadedSong, setUploadedSong] = useState('');
 
+  const [descLimitTextMod, setDescLimitTextMod] = useState('');
+  const [descLimitDisplay, setDescLimitDisplay] = useState('hidden-span')
+
+  useEffect(() => {
+    if (description.trimStart().length >= 255) setDescLimitTextMod('red-text')
+    else setDescLimitTextMod('')
+
+    if (description.length > 0) setDescLimitDisplay('');
+    else setDescLimitDisplay('hidden-span');
+  }, [description])
+
   const audioFileTypes = ['mp3', 'wav', 'ogg'];
   const picFileTypes = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG'];
 
@@ -32,9 +43,13 @@ const UploadSongForm = () => {
 
     let validationErrors = [];
 
-        if (title.trim().length === 0) {
-          validationErrors.push('Please enter a title')
-        }
+    if (title.trim().length === 0) {
+      validationErrors.push('Please enter a title')
+    }
+
+    if (description.trimStart().length > 255) {
+      validationErrors.push('Song description cannot exceed 255 characters');
+    }
 
     let urlParts = url.split('.');
     let audioExtension = urlParts[urlParts.length - 1];
@@ -60,7 +75,7 @@ const UploadSongForm = () => {
     // Possibly due to prod ORM diff from dev ORM
     const song = {
       title,
-      description: description.trim(),
+      description: description.trimStart(),
       url,
       imageUrl,
       albumId: null
@@ -130,7 +145,7 @@ const UploadSongForm = () => {
           />
         </label>
 
-        <label className='uploadSongForm-label'>Description
+        <label id='upload-desc' className='uploadSongForm-label'>Description
           <textarea
             className='uploadSongForm-textarea'
             name='description'
@@ -139,6 +154,7 @@ const UploadSongForm = () => {
             value={description}
             onChange={e => setDescription(e.target.value)}
           />
+          <span id='upload-desc-char-limit' className={`${descLimitTextMod} ${descLimitDisplay}`}>{255-description.trimStart().length}/255</span>
         </label>
 
         <label className='uploadSongForm-label'>Image URL

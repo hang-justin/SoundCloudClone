@@ -208,6 +208,10 @@ img.song-waveform-img {
   padding: 20px 10px;
 }
 
+.songDescription {
+  word-break: break-word;
+}
+
 .discourse__comments {
   padding: 10px;
 }

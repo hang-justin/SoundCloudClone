@@ -125,5 +125,5 @@ div.audio-footer-container {
 }
 
 .hidden-span {
-  display: none;
+  visibility: hidden;
 }
