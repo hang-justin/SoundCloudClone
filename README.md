@@ -1,12 +1,12 @@
 # SonusNimbus 
-Welcome to SonusNimbus, a SoundCloud clone in development. SonusNimbus's main features are songs and comments allowing users to create, view, update, and delete songs. Users are also able to add, view, and delete comments on songs.
+Welcome to SonusNimbus, a SoundCloud clone in development. SonusNimbus's current main features are songs, comments, and an audio player. Users can create, view, update, and delete songs. Users are also able to add, view, and delete comments on songs. Lastly, users are able to listen to their newly posted song or listen to songs that have already been posted for free!
 
 Follow the link below to get started.
 
 https://sonus-nimbus.herokuapp.com/
 
-## Landing Page
-![image](https://user-images.githubusercontent.com/60123981/187151926-bf3922e2-caf8-440c-bdd0-b44330906d81.png)
+### Landing Page
+![image](https://user-images.githubusercontent.com/60123981/192244865-c44c3765-25d1-467a-9eec-e1b3170426cb.png)
 
 ## Running SonusNimbus Locally
 1. Download the repository.
