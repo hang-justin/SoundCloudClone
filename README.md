@@ -5,8 +5,21 @@ Follow the link below to get started.
 
 https://sonus-nimbus.herokuapp.com/
 
-### Landing Page
-![image](https://user-images.githubusercontent.com/60123981/192244865-c44c3765-25d1-467a-9eec-e1b3170426cb.png)
+## Landing Page
+![image](https://user-images.githubusercontent.com/60123981/192245458-aeb7bb5f-2dfa-40ed-9d3d-4ee131ff537f.png)
+You will be greeted with the landing page imaged above. From there, you can sign in, create an account, play songs by hovering over the song image and click the play button, or even navigate to a song page by clicking on its text.
+
+## Stream and view songs
+![image](https://user-images.githubusercontent.com/60123981/192246325-e054b5b2-2004-4b8f-8307-b1d4bd4d5c16.png)
+After logging in, the stream page can be accessed and you can view the songs uploaded by others or you! You can also edit/delete songs that you have made. You can also view the last 3 songs that songs that you have played on the right hand side.
+
+## View a song page and add comments
+![image](https://user-images.githubusercontent.com/60123981/192246949-5fd0b11f-cf4b-4f4e-95c9-a90cdc168882.png)
+On the song page, you can view the song's description and view and add comments to the song. The creator of the song will also have a 'CREATOR' tag appear next to their name if they made a comment.
+
+## Upload a Song
+![image](https://user-images.githubusercontent.com/60123981/192246095-06acf6c9-8048-49e1-9d90-5c8726c21017.png)
+To upload a song, provide a non-empty title and an audio URL. Currently, only mpg/wav/ogg audio URLs are supported.
 
 ## Running SonusNimbus Locally
 1. Download the repository.
@@ -31,3 +44,8 @@ npx dotenv sequelize db:seed:all
 * <img src="https://user-images.githubusercontent.com/25181517/183898674-75a4a1b1-f960-4ea9-abcb-637170a00a75.png" width="20"> CSS
 * <img src="https://user-images.githubusercontent.com/25181517/117447535-f00a3a00-af3d-11eb-89bf-45aaf56dbaf1.png" width="20"> HTML5
 
+## Future Features
+1. Waveforms for each song
+2. Playlists
+3. Albums
+4. User pages
