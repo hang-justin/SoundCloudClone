@@ -37,6 +37,11 @@ div.editSong-rightContainer {
   flex-direction: column;
   justify-items: stretch;
   min-width: 600px;
+  gap: 15px;
+}
+
+p.edit-song-label-header {
+  margin: 0;
 }
 
 .edit-song-input {
