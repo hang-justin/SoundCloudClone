@@ -149,7 +149,7 @@ const EditSongForm = ({ song, setShowModal }) => {
         <div className='editSong-rightContainer form-input-field-container'>
 
           <label>
-            <p className='edit-song-field edit-title'>Title<span className='title-of-req-field'>*</span></p>
+            <p className='edit-song-label-header edit-title'>Title<span className='title-of-req-field'>*</span></p>
             <input
               id='edit-song-title'
               className={`edit-song-input ${titleRedOutline}`}
@@ -162,7 +162,7 @@ const EditSongForm = ({ song, setShowModal }) => {
           </label>
 
           <label>
-            <p className='edit-song-field edit-description'>Description</p>
+            <p className='edit-song-label-header edit-description'>Description</p>
             <textarea
               className={`edit-song-textarea edit-song-input ${descRedOutline}`}
               type='text'
@@ -174,7 +174,7 @@ const EditSongForm = ({ song, setShowModal }) => {
           </label>
 
           <label>
-            <p className='edit-song-field edit-imageUrl'>Image URL (jpg, jpeg, png supported)</p>
+            <p className='edit-song-label-header edit-imageUrl'>Image URL (jpg, jpeg, png supported)</p>
             <input
               className={`edit-song-input ${imageUrlRedOutline}`}
               // validInput={validImgUrl}
