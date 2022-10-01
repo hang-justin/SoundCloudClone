@@ -11,10 +11,6 @@ const EditSongForm = ({ song, setShowModal }) => {
   const [title, setTitle] = useState(song.title);
   const [description, setDescription] = useState(song.description === null ? '' : song.description);
   const [imageUrl, setImageUrl] = useState(song.imageUrl);
-  const [validTitle, setValidTitle] = useState('valid');
-  const [validImgUrl, setValidImgUrl] = useState('valid');
-  const [invalidTitle, setInvalidTitle] = useState('');
-  const [invalidImgUrl, setInvalidImgUrl] = useState('');
 
   // useStates below are for regulating character limit and
   //  letting users know about character limit
@@ -64,8 +60,6 @@ const EditSongForm = ({ song, setShowModal }) => {
     setImageUrlRedOutline('');
 
     if (title.trim().length === 0) {
-      // setValidTitle('invalid')
-      // setInvalidTitle('invalidTitle');
       setTitle('');
       errors.push('Invalid title field');
       setTitleRedOutline('red-outline');
@@ -91,8 +85,6 @@ const EditSongForm = ({ song, setShowModal }) => {
     })
 
     if (imageUrl?.trim().length !== 0 && !validImg.includes(true)) {
-      // setValidImgUrl('invalid');
-      setInvalidImgUrl('invalidImgUrl')
       errors.push('Invalid image url field')
       setImageUrlRedOutline('red-outline');
     }
@@ -137,7 +129,7 @@ const EditSongForm = ({ song, setShowModal }) => {
     });
 
     if (validImg.includes(true)) {
-      setInvalidImgUrl('');
+      setImageUrlRedOutline('');
       return;
     };
   };
@@ -161,7 +153,6 @@ const EditSongForm = ({ song, setShowModal }) => {
             <input
               id='edit-song-title'
               className={`edit-song-input ${titleRedOutline}`}
-              // validInput={validTitle}
               type='text'
               placeholder='Name your track'
               value={title}
