@@ -53,14 +53,6 @@ input.edit-song-input {
   width: 100%;
 }
 
-input.edit-song-input.invalidTitle {
-  border: 2px solid red;
-}
-
-input.edit-song-input.invalidImgUrl {
-  border: 2px solid red;
-}
-
 textarea.edit-song-textarea {
   border-radius: 5px;
   border: 1px solid gray;
