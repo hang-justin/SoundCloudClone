@@ -124,6 +124,10 @@ div.audio-footer-container {
   color: red;
 }
 
+.red-outline {
+  outline: 2px solid red;
+}
+
 .hidden-span {
   visibility: hidden;
 }
