@@ -18,8 +18,30 @@ const UploadSongForm = () => {
   const [errors, setErrors] = useState([]);
   const [uploadedSong, setUploadedSong] = useState('');
 
+  const [titleLimitTextMod, setTitleLimitTextMod] = useState('');
+  const [titleLimitDisplay, setTitleLimitDisplay] = useState('hidden-span')
+  const [audioUrlLimitTextMod, setAudioUrlLimitTextMod] = useState('');
+  const [audioUrlLimitDisplay, setAudioUrlLimitDisplay] = useState('hidden-span')
   const [descLimitTextMod, setDescLimitTextMod] = useState('');
   const [descLimitDisplay, setDescLimitDisplay] = useState('hidden-span')
+  const [imageUrlLimitTextMod, setImageUrlLimitTextMod] = useState('');
+  const [imageUrlLimitDisplay, setImageUrlLimitDisplay] = useState('hidden-span')
+
+  useEffect(() => {
+    if (title.trimStart().length >= 255) setTitleLimitTextMod('red-text')
+    else setTitleLimitTextMod('')
+
+    if (title.length > 0) setTitleLimitDisplay('');
+    else setTitleLimitDisplay('hidden-span');
+  }, [title])
+
+  useEffect(() => {
+    if (url.trimStart().length >= 255) setAudioUrlLimitTextMod('red-text')
+    else setAudioUrlLimitTextMod('')
+
+    if (url.length > 0) setAudioUrlLimitDisplay('');
+    else setAudioUrlLimitDisplay('hidden-span');
+  }, [url])
 
   useEffect(() => {
     if (description.trimStart().length >= 255) setDescLimitTextMod('red-text')
@@ -28,6 +50,14 @@ const UploadSongForm = () => {
     if (description.length > 0) setDescLimitDisplay('');
     else setDescLimitDisplay('hidden-span');
   }, [description])
+
+  useEffect(() => {
+    if (imageUrl.trimStart().length >= 255) setImageUrlLimitTextMod('red-text')
+    else setImageUrlLimitTextMod('')
+
+    if (imageUrl.length > 0) setImageUrlLimitDisplay('');
+    else setImageUrlLimitDisplay('hidden-span');
+  }, [imageUrl])
 
   const audioFileTypes = ['mp3', 'wav', 'ogg'];
   const picFileTypes = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG'];
@@ -47,14 +77,30 @@ const UploadSongForm = () => {
       validationErrors.push('Please enter a title')
     }
 
-    if (description.trimStart().length > 255) {
-      validationErrors.push('Song description cannot exceed 255 characters');
+    if (title.trim().length > 255) {
+      validationErrors.push('Title cannot exceed 255 characters');
+    }
+
+    if (url.trim().length === 0) {
+      validationErrors.push('Please enter an audio URL')
+    }
+
+    if (url.trim().length > 255) {
+      validationErrors.push('Audio URL cannot exceed 255 characters');
     }
 
     let urlParts = url.split('.');
     let audioExtension = urlParts[urlParts.length - 1];
     if (!audioFileTypes.includes(audioExtension)) {
-      validationErrors.push('Invalid audio link (mp3/wav/ogg supported)')
+      validationErrors.push('Audio URL extension is invalid (mp3/wav/ogg supported)')
+    }
+
+    if (description.trimStart().length > 255) {
+      validationErrors.push('Description cannot exceed 255 characters');
+    }
+
+    if (imageUrl.trim().length > 255) {
+      validationErrors.push('Image URL cannot exceed 255 characters');
     }
 
     let validImg = picFileTypes.map( picExt => {
@@ -62,7 +108,7 @@ const UploadSongForm = () => {
     })
 
     if (!validImg.includes(true) && imageUrl.trim().length !== 0) {
-      validationErrors.push('Invalid image url (jpg, jpeg, png supported)');
+      validationErrors.push('Image URL extension is invalid (jpg, jpeg, png supported)');
     }
 
     if (validationErrors.length > 0) {
@@ -131,6 +177,7 @@ const UploadSongForm = () => {
             onChange={e => setTitle(e.target.value)}
             required
           />
+          <span id='upload-desc-char-limit' className={`${titleLimitTextMod} ${titleLimitDisplay}`}>{255-title.trimStart().length}/255</span>
         </label>
 
         <label className='uploadSongForm-label'>Audio URL<span className='upload-req-field'>*</span>
@@ -143,6 +190,7 @@ const UploadSongForm = () => {
             onChange={e => setUrl(e.target.value)}
             required
           />
+          <span className={`${audioUrlLimitTextMod} ${audioUrlLimitDisplay}`}>{255-url.trimStart().length}/255</span>
         </label>
 
         <label id='upload-desc' className='uploadSongForm-label'>Description
@@ -165,6 +213,7 @@ const UploadSongForm = () => {
             value={imageUrl}
             onChange={e => setImageUrl(e.target.value)}
           />
+          <span className={`${imageUrlLimitTextMod} ${imageUrlLimitDisplay}`}>{255-imageUrl.trimStart().length}/255</span>
         </label>
 
         {/* <label className='uploadSongForm-label'>Album Id

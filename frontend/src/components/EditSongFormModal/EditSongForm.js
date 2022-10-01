@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { editSongRequest } from "../../store/song";
@@ -16,6 +16,42 @@ const EditSongForm = ({ song, setShowModal }) => {
   const [invalidTitle, setInvalidTitle] = useState('');
   const [invalidImgUrl, setInvalidImgUrl] = useState('');
 
+  // useStates below are for regulating character limit and
+  //  letting users know about character limit
+  const [titleLimitTextMod, setTitleLimitTextMod] = useState('');
+  const [titleLimitDisplay, setTitleLimitDisplay] = useState('hidden-span');
+  const [titleRedOutline, setTitleRedOutline] = useState('');
+  const [descLimitTextMod, setDescLimitTextMod] = useState('');
+  const [descLimitDisplay, setDescLimitDisplay] = useState('hidden-span');
+  const [descRedOutline, setDescRedOutline] = useState('');
+  const [imageUrlLimitTextMod, setImageUrlLimitTextMod] = useState('');
+  const [imageUrlLimitDisplay, setImageUrlLimitDisplay] = useState('hidden-span');
+  const [imageUrlRedOutline, setImageUrlRedOutline] = useState('');
+
+  useEffect(() => {
+    if (title.trimStart().length >= 255) setTitleLimitTextMod('red-text')
+    else setTitleLimitTextMod('')
+
+    if (title.length > 0) setTitleLimitDisplay('');
+    else setTitleLimitDisplay('hidden-span');
+  }, [title])
+
+  useEffect(() => {
+    if (description.trimStart().length >= 255) setDescLimitTextMod('red-text')
+    else setDescLimitTextMod('')
+
+    if (description.length > 0) setDescLimitDisplay('');
+    else setDescLimitDisplay('hidden-span');
+  }, [description])
+
+  useEffect(() => {
+    if (imageUrl.trimStart().length >= 255) setImageUrlLimitTextMod('red-text')
+    else setImageUrlLimitTextMod('')
+
+    if (imageUrl.length > 0) setImageUrlLimitDisplay('');
+    else setImageUrlLimitDisplay('hidden-span');
+  }, [imageUrl])
+
   const picFileTypes = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG'];
   const closeBtnImgSrc = 'https://i.imgur.com/1aSKStp.png';
 
@@ -23,12 +59,31 @@ const EditSongForm = ({ song, setShowModal }) => {
     e.preventDefault();
 
     const errors = [];
+    setTitleRedOutline('');
+    setDescRedOutline('');
+    setImageUrlRedOutline('');
 
     if (title.trim().length === 0) {
       // setValidTitle('invalid')
-      setInvalidTitle('invalidTitle')
+      // setInvalidTitle('invalidTitle');
       setTitle('');
-      errors.push('Invalid title field')
+      errors.push('Invalid title field');
+      setTitleRedOutline('red-outline');
+    }
+
+    if (title.trim().length > 255) {
+      errors.push('Title cannot exceed 255 characters');
+      setTitleRedOutline('red-outline');
+    }
+
+    if (description.trimStart().length > 255) {
+      errors.push('Description cannot exceed 255 characters');
+      setDescRedOutline('red-outline');
+    }
+
+    if (imageUrl.trim().length > 255) {
+      errors.push('Image URL cannot exceed 255 characters');
+      setImageUrlRedOutline('red-outline');
     }
 
     let validImg = picFileTypes.map(picExt => {
@@ -39,6 +94,7 @@ const EditSongForm = ({ song, setShowModal }) => {
       // setValidImgUrl('invalid');
       setInvalidImgUrl('invalidImgUrl')
       errors.push('Invalid image url field')
+      setImageUrlRedOutline('red-outline');
     }
 
     if (errors.length > 0) return;
@@ -58,18 +114,21 @@ const EditSongForm = ({ song, setShowModal }) => {
 
   const checkTitleField = (e) => {
     setTitle(e.target.value);
-    if (invalidTitle === '') return;
 
-    if (e.target.value.trim() !== '') setInvalidTitle('');
+    if (e.target.value.trim() !== '') setTitleRedOutline('');
+  }
+
+  const checkDescField = (e) => {
+    setDescription(e.target.value);
+
+    if (e.target.value.trimStart().length <= 255) setDescRedOutline('');
   }
 
   const checkImgUrlField = (e) => {
     setImageUrl(e.target.value);
 
-    if (invalidImgUrl === '') return;
-
     if (e.target.value === '') {
-      setInvalidImgUrl('')
+      setImageUrlRedOutline('')
       return;
     };
 
@@ -101,42 +160,43 @@ const EditSongForm = ({ song, setShowModal }) => {
             <p className='edit-song-field edit-title'>Title<span className='title-of-req-field'>*</span></p>
             <input
               id='edit-song-title'
-              className={`edit-song-input ${invalidTitle}`}
+              className={`edit-song-input ${titleRedOutline}`}
               // validInput={validTitle}
               type='text'
               placeholder='Name your track'
               value={title}
               onChange={checkTitleField}
             />
+            <span className={`${titleLimitTextMod} ${titleLimitDisplay}`}>{255-title.trimStart().length}/255</span>
           </label>
-          {invalidTitle !== '' && <span className='invalid-field-prompt'>Enter a title.</span>}
 
           <label>
             <p className='edit-song-field edit-description'>Description</p>
             <textarea
-              className='edit-song-textarea edit-song-input'
+              className={`edit-song-textarea edit-song-input ${descRedOutline}`}
               type='text'
               placeholder='Describe your track'
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={checkDescField}
             />
+            <span className={`${descLimitTextMod} ${descLimitDisplay}`}>{255-description.trimStart().length}/255</span>
           </label>
 
           <label>
-            <p className='edit-song-field edit-imageUrl'>Image URL</p>
+            <p className='edit-song-field edit-imageUrl'>Image URL (jpg, jpeg, png supported)</p>
             <input
-              className={`edit-song-input ${invalidImgUrl}`}
+              className={`edit-song-input ${imageUrlRedOutline}`}
               // validInput={validImgUrl}
               type='text'
               placeholder='Image your track'
               value={imageUrl}
               onChange={checkImgUrlField}
             />
+            <span className={`${imageUrlLimitTextMod} ${imageUrlLimitDisplay}`}>{255-imageUrl.trimStart().length}/255</span>
           </label>
-          {invalidImgUrl !== '' && <span className='invalid-field-prompt'>Invalid image url (jpg, jpeg, png supported)</span>}
 
           <button id='save-edit-song-btn' className='button-edit-song' type='submit'>
-            Save changes
+            Save Changes
           </button>
 
         </div>
