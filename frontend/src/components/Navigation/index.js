@@ -34,7 +34,7 @@ const Navigation = () => {
               Stream
             </NavLink>
 
-            <NavLink id='nav-left-4' activeStyle={onLinkStyle} className='header__navlink nav-container-left__navlink' style={{display:'none'}} to='/you/library'>
+            <NavLink id='nav-left-4' activeStyle={onLinkStyle} className='header__navlink nav-container-left__navlink' to='/you/library'>
               Library
             </NavLink>
 

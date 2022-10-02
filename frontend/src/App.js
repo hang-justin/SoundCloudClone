@@ -11,7 +11,8 @@ import SplashPage from './components/SplashPage';
 // import LoginFormPage from "./components/LoginFormPage";
 import SignUpFormPage from './components/SignUpFormPage';
 import Library from './components/Library';
-import { SinglePlaylist } from './components/Playlists';
+import Playlists from './components/Playlists';
+import SinglePlaylist from './components/SinglePlaylist';
 
 import * as songActions from './store/song'
 import * as sessionActions from './store/session';
@@ -85,11 +86,19 @@ function App() {
                 }
               </Route>
 
+              <Route exact path='/you/library'>
+                <Playlists />
+              </Route>
+
               <Route exact path='/:userId/songs/:songId'>
                 {/* {!user ? <Redirect to='/' /> : */}
                   {!user && <Navigation />}
                   <Song setOrToggleAudio={setOrToggleAudio} />
                 {/* } */}
+              </Route>
+
+              <Route exact path='/:userId/playlist/:playlistId'>
+                <SinglePlaylist />
               </Route>
 
               <Route exact path='/upload'>

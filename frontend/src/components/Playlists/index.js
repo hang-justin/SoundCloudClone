@@ -6,35 +6,6 @@ import * as playlistsActions from '../../store/playlists';
 
 import './Playlists.css'
 
-export const SinglePlaylist = () => {
-  const dispatch = useDispatch();
-  const currentPlaylist = useSelector(state => state.playlists.currentPlaylist)
-  const { userId, playlistId } = useParams();
-
-  // will want to hit /api/:playlistId
-  // will return said playlist with included songs
-
-  useEffect(() => {
-    dispatch(playlistsActions.getOnePlaylistWithSongs(playlistId))
-  }, [playlistId])
-
-  const needToImplement = () => {
-    alert('need to implement')
-  }
-  if (!currentPlaylist) return <div>Loading...</div>
-  return (
-    <div>
-      <div>
-        <img className='playlist-img' src={currentPlaylist.imageUrl} alt={`${currentPlaylist.name} Img`} />
-      </div>
-      <button onClick={needToImplement}>Edit</button>
-
-      {/* Note: only render below if playlist owner matches session user */}
-      <button onClick={needToImplement}>Delete</button>
-    </div>
-  );
-};
-
 const Playlists = () => {
   // const dispatch = useDispatch();
   const user = useSelector(state => state.session.user)
