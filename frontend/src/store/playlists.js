@@ -1,6 +1,7 @@
+import { loadArtistPlaylist } from "./artists";
 import { csrfFetch } from "./csrf";
 
-const GET_CURRENT_SESSION_PLAYLISTS = 'playlists/GET_CURRENT_USER_PLAYLIST';
+const LOAD_USER_PLAYLISTS = 'playlists/LOAD_USER_PLAYLIST';
 const LOAD_SINGLE_PLAYLIST_WITH_SONGS = 'playlists/LOAD_SINGLE_PLAYLIST_WITH_SONGS';
 
 export const addSongToPlaylist = (playlistId, songId) => async dispatch => {
@@ -19,11 +20,11 @@ export const addSongToPlaylist = (playlistId, songId) => async dispatch => {
 
 }
 
-const setCurrentUserPlaylists = (payload) => {
+const loadCurrentUserPlaylists = (payload) => {
   let playlists = {};
   payload.forEach(singlePlaylist => playlists[singlePlaylist.id] = singlePlaylist)
   return {
-    type: GET_CURRENT_SESSION_PLAYLISTS,
+    type: LOAD_USER_PLAYLISTS,
     playlists
   }
 }
@@ -39,15 +40,23 @@ export const getCurrentUserPlaylists = () => async dispatch => {
 
       return data.message;
     })
-  console.log('response is ', response)
-  if (response === 'No playlists found.') return response;
+
+  if (response === 'No playlists found.') {
+    dispatch(loadCurrentUserPlaylists({}));
+    return;
+  }
 
   // data is an ojbect
   // data.Playlists is an array
+  console.log('data before json is is ', response)
   let data = await response.json();
-  console.log('data returned after json is ', data)
+  console.log('data returned after json is ', data.Playlists)
 
-  await dispatch(setCurrentUserPlaylists(data.Playlists));
+
+
+  await dispatch(loadArtistPlaylist(data.Playlists));
+  console.log('whoa whoa whoa')
+  await dispatch(loadCurrentUserPlaylists(data.Playlists));
 
   return data;
 }
@@ -77,7 +86,7 @@ const playlistsReducer = (state = initialState, action) => {
   let newState = JSON.parse(JSON.stringify(state))
 
   switch (action.type) {
-    case GET_CURRENT_SESSION_PLAYLISTS:
+    case LOAD_USER_PLAYLISTS:
       console.log('action.playlists is ', action.playlists)
       for (let songId in action.playlists) {
         newState[songId] = action.playlists[songId]
@@ -86,7 +95,6 @@ const playlistsReducer = (state = initialState, action) => {
       // action.playlists.forEach(playlist => {
       //   newState[playlist.id] = playlist
       // })
-      newState.currentUser = action.playlists;
       return newState;
 
     case LOAD_SINGLE_PLAYLIST_WITH_SONGS:

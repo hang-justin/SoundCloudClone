@@ -1,17 +1,26 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route, Switch, useParams } from 'react-router-dom';
+import { getCurrentUserPlaylists } from "../../store/playlists";
 
-import * as playlistsActions from '../../store/playlists';
 
 import './Playlists.css'
 
 const Playlists = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const user = useSelector(state => state.session.user)
-  const userPlaylists = useSelector(state => state.playlists.currentUser)
-
+  const artists = useSelector(state => state.artists)
+  const playlists = useSelector(state => state.playlists)
   const [errors, setErrors] = useState([]);
+
+  if (!playlists) {
+    dispatch(getCurrentUserPlaylists())
+    return <div>Loading...</div>
+  }
+
+  const userPlaylistIds = artists[user.id].playlists
+  console.log('user playlists are ', userPlaylistIds)
+
 
   // need to dispatch thunk to retrieve associated playlists
   // /api/playlists/current => retrieves all of sessionUser's playlists
@@ -32,8 +41,9 @@ const Playlists = () => {
   // }
 
   let playlistDiv = [];
-  for (let playlistId in userPlaylists) {
-    let playlist = userPlaylists[playlistId];
+  for (let playlistId in userPlaylistIds) {
+    let playlist = playlists[playlistId];
+    console.log('playlist in the for loop is ', )
 
     // To render current user's playlists
     playlistDiv.push(
