@@ -29,7 +29,8 @@
     "sequelize": "npm run --prefix backend sequelize",
     "sequelize-cli": "npm run --prefix backend sequelize-cli",
     "start": "npm start --prefix backend",
-    "build": "node psql-setup-script.js"
+    "build": "npm run build --prefix backend",
+    "render-postbuild": "npm run build --prefix frontend"
   },
   "keywords": [],
   "author": "",
