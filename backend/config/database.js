@@ -1,5 +1,7 @@
 const config = require ('./index')
 
+// reset --hard to remove changes made for render.com
+
 module.exports = {
   development: {
     storage: config.dbFile,
