@@ -2,6 +2,8 @@ const config = require ('./index')
 
 // reset --hard to remove changes made for render.com
 
+// comment added for commit - attempting to remove changes on main branch
+
 module.exports = {
   development: {
     storage: config.dbFile,
