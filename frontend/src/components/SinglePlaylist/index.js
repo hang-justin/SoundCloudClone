@@ -17,6 +17,9 @@ const SinglePlaylist = () => {
     dispatch(getOnePlaylistWithSongs(playlistId))
   }, [playlistId])
 
+  // Implement another guard clause where no playlists are found?
+  if (!currentPlaylist) return <div>Loading...</div>
+
   if (!currentPlaylist.Songs) return <div>Loading...</div>
   const songIds = Object.keys(currentPlaylist.Songs)
   console.log('songIds are ', songIds)
@@ -34,8 +37,6 @@ const SinglePlaylist = () => {
     // playlistId, songId
   }
 
-
-  if (!currentPlaylist) return <div>Loading...</div>
 
   return (
     <div>

@@ -1,0 +1,115 @@
+div.song-card-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+div.song-card-poster {
+    padding-left: 15px;
+    margin-bottom: 1px;
+}
+
+.song-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.song-container__song-image {
+    display: inline-block;
+    padding-left: 15px;
+    align-self: center;
+}
+
+img.song-image {
+    /* display: inline-block; */
+    /* box-sizing: border-box; */
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    height: 165px;
+    width: 165px;
+}
+
+.song-content {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    /* height: 165px; */
+
+    width: calc(100% - 220px);
+}
+
+.song-content-links {
+    display: flex;
+    flex-direction: row;
+}
+
+button#stream-card-toggle-play-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    border: none;
+    background-color: rgb(255, 120, 0);
+
+    padding: 0;
+    margin-right: 5px;
+}
+
+img#stream-card-toggle-play-img {
+    width: 35px;
+    /* margin-left: 5px; */
+    /* margin-top: 1px; */
+}
+
+.song-content-links__song-author-title {
+    display: flex;
+    flex-direction: column;
+}
+
+div.song-card__artist-name {
+    font-size: small;
+    color: gray;
+}
+
+div.song-card__song-title {
+    font-size: large;
+}
+
+div.waveform-container {
+    display: flex;
+    width: 100%;
+}
+
+img.song-waveform-img {
+    max-height: 104px;
+    width: 100%;
+
+    /* min-width: 400px; */
+    /* max-width: 650px; */
+
+    /* object-fit: cover; */
+}
+
+.stream-comp__audience-ui-btns {
+    flex-direction: row;
+}
+
+button.alter-track-btns,
+.add-song-to-playlist-icon {
+    margin-top: auto;
+    margin-right: 5px;
+    height: 20px;
+    width: 30px;
+
+    background-color: transparent;
+    border: 0.5px solid gray;
+    border-radius: 5px;
+}
+
+.add-song-to-playlist-icon-txt {
+    font-size: 18px;
+    font-weight: 900;
+    text-align: center;
+}

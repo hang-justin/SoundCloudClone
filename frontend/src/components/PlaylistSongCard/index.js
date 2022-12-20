@@ -5,10 +5,13 @@ const PlaylistSongCard = ({ songId }) => {
   const songs = useSelector(state => state.songs)
   const song = songs[songId]
   console.log('PlaylistSongCard component rendering')
-  
+
 
   // Put in a guard clause
   // if (!song) { run dispatch to retrieve song/songs}
+  if (!song) {
+    return;
+  }
 
   return (
     <div>

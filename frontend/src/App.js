@@ -97,7 +97,7 @@ function App() {
                 {/* } */}
               </Route>
 
-              <Route exact path='/:userId/playlist/:playlistId'>
+              <Route exact path='/sets/:playlistId'>
                 <SinglePlaylist />
               </Route>
 

@@ -22,6 +22,7 @@ export const addSongToPlaylist = (playlistId, songId) => async dispatch => {
 
 const loadCurrentUserPlaylists = (payload) => {
   let playlists = {};
+  console.log('playlists are : ', payload)
   payload.forEach(singlePlaylist => playlists[singlePlaylist.id] = singlePlaylist)
   return {
     type: LOAD_USER_PLAYLISTS,
@@ -42,7 +43,7 @@ export const getCurrentUserPlaylists = () => async dispatch => {
     })
 
   if (response === 'No playlists found.') {
-    dispatch(loadCurrentUserPlaylists({}));
+    dispatch(loadCurrentUserPlaylists([]));
     return;
   }
 
@@ -53,9 +54,10 @@ export const getCurrentUserPlaylists = () => async dispatch => {
   console.log('data returned after json is ', data.Playlists)
 
 
-
+  // Attach playlist ids to the artist slice of state
   await dispatch(loadArtistPlaylist(data.Playlists));
   console.log('whoa whoa whoa')
+  // Populate the playlist slice of state
   await dispatch(loadCurrentUserPlaylists(data.Playlists));
 
   return data;

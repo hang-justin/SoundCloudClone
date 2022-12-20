@@ -105,6 +105,18 @@ div.audio-footer-container {
   flex-direction: row;
 }
 
+.flx-row-justify-align-ctr {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.flx-row-align-ctr {
+  display: flex;
+  align-items: center;
+}
+
 .flx-row-wrap {
   display: flex;
   flex-direction: row;

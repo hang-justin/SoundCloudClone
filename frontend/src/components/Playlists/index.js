@@ -18,6 +18,10 @@ const Playlists = () => {
     return <div>Loading...</div>
   }
 
+  if (!artists[user.id]) {
+    return <div>Loading artist...</div>
+  }
+
   const userPlaylistIds = artists[user.id].playlists
   console.log('user playlists are ', userPlaylistIds)
 
@@ -48,7 +52,7 @@ const Playlists = () => {
     // To render current user's playlists
     playlistDiv.push(
       <div className='playlist-container' id={`playlistDiv${playlist.id}`}>
-        <NavLink className='playlist-link' to={`/${playlist.userId}/playlist/${playlist.id}`}>
+        <NavLink className='playlist-link' to={`/sets/${playlist.id}`}>
           <div>
             <img className='playlist-img' src={playlist.imageUrl} alt={`${playlist.name} Img`} />
           </div>
@@ -66,8 +70,8 @@ const Playlists = () => {
       <button>Create a playlist</button>
       <button>Select Playlist</button>
 
-      <p>{`${user.username}'s wack playlists`}</p>
-      <div className='all-playlist-container'>
+      <p>{`Hear your own playlists and the playlists you’ve liked:`}</p>
+      <div className='user-playlist-container'>
         {playlistDiv}
       </div>
 
