@@ -4,7 +4,7 @@ import './StreamSongCards.css'
 
 const StreamSongCards = ({songs, setOrToggleAudio}) => {
     return (
-        songs.map((song) => <SongCard setOrToggleAudio={setOrToggleAudio} song={song} />)
+        songs.map((song) => <SongCard key={song.id} setOrToggleAudio={setOrToggleAudio} song={song} />)
     )
 }
 

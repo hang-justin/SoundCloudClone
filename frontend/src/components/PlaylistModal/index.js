@@ -14,7 +14,7 @@ const PlaylistModal = ({song, showPlaylistModal, setShowPlaylistModal}) => {
 
             {showPlaylistModal && (
             <Modal onClose={() => setShowPlaylistModal(false)}>
-                <PlaylistForm setShowPlaylistModal={setShowPlaylistModal}/>
+                <PlaylistForm setShowPlaylistModal={setShowPlaylistModal} song={song}/>
             </Modal>
             )}
         </>

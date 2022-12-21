@@ -1,0 +1,21 @@
+#add-song-to-playlist-form {
+    width: 600px;
+
+    position: relative;
+
+    box-sizing: border-box;
+    padding: 25px;
+}
+
+#close-playlist-modal-btn {
+    background-color: transparent;
+    border: none;
+
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+#add-to-or-create-playlist-option {
+    gap: 20px;
+}
