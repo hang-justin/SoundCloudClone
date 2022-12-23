@@ -1,7 +1,10 @@
 
+import { useState } from 'react';
 import './PlaylistForm.css'
 
 const PlaylistForm = ({ song }) => {
+    const [activePlaylistOption, setActivePlaylistOption] = useState('add-to-playlist');
+
     console.log(song.id)
 
     const closeBtnImgSrc = 'https://i.imgur.com/1aSKStp.png';
@@ -13,13 +16,21 @@ const PlaylistForm = ({ song }) => {
             </button>
 
             <div id='add-to-or-create-playlist-option' className='flx-row'>
-                <div>
+                <div
+                    className={`playlist-options-header ${activePlaylistOption === 'add-to-playlist' ? 'active-playlist-option' : ''}`}
+                    onClick={() => setActivePlaylistOption('add-to-playlist')}
+                    >
                     Add to playlist
                 </div>
-                <div>
+                <div
+                    className={`playlist-options-header ${activePlaylistOption === 'create-and-add-to-playlist' ? 'active-playlist-option' : ''}`}
+                    onClick={() => setActivePlaylistOption('create-and-add-to-playlist')}
+                    >
                     Create a playlist
                 </div>
             </div>
+
+            
 
         </div>
     )

@@ -19,3 +19,29 @@
 #add-to-or-create-playlist-option {
     gap: 20px;
 }
+
+.playlist-options-header {
+    cursor: pointer;
+
+    border-bottom: 2px solid transparent;
+
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.playlist-options-header:hover {
+    border-bottom: 2px solid black;
+}
+
+
+.active-playlist-option {
+    cursor: default;
+
+    border-bottom: 2px solid var(--orange-one);
+
+    color: var(--orange-one);
+}
+
+.active-playlist-option:hover {
+    border-bottom: 2px solid var(--orange-one);
+}
