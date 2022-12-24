@@ -1,5 +1,7 @@
 
 import { useState } from 'react';
+import AddToExistingPlaylist from './AddToExistingPlaylist';
+import CreateNewPlaylistForSong from './CreateNewPlaylistForSong';
 import './PlaylistForm.css'
 
 const PlaylistForm = ({ song }) => {
@@ -30,7 +32,11 @@ const PlaylistForm = ({ song }) => {
                 </div>
             </div>
 
-            
+            {
+                activePlaylistOption === 'add-to-playlist' ?
+                <AddToExistingPlaylist /> :
+                <CreateNewPlaylistForSong />
+            }
 
         </div>
     )

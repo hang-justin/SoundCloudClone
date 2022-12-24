@@ -1,4 +1,6 @@
 #add-song-to-playlist-form {
+    gap: 20px;
+    
     width: 600px;
 
     position: relative;

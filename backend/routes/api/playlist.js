@@ -68,6 +68,7 @@ const getPlaylistById = async (req, res, next) => {
       through: { attributes: [] } // <-- prevents mapping object from being added (join through table)
     }
   });
+
   if (!playlist) return next(paramNotFoundErrFor(`Playlist`))
 
   res.statusCode = 200;
@@ -116,7 +117,13 @@ const deletePlaylist = async (req, res, next) => {
 const getAllPlaylists = async (req, res, next) => {
   const userId = req.user.id;
 
-  const playlists = await Playlist.findAll({ where: { userId } })
+  const playlists = await Playlist.findAll({
+    where: { userId },
+    include: {
+      model: Song,
+      through: { attributes: [] }
+    }
+  })
 
   if (!playlists.length) {
     res.statusCode = 404;
