@@ -56,7 +56,6 @@ export const getCurrentUserPlaylists = () => async dispatch => {
 
   // Attach playlist ids to the artist slice of state
   await dispatch(loadArtistPlaylist(data.Playlists));
-  console.log('whoa whoa whoa')
   // Populate the playlist slice of state
   await dispatch(loadCurrentUserPlaylists(data.Playlists));
 
@@ -89,9 +88,13 @@ const playlistsReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case LOAD_USER_PLAYLISTS:
-      console.log('action.playlists is ', action.playlists)
-      for (let songId in action.playlists) {
-        newState[songId] = action.playlists[songId]
+
+      // Rewrite playlist.Songs to only include the id rather than the entire song object
+      for (let playlistId in action.playlists) {
+        action.playlists[playlistId].songs = {};
+        action.playlists[playlistId].Songs.forEach( song => action.playlists[playlistId].songs[song.id] = song.id)
+        delete action.playlists[playlistId].Songs;
+        newState[playlistId] = action.playlists[playlistId]
       }
 
       // action.playlists.forEach(playlist => {

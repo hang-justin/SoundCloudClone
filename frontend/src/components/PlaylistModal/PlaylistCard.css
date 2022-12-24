@@ -1,0 +1,47 @@
+.add-to-playlist-card {
+    gap: 8px;
+}
+
+.add-playlist-bot-border {
+    padding-bottom: 20px;
+    border-bottom: 0.5px solid rgba(128, 128, 128, 0.25);
+}
+
+.playlist-info {
+    justify-content: space-evenly;
+}
+
+.add-to-playlist-img {
+    height: 50px;
+    width: 50px;
+}
+
+.add-remove-playlist-song {
+    margin-left: auto;
+    align-self: center;
+
+    padding: 3px 10px;
+    background-color: transparent;
+    border-radius: 5px;
+
+    text-align: center;
+    font-size: 16px;
+}
+
+.remove-song-from-playlist {
+    border: 1px solid rgba(128, 128, 128, 0.25);
+
+    color: var(--orange-one);
+}
+
+.remove-song-from-playlist:hover {
+    border: 2px solid var(--orange-one)
+}
+
+.add-song-to-playlist {
+    border: 1px solid rgba(128, 128, 128, 0.25);
+}
+
+.add-song-to-playlist:hover {
+    border: 2px solid rgba(128, 128, 128, 1);
+}

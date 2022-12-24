@@ -1,6 +1,11 @@
+#modal-content {
+    top: 15%;
+    transform: translate(-50%, 0%);
+}
+
 #add-song-to-playlist-form {
     gap: 20px;
-    
+
     width: 600px;
 
     position: relative;
@@ -28,7 +33,7 @@
     border-bottom: 2px solid transparent;
 
     font-weight: bold;
-    font-size: 18px;
+    font-size: 22px;
 }
 
 .playlist-options-header:hover {

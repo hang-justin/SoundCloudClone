@@ -133,6 +133,13 @@ div.audio-footer-container {
   flex-direction: column;
 }
 
+.flx-col-justify-align-ctr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .gray-text {
   color: gray;
 }

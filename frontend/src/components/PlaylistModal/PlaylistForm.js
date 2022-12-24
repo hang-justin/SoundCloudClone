@@ -4,7 +4,7 @@ import AddToExistingPlaylist from './AddToExistingPlaylist';
 import CreateNewPlaylistForSong from './CreateNewPlaylistForSong';
 import './PlaylistForm.css'
 
-const PlaylistForm = ({ song }) => {
+const PlaylistForm = ({ song, setShowPlaylistModal }) => {
     const [activePlaylistOption, setActivePlaylistOption] = useState('add-to-playlist');
 
     console.log(song.id)
@@ -13,7 +13,7 @@ const PlaylistForm = ({ song }) => {
 
     return (
         <div id='add-song-to-playlist-form' className='flx-col'>
-            <button id='close-playlist-modal-btn'>
+            <button id='close-playlist-modal-btn' onClick={() => setShowPlaylistModal(false)}>
                 <img id='close-login-img' src={closeBtnImgSrc} />
             </button>
 
@@ -34,7 +34,7 @@ const PlaylistForm = ({ song }) => {
 
             {
                 activePlaylistOption === 'add-to-playlist' ?
-                <AddToExistingPlaylist /> :
+                <AddToExistingPlaylist songToAdd={song} /> :
                 <CreateNewPlaylistForSong />
             }
 

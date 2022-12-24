@@ -1,41 +1,29 @@
 import { useSelector } from "react-redux"
 
 import './AddToExistingPlaylist.css'
+import PlaylistCard from "./PlaylistCard"
 
-const PlaylistCard = ({ playlist }) => {
 
-    return (
-        <div className='add-to-playlist-card flx-row'>
-            <img src={playlist.imageUrl} className='add-to-playlist-img' />
-
-            <div className='playlist-info flx-col'>
-                <div className='playlist-name'>
-                    {playlist.name}
-                </div>
-
-                <div className='playlist-track-count'>
-                    
-                </div>
-            </div>
-
-            {`${playlist.id} ${playlist.name}`}
-        </div>
-    )
-}
-
-const AddToExistingPlaylist = () => {
+const AddToExistingPlaylist = ({ songToAdd }) => {
     const sessionUser = useSelector(state => state.session.user)
     const currentUserId = sessionUser.id
 
     const userInfo = useSelector(state => state.artists[currentUserId])
-    const userPlaylistsIds = Object.keys(userInfo.playlists)
+    let userPlaylistsIds
+    userInfo.playlists ? userPlaylistsIds = Object.keys(userInfo.playlists) : userPlaylistsIds = []
+    // userPlaylistsIds = Object.keys(userInfo.playlists)
 
     const allPlaylists = useSelector(state => state.playlists)
 
-
-
     return (
-        userPlaylistsIds.map( playlistId => <PlaylistCard key={playlistId} playlist={allPlaylists[playlistId]} />)
+        userPlaylistsIds.map( (playlistId, index) => (
+                <PlaylistCard
+                    key={playlistId}
+                    songToAdd={songToAdd}
+                    playlist={allPlaylists[playlistId]}
+                    bottomBorder={index !== userPlaylistsIds.length - 1}
+                />
+            ))
     )
 }
 
