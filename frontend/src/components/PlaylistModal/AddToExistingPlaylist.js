@@ -4,7 +4,7 @@ import './AddToExistingPlaylist.css'
 import PlaylistCard from "./PlaylistCard"
 
 
-const AddToExistingPlaylist = ({ songToAdd }) => {
+const AddToExistingPlaylist = ({ songToAddRemove }) => {
     const sessionUser = useSelector(state => state.session.user)
     const currentUserId = sessionUser.id
 
@@ -19,7 +19,7 @@ const AddToExistingPlaylist = ({ songToAdd }) => {
         userPlaylistsIds.map( (playlistId, index) => (
                 <PlaylistCard
                     key={playlistId}
-                    songToAdd={songToAdd}
+                    songToAddRemove={songToAddRemove}
                     playlist={allPlaylists[playlistId]}
                     bottomBorder={index !== userPlaylistsIds.length - 1}
                 />

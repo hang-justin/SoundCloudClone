@@ -7,7 +7,7 @@ import './PlaylistForm.css'
 const PlaylistForm = ({ song, setShowPlaylistModal }) => {
     const [activePlaylistOption, setActivePlaylistOption] = useState('add-to-playlist');
 
-    console.log(song.id)
+    // console.log(song.id)
 
     const closeBtnImgSrc = 'https://i.imgur.com/1aSKStp.png';
 
@@ -34,7 +34,7 @@ const PlaylistForm = ({ song, setShowPlaylistModal }) => {
 
             {
                 activePlaylistOption === 'add-to-playlist' ?
-                <AddToExistingPlaylist songToAdd={song} /> :
+                <AddToExistingPlaylist songToAddRemove={song} /> :
                 <CreateNewPlaylistForSong />
             }
 

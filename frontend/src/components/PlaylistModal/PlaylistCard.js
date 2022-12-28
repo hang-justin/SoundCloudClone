@@ -1,32 +1,33 @@
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { addSongToPlaylist } from '../../store/playlists'
+import { addSongToPlaylist, deleteSongFromPlaylist } from '../../store/playlists'
 import './PlaylistCard.css'
 
-const RemoveFromPlaylistBtn = ({ playlist, songToAdd }) => {
+const RemoveFromPlaylistBtn = ({ playlist, songToAddRemove }) => {
+    const dispatch = useDispatch();
 
     return (
         <button
             className={`add-remove-playlist-song remove-song-from-playlist`}
-            onClick={() => console.log('hi')}>
+            onClick={() => dispatch(deleteSongFromPlaylist(songToAddRemove.id, playlist.id))}>
             Added
         </button>
     )
 }
-const AddToPlaylistBtn = ({playlist, songToAdd }) => {
+const AddToPlaylistBtn = ({playlist, songToAddRemove }) => {
     const dispatch = useDispatch();
 
     return (
         <button
             className={`add-remove-playlist-song add-song-to-playlist`}
-            onClick={() => dispatch(addSongToPlaylist(songToAdd.id, playlist.id))}>
+            onClick={() => dispatch(addSongToPlaylist(songToAddRemove.id, playlist.id))}>
             Add to playlist
         </button>
     )
 }
 
-const PlaylistCard = ({ playlist, bottomBorder, songToAdd }) => {
-    const isSongInPlaylist = !!playlist.songs[songToAdd.id]
+const PlaylistCard = ({ playlist, bottomBorder, songToAddRemove }) => {
+    const isSongInPlaylist = !!playlist.songs[songToAddRemove.id]
 
     return (
         <div className={`add-to-playlist-card flx-row ${bottomBorder ? 'add-playlist-bot-border' : ''}`}>
@@ -48,8 +49,8 @@ const PlaylistCard = ({ playlist, bottomBorder, songToAdd }) => {
 
             {
                 isSongInPlaylist ?
-                <RemoveFromPlaylistBtn playlist={playlist} songToAdd={songToAdd} /> :
-                <AddToPlaylistBtn playlist={playlist} songToAdd={songToAdd} />
+                <RemoveFromPlaylistBtn playlist={playlist} songToAddRemove={songToAddRemove} /> :
+                <AddToPlaylistBtn playlist={playlist} songToAddRemove={songToAddRemove} />
             }
 
         </div>

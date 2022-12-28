@@ -14,7 +14,7 @@ const loadArtist = (artist) => {
 }
 
 export const loadArtistPlaylist = (playlists) => {
-  console.log('array is ', playlists)
+  // console.log('array is ', playlists)
 
   return {
     type: LOAD_ARTIST_PLAYLISTS,

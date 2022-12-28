@@ -47,7 +47,7 @@ const Playlists = () => {
   let userPlaylists = [];
   for (let playlistId in userPlaylistIds) {
     let playlist = playlists[playlistId];
-    console.log('playlist in the for loop is ', )
+    // console.log('playlist in the for loop is ', )
 
     // To render current user's playlists
     userPlaylists.push(

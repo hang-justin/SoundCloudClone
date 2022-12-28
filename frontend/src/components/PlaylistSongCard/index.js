@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 const PlaylistSongCard = ({ songId }) => {
   const songs = useSelector(state => state.songs)
   const song = songs[songId]
-  console.log('PlaylistSongCard component rendering')
+  // console.log('PlaylistSongCard component rendering')
 
 
   // Put in a guard clause

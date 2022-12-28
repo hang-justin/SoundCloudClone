@@ -22,7 +22,7 @@ const SinglePlaylist = () => {
 
   if (!currentPlaylist.songs) return <div>Loading...</div>
   const songIds = Object.keys(currentPlaylist.songs)
-  console.log('songIds are ', songIds)
+  // console.log('songIds are ', songIds)
 
   // will want to hit /api/:playlistId
   // will return said playlist with included songs

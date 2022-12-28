@@ -4,6 +4,7 @@ import { csrfFetch } from "./csrf";
 const LOAD_USER_PLAYLISTS = 'playlists/LOAD_USER_PLAYLIST';
 const LOAD_SINGLE_PLAYLIST_WITH_SONGS = 'playlists/LOAD_SINGLE_PLAYLIST_WITH_SONGS';
 const ADD_SONG_TO_PLAYLIST = 'playlists/ADD_SONG_TO_PLAYLIST'
+const REMOVE_SONG_FROM_PLAYLIST = 'playlists/REMOVE_SONG_FROM_PLAYLIST'
 
 const addSongToPlaylistStore = (playlistSong) => {
   // playlistSong = { playlistId, songId, updatedAt, createdAt }
@@ -18,7 +19,7 @@ const addSongToPlaylistStore = (playlistSong) => {
 
 export const addSongToPlaylist = (songId, playlistId) => async dispatch => {
 
-  let response = await csrfFetch(`/api/playlists/${playlistId}/songs`, {
+  let response = await csrfFetch(`/api/playlists/${playlistId}/songs/add`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json'},
     body: JSON.stringify({ songId })
@@ -26,16 +27,40 @@ export const addSongToPlaylist = (songId, playlistId) => async dispatch => {
 
   if (response.ok) {
     let playlistSong = await response.json();
-    console.log('successful response from adding playlist... need to update store next');
-    console.log(playlistSong)
+    // console.log('successful response from adding playlist... need to update store next');
+    // console.log(playlistSong)
     dispatch(addSongToPlaylistStore(playlistSong))
   }
 
 }
 
+const removeSongFromPlaylistStore = (songId, playlistId) => {
+
+  return {
+    type: REMOVE_SONG_FROM_PLAYLIST,
+    songId,
+    playlistId
+  }
+}
+
+export const deleteSongFromPlaylist = (songId, playlistId) => async dispatch => {
+
+  let response = await csrfFetch(`/api/playlists/${playlistId}/songs/delete`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json'},
+    body: JSON.stringify({ songId })
+  })
+
+  if (response.ok) {
+    let data = await response.json();
+    // console.log('data from remove song from playlist: ', data)
+    dispatch(removeSongFromPlaylistStore(songId, playlistId))
+  }
+}
+
 const loadCurrentUserPlaylists = (payload) => {
   let playlists = {};
-  console.log('playlists are : ', payload)
+  // console.log('playlists are : ', payload)
   payload.forEach(singlePlaylist => playlists[singlePlaylist.id] = singlePlaylist)
   return {
     type: LOAD_USER_PLAYLISTS,
@@ -62,9 +87,9 @@ export const getCurrentUserPlaylists = () => async dispatch => {
 
   // data is an ojbect
   // data.Playlists is an array
-  console.log('data before json is is ', response)
+  // console.log('data before json is is ', response)
   let data = await response.json();
-  console.log('data returned after json is ', data.Playlists)
+  // console.log('data returned after json is ', data.Playlists)
 
 
   // Attach playlist ids to the artist slice of state
@@ -132,6 +157,10 @@ const playlistsReducer = (state = initialState, action) => {
 
     case ADD_SONG_TO_PLAYLIST:
       newState[action.playlistId].songs[action.songId] = action.songId;
+      return newState;
+
+    case REMOVE_SONG_FROM_PLAYLIST:
+      delete newState[action.playlistId].songs[action.songId];
       return newState;
 
     default: return state;

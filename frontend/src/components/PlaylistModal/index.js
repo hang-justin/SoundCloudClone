@@ -5,7 +5,7 @@ import PlaylistForm from './PlaylistForm';
 
 const PlaylistModal = ({song, showPlaylistModal, setShowPlaylistModal}) => {
     // const [showPlaylistModal, setShowPlaylistModal] = useState(false);
-    console.log(song.id)
+    // console.log(song.id)
     return (
         <>
             {/* <button id='modal-login' onClick={() => setShowPlaylistModal(true)}>
