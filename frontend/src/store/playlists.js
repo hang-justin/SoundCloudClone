@@ -3,9 +3,20 @@ import { csrfFetch } from "./csrf";
 
 const LOAD_USER_PLAYLISTS = 'playlists/LOAD_USER_PLAYLIST';
 const LOAD_SINGLE_PLAYLIST_WITH_SONGS = 'playlists/LOAD_SINGLE_PLAYLIST_WITH_SONGS';
+const ADD_SONG_TO_PLAYLIST = 'playlists/ADD_SONG_TO_PLAYLIST'
 
-export const addSongToPlaylist = (playlistId, songId) => async dispatch => {
-  console.log('hi')
+const addSongToPlaylistStore = (playlistSong) => {
+  // playlistSong = { playlistId, songId, updatedAt, createdAt }
+
+  return {
+    type: ADD_SONG_TO_PLAYLIST,
+    songId: playlistSong.songId,
+    playlistId: playlistSong.playlistId
+  }
+
+}
+
+export const addSongToPlaylist = (songId, playlistId) => async dispatch => {
 
   let response = await csrfFetch(`/api/playlists/${playlistId}/songs`, {
     method: 'POST',
@@ -14,8 +25,10 @@ export const addSongToPlaylist = (playlistId, songId) => async dispatch => {
   })
 
   if (response.ok) {
-    let data = await response.json();
-    console.log(data);
+    let playlistSong = await response.json();
+    console.log('successful response from adding playlist... need to update store next');
+    console.log(playlistSong)
+    dispatch(addSongToPlaylistStore(playlistSong))
   }
 
 }
@@ -92,7 +105,11 @@ const playlistsReducer = (state = initialState, action) => {
       // Rewrite playlist.Songs to only include the id rather than the entire song object
       for (let playlistId in action.playlists) {
         action.playlists[playlistId].songs = {};
-        action.playlists[playlistId].Songs.forEach( song => action.playlists[playlistId].songs[song.id] = song.id)
+
+        action.playlists[playlistId].Songs.forEach( song => {
+          action.playlists[playlistId].songs[song.id] = song.id
+        })
+
         delete action.playlists[playlistId].Songs;
         newState[playlistId] = action.playlists[playlistId]
       }
@@ -107,8 +124,14 @@ const playlistsReducer = (state = initialState, action) => {
       action.playlist.Songs.forEach(song => {
         songs[song.id] = song.id
       })
-      action.playlist.Songs = songs
+      action.playlist.songs = songs
+      delete action.playlist.Songs
+      // action.playlist.Songs = songs
       newState[action.playlist.id] = action.playlist;
+      return newState;
+
+    case ADD_SONG_TO_PLAYLIST:
+      newState[action.playlistId].songs[action.songId] = action.songId;
       return newState;
 
     default: return state;

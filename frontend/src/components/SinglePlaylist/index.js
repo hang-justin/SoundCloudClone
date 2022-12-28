@@ -20,8 +20,8 @@ const SinglePlaylist = () => {
   // Implement another guard clause where no playlists are found?
   if (!currentPlaylist) return <div>Loading...</div>
 
-  if (!currentPlaylist.Songs) return <div>Loading...</div>
-  const songIds = Object.keys(currentPlaylist.Songs)
+  if (!currentPlaylist.songs) return <div>Loading...</div>
+  const songIds = Object.keys(currentPlaylist.songs)
   console.log('songIds are ', songIds)
 
   // will want to hit /api/:playlistId

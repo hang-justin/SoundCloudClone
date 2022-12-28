@@ -1,17 +1,25 @@
+import { useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+import { addSongToPlaylist } from '../../store/playlists'
 import './PlaylistCard.css'
 
 const RemoveFromPlaylistBtn = ({ playlist, songToAdd }) => {
 
     return (
-        <button className={`add-remove-playlist-song remove-song-from-playlist`} >
+        <button
+            className={`add-remove-playlist-song remove-song-from-playlist`}
+            onClick={() => console.log('hi')}>
             Added
         </button>
     )
 }
 const AddToPlaylistBtn = ({playlist, songToAdd }) => {
+    const dispatch = useDispatch();
 
     return (
-        <button className={`add-remove-playlist-song add-song-to-playlist`} >
+        <button
+            className={`add-remove-playlist-song add-song-to-playlist`}
+            onClick={() => dispatch(addSongToPlaylist(songToAdd.id, playlist.id))}>
             Add to playlist
         </button>
     )
@@ -22,11 +30,15 @@ const PlaylistCard = ({ playlist, bottomBorder, songToAdd }) => {
 
     return (
         <div className={`add-to-playlist-card flx-row ${bottomBorder ? 'add-playlist-bot-border' : ''}`}>
-            <img src={playlist.imageUrl} className='add-to-playlist-img' />
+            <NavLink to={`/sets/${playlist.id}`}>
+                <img src={playlist.imageUrl} className='add-to-playlist-img' />
+            </NavLink>
 
             <div className='playlist-info flx-col'>
                 <div className='playlist-name'>
-                    {playlist.name}
+                    <NavLink to={`sets/${playlist.id}`}>
+                        {playlist.name}
+                    </NavLink>
                 </div>
 
                 <div className='playlist-track-count'>
@@ -36,8 +48,8 @@ const PlaylistCard = ({ playlist, bottomBorder, songToAdd }) => {
 
             {
                 isSongInPlaylist ?
-                <RemoveFromPlaylistBtn /> :
-                <AddToPlaylistBtn />
+                <RemoveFromPlaylistBtn playlist={playlist} songToAdd={songToAdd} /> :
+                <AddToPlaylistBtn playlist={playlist} songToAdd={songToAdd} />
             }
 
         </div>

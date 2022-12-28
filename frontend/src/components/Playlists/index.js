@@ -44,14 +44,14 @@ const Playlists = () => {
 
   // }
 
-  let playlistDiv = [];
+  let userPlaylists = [];
   for (let playlistId in userPlaylistIds) {
     let playlist = playlists[playlistId];
     console.log('playlist in the for loop is ', )
 
     // To render current user's playlists
-    playlistDiv.push(
-      <div className='playlist-container' id={`playlistDiv${playlist.id}`}>
+    userPlaylists.push(
+      <div key={`playlist-id${playlist.id}`} className='playlist-container' id={`userPlaylists-${playlist.id}`}>
         <NavLink className='playlist-link' to={`/sets/${playlist.id}`}>
           <div>
             <img className='playlist-img' src={playlist.imageUrl} alt={`${playlist.name} Img`} />
@@ -72,7 +72,7 @@ const Playlists = () => {
 
       <p>{`Hear your own playlists and the playlists you’ve liked:`}</p>
       <div className='user-playlist-container'>
-        {playlistDiv}
+        {userPlaylists}
       </div>
 
     </div>
