@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route, Switch, useParams } from 'react-router-dom';
 import { getCurrentUserPlaylists } from "../../store/playlists";
+import { onErrorImgCoverLoader } from "../../utils";
 
 
 import './Playlists.css'
@@ -51,7 +52,7 @@ const Playlists = () => {
 
     // To render current user's playlists
     userPlaylists.push(
-      <div key={`playlist-id${playlist.id}`} className='playlist-container' id={`userPlaylists-${playlist.id}`}>
+      <div key={`playlist-id${playlist.id}`} onError={onErrorImgCoverLoader} className='playlist-container' id={`userPlaylists-${playlist.id}`}>
         <NavLink className='playlist-link' to={`/sets/${playlist.id}`}>
           <div>
             <img className='playlist-img' src={playlist.imageUrl} alt={`${playlist.name} Img`} />

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addSongToPlaylist, getOnePlaylistWithSongs } from "../../store/playlists";
+import { onErrorImgCoverLoader } from "../../utils";
 import PlaylistSongCard from "../PlaylistSongCard";
 
 
@@ -41,7 +42,7 @@ const SinglePlaylist = () => {
   return (
     <div>
       <div>
-        <img className='playlist-img' src={currentPlaylist.imageUrl} alt={`${currentPlaylist.name} Img`} />
+        <img className='playlist-img' onError={onErrorImgCoverLoader} src={currentPlaylist.imageUrl} alt={`${currentPlaylist.name} Img`} />
       </div>
       <button onClick={needToImplement}>Edit</button>
 

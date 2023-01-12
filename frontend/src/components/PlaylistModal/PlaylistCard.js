@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { addSongToPlaylist, deleteSongFromPlaylist } from '../../store/playlists'
+import { onErrorImgCoverLoader } from '../../utils'
 import './PlaylistCard.css'
 
 const RemoveFromPlaylistBtn = ({ playlist, songToAddRemove }) => {
@@ -32,7 +33,7 @@ const PlaylistCard = ({ playlist, bottomBorder, songToAddRemove }) => {
     return (
         <div className={`add-to-playlist-card flx-row ${bottomBorder ? 'add-playlist-bot-border' : ''}`}>
             <NavLink to={`/sets/${playlist.id}`}>
-                <img src={playlist.imageUrl} className='add-to-playlist-img' />
+                <img src={playlist.imageUrl} onError ={onErrorImgCoverLoader} className='add-to-playlist-img' />
             </NavLink>
 
             <div className='playlist-info flx-col'>
