@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 
 import './AddToExistingPlaylist.css'
 import PlaylistCard from "./PlaylistCard"
+import SongToAddDetailsCard from "./SongToAddDetailsCard"
 
 
 const AddToExistingPlaylist = ({ songToAddRemove }) => {
@@ -23,7 +24,7 @@ const AddToExistingPlaylist = ({ songToAddRemove }) => {
                     playlist={allPlaylists[playlistId]}
                     bottomBorder={index !== userPlaylistsIds.length - 1}
                 />
-            ))
+        ))
     )
 }
 

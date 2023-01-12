@@ -152,6 +152,14 @@ div.audio-footer-container {
   outline: 2px solid red;
 }
 
+.small-text {
+  font-size: small;
+}
+
+.large-text {
+  font-size: large;
+}
+
 .hidden-span {
   visibility: hidden;
 }

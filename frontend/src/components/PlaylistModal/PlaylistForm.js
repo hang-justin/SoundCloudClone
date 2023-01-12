@@ -3,6 +3,7 @@ import { useState } from 'react';
 import AddToExistingPlaylist from './AddToExistingPlaylist';
 import CreateNewPlaylistForSong from './CreateNewPlaylistForSong';
 import './PlaylistForm.css'
+import SongToAddDetailsCard from './SongToAddDetailsCard';
 
 const PlaylistForm = ({ song, setShowPlaylistModal }) => {
     const [activePlaylistOption, setActivePlaylistOption] = useState('add-to-playlist');
@@ -30,12 +31,15 @@ const PlaylistForm = ({ song, setShowPlaylistModal }) => {
                     >
                     Create a playlist
                 </div>
+
             </div>
+            
+            <SongToAddDetailsCard song={song} />
 
             {
                 activePlaylistOption === 'add-to-playlist' ?
                 <AddToExistingPlaylist songToAddRemove={song} /> :
-                <CreateNewPlaylistForSong />
+                <CreateNewPlaylistForSong song={song} />
             }
 
         </div>
