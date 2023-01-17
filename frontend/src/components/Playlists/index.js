@@ -6,6 +6,7 @@ import { onErrorImgCoverLoader } from "../../utils";
 
 
 import './Playlists.css'
+import PlaylistTile from "./PlaylistTile";
 
 const Playlists = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Playlists = () => {
     return <div>Loading artist...</div>
   }
 
-  const userPlaylistIds = artists[user.id].playlists
+  const userPlaylistIds = Object.keys(artists[user.id].playlists)
   console.log('user playlists are ', userPlaylistIds)
 
 
@@ -51,16 +52,16 @@ const Playlists = () => {
     // console.log('playlist in the for loop is ', )
 
     // To render current user's playlists
-    userPlaylists.push(
-      <div key={`playlist-id${playlist.id}`} onError={onErrorImgCoverLoader} className='playlist-container' id={`userPlaylists-${playlist.id}`}>
-        <NavLink className='playlist-link' to={`/sets/${playlist.id}`}>
-          <div>
-            <img className='playlist-img' src={playlist.imageUrl} alt={`${playlist.name} Img`} />
-          </div>
-          {playlist.name}
-        </NavLink>
-      </div>
-    )
+    // userPlaylists.push(
+    //   <div key={`playlist-id${playlist.id}`} className='playlist-container' id={`userPlaylists-${playlist.id}`}>
+    //     <NavLink className='playlist-link' to={`/sets/${playlist.id}`}>
+    //       <div>
+    //         <img className='playlist-img' onError={onErrorImgCoverLoader} src={playlist.imageUrl} alt={`${playlist.name} Img`} />
+    //       </div>
+    //       {playlist.name}
+    //     </NavLink>
+    //   </div>
+    // )
   }
 
   return (
@@ -73,7 +74,8 @@ const Playlists = () => {
 
       <p>{`Hear your own playlists and the playlists you’ve liked:`}</p>
       <div className='user-playlist-container'>
-        {userPlaylists}
+        {/* {userPlaylists} */}
+        {userPlaylistIds.map((playlistId) => <PlaylistTile key={playlistId}playlist={playlists[playlistId]} />)}
       </div>
 
     </div>
