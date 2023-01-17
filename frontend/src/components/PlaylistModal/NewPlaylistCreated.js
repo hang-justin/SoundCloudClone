@@ -9,10 +9,10 @@ const NewPlaylistCreated = ({ playlist }) => {
         <div className='flx-row-align-ctr'>
             <img id='newly-created-playlist-img' src={playlist.imageUrl} onError={onErrorImgCoverLoader} />
             <div id='newly-created-playlist-details' className='flx-row-space-btw'>
-                <span>
+                <span id='new-playlist-title'>
                     {playlist.name}
                 </span>
-                <button onClick={() => history.push(`/sets/${playlist.id}`)} >Go to playlist</button>
+                <button id='go-to-new-playlist-btn' onClick={() => history.push(`/sets/${playlist.id}`)} >Go to playlist</button>
             </div>
         </div>
     )

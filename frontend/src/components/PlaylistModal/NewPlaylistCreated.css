@@ -8,3 +8,25 @@
     height: 100px;
     width: 100px;
 }
+
+#go-to-new-playlist-btn {
+    margin-left: auto;
+    align-self: center;
+
+    box-sizing: border-box;
+    padding: 3px 10px;
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    border-radius: 5px;
+    background-color: transparent;
+
+    text-align: center;
+    font-size: 16px;
+}
+
+#new-playlist-title {
+    align-self: center;
+}
+
+#go-to-new-playlist-btn:hover {
+    border: 2px solid rgba(128, 128, 128, 1);
+}
