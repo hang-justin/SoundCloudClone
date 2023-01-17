@@ -1,10 +1,48 @@
 import { loadArtistPlaylist } from "./artists";
 import { csrfFetch } from "./csrf";
 
+const CREATE_PLAYLIST ='playlists/CREATE_PLAYLIST';
 const LOAD_USER_PLAYLISTS = 'playlists/LOAD_USER_PLAYLIST';
 const LOAD_SINGLE_PLAYLIST_WITH_SONGS = 'playlists/LOAD_SINGLE_PLAYLIST_WITH_SONGS';
-const ADD_SONG_TO_PLAYLIST = 'playlists/ADD_SONG_TO_PLAYLIST'
-const REMOVE_SONG_FROM_PLAYLIST = 'playlists/REMOVE_SONG_FROM_PLAYLIST'
+const ADD_SONG_TO_PLAYLIST = 'playlists/ADD_SONG_TO_PLAYLIST';
+const REMOVE_SONG_FROM_PLAYLIST = 'playlists/REMOVE_SONG_FROM_PLAYLIST';
+
+const createPlaylist = (playlist) => {
+
+  return {
+    type: CREATE_PLAYLIST,
+    playlist
+  }
+}
+
+export const createPlaylistRequest = (playlist, song) => async dispatch => {
+
+  let response = await csrfFetch(`/api/playlists`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      name: playlist.name,
+      imageUrl: playlist.imageUrl
+    })
+  })
+
+  console.log('response is :', response)
+
+  if (response.ok) {
+    let playlistInfo = await response.json();
+    // playlistInfo is
+    // {id, userId, name, imageUrl}
+
+    // update redux
+    // playlist slice of state
+    // send dispatch to add song to playlist
+
+    await dispatch(createPlaylist(playlistInfo))
+
+    await dispatch(addSongToPlaylist(song.id, playlistInfo.id))
+  }
+
+}
 
 const addSongToPlaylistStore = (playlistSong) => {
   // playlistSong = { playlistId, songId, updatedAt, createdAt }
@@ -125,8 +163,12 @@ const playlistsReducer = (state = initialState, action) => {
   let newState = JSON.parse(JSON.stringify(state))
 
   switch (action.type) {
-    case LOAD_USER_PLAYLISTS:
+    case CREATE_PLAYLIST:
+      newState[action.playlist.id] = action.playlist;
+      newState[action.playlist.id].songs = {};
+      return newState
 
+    case LOAD_USER_PLAYLISTS:
       // Rewrite playlist.Songs to only include the id rather than the entire song object
       for (let playlistId in action.playlists) {
         action.playlists[playlistId].songs = {};

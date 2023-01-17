@@ -8,6 +8,6 @@ import defaultImgCover from '../img/default-cover.jpg'
 // }
 
 export const onErrorImgCoverLoader = (e) => {
-    e.target.className = e.target.className + 'default-err-img-cover';
+    e.target.className = e.target.className + ' ' + 'default-err-img-cover';
     e.target.src = defaultImgCover;
 }

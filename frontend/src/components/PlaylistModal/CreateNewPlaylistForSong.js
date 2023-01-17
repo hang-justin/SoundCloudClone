@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
+import { addSongToPlaylist, createPlaylistRequest } from "../../store/playlists"
 
 import './CreateNewPlaylistForSong.css'
+import NewPlaylistCreated from "./NewPlaylistCreated"
 import SongToAddDetailsCard from "./SongToAddDetailsCard"
 
 const CreateNewPlaylistForSong = ({ song }) => {
+    const dispatch = useDispatch();
+
+    const [newPlaylistCreated, setNewPlaylistCreated] = useState(false);
 
     const [playlistTitle, setPlaylistTitle] = useState('')
     const [playlistCharTitleLimitDisplay, setPlaylistCharTitleLimitDisplay] = useState('hidden-span')
     const [charLimitReached, setCharLimitReached] = useState('');
+    const [playlistImageUrl, setPlaylistImageUrl] = useState('');
     const [activeButton, setActiveButton] = useState(false)
 
     useEffect(() => {
@@ -35,47 +42,61 @@ const CreateNewPlaylistForSong = ({ song }) => {
     const handleNewPlaylist = e => {
         e.preventDefault();
 
-        alert('working on it')
+        // Note: need error handlers
+
+        const playlist = {
+            name: playlistTitle,
+            imageUrl: playlistImageUrl
+        }
+
+        dispatch(createPlaylistRequest(playlist, song))
+            .then(() => setNewPlaylistCreated(true))
+
     }
 
     return (
-        <form onSubmit={handleNewPlaylist}>
-            <label>
-                <p
-                    className='create-new-playlist-label'>
-                    Playlist Title
-                    <span className='red-text'>*</span>
-                </p>
+        <>
+            {newPlaylistCreated ?
+                <NewPlaylistCreated /> :
+                <form onSubmit={handleNewPlaylist}>
+                    <label>
+                        <p
+                            className='create-new-playlist-label'>
+                            Playlist Title
+                            <span className='red-text'>*</span>
+                        </p>
 
-                <input
-                    id='create-new-playlist'
-                    className='create-new-playlist-input'
-                    type='text'
-                    value={playlistTitle}
-                    onChange={updatePlaylistTitle}
-                />
+                        <input
+                            id='create-new-playlist'
+                            className='create-new-playlist-input'
+                            type='text'
+                            value={playlistTitle}
+                            onChange={updatePlaylistTitle}
+                        />
 
-                <span
-                    id='create-playlist-char-limit'
-                    className={`${playlistCharTitleLimitDisplay} ${charLimitReached}`}
-                    >
-                    {50 - playlistTitle.trimStart().length}/50
-                </span>
-            </label>
+                        <span
+                            id='create-playlist-char-limit'
+                            className={`${playlistCharTitleLimitDisplay} ${charLimitReached}`}
+                            >
+                            {50 - playlistTitle.trimStart().length}/50
+                        </span>
+                    </label>
 
-            <br></br>
-            <br></br>
+                    <br></br>
+                    <br></br>
 
-            <button
-                id='create-new-playlist-for-song'
-                className={activeButton ? 'active-create-playlist-btn' : 'disabled-create-playlist-btn'}
-                onClick={handleNewPlaylist}
-                disabled={!activeButton}
-                >
-                Create Playlist
-            </button>
+                    <button
+                        id='create-new-playlist-for-song'
+                        className={activeButton ? 'active-create-playlist-btn' : 'disabled-create-playlist-btn'}
+                        onClick={handleNewPlaylist}
+                        disabled={!activeButton}
+                        >
+                        Create Playlist
+                    </button>
 
-        </form>
+                </form>
+        }
+        </>
     )
 }
 
