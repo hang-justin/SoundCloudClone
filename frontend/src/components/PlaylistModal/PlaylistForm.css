@@ -4,14 +4,19 @@
 }
 
 #add-song-to-playlist-form {
-    gap: 20px;
-
     width: 600px;
+    max-height: 75vh;
 
     position: relative;
-
     box-sizing: border-box;
     padding: 25px;
+    gap: 20px;
+
+    overflow-y: scroll;
+}
+
+#add-song-to-playlist-form::-webkit-scrollbar {
+    width: 0px;
 }
 
 #close-playlist-modal-btn {
