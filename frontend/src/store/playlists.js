@@ -1,4 +1,4 @@
-import { loadArtistPlaylist } from "./artists";
+import { loadArtistPlaylist, loadNewPlaylist } from "./artists";
 import { csrfFetch } from "./csrf";
 
 const CREATE_PLAYLIST ='playlists/CREATE_PLAYLIST';
@@ -26,7 +26,6 @@ export const createPlaylistRequest = (playlist, song) => async dispatch => {
     })
   })
 
-  console.log('response is :', response)
 
   if (response.ok) {
     let playlistInfo = await response.json();
@@ -37,9 +36,16 @@ export const createPlaylistRequest = (playlist, song) => async dispatch => {
     // playlist slice of state
     // send dispatch to add song to playlist
 
+    // dispatch to update the playlist slice of state
     await dispatch(createPlaylist(playlistInfo))
 
+    // dispatch to update the artist slice of state
+    // Updates current user/artist slice of state to include newly created playlist
+    await dispatch(loadNewPlaylist(playlistInfo))
+
+    // dispatch to send post request then update store
     await dispatch(addSongToPlaylist(song.id, playlistInfo.id))
+    return playlistInfo
   }
 
 }

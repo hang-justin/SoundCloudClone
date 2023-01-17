@@ -8,6 +8,7 @@ import SongToAddDetailsCard from "./SongToAddDetailsCard"
 
 const CreateNewPlaylistForSong = ({ song }) => {
     const dispatch = useDispatch();
+    const [playlistInfo, setPlaylistInfo] = useState({})
 
     const [newPlaylistCreated, setNewPlaylistCreated] = useState(false);
 
@@ -50,6 +51,7 @@ const CreateNewPlaylistForSong = ({ song }) => {
         }
 
         dispatch(createPlaylistRequest(playlist, song))
+            .then((playlistResponse) => setPlaylistInfo(playlistResponse))
             .then(() => setNewPlaylistCreated(true))
 
     }
@@ -57,7 +59,7 @@ const CreateNewPlaylistForSong = ({ song }) => {
     return (
         <>
             {newPlaylistCreated ?
-                <NewPlaylistCreated /> :
+                <NewPlaylistCreated playlist={playlistInfo} /> :
                 <form onSubmit={handleNewPlaylist}>
                     <label>
                         <p

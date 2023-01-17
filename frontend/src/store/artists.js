@@ -1,10 +1,18 @@
 import { csrfFetch } from './csrf';
 
-
 const GET_ARTIST_DETAILS = 'users/GET_ARTIST_DETAILS';
-const LOAD_ARTIST_PLAYLISTS = 'artists/LOAD_ARTIST_PLAYLISTS'
+const LOAD_ARTIST_PLAYLISTS = 'artists/LOAD_ARTIST_PLAYLISTS';
+const LOAD_NEW_PLAYLIST = 'artists/LOAD_NEW_PLAYLIST';
 
 const initialState = {};
+
+export const loadNewPlaylist = (playlistInfo) => {
+  console.log('updating artist slice of state: ' ,playlistInfo)
+  return {
+    type: LOAD_NEW_PLAYLIST,
+    playlistInfo
+  }
+}
 
 const loadArtist = (artist) => {
   return {
@@ -56,6 +64,11 @@ const artistsReducer = (state = initialState, action) => {
         if (!newState[playlist.userId].playlists) newState[playlist.userId].playlists = {}
         newState[playlist.userId].playlists[playlist.id] = playlist.id
       })
+      return newState;
+
+    case LOAD_NEW_PLAYLIST:
+      console.log('action.playlistInfo is : ', action.playlistInfo)
+      newState[action.playlistInfo.userId].playlists[action.playlistInfo.id] = action.playlistInfo.id;
       return newState;
 
     default: return state;
