@@ -8,7 +8,7 @@ const PlaylistTile = ({ playlist }) => {
     // Not needed for now since all playlists are public
 
     return (
-        <div className='playlist-tile'>
+        <div className='playlist-tile flx-col'>
             <NavLink className='playlist-link' to={`/sets/${playlist.id}`}>
                 <img
                     className='playlist-img'

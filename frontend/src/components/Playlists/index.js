@@ -73,7 +73,7 @@ const Playlists = () => {
       <button>Select Playlist</button>
 
       <p>{`Hear your own playlists and the playlists you’ve liked:`}</p>
-      <div className='user-playlist-container'>
+      <div id='user-playlist-container' className='flx-row'>
         {/* {userPlaylists} */}
         {userPlaylistIds.map((playlistId) => <PlaylistTile key={playlistId}playlist={playlists[playlistId]} />)}
       </div>

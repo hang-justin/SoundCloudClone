@@ -1,5 +1,15 @@
-.user-playlist-container {
+#user-playlist-container {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 0 80px;
+  column-gap: 80px;
+  row-gap: 40px;
+  margin-bottom: 150px;
+
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .playlist-img {
