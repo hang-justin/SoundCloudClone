@@ -98,7 +98,7 @@ function App() {
               </Route>
 
               <Route exact path='/sets/:playlistId'>
-                <SinglePlaylist />
+                <SinglePlaylist setOrToggleAudio={setOrToggleAudio}/>
               </Route>
 
               <Route exact path='/upload'>

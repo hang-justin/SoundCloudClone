@@ -4,10 +4,11 @@ import { useParams } from "react-router-dom";
 import { addSongToPlaylist, getOnePlaylistWithSongs } from "../../store/playlists";
 import { onErrorImgCoverLoader } from "../../utils";
 import PlaylistSongCard from "../PlaylistSongCard";
+import SongBanner from "../SongBanner";
 
 
 
-const SinglePlaylist = () => {
+const SinglePlaylist = ({ setOrToggleAudio }) => {
   const dispatch = useDispatch();
   const playlists = useSelector(state => state.playlists)
   const songs = useSelector(state => state.songs)
@@ -41,6 +42,9 @@ const SinglePlaylist = () => {
 
   return (
     <div>
+
+      <SongBanner setOrToggleAudio={setOrToggleAudio} />
+
       <div>
         <img className='playlist-img' onError={onErrorImgCoverLoader} src={currentPlaylist.imageUrl} alt={`${currentPlaylist.name} Img`} />
       </div>
