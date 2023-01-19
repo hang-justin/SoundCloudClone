@@ -110,6 +110,12 @@ div.audio-footer-container {
   flex-direction: row;
 }
 
+.flx-row-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .flx-row-space-btw {
   display: flex;
   flex-direction: row;

@@ -1,10 +1,13 @@
 .song-banner {
-    background: rgb(190, 96, 96);
-    background: linear-gradient(135deg, rgba(190, 96, 96, 1) 0%, rgba(149, 142, 177, 0.9329234467455622) 16%, rgba(189, 181, 219, 1) 29%, rgba(137, 161, 195, 1) 64%, rgba(103, 140, 168, 1) 100%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
     height: 380px;
-    display: flex;
-    justify-content: space-between;
+    width: 100%;
+
+    background: rgb(190, 96, 96);
+    background: linear-gradient(135deg, rgba(190, 96, 96, 1) 0%, rgba(149, 142, 177, 0.9329234467455622) 16%, rgba(189, 181, 219, 1) 29%, rgba(137, 161, 195, 1) 64%, rgba(103, 140, 168, 1) 100%);
 }
 
 .song-banner__left {

@@ -8,7 +8,9 @@ import { fetchCurrentSongWithComments } from '../../store/song';
 import { onErrorImgCoverLoader } from '../../utils';
 import { useState } from 'react';
 
-const SongBanner = ({ setOrToggleAudio, song }) => {
+import './SongBanner.css';
+
+const SongBanner = ({ setOrToggleAudio, song, playlist }) => {
     const dispatch = useDispatch();
     // song is either passed in or set from useParams
     const { songId } = useParams();
@@ -19,8 +21,23 @@ const SongBanner = ({ setOrToggleAudio, song }) => {
 
     const [songNotFound, setSongNotFound] = useState(false);
 
+    // Check if there's a song
+    // If no song, then render playlist info
+    // Else render song info
+    // Note: Would have to check if artists is in the store
+    //          Okay for now since db isn't too large
+    const title = !song ?
+                    playlist.name :
+                    song.title;
+    const name = !song ?
+                    allArtists[playlist.userId].username :
+                    allArtists[song.userId].username;
+    const imageCover = !song ?
+                    playlist.imageUrl :
+                    allSongs[song.id].imageUrl;
+
     // song = songId ? allSongs[songId] : song;
-    if (!song) song = allSongs[1]
+    // if (!song) song = allSongs[1]
 
     let playPauseBtnImg = playBtnImg;
 
@@ -47,9 +64,8 @@ const SongBanner = ({ setOrToggleAudio, song }) => {
         }
     }
 
-    if (songNotFound) return <Redirect to='/404' />
+    if (songNotFound && !playlist) return <Redirect to='/404' />
 
-    const artist = allArtists[song.userId]
     return (
         <div className='song-banner'>
 
@@ -69,13 +85,13 @@ const SongBanner = ({ setOrToggleAudio, song }) => {
                     <div className='song-banner__top__song-info'>
                         <div id='song-title'>
                             <span id='song-info__song-title'>
-                                {song.title}
+                                {title}
                             </span>
                         </div>
 
                         <div id='song-artist'>
                             <span id='song-info__song-artist'>
-                                {artist.username}
+                                {name}
                             </span>
                         </div>
                     </div>
@@ -99,8 +115,8 @@ const SongBanner = ({ setOrToggleAudio, song }) => {
                 <div className='song-image-container'>
                     <img
                         className='banner-song-image'
-                        src={song.imageUrl}
-                        alt={`${song.title}'s Cover`}
+                        src={imageCover}
+                        alt={`${title}'s Cover`}
                         onError={onErrorImgCoverLoader}
                     />
                 </div>

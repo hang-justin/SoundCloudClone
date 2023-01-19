@@ -4,15 +4,21 @@ import { useParams } from "react-router-dom";
 import { addSongToPlaylist, getOnePlaylistWithSongs } from "../../store/playlists";
 import { onErrorImgCoverLoader } from "../../utils";
 import PlaylistSongCard from "../PlaylistSongCard";
+import Social from "../Social";
 import SongBanner from "../SongBanner";
+import EditPlaylistOptions from "./EditPlaylistOptions";
 
-
+import './SinglePlaylist.css'
 
 const SinglePlaylist = ({ setOrToggleAudio }) => {
   const dispatch = useDispatch();
-  const playlists = useSelector(state => state.playlists)
-  const songs = useSelector(state => state.songs)
+
   const { userId, playlistId } = useParams();
+
+  const playlists = useSelector(state => state.playlists)
+  const allSongs = useSelector(state => state.songs)
+  const user = useSelector(state => state.session.user)
+
   const currentPlaylist = playlists[playlistId]
 
   useEffect(() => {
@@ -41,24 +47,51 @@ const SinglePlaylist = ({ setOrToggleAudio }) => {
 
 
   return (
-    <div>
+    <div id='playlist-container'>
 
-      <SongBanner setOrToggleAudio={setOrToggleAudio} />
+      <SongBanner setOrToggleAudio={setOrToggleAudio} playlist={currentPlaylist} />
+
+      <div id='playlist-info-container'>
+        <EditPlaylistOptions playlist={currentPlaylist} />
+      </div>
+
+      <div id='social-ad-container'>
+        <Social />
+      </div>
+
 
       <div>
-        <img className='playlist-img' onError={onErrorImgCoverLoader} src={currentPlaylist.imageUrl} alt={`${currentPlaylist.name} Img`} />
+
+        <div>
+          <img
+            className='playlist-img'
+            src={currentPlaylist.imageUrl}
+            alt={`${currentPlaylist.name} Img`}
+            onError={onErrorImgCoverLoader}
+          />
+        </div>
+
+        <button onClick={needToImplement}>
+          Edit
+        </button>
+
+        {/* Note: only render below if playlist owner matches session user */}
+        <button onClick={needToImplement}>
+          Delete
+        </button>
+
+        <button onClick={testAddSong}>
+          Add song 1 to playlist
+        </button>
+
+        {
+          songIds.map(songId => (<PlaylistSongCard key={`playlist${playlistId}-song${songId}`} songId={songId} />))
+        }
+
       </div>
-      <button onClick={needToImplement}>Edit</button>
 
-      {/* Note: only render below if playlist owner matches session user */}
-      <button onClick={needToImplement}>Delete</button>
-
-      <button onClick={testAddSong}>Add song 1 to playlist</button>
-
-      {
-        songIds.map(songId => (<PlaylistSongCard key={`playlist${playlistId}-song${songId}`} songId={songId} />))
-      }
     </div>
+
   );
 };
 
