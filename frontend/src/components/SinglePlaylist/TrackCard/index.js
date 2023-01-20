@@ -1,13 +1,14 @@
 import playBtnImgSrc from '../../../img/play-btn.png';
 import pauseBtnImgSrc from '../../../img/pause-btn.png';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { fetchCurrentSongWithComments } from '../../../store/song';
 import { onErrorImgCoverLoader } from '../../../utils';
 import DeleteIcon from '../../DeleteIcon';
 import './TrackCard.css';
+import PlaylistDeleteModal from '../../PlaylistDeleteModal';
 
 const TrackCard = ({ songId, index, playlist, setOrToggleAudio }) => {
     const dispatch = useDispatch();
@@ -42,48 +43,51 @@ const TrackCard = ({ songId, index, playlist, setOrToggleAudio }) => {
     if (!artist) return <div className='track-card flx-row-align-ctr track-loading'>Loading artist...</div>
 
     return (
-        <div
-            className={`track-card flx-row-align-ctr ${isActiveTrack ? 'active-track-bg' : ''}`}
-            onClick={(e) => setOrToggleAudio(e, song, playlist)}
-            >
+            <div
+                className={`track-card flx-row-align-ctr ${isActiveTrack ? 'active-track-bg' : ''}`}
+                onClick={(e) => setOrToggleAudio(e, song, playlist)}
+                >
 
-            <div className='track-img-container'>
-                <img
-                    className='track-img'
-                    src={song.imageUrl}
-                    onError={(e) => onErrorImgCoverLoader(e)}
-                />
+                <div className='track-img-container'>
+                    <img
+                        className='track-img'
+                        src={song.imageUrl}
+                        onError={(e) => onErrorImgCoverLoader(e)}
+                    />
 
-                <img
-                    className='track-img-play-pause-overlay'
-                    src={playPauseBtnImgSrc}
-                    onError={(e) => onErrorImgCoverLoader(e)}
-                />
-            </div>
+                    <img
+                        className='track-img-play-pause-overlay'
+                        src={playPauseBtnImgSrc}
+                        onError={(e) => onErrorImgCoverLoader(e)}
+                    />
+                </div>
 
-            <span className='track-index-num'>
-                {index + 1}
-            </span>
-
-            <NavLink to={`/${song.userId}/songs/${song.id}`}>
-                <span className={`playlist-song-title ${isActiveTrack ? 'active-track-text' : ''}`}>
-                    {song.title}
+                <span className='track-index-num'>
+                    {index + 1}
                 </span>
-            </NavLink>
 
-            <span className='playlist-song-author'>
-                &nbsp;
-                &nbsp;
-                -
-                &nbsp;
-                &nbsp;
-                {artist.username}
-            </span>
+                <NavLink to={`/${song.userId}/songs/${song.id}`}>
+                    <span className={`playlist-song-title ${isActiveTrack ? 'active-track-text' : ''}`}>
+                        {song.title}
+                    </span>
+                </NavLink>
 
-            <button id='remove-song-from-playlist'>
-                <DeleteIcon />
-            </button>
-        </div>
+                <span className='playlist-song-author'>
+                    &nbsp;
+                    &nbsp;
+                    -
+                    &nbsp;
+                    &nbsp;
+                    {artist.username}
+                </span>
+
+                <button
+                    id='remove-song-from-playlist'
+                    onClick={() => alert('Need to implement remove song from playlist')}
+                >
+                    <DeleteIcon />
+                </button>
+            </div>
     )
 };
 
