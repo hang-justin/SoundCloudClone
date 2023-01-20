@@ -1,7 +1,12 @@
+import playBtnImgSrc from '../../../img/play-btn.png';
+import pauseBtnImgSrc from '../../../img/pause-btn.png';
+
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { fetchCurrentSongWithComments } from '../../../store/song';
+import { onErrorImgCoverLoader } from '../../../utils';
+import DeleteIcon from '../../DeleteIcon';
 import './TrackCard.css';
 
 const TrackCard = ({ songId, index, playlist, setOrToggleAudio }) => {
@@ -14,6 +19,10 @@ const TrackCard = ({ songId, index, playlist, setOrToggleAudio }) => {
     const currentPlaylist = useSelector(state => state.audioPlayer.currentPlaylist)
     const isPlaying = useSelector(state => state.audioPlayer.isPlaying)
 
+    useEffect(() => {
+        if (!song) dispatch(fetchCurrentSongWithComments(songId));
+    }, [])
+
     const isCurrentPlaylistPlaying = currentPlaylist ?
                                         playlist.id === currentPlaylist.id :
                                         false;
@@ -22,16 +31,15 @@ const TrackCard = ({ songId, index, playlist, setOrToggleAudio }) => {
                             currentTrack.id === +songId :
                             false;
 
-    useEffect(() => {
-        if (!song) dispatch(fetchCurrentSongWithComments(songId));
-    }, [])
+    let playPauseBtnImgSrc = playBtnImgSrc;
+    if (isCurrentPlaylistPlaying && isActiveTrack && isPlaying) playPauseBtnImgSrc = pauseBtnImgSrc;
 
     // GUARD CLAUSE
     // return JSX while song is getting fetched
-    if (!song ) return <div>Loading song...</div>
+    if (!song ) return <div className='track-card flx-row-align-ctr track-loading'>Loading song...</div>
 
     const artist = allArtists[song.userId];
-    if (!artist) return <div>Loading artist...</div>
+    if (!artist) return <div className='track-card flx-row-align-ctr track-loading'>Loading artist...</div>
 
     return (
         <div
@@ -39,10 +47,19 @@ const TrackCard = ({ songId, index, playlist, setOrToggleAudio }) => {
             onClick={(e) => setOrToggleAudio(e, song, playlist)}
             >
 
-            <img
-                className='track-img'
-                src={song.imageUrl}
-            />
+            <div className='track-img-container'>
+                <img
+                    className='track-img'
+                    src={song.imageUrl}
+                    onError={(e) => onErrorImgCoverLoader(e)}
+                />
+
+                <img
+                    className='track-img-play-pause-overlay'
+                    src={playPauseBtnImgSrc}
+                    onError={(e) => onErrorImgCoverLoader(e)}
+                />
+            </div>
 
             <span className='track-index-num'>
                 {index + 1}
@@ -62,6 +79,10 @@ const TrackCard = ({ songId, index, playlist, setOrToggleAudio }) => {
                 &nbsp;
                 {artist.username}
             </span>
+
+            <button id='remove-song-from-playlist'>
+                <DeleteIcon />
+            </button>
         </div>
     )
 };
