@@ -5,8 +5,9 @@ import { addSongToPlaylist, getOnePlaylistWithSongs } from "../../store/playlist
 import { onErrorImgCoverLoader } from "../../utils";
 import PlaylistSongCard from "../PlaylistSongCard";
 import Social from "../Social";
-import SongBanner from "../SongBanner";
+import PlaylistSongBanner from "../PlaylistSongBanner";
 import EditPlaylistOptions from "./EditPlaylistOptions";
+import PlaylistDetails from "./PlaylistDetails";
 
 import './SinglePlaylist.css'
 
@@ -49,10 +50,12 @@ const SinglePlaylist = ({ setOrToggleAudio }) => {
   return (
     <div id='playlist-container'>
 
-      <SongBanner setOrToggleAudio={setOrToggleAudio} playlist={currentPlaylist} />
+      <PlaylistSongBanner setOrToggleAudio={setOrToggleAudio} playlist={currentPlaylist} />
 
       <div id='playlist-info-container'>
         <EditPlaylistOptions playlist={currentPlaylist} />
+
+        <PlaylistDetails setOrToggleAudio={setOrToggleAudio} playlist={currentPlaylist} />
       </div>
 
       <div id='social-ad-container'>
@@ -85,7 +88,13 @@ const SinglePlaylist = ({ setOrToggleAudio }) => {
         </button>
 
         {
-          songIds.map(songId => (<PlaylistSongCard key={`playlist${playlistId}-song${songId}`} songId={songId} />))
+          songIds.map(songId => (
+            <PlaylistSongCard
+              key={`playlist${playlistId}-song${songId}`}
+              songId={songId}
+              setOrToggleAudio={setOrToggleAudio}
+            />
+          ))
         }
 
       </div>

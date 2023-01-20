@@ -1,0 +1,17 @@
+.track-card {
+    padding: 10px;
+    border-radius: 5px;
+
+    font-weight: 300;
+}
+
+.track-card:hover {
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.25);
+}
+
+.track-img {
+    height: 30px;
+    width: 30px;
+    padding-right: 10px;
+}

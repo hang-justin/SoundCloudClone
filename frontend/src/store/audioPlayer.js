@@ -2,10 +2,11 @@ const SET_CURRENT_TRACK = 'audioPlayer/SET_CURRENT_TRACK';
 const IS_PLAYING = 'audioPlayer/IS_PLAYING';
 const REMOVE_LISTEN_HISTORY = 'audioPlayer/REMOVE_LISTEN_HISTORY';
 
-export const setActiveTrack = (track) => {
+export const setActiveTrack = (track, playlist) => {
   return {
     type: SET_CURRENT_TRACK,
-    currentTrack: track
+    currentTrack: track,
+    currentPlaylist: playlist
   };
 };
 

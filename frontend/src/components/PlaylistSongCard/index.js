@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 
 
-const PlaylistSongCard = ({ songId }) => {
+const PlaylistSongCard = ({ songId, setOrToggleAudio }) => {
   const songs = useSelector(state => state.songs)
   const song = songs[songId]
   // console.log('PlaylistSongCard component rendering')

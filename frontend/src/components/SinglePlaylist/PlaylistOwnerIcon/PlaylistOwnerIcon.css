@@ -1,0 +1,28 @@
+#playlist-owner-details {
+    width: 120px;
+    margin-right: 10px;
+}
+
+#playlist-owner-pic-container {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+
+    position: relative;
+
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 15%, rgba(255, 120, 0, 1) 39%, rgba(255, 120, 0, 1) 65%);
+}
+
+#playlist-owner-pic {
+    height: 120px;
+    width: 120px;
+    opacity: 1;
+    border-radius: 50%;
+    position: absolute;
+}
+
+#playlist-owner-username {
+    font-weight: 300;
+    word-break: break-word;
+}

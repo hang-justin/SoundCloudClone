@@ -76,7 +76,7 @@ const Song = ({ setOrToggleAudio }) => {
     dispatch(fetchCurrentSongWithComments(songId))
     .catch(async errRes => {
         const errMessage = await errRes.json();
-        
+
         // NOTE
         // perhaps we can pass the errMessage into the redirect
         // by setting songNotFound default to empty string
@@ -247,9 +247,17 @@ const Song = ({ setOrToggleAudio }) => {
 
             <div className='discourse__left artistDetails'>
               <div id='song-component-artist-pic'>
-                {artistProfilePicSrc && <img id='song-component-artist-pic' src={artistProfilePicSrc} alt='artist-pic'/>}
+                {artistProfilePicSrc &&
+                  <img
+                    id='song-component-artist-pic'
+                    src={artistProfilePicSrc} alt='artist-pic'
+                  />
+                }
               </div>
-              <div className='discourse__left__artist-name'>{artist.username}</div>
+
+              <div className='discourse__left__artist-name'>
+                {artist.username}
+              </div>
             </div>
 
 

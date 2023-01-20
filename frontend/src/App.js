@@ -46,7 +46,19 @@ function App() {
 
   if (!isLoaded) return <div>Loading...</div>
 
-  const setOrToggleAudio = (e, song) => {
+  const setOrToggleAudio = (e, song, playlistId) => {
+    // Scenarios:
+    //
+    // User plays standalone song
+    //    - no playlistId input
+    // User plays song from a playlist
+    //    - playlist input
+    // User plays same song from diff playlist
+    //    - change the playlist input
+    //    - stop audio
+    //    - replay it
+    // User plays different song
+
     if (!currentTrack) {
       dispatch(setActiveTrack(song))
       return

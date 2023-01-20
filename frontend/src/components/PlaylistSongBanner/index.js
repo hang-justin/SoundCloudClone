@@ -8,9 +8,9 @@ import { fetchCurrentSongWithComments } from '../../store/song';
 import { onErrorImgCoverLoader } from '../../utils';
 import { useState } from 'react';
 
-import './SongBanner.css';
+import './PlaylistSongBanner.css';
 
-const SongBanner = ({ setOrToggleAudio, song, playlist }) => {
+const PlaylistSongBanner = ({ setOrToggleAudio, song, playlist }) => {
     const dispatch = useDispatch();
     // song is either passed in or set from useParams
     const { songId } = useParams();
@@ -126,4 +126,4 @@ const SongBanner = ({ setOrToggleAudio, song, playlist }) => {
     )
 };
 
-export default SongBanner;
+export default PlaylistSongBanner;

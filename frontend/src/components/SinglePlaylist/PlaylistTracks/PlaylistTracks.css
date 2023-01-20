@@ -1,0 +1,8 @@
+#tracks-container {
+    width: 100%;
+}
+
+.track-index-num {
+    color: gray;
+    padding-right: 20px;
+}
