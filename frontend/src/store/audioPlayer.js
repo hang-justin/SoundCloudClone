@@ -39,6 +39,8 @@ const audioPlayerReducer = (state = initialState, action) => {
         newState.history.push(action.currentTrack.id);
       }
 
+      newState.currentPlaylist = action.currentPlaylist
+
       return newState;
 
     case IS_PLAYING:

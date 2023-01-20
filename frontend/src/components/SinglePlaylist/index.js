@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addSongToPlaylist, getOnePlaylistWithSongs } from "../../store/playlists";
 import { onErrorImgCoverLoader } from "../../utils";
-import PlaylistSongCard from "../PlaylistSongCard";
 import Social from "../Social";
 import PlaylistSongBanner from "../PlaylistSongBanner";
 import EditPlaylistOptions from "./EditPlaylistOptions";
@@ -60,43 +59,6 @@ const SinglePlaylist = ({ setOrToggleAudio }) => {
 
       <div id='social-ad-container'>
         <Social />
-      </div>
-
-
-      <div>
-
-        <div>
-          <img
-            className='playlist-img'
-            src={currentPlaylist.imageUrl}
-            alt={`${currentPlaylist.name} Img`}
-            onError={onErrorImgCoverLoader}
-          />
-        </div>
-
-        <button onClick={needToImplement}>
-          Edit
-        </button>
-
-        {/* Note: only render below if playlist owner matches session user */}
-        <button onClick={needToImplement}>
-          Delete
-        </button>
-
-        <button onClick={testAddSong}>
-          Add song 1 to playlist
-        </button>
-
-        {
-          songIds.map(songId => (
-            <PlaylistSongCard
-              key={`playlist${playlistId}-song${songId}`}
-              songId={songId}
-              setOrToggleAudio={setOrToggleAudio}
-            />
-          ))
-        }
-
       </div>
 
     </div>

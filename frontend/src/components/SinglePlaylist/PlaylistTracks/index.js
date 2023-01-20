@@ -13,9 +13,9 @@ const PlaylistTracks = ({ playlist, setOrToggleAudio }) => {
             {songIds.map((songId, index) => (
                 <TrackCard
                     key={songId}
-                    songId={songId}
+                    songId={+songId}
                     index={index}
-                    playlistId={playlist.id}
+                    playlist={playlist}
                     setOrToggleAudio={setOrToggleAudio}
                 />
             ))}

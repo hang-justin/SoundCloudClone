@@ -2,6 +2,7 @@
     padding: 10px;
     border-radius: 5px;
 
+    font-size: 14px;
     font-weight: 300;
 }
 
@@ -14,4 +15,33 @@
     height: 30px;
     width: 30px;
     padding-right: 10px;
+}
+
+.playlist-song-title:hover {
+    font-weight: 600;
+}
+
+.active-track-bg {
+    background-color: rgba(128, 128, 128, 0.25);
+}
+
+.active-track-text {
+    color: var(--orange-one);
+    font-weight: 400;
+}
+
+.active-track-text:hover {
+    font-weight: 600;
+}
+
+.playlist-song-author {
+    visibility: hidden;
+}
+
+.track-card:hover .playlist-song-author {
+    visibility: visible;
+}
+
+.active-track-bg .playlist-song-author {
+    font-weight: 400;
 }

@@ -46,7 +46,7 @@ function App() {
 
   if (!isLoaded) return <div>Loading...</div>
 
-  const setOrToggleAudio = (e, song, playlistId) => {
+  const setOrToggleAudio = (e, song, playlist) => {
     // Scenarios:
     //
     // User plays standalone song
@@ -60,7 +60,7 @@ function App() {
     // User plays different song
 
     if (!currentTrack) {
-      dispatch(setActiveTrack(song))
+      dispatch(setActiveTrack(song, playlist))
       return
     };
 
@@ -70,7 +70,7 @@ function App() {
     }
 
     if (song.id !== currentTrack.id) {
-      dispatch(setActiveTrack(song));
+      dispatch(setActiveTrack(song, playlist));
       return;
     }
   }

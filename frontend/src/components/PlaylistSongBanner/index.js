@@ -10,58 +10,71 @@ import { useState } from 'react';
 
 import './PlaylistSongBanner.css';
 
-const PlaylistSongBanner = ({ setOrToggleAudio, song, playlist }) => {
+const PlaylistSongBanner = ({ setOrToggleAudio, playlist }) => {
     const dispatch = useDispatch();
-    // song is either passed in or set from useParams
-    const { songId } = useParams();
+    const { playlistId } = useParams();
+
     const allSongs = useSelector(state => state.songs)
     const allArtists = useSelector(state => state.artists)
     const currentTrack = useSelector(state => state.audioPlayer.currentTrack)
+    const currentPlaylist = useSelector(state => state.audioPlayer.currentPlaylist)
     const isPlaying = useSelector(state => state.audioPlayer.isPlaying)
 
     const [songNotFound, setSongNotFound] = useState(false);
+
+    // First check playlist
+    // Next check song
+    const isCurrentPlaylistPlaying = currentPlaylist ?
+                                        playlist.id === currentPlaylist.id :
+                                        false;
 
     // Check if there's a song
     // If no song, then render playlist info
     // Else render song info
     // Note: Would have to check if artists is in the store
     //          Okay for now since db isn't too large
-    const title = !song ?
-                    playlist.name :
-                    song.title;
-    const name = !song ?
-                    allArtists[playlist.userId].username :
-                    allArtists[song.userId].username;
-    const imageCover = !song ?
-                    playlist.imageUrl :
-                    allSongs[song.id].imageUrl;
+
+    // Check if current playlist is being played
+    // If yes, then render the song being played
+    // If not, render playlist info
+    const title = isCurrentPlaylistPlaying ?
+                    currentTrack.title:
+                    playlist.name;
+    const name = isCurrentPlaylistPlaying ?
+                    allArtists[currentTrack.userId].username:
+                    allArtists[playlist.userId].username;
+    const imageCover = isCurrentPlaylistPlaying ?
+                    allSongs[currentTrack.id].imageUrl:
+                    playlist.imageUrl;
 
     // song = songId ? allSongs[songId] : song;
     // if (!song) song = allSongs[1]
 
+
+    // // Guard clause if song isn't in store, fetch in DB
+    // // if song doesn't exist in DB, redirect to 404
+    // if (Object.keys(allSongs).length > 0 && !currentTrack) {
+    //     dispatch(fetchCurrentSongWithComments(+songId))
+    //     .then(() => console.log('fetching song from playlilstsongbanner component'))
+    //     .catch(async errRes => {
+    //         const errMessage = await errRes.json();
+    //         console.log('fetching error from playlist song banner')
+    //         // NOTE
+    //         // perhaps we can pass the errMessage into the redirect
+    //         // by setting songNotFound default to empty string
+    //         // then put errMessage in songNotFound with errMessage string
+    //     })
+    //     .then(() => setSongNotFound(true))
+    // }
+
     let playPauseBtnImg = playBtnImg;
-
-    // Guard clause if song isn't in store, fetch in DB
-    // if song doesn't exist in DB, redirect to 404
-    if (Object.keys(allSongs).length > 0 && !song) {
-        dispatch(fetchCurrentSongWithComments(songId))
-        .catch(async errRes => {
-            const errMessage = await errRes.json();
-
-            // NOTE
-            // perhaps we can pass the errMessage into the redirect
-            // by setting songNotFound default to empty string
-            // then put errMessage in songNotFound with errMessage string
-        })
-        .then(() => setSongNotFound(true))
-    }
-
-    if (currentTrack) {
-        if (currentTrack.id === song.id) {
+    if (isCurrentPlaylistPlaying) {
+        // If current playlist is being played
+        // Change logo depending on isPlaying
             isPlaying
             ? playPauseBtnImg=pauseBtnImg
             : playPauseBtnImg=playBtnImg;
-        }
+
     }
 
     if (songNotFound && !playlist) return <Redirect to='/404' />
@@ -72,7 +85,7 @@ const PlaylistSongBanner = ({ setOrToggleAudio, song, playlist }) => {
             <div className='song-banner__left'>
                 <div className='song-banner__left__top'>
 
-                    <button id='song-banner-toggle-play' onClick={(e) => setOrToggleAudio(e, song)}>
+                    <button id='song-banner-toggle-play' onClick={(e) => setOrToggleAudio(e, currentTrack, playlist)}>
                         <img
                             id='song-component-toggle-play'
                             src={playPauseBtnImg}
