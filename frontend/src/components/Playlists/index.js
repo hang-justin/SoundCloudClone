@@ -25,8 +25,6 @@ const Playlists = () => {
   }
 
   const userPlaylistIds = Object.keys(artists[user.id].playlists)
-  console.log('user playlists are ', userPlaylistIds)
-
 
   // need to dispatch thunk to retrieve associated playlists
   // /api/playlists/current => retrieves all of sessionUser's playlists
@@ -65,7 +63,7 @@ const Playlists = () => {
   }
 
   return (
-    <div>
+    <div id='playlist-component'>
       <p>Playlists Component</p>
 
       {/* <button onClick={getCurrentUserPlaylists}>Get playlists</button> */}
@@ -73,6 +71,7 @@ const Playlists = () => {
       <button>Select Playlist</button>
 
       <p>{`Hear your own playlists and the playlists you’ve liked:`}</p>
+      
       <div id='user-playlist-container' className='flx-row'>
         {/* {userPlaylists} */}
         {userPlaylistIds.map((playlistId) => <PlaylistTile key={playlistId}playlist={playlists[playlistId]} />)}

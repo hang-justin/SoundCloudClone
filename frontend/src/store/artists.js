@@ -3,11 +3,11 @@ import { csrfFetch } from './csrf';
 const GET_ARTIST_DETAILS = 'users/GET_ARTIST_DETAILS';
 const LOAD_ARTIST_PLAYLISTS = 'artists/LOAD_ARTIST_PLAYLISTS';
 const LOAD_NEW_PLAYLIST = 'artists/LOAD_NEW_PLAYLIST';
+const DELETE_PLAYLIST_FROM_ARTIST = 'artists/DELETE_PLAYLIST_FROM_ARTIST';
 
 const initialState = {};
 
 export const loadNewPlaylist = (playlistInfo) => {
-  console.log('updating artist slice of state: ' ,playlistInfo)
   return {
     type: LOAD_NEW_PLAYLIST,
     playlistInfo
@@ -22,8 +22,6 @@ const loadArtist = (artist) => {
 }
 
 export const loadArtistPlaylist = (playlists) => {
-  // console.log('array is ', playlists)
-
   return {
     type: LOAD_ARTIST_PLAYLISTS,
     playlists
@@ -49,6 +47,13 @@ export const getTheseArtists = (artistIds) => async dispatch => {
   return;
 };
 
+export const deletePlaylistFromArtist = (playlist) => {
+  return {
+    type: DELETE_PLAYLIST_FROM_ARTIST,
+    playlist
+  }
+}
+
 const artistsReducer = (state = initialState, action) => {
   let newState = JSON.parse(JSON.stringify(state));
 
@@ -67,8 +72,11 @@ const artistsReducer = (state = initialState, action) => {
       return newState;
 
     case LOAD_NEW_PLAYLIST:
-      console.log('action.playlistInfo is : ', action.playlistInfo)
       newState[action.playlistInfo.userId].playlists[action.playlistInfo.id] = action.playlistInfo.id;
+      return newState;
+
+    case DELETE_PLAYLIST_FROM_ARTIST:
+      delete newState[action.playlist.userId].playlists[action.playlist.id];
       return newState;
 
     default: return state;

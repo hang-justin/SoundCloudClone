@@ -1,8 +1,25 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { deletePlaylistFromArtist } from '../../../store/artists';
+import { deletePlaylist } from '../../../store/playlists';
 import './PlaylistDeleteForm.css';
 
 const PlaylistDeleteForm = ({ playlist, setShowPlaylistDeleteModal }) => {
+    const history = useHistory();
+    const dispatch = useDispatch();
+
     const [showConfirmation, setShowConfirmation] = useState(false);
+
+    const handleDeletePlaylist = async () => {
+        dispatch(deletePlaylist(playlist))
+            .then(() => dispatch(deletePlaylistFromArtist(playlist)))
+            .then(() => history.push('/you/library'))
+            .catch(async err => {
+                console.log('err is :', err)
+                alert('Uh oh... Something went wrong. Please try again later.')
+            })
+        };
 
     return (
         <div id='delete-playlist-modal-form' className='flx-col'>
@@ -28,7 +45,7 @@ const PlaylistDeleteForm = ({ playlist, setShowPlaylistDeleteModal }) => {
                     Hm... Having second thoughts!
                 </button>
 
-                <button className='second-confirm-btns'>
+                <button className='second-confirm-btns' onClick={handleDeletePlaylist}>
                     Yes. Forever delete this playlist.
                 </button>
             </div>

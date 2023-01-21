@@ -1,11 +1,15 @@
+#playlist-component {
+  min-height: calc(100vh - 40px);
+}
+
 #user-playlist-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  padding: 0 80px;
-  column-gap: 80px;
+  justify-content: flex-start;
   row-gap: 40px;
+
+  padding: 0 42.5px;
   margin-bottom: 150px;
 
   box-sizing: border-box;

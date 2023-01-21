@@ -1,4 +1,4 @@
-import { loadArtistPlaylist, loadNewPlaylist } from "./artists";
+import { deletePlaylistFromArtist, loadArtistPlaylist, loadNewPlaylist } from "./artists";
 import { csrfFetch } from "./csrf";
 
 const CREATE_PLAYLIST ='playlists/CREATE_PLAYLIST';
@@ -6,6 +6,7 @@ const LOAD_USER_PLAYLISTS = 'playlists/LOAD_USER_PLAYLIST';
 const LOAD_SINGLE_PLAYLIST_WITH_SONGS = 'playlists/LOAD_SINGLE_PLAYLIST_WITH_SONGS';
 const ADD_SONG_TO_PLAYLIST = 'playlists/ADD_SONG_TO_PLAYLIST';
 const REMOVE_SONG_FROM_PLAYLIST = 'playlists/REMOVE_SONG_FROM_PLAYLIST';
+const DELETE_PLAYLIST = 'playlists/DELETE_PLAYLIST';
 
 const createPlaylist = (playlist) => {
 
@@ -163,6 +164,33 @@ export const getOnePlaylistWithSongs = (playlistId) => async dispatch => {
   await dispatch(loadPlaylistWithSongs(playlist))
 }
 
+const removePlaylist = (playlistId) => {
+  return {
+    type: DELETE_PLAYLIST,
+    playlistId
+  }
+}
+
+export const deletePlaylist = (playlist) => async dispatch => {
+  const playlistId = playlist.id;
+
+  let response = await csrfFetch(`/api/playlists/${playlistId}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ playlistId })
+  })
+    .catch(async err => {
+      let errMessage = await err.json();
+      return errMessage;
+    })
+
+  if (response.ok) {
+      dispatch(removePlaylist(playlist.id))
+      let responseMessage = await response.json();
+      return responseMessage;
+  }
+}
+
 const initialState = { currentUser: null };
 
 const playlistsReducer = (state = initialState, action) => {
@@ -209,6 +237,10 @@ const playlistsReducer = (state = initialState, action) => {
 
     case REMOVE_SONG_FROM_PLAYLIST:
       delete newState[action.playlistId].songs[action.songId];
+      return newState;
+
+    case DELETE_PLAYLIST:
+      delete newState[action.playlistId]
       return newState;
 
     default: return state;

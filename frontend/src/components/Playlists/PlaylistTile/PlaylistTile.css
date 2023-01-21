@@ -1,7 +1,7 @@
 .playlist-tile {
     width: 200px;
     box-sizing: border-box;
-    margin-right: auto;
+    margin: 0 42.5px;
 }
 
 .playlist-img {

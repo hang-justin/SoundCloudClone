@@ -28,7 +28,7 @@
 
 .first-confirm-btns:hover,
 .second-confirm-btns:hover {
-    border: 2px solid firebrick;
+    border: 2px solid black;
     font-weight: bold;
 }
 
