@@ -1,0 +1,109 @@
+.track-card {
+    padding: 10px;
+    border-radius: 5px;
+
+    font-size: 14px;
+    font-weight: 300;
+    height: 30px;
+}
+
+.track-card:hover {
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.25);
+}
+
+.track-img-container {
+    position: relative;
+}
+
+.track-img {
+    height: 30px;
+    width: 30px;
+    padding-right: 10px;
+}
+
+.track-img-play-pause-overlay {
+    position: absolute;
+    left: 7.5px;
+    top: 7.5px;
+
+    box-sizing: border-box;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: var(--orange-one);
+    opacity: 0;
+}
+
+.active-track-bg .track-img-play-pause-overlay,
+.track-card:hover .track-img-play-pause-overlay {
+    opacity: 1;
+}
+
+.playlist-song-title:hover {
+    font-weight: 600;
+}
+
+.active-track-bg {
+    background-color: rgba(128, 128, 128, 0.25);
+}
+
+
+.active-track-text {
+    color: var(--orange-one);
+    font-weight: 400;
+}
+
+.active-track-text:hover {
+    font-weight: 600;
+}
+
+.playlist-song-author {
+    visibility: hidden;
+}
+
+.track-card:hover .playlist-song-author,
+.track-card:hover #remove-song-from-playlist {
+    visibility: visible;
+}
+
+.active-track-bg .playlist-song-author {
+    font-weight: 400;
+}
+
+.edit-playlist-hide-song {
+    margin-left: auto;
+    background-color: transparent;
+    border: none;
+}
+
+.active-track-bg #remove-song-from-playlist {
+    visibility: visible;
+}
+
+.track-loading {
+    background: linear-gradient(90deg, #ff7800, #b4753c);
+    background-size: 400% 400%;
+
+    -webkit-animation: track-loading-animation 0.75s ease infinite;
+    -moz-animation: track-loading-animation 0.75s ease infinite;
+    animation: track-loading-animation 0.75s ease infinite;
+}
+
+@-webkit-keyframes track-loading-animation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+@-moz-keyframes track-loading-animation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+@keyframes track-loading-animation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}

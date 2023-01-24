@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { fetchCurrentSongWithComments } from '../../../store/song';
 import { onErrorImgCoverLoader } from '../../../utils';
-import DeleteIcon from '../../DeleteIcon';
+import DeleteIcon from '../../Icons/DeleteIcon';
 import './TrackCard.css';
 import PlaylistDeleteModal from '../../PlaylistDeleteModal';
 
@@ -16,9 +16,9 @@ const TrackCard = ({ songId, index, playlist, setOrToggleAudio }) => {
     const allSongs = useSelector(state => state.songs)
     const song = useSelector(state => state.songs[songId]);
     const allArtists = useSelector(state => state.artists);
-    const currentTrack = useSelector(state => state.audioPlayer.currentTrack)
-    const currentPlaylist = useSelector(state => state.audioPlayer.currentPlaylist)
-    const isPlaying = useSelector(state => state.audioPlayer.isPlaying)
+    const currentTrack = useSelector(state => state.audioPlayer.currentTrack);
+    const currentPlaylist = useSelector(state => state.audioPlayer.currentPlaylist);
+    const isPlaying = useSelector(state => state.audioPlayer.isPlaying);
 
     useEffect(() => {
         if (!song) dispatch(fetchCurrentSongWithComments(songId));

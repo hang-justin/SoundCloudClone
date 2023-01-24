@@ -1,15 +1,18 @@
 import { useSelector } from 'react-redux';
 
-import EditIcon from '../../EditIcon';
-import DeleteIcon from '../../DeleteIcon'
+import EditIcon from '../../Icons/EditIcon';
+import DeleteIcon from '../../Icons/DeleteIcon';
+import cancelImgSrc from '../../../img/cancel-btn.png';
 
 import './EditPlaylistOptions.css'
 import { useState } from 'react';
 import PlaylistDeleteModal from '../../PlaylistDeleteModal';
+import PlaylistEditModal from '../../PlaylistEditModal';
 
-const EditPlaylistOptions = ({ playlist }) => {
+const EditPlaylistOptions = ({ playlist, setOrToggleAudio }) => {
     const user = useSelector(state => state.session.user);
 
+    const [showPlaylistEditModal, setShowPlaylistEditModal] = useState(false);
     const [showPlaylistDeleteModal, setShowPlaylistDeleteModal] = useState(false);
 
     // GUARD CLAUSE
@@ -18,9 +21,10 @@ const EditPlaylistOptions = ({ playlist }) => {
 
     return (
         <div id='edit-playlist-options'>
+
             <button
                 className='edit-del-playlist-btns'
-                onClick={() => alert('working on it')}
+                onClick={() => setShowPlaylistEditModal(true)}
             >
                 <EditIcon />
 
@@ -28,6 +32,16 @@ const EditPlaylistOptions = ({ playlist }) => {
                     Edit
                 </span>
             </button>
+
+            {
+                showPlaylistEditModal &&
+                <PlaylistEditModal
+                    playlist={playlist}
+                    showPlaylistEditModal={showPlaylistEditModal}
+                    setShowPlaylistEditModal={setShowPlaylistEditModal}
+                    setOrToggleAudio={setOrToggleAudio}
+                />
+            }
 
             <button
                 className='edit-del-playlist-btns'

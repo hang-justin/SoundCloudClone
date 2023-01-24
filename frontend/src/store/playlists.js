@@ -1,12 +1,42 @@
 import { deletePlaylistFromArtist, loadArtistPlaylist, loadNewPlaylist } from "./artists";
 import { csrfFetch } from "./csrf";
 
-const CREATE_PLAYLIST ='playlists/CREATE_PLAYLIST';
+const CREATE_PLAYLIST = 'playlists/CREATE_PLAYLIST';
 const LOAD_USER_PLAYLISTS = 'playlists/LOAD_USER_PLAYLIST';
 const LOAD_SINGLE_PLAYLIST_WITH_SONGS = 'playlists/LOAD_SINGLE_PLAYLIST_WITH_SONGS';
 const ADD_SONG_TO_PLAYLIST = 'playlists/ADD_SONG_TO_PLAYLIST';
 const REMOVE_SONG_FROM_PLAYLIST = 'playlists/REMOVE_SONG_FROM_PLAYLIST';
 const DELETE_PLAYLIST = 'playlists/DELETE_PLAYLIST';
+const EDIT_PLAYLIST = 'playlists/EDIT_PLAYLIST';
+
+const editPlaylist = playlist => {
+  return {
+    type: EDIT_PLAYLIST,
+    playlist
+  }
+}
+
+export const editPlaylistRequest = (playlist) => async dispatch => {
+  let response = await csrfFetch(`/api/playlists/${playlist.id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: playlist.name
+    })
+  })
+
+  if (response.ok) {
+    console.log('edit went through')
+    let playlist = await response.json();
+    dispatch(editPlaylist(playlist))
+    return playlist;
+  }
+
+  else {
+    let err = await response.json();
+    return err;
+  }
+}
 
 const createPlaylist = (playlist) => {
 
@@ -20,7 +50,7 @@ export const createPlaylistRequest = (playlist, song) => async dispatch => {
 
   let response = await csrfFetch(`/api/playlists`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json'},
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       name: playlist.name,
       imageUrl: playlist.imageUrl
@@ -237,6 +267,10 @@ const playlistsReducer = (state = initialState, action) => {
 
     case REMOVE_SONG_FROM_PLAYLIST:
       delete newState[action.playlistId].songs[action.songId];
+      return newState;
+
+    case EDIT_PLAYLIST:
+      newState[action.playlist.id].name = action.playlist.name
       return newState;
 
     case DELETE_PLAYLIST:

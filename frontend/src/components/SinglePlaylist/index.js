@@ -52,7 +52,7 @@ const SinglePlaylist = ({ setOrToggleAudio }) => {
       <PlaylistSongBanner setOrToggleAudio={setOrToggleAudio} playlist={currentPlaylist} />
 
       <div id='playlist-info-container'>
-        <EditPlaylistOptions playlist={currentPlaylist} />
+        <EditPlaylistOptions playlist={currentPlaylist} setOrToggleAudio={setOrToggleAudio} />
 
         <PlaylistDetails setOrToggleAudio={setOrToggleAudio} playlist={currentPlaylist} />
       </div>

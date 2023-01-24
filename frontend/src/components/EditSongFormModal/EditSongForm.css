@@ -50,6 +50,7 @@ p.edit-song-label-header {
 
 .edit-song-input:focus {
   background-color: rgba(255, 120, 0, 0.2);
+  outline: 1px solid black;
 }
 
 input.edit-song-input {

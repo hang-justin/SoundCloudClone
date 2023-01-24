@@ -1,0 +1,51 @@
+#edit-basic-content {
+    width: 100%;
+    /* min-height: 100%; */
+    /* padding-left: 10px; */
+    box-sizing: border-box;
+    gap: 20px;
+}
+
+#edit-playlist-cover-img {
+    height: 250px;
+    width: 250px;
+    box-sizing: border-box;
+}
+
+.edit-playlist-input-header {
+    margin: 0;
+}
+
+#edit-playlist-name {
+    width: 530px;
+    box-sizing: border-box;
+}
+
+.edit-playlist-input {
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 2px;
+}
+
+.edit-playlist-input:focus {
+    background-color: rgba(255, 120, 0, 0.2);
+    outline: 1px solid black;
+}
+
+#save-playlist-changes-basic-info {
+    /* margin-left: auto;
+    margin-top: 50px; */
+}
+
+.save-playlist-changes-btn {
+    align-self: flex-end;
+
+    border: none;
+    border-radius: 5px;
+
+    padding: 10px;
+    margin-top: auto;
+
+    background-color: rgb(255, 120, 0);
+    color: white;
+}
