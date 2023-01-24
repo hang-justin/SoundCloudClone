@@ -9,6 +9,7 @@ import { onErrorImgCoverLoader } from '../../../utils';
 import DeleteIcon from '../../Icons/DeleteIcon';
 import './TrackCard.css';
 import PlaylistDeleteModal from '../../PlaylistDeleteModal';
+import { deleteSongFromPlaylist } from '../../../store/playlists';
 
 const TrackCard = ({ songId, index, playlist, setOrToggleAudio }) => {
     const dispatch = useDispatch();
@@ -41,6 +42,11 @@ const TrackCard = ({ songId, index, playlist, setOrToggleAudio }) => {
 
     const artist = allArtists[song.userId];
     if (!artist) return <div className='track-card flx-row-align-ctr track-loading'>Loading artist...</div>
+
+    const handleRemovalFromPlaylist = (e) => {
+        e.stopPropagation();
+        dispatch(deleteSongFromPlaylist(songId, playlist.id));
+    }
 
     return (
             <div
@@ -83,7 +89,7 @@ const TrackCard = ({ songId, index, playlist, setOrToggleAudio }) => {
 
                 <button
                     id='remove-song-from-playlist'
-                    onClick={() => alert('Need to implement remove song from playlist')}
+                    onClick={handleRemovalFromPlaylist}
                 >
                     <DeleteIcon />
                 </button>

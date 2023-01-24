@@ -175,3 +175,11 @@ div.audio-footer-container {
 .hidden-span {
   visibility: hidden;
 }
+
+.disabled-btn {
+  background-color: gray;
+}
+
+.disabled-btn:hover {
+  cursor: not-allowed ;
+}

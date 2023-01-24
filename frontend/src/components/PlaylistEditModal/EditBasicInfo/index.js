@@ -17,12 +17,21 @@ const EditBasicInfo = ({ playlist, setShowPlaylistEditModal }) => {
 
     const handlePlaylistName = e => {
         setPlaylistName(e.target.value.trimStart());
+        setActiveBtn(true);
 
-        if (!titleRedOutline) setTitleRedOutline('');
+        // if (!titleRedOutline) setTitleRedOutline('');
 
-        if (e.target.value.trim().length > 50) setPlaylistNameCharCountReached('red-text');
-        else if (e.target.value.trim().length === 0) setPlaylistNameCharCountReached('red-text');
+        if (e.target.value.trim().length > 50) {
+            setPlaylistNameCharCountReached('red-text');
+            setActiveBtn(false);
+        }
+        else if (e.target.value.trim().length === 0) {
+            setPlaylistNameCharCountReached('red-text');
+            setActiveBtn(false);
+        }
         else setPlaylistNameCharCountReached('');
+
+        if (e.target.value === playlist.name) setActiveBtn(false);
     }
 
     const checkPlaylistChanges = e => {
@@ -96,7 +105,7 @@ const EditBasicInfo = ({ playlist, setShowPlaylistEditModal }) => {
 
                 <button
                     id='save-playlist-changes-basic-info'
-                    className='save-playlist-changes-btn'
+                    className={`save-playlist-changes-btn ${!activeBtn && 'disabled-btn'}`}
                     onClick={checkPlaylistChanges}
                     disabled={!activeBtn}
                     >
