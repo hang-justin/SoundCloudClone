@@ -1,3 +1,5 @@
+import emptyPlaylistImgSrc from '../../../img/no-tracks.png';
+import { onErrorImgCoverLoader } from '../../../utils';
 import TrackCard from '../TrackCard';
 import './PlaylistTracks.css';
 
@@ -5,7 +7,17 @@ const PlaylistTracks = ({ playlist, setOrToggleAudio }) => {
     const songIds = Object.keys(playlist.songs);
 
     // GUARD CLAUSE
-    if (!songIds.length) return <div>No songs in this playlist</div>
+    if (!songIds.length) return (
+        <div id='empty-playlist' className='flx-col'>
+            <img
+                src={emptyPlaylistImgSrc}
+                onError={onErrorImgCoverLoader}
+            />
+            <p>
+                This playlist has no tracks
+            </p>
+        </div>
+    )
 
     // Need a guard clause to return an image if playlist has no songs
     return (

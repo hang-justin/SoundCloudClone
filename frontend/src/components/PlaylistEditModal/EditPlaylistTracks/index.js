@@ -9,7 +9,7 @@ const EditPlaylistTracks = ({ playlist, setShowPlaylistEditModal, setOrToggleAud
     const [songIdsToRemove, setSongIdsToRemove] = useState([]);
     const songIds = Object.keys(playlist.songs);
 
-    if (!songIds.length) return <div>No songs to edit in this playlist! :(</div>
+    // if (!songIds.length) return <div>No songs to edit in this playlist! :(</div>
 
     const removeSongListFromPlaylist = () => {
         if (!songIdsToRemove.length) return alert('Uh oh. Something went wrong.')

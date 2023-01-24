@@ -1,3 +1,10 @@
+#empty-playlist {
+    width: 100%;
+    align-items: center;
+
+    font-weight: 300;
+}
+
 #tracks-container {
     width: 100%;
 }
