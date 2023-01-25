@@ -1,7 +1,13 @@
+import playBtnImg from '../../img/play-btn.png';
+import pauseBtnImg from '../../img/pause-btn.png';
+import waveformImg from '../../img/waveform.png'
+import { onErrorImgCoverLoader } from '../../utils';
+
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import * as songActions from '../../store/song'
+
 import EditSongFormModal from "../EditSongFormModal";
 import PlaylistModal from "../PlaylistModal";
 
@@ -12,12 +18,10 @@ const SongCard = ({setOrToggleAudio, song}) => {
     let sessionUser = useSelector(state => state.session.user)
     let artists = useSelector(state => state.artists);
     const currentTrack = useSelector(state => state.audioPlayer.currentTrack)
+    const currentPlaylist = useSelector(state => state.audioPlayer.currentPlaylist)
     const isPlaying = useSelector(state => state.audioPlayer.isPlaying);
 
     const [showPlaylistModal, setShowPlaylistModal] = useState(false);
-
-    const playBtnImg = 'https://cdn-icons-png.flaticon.com/512/73/73940.png';
-    const pauseBtnImg = 'https://cdn-icons-png.flaticon.com/512/786/786279.png';
 
     const deleteTrack = (songId) => {
         dispatch(songActions.deleteTrack(songId));
@@ -41,10 +45,10 @@ const SongCard = ({setOrToggleAudio, song}) => {
     let playPauseImg = playBtnImg;
 
     if (currentTrack) {
-        if (currentTrack.id === song.id) {
-        isPlaying
-            ? playPauseImg=pauseBtnImg
-            : playPauseImg=playBtnImg;
+        if (currentTrack.id === song.id && !currentPlaylist) {
+            isPlaying
+                ? playPauseImg=pauseBtnImg
+                : playPauseImg=playBtnImg;
         }
     }
 
@@ -57,7 +61,12 @@ const SongCard = ({setOrToggleAudio, song}) => {
             <div className='song-container__song-image'>
                 <NavLink className='song-link' to={`/${song.userId}/songs/${song.id}`}>
 
-                <img className='song-image' src={song.imageUrl} alt={`${song.title}'s image`} />
+                <img
+                    src={song.imageUrl}
+                    className='song-image'
+                    onError={onErrorImgCoverLoader}
+                    alt={`${song.title}'s image`}
+                />
                 </NavLink>
             </div>
 
@@ -65,17 +74,27 @@ const SongCard = ({setOrToggleAudio, song}) => {
                 <div className='song-content-links'>
                     <button onClick={(e) => setOrToggleAudio(e, song)} id='stream-card-toggle-play-btn'>
                         {/* <div className='song-content-links__play-button-wrapper'> */}
-                        <img id='stream-card-toggle-play-img' src={playPauseImg} alt='toggle-play-button' />
+                        <img
+                            src={playPauseImg}
+                            id='stream-card-toggle-play-img'
+                            onError={onErrorImgCoverLoader}
+                            alt='toggle-play-button'
+                        />
                         {/* </div> */}
                     </button>
-                    
+
                     <div className='song-content-links__song-author-title'>
                         <div className='song-card__artist-name'>{artists[song.userId].username}</div>
                         <div className='song-card__song-title'>{song.title}</div>
                     </div>
                 </div>
                 <div className='waveform-container'>
-                <img className='song-waveform-img' src='https://i.imgur.com/jsHWeIy.png' alt='waveform' />
+                    <img
+                        src={waveformImg}
+                        className='song-waveform-img'
+                        onError={onErrorImgCoverLoader}
+                        alt='waveform'
+                    />
                 </div>
 
                 <div className='stream-comp__audience-ui-btns flx-row-align-ctr'>

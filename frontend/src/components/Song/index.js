@@ -1,3 +1,9 @@
+import playBtnImg from '../../img/play-btn.png';
+import pauseBtnImg from '../../img/pause-btn.png';
+import waveformImg from '../../img/waveform.png';
+import commentBubbleImg from '../../img/comment-bubble.png';
+import noCommentsImg from '../../img/no-comments.png';
+
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +16,7 @@ import Comment from "../Comment";
 import Social from "../Social";
 
 import './Song.css';
+import { onErrorImgCoverLoader } from '../../utils';
 
 // Note, we can hit /:userId/songs/current where :songId === current
 //    and it will return a song obj with sessionUser's songs regardless of the userId wildcard
@@ -26,6 +33,7 @@ const Song = ({ setOrToggleAudio }) => {
   let artists = useSelector(state => state.artists)
   let user = useSelector(state => state.session.user)
   const currentTrack = useSelector(state => state.audioPlayer.currentTrack);
+  const currentPlaylist = useSelector(state => state.audioPlayer.currentPlaylist)
   const isPlaying = useSelector(state => state.audioPlayer.isPlaying);
   const profilePics = useSelector(state => state.profilePics)
 
@@ -34,9 +42,6 @@ const Song = ({ setOrToggleAudio }) => {
   const [commentLimitTextMod, setCommentLimitTextMod] = useState('');
   const [commentLimitDisplay, setCommentLimitDisplay] = useState('hidden-span')
   const [songNotFound, setSongNotFound] = useState(false);
-
-  const playBtnImg = 'https://cdn-icons-png.flaticon.com/512/73/73940.png';
-  const pauseBtnImg = 'https://cdn-icons-png.flaticon.com/512/786/786279.png';
 
   let playPauseImg = playBtnImg;
 
@@ -101,7 +106,7 @@ const Song = ({ setOrToggleAudio }) => {
     //    doesn't exist, then needs to run a dispatch for that individual song
 
 
-    if (currentTrack) {
+    if (currentTrack && !currentPlaylist) {
       if (currentTrack.id === song.id) {
         isPlaying
           ? playPauseImg=pauseBtnImg
@@ -158,13 +163,21 @@ const Song = ({ setOrToggleAudio }) => {
     else if (commentsList.length > 1) return ('comments')
   }
   const noCommentDiv = () => {
-    const noCommentImgSrc = 'https://i.imgur.com/jFLK95a.png';
 
     return (
       <div className='no-comment-field flx-col'>
-        <img id='song-no-comments' src={noCommentImgSrc} />
+        <img
+          onError={onErrorImgCoverLoader}
+          id='song-no-comments'
+          src={noCommentsImg}
+          alt='no-comments'
+        />
+
         <h3>Seems a little quiet over here</h3>
-        <span className='gray-text'>Be the first to comment on this track</span>
+
+        <span className='gray-text'>
+          Be the first to comment on this track
+        </span>
       </div>
     )
   }
@@ -184,20 +197,39 @@ const Song = ({ setOrToggleAudio }) => {
 
             {/* <div className="play-button-container"> */}
               <button id='song-banner-toggle-play' onClick={(e) => setOrToggleAudio(e, song)}>
-                <img id='song-component-toggle-play' src={playPauseImg} alt='toggle-play button' />
+                <img
+                  src={playPauseImg}
+                  id='song-component-toggle-play'
+                  onError={onErrorImgCoverLoader}
+                  alt='toggle-play button'
+                />
               </button>
             {/* </div> */}
 
             <div className='song-banner__top__song-info'>
-              <div id='song-title'><span id='song-info__song-title'>{song.title}</span></div>
-              <div id='song-artist'><span id='song-info__song-artist'>{artist.username}</span></div>
+              <div id='song-title'>
+                <span id='song-info__song-title'>
+                  {song.title}
+                </span>
+              </div>
+
+              <div id='song-artist'>
+                <span id='song-info__song-artist'>
+                  {artist.username}
+                </span>
+              </div>
             </div>
 
           </div>
 
           <div className='song-banner__left__bottom'>
             <div className='song-waveform'>
-              <img className='song-waveform-img' src='https://i.imgur.com/kcs5uEk.png' alt='waveform' />
+              <img
+                className='song-waveform-img'
+                src={waveformImg}
+                onError={onErrorImgCoverLoader}
+                alt='waveform'
+              />
             </div>
           </div>
 
@@ -205,7 +237,12 @@ const Song = ({ setOrToggleAudio }) => {
 
         <div className='song-banner__right'>
           <div className='song-image-container'>
-            <img className='banner-song-image' src={song.imageUrl} alt={`${song.title}'s Cover`} />
+            <img
+              src={song.imageUrl}
+              className='banner-song-image'
+              onError={onErrorImgCoverLoader}
+              alt={`${song.title}'s Cover`}
+            />
           </div>
         </div>
 
@@ -220,9 +257,11 @@ const Song = ({ setOrToggleAudio }) => {
               <div className='commenterProfilePic'>
                 {userProfilePicSrc &&
                   <img
+                    src={userProfilePicSrc}
                     id='commentForm__user-profile-pic'
                     className='commenterProfilePic'
-                    src={userProfilePicSrc}
+                    onError={onErrorImgCoverLoader}
+                    alt='commenter-pic'
                   />
                 }
               </div>
@@ -249,8 +288,10 @@ const Song = ({ setOrToggleAudio }) => {
               <div id='song-component-artist-pic'>
                 {artistProfilePicSrc &&
                   <img
+                    src={artistProfilePicSrc}
                     id='song-component-artist-pic'
-                    src={artistProfilePicSrc} alt='artist-pic'
+                    onError={onErrorImgCoverLoader}
+                    alt='artist-pic'
                   />
                 }
               </div>
@@ -270,7 +311,12 @@ const Song = ({ setOrToggleAudio }) => {
               <div className='discourse__comments flx-col'>
                 {commentsList.length > 0 &&
                     (<div className='comment-section-header flx-row'>
-                      <img id='comment-section-header--icon' src='https://i.imgur.com/pRIVKBH.png' />
+                      <img
+                        src={commentBubbleImg}
+                        id='comment-section-header--icon'
+                        onError={onErrorImgCoverLoader}
+                        alt='comment-bubble'
+                      />
                       <h4 id='comment-section-header--text' className='gray-text'>
                       {commentsList.length} {singularOrPluralComment(commentsList)}
                       </h4>

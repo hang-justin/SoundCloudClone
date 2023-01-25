@@ -42,8 +42,11 @@ const audioPlayerReducer = (state = initialState, action) => {
 
       if (!newState.history) newState.history = [action.currentTrack.id];
       else {
-        newState.history = [...newState.history];
-        newState.history.push(action.currentTrack.id);
+        const lastSongIdPlayed = newState.history[newState.history.length - 1];
+        if (lastSongIdPlayed !== action.currentTrack.id) {
+          newState.history = [...newState.history];
+          newState.history.push(action.currentTrack.id);
+        }
       }
 
       newState.currentPlaylist = action.currentPlaylist

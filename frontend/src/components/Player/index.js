@@ -1,3 +1,5 @@
+import { onErrorImgCoverLoader } from '../../utils';
+
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
@@ -39,7 +41,12 @@ const Player = ({ setAudioPlayerRef }) => {
     return (
       <div className='current-track-info flx-row'>
         <NavLink to={`/${artist.id}/songs/${currentSong.id}`}>
-        <img id='footer-track-img' src={currentSong.imageUrl} />
+          <img
+            id='footer-track-img'
+            src={currentSong.imageUrl}
+            onError={onErrorImgCoverLoader}
+            alt='song-cover-img'
+          />
         </NavLink>
 
         <div className='song-details flx-col'>

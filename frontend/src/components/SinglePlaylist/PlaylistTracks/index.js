@@ -12,6 +12,7 @@ const PlaylistTracks = ({ playlist, setOrToggleAudio }) => {
             <img
                 src={emptyPlaylistImgSrc}
                 onError={onErrorImgCoverLoader}
+                alt='empty-playlist'
             />
             <p>
                 This playlist has no tracks

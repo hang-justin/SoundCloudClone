@@ -1,7 +1,11 @@
+import playBtnImg from '../../img/play-btn.png';
+import pauseBtnImg from '../../img/pause-btn.png';
+
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { setActiveTrack } from "../../store/audioPlayer";
+import { onErrorImgCoverLoader } from '../../utils';
 
 const SplashSongCards = ({ audioPlayerRef, setOrToggleAudio }) => {
   const dispatch = useDispatch();
@@ -11,8 +15,6 @@ const SplashSongCards = ({ audioPlayerRef, setOrToggleAudio }) => {
   const allSongsArr = Object.values(allSongs).slice(0, 8);
   const currentTrack = useSelector(state => state.audioPlayer.currentTrack);
   const isPlaying = useSelector(state => state.audioPlayer.isPlaying);
-  const playBtnImg = 'https://cdn-icons-png.flaticon.com/512/73/73940.png';
-  const pauseBtnImg = 'https://cdn-icons-png.flaticon.com/512/786/786279.png';
 
   return (
     <div className="splash-bottom flx-row-wrap">
@@ -44,8 +46,11 @@ const SplashSongCards = ({ audioPlayerRef, setOrToggleAudio }) => {
         return (
           <div key={songObj.id} className='splash-song-card flx-col'>
             <div className='splash-song-card-img-wrapper'>
-              <img className='splash-song-card-img'
+              <img
                 src={`${songObj.imageUrl}`}
+                className='splash-song-card-img'
+                onError={onErrorImgCoverLoader}
+                alt='song-cover-img'
               />
 
               <div className={`song-card-img-overlay flx-row ${buttonDisplay}`}>
@@ -53,7 +58,12 @@ const SplashSongCards = ({ audioPlayerRef, setOrToggleAudio }) => {
                   className='song-card-toggle'
                   onClick={(e) => setOrToggleAudio(e, songObj)}
                 >
-                  <img className='song-card-img-playPause' src={playPauseImg} />
+                  <img
+                    src={playPauseImg}
+                    className='song-card-img-playPause'
+                    onError={onErrorImgCoverLoader}
+                    alt='is-playing-status'
+                  />
                 </button>
 
               </div>

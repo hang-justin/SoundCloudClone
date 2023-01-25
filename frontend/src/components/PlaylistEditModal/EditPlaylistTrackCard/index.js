@@ -73,12 +73,14 @@ const EditPlaylistTrackCard = ({ songId, index, playlist, setOrToggleAudio, song
                     className='track-img'
                     src={song.imageUrl}
                     onError={(e) => onErrorImgCoverLoader(e)}
+                    alt='song-cover-img'
                 />
 
                 <img
                     className='track-img-play-pause-overlay'
                     src={playPauseBtnImgSrc}
                     onError={(e) => onErrorImgCoverLoader(e)}
+                    alt='playing-btn'
                 />
             </div>
 

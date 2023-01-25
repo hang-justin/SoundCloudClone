@@ -33,7 +33,12 @@ const PlaylistCard = ({ playlist, bottomBorder, songToAddRemove }) => {
     return (
         <div className={`add-to-playlist-card flx-row ${bottomBorder ? 'add-playlist-bot-border' : ''}`}>
             <NavLink to={`/sets/${playlist.id}`}>
-                <img src={playlist.imageUrl} onError ={onErrorImgCoverLoader} className='add-to-playlist-img' />
+                <img
+                    src={playlist.imageUrl}
+                    className='add-to-playlist-img'
+                    onError={onErrorImgCoverLoader}
+                    alt='playlist-cover-img'
+                />
             </NavLink>
 
             <div className='playlist-info flx-col'>

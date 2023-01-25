@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../../store/session';
 
 import './LoginForm.css'
+import { onErrorImgCoverLoader } from '../../utils';
 
 const LoginForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
@@ -43,8 +44,17 @@ const LoginForm = ({ setShowModal }) => {
 
   return (
     <div className='login-form-wrapper flx-col'>
-      <button onClick={() => setShowModal(false)} id='close-login-btn'><img id='close-login-img' src={closeBtnImgSrc} /></button>
+      <button onClick={() => setShowModal(false)} id='close-login-btn'>
+          <img
+            src={closeBtnImgSrc}
+            id='close-login-img'
+            onError={onErrorImgCoverLoader}
+            alt='close-login'
+          />
+      </button>
+
       <h2 className='login-header'>Welcome back</h2>
+
       <form id='login-form' className='form login-form flx-col' onSubmit={(e) => handleLogIn(e)}>
 
         {!!errors.length && <ul className='signin-errors'>

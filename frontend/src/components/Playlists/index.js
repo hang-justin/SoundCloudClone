@@ -17,7 +17,7 @@ const Playlists = () => {
 
   if (!playlists) {
     dispatch(getCurrentUserPlaylists())
-    return <div>Loading...</div>
+    return <div>Loading playlists...</div>
   }
 
   if (!artists[user.id]) {
@@ -25,42 +25,6 @@ const Playlists = () => {
   }
 
   const userPlaylistIds = Object.keys(artists[user.id].playlists)
-
-  // need to dispatch thunk to retrieve associated playlists
-  // /api/playlists/current => retrieves all of sessionUser's playlists
-
-  // Commented out below. Rendered playlists in App.js instead of below
-  //
-  // const getCurrentUserPlaylists = () => {
-  //   let playlists = dispatch(playlistsActions.getCurrentUserPlaylists())
-  //     .catch(async (res) => {
-  //       console.log('error caught in components/playlists/index > getCurrentUserPlaylists')
-  //       console.log(res)
-  //       // const data = await res.json();
-  //       // if no playlists => returns { message: 'No playlists found' }
-  //     })
-  //     .then(async res => res)
-  //   // .then(res => res.data)
-
-  // }
-
-  let userPlaylists = [];
-  for (let playlistId in userPlaylistIds) {
-    let playlist = playlists[playlistId];
-    // console.log('playlist in the for loop is ', )
-
-    // To render current user's playlists
-    // userPlaylists.push(
-    //   <div key={`playlist-id${playlist.id}`} className='playlist-container' id={`userPlaylists-${playlist.id}`}>
-    //     <NavLink className='playlist-link' to={`/sets/${playlist.id}`}>
-    //       <div>
-    //         <img className='playlist-img' onError={onErrorImgCoverLoader} src={playlist.imageUrl} alt={`${playlist.name} Img`} />
-    //       </div>
-    //       {playlist.name}
-    //     </NavLink>
-    //   </div>
-    // )
-  }
 
   return (
     <div id='playlist-component'>
@@ -71,10 +35,9 @@ const Playlists = () => {
       <button>Select Playlist</button>
 
       <p>{`Hear your own playlists and the playlists you’ve liked:`}</p>
-      
+
       <div id='user-playlist-container' className='flx-row'>
-        {/* {userPlaylists} */}
-        {userPlaylistIds.map((playlistId) => <PlaylistTile key={playlistId}playlist={playlists[playlistId]} />)}
+        {userPlaylistIds.map((playlistId) => <PlaylistTile key={playlistId} playlist={playlists[playlistId]} />)}
       </div>
 
     </div>

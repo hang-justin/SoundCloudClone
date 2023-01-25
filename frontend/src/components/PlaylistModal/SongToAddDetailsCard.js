@@ -10,10 +10,21 @@ const SongToAddDetailsCard = ({ song }) => {
 
     return (
         <div className='flx-row-align-ctr'>
-            <img id='add-playlist-song-img' src={song.imageUrl} onError={onErrorImgCoverLoader} />
+            <img
+                src={song.imageUrl}
+                id='add-playlist-song-img'
+                onError={onErrorImgCoverLoader}
+                alt='song-cover-img'
+            />
+
             <div id='add-playlist-song-details'>
-                <p className='small-text gray-text' >{artists[artistId].username}</p>
-                <p className='large-text'>{song.title}</p>
+                <p className='small-text gray-text' >
+                    {artists[artistId].username}
+                </p>
+
+                <p className='large-text'>
+                    {song.title}
+                </p>
             </div>
         </div>
     )

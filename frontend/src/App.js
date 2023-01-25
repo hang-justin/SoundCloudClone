@@ -115,7 +115,7 @@ function App() {
       }
     }
 
-    alert('Missed a case')
+    alert('Uh oh. Something went wrong. Please refresh the page and try again.')
     console.log(currentTrack, currentPlaylist)
     console.log(song, playlist)
   }

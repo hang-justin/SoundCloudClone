@@ -1,21 +1,26 @@
+import cancelBtn from '../../img/cancel-btn.png';
+import { onErrorImgCoverLoader } from '../../utils';
 
 import { useState } from 'react';
+
 import AddToExistingPlaylist from './AddToExistingPlaylist';
 import CreateNewPlaylistForSong from './CreateNewPlaylistForSong';
-import './PlaylistForm.css'
 import SongToAddDetailsCard from './SongToAddDetailsCard';
+
+import './PlaylistForm.css'
 
 const PlaylistForm = ({ song, setShowPlaylistModal }) => {
     const [activePlaylistOption, setActivePlaylistOption] = useState('add-to-playlist');
 
-    // console.log(song.id)
-
-    const closeBtnImgSrc = 'https://i.imgur.com/1aSKStp.png';
-
     return (
         <div id='add-song-to-playlist-form' className='flx-col'>
             <button id='close-playlist-modal-btn' onClick={() => setShowPlaylistModal(false)}>
-                <img id='close-login-img' src={closeBtnImgSrc} />
+                <img
+                    src={cancelBtn}
+                    id='close-login-img'
+                    alt='close'
+                    onError={onErrorImgCoverLoader}
+                />
             </button>
 
             <div id='add-to-or-create-playlist-option' className='flx-row'>
@@ -33,7 +38,7 @@ const PlaylistForm = ({ song, setShowPlaylistModal }) => {
                 </div>
 
             </div>
-            
+
             <SongToAddDetailsCard song={song} />
 
             {

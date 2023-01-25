@@ -1,3 +1,6 @@
+import cancelBtn from '../../img/cancel-btn.png'
+import { onErrorImgCoverLoader } from "../../utils";
+
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -50,7 +53,6 @@ const EditSongForm = ({ song, setShowModal }) => {
   }, [imageUrl])
 
   const picFileTypes = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG'];
-  const closeBtnImgSrc = 'https://i.imgur.com/1aSKStp.png';
 
   const handleEditSong = (e) => {
     e.preventDefault();
@@ -137,12 +139,28 @@ const EditSongForm = ({ song, setShowModal }) => {
 
   return (
     <form onSubmit={(e) => handleEditSong(e)} className='editSongForm'>
-            <button onClick={() => setShowModal(false)} id='close-edit-song-btn'><img id='close-edit-song-img' src={closeBtnImgSrc} /></button>
+            <button
+              onClick={() => setShowModal(false)}
+              id='close-edit-song-btn'
+              >
+                <img
+                  src={cancelBtn}
+                  id='close-edit-song-img'
+                  onError={onErrorImgCoverLoader}
+                  alt='close-btn'
+                />
+            </button>
 
       <div className='editSongForm-inner-container'>
 
         <div className='editSong-leftContainer img-container'>
-          <img id='edit-song-form-img' src={song.imageUrl} alt={`${song.title}'s song cover`} className='view-edit-song-img' />
+          <img
+            src={song.imageUrl}
+            id='edit-song-form-img'
+            className='view-edit-song-img'
+            onError={onErrorImgCoverLoader}
+            alt={`${song.title}'s song cover`}
+          />
         </div>
 
         <div className='editSong-middleContainer' />

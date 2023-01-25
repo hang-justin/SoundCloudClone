@@ -1,12 +1,13 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import cancelImgSrc from '../../../img/cancel-btn.png';
 import { onErrorImgCoverLoader } from '../../../utils'
 
-import EditBasicInfo from '../EditBasicInfo';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import cancelImgSrc from '../../../img/cancel-btn.png';
-import './PlaylistEditForm.css';
+import EditBasicInfo from '../EditBasicInfo';
 import EditPlaylistTracks from '../EditPlaylistTracks';
+
+import './PlaylistEditForm.css';
 
 const PlaylistEditForm = ({ playlist, setShowPlaylistEditModal, setOrToggleAudio }) => {
     const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const PlaylistEditForm = ({ playlist, setShowPlaylistEditModal, setOrToggleAudio
                 id='cancel-btn-img'
                 src={cancelImgSrc}
                 onClick={() => setShowPlaylistEditModal(false)}
+                onError={onErrorImgCoverLoader}
                 alt='close'
             />
 

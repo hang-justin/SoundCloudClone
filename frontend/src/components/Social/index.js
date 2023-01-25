@@ -16,25 +16,29 @@ const Social = () => {
       <span id="social-name">Justin Hang</span>
 
       <img
-        id='social-profile-pic'
         src={profilePic}
+        id='social-profile-pic'
         onError={onErrorImgCoverLoader}
+        alt='profile-pic'
       />
 
       <a target='_blank' className='social-link' href={githubLink}>
         <img
+          src={githubLogo}
           id='github-logo'
-          className='social-logos' src={githubLogo}
+          className='social-logos'
           onError={onErrorImgCoverLoader}
+          alt='github'
         />
       </a>
 
       <a target='_blank' className='social-link' href={linkedinProfile}>
         <img
+          src={linkedinLogo}
           id='linkedin-logo'
           className='social-logos'
-          src={linkedinLogo}
           onError={onErrorImgCoverLoader}
+          alt='linkedin'
         />
       </a>
 

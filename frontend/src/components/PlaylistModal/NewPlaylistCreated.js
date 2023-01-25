@@ -7,7 +7,12 @@ const NewPlaylistCreated = ({ playlist }) => {
 
     return (
         <div className='flx-row-align-ctr'>
-            <img id='newly-created-playlist-img' src={playlist.imageUrl} onError={onErrorImgCoverLoader} />
+            <img
+                id='newly-created-playlist-img'
+                src={playlist.imageUrl}
+                onError={onErrorImgCoverLoader}
+                alt='playlist-cover-img'
+            />
             <div id='newly-created-playlist-details' className='flx-row-space-btw'>
                 <span id='new-playlist-title'>
                     {playlist.name}
