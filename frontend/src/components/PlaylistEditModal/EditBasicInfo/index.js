@@ -5,6 +5,7 @@ import { editPlaylistRequest } from '../../../store/playlists';
 import '../../../img/cancel-btn.png';
 import './EditBasicInfo.css';
 import { onErrorImgCoverLoader } from '../../../utils';
+import CloseModalBtn from '../../CloseModalBtn';
 
 const EditBasicInfo = ({ playlist, setShowPlaylistEditModal }) => {
     const dispatch = useDispatch();
@@ -103,15 +104,18 @@ const EditBasicInfo = ({ playlist, setShowPlaylistEditModal }) => {
                     </span>
                 </label>
 
-                <button
-                    id='save-playlist-changes-basic-info'
-                    className={`save-playlist-changes-btn ${!activeBtn && 'disabled-btn'}`}
-                    onClick={checkPlaylistChanges}
-                    disabled={!activeBtn}
-                    >
-                    Save changes
-                </button>
+                <div className='modal-button-containers flx-row'>
+                    <CloseModalBtn closeModalSetterFunc={setShowPlaylistEditModal} />
 
+                    <button
+                        id='save-playlist-changes-basic-info'
+                        className={`save-playlist-changes-btn ${!activeBtn && 'disabled-btn'}`}
+                        onClick={checkPlaylistChanges}
+                        disabled={!activeBtn}
+                        >
+                        Save changes
+                    </button>
+                </div>
             </div>
 
         </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { editSongRequest } from "../../store/song";
+import CloseModalBtn from "../CloseModalBtn";
 
 import './EditSongForm.css';
 
@@ -186,9 +187,14 @@ const EditSongForm = ({ song, setShowModal }) => {
             <span className={`${imageUrlLimitTextMod} ${imageUrlLimitDisplay}`}>{255-imageUrl.trimStart().length}/255</span>
           </label>
 
-          <button id='save-edit-song-btn' className='button-edit-song' type='submit'>
-            Save Changes
-          </button>
+          <div className='edit-song-modal-button-containers flx-row'>
+            <CloseModalBtn closeModalSetterFunc={setShowModal} />
+
+            <button id='save-edit-song-btn' className='button-edit-song' type='submit'>
+              Save Changes
+            </button>
+          </div>
+
 
         </div>
 

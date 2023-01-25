@@ -49,3 +49,9 @@
     background-color: rgb(255, 120, 0);
     color: white;
 }
+
+.modal-button-containers {
+    margin-top: auto;
+    margin-left: auto;
+    gap: 10px;
+}

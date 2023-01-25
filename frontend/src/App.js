@@ -36,7 +36,7 @@ function App() {
   useEffect(() => {
     console.log('You like to look under the hood? Why not help us build the engine? https://soundcloud.com/jobs');
     console.log('')
-    console.log('SonusNimbus is a clone of SoundCloud built for educational purposes. Check out the code base. https://github.com/juanpunchman/SoundCloudClone')
+    console.log('SonusNimbus is a clone of SoundCloud built for educational purposes. Check out the code base. https://github.com/hang-justin/SoundCloudClone')
 
     dispatch(sessionActions.restoreSession())
       .then((user) => loadPlaylists(user))
