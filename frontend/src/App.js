@@ -17,13 +17,14 @@ import SinglePlaylist from './components/SinglePlaylist';
 import * as songActions from './store/song'
 import * as sessionActions from './store/session';
 import * as playlistsActions from './store/playlists';
-import { isPlaying, setActiveTrack } from './store/audioPlayer';
+import { isPlaying, setActiveTrack, stopPlayer } from './store/audioPlayer';
 
 
 function App() {
   let dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
   const currentTrack = useSelector(state => state.audioPlayer.currentTrack)
+  const currentPlaylist = useSelector(state => state.audioPlayer.currentPlaylist);
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [audioPlayerRef, setAudioPlayerRef] = useState(null);
@@ -64,8 +65,13 @@ function App() {
       return
     };
 
-    if (song.id === currentTrack.id) {
-      audioPlayerRef.current.togglePlay(e);
+    if (song.id === currentTrack.id ) {
+      if (!!playlist && !!currentPlaylist && playlist.id === currentPlaylist.id) audioPlayerRef.current.togglePlay(e);
+      else {
+        console.log(audioPlayerRef, audioPlayerRef.current);
+        console.log('STOPPING AUDIO PLAYER');
+        dispatch(stopPlayer());
+      }
       return;
     }
 
