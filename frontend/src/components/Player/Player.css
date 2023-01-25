@@ -5,7 +5,9 @@ div.rhap_container {
 }
 
 div.rhap_progress-filled,
-div.rhap_volume-bar {
+div.rhap_volume-filled,
+div.rhap_volume-indicator,
+div.rhap_progress-indicator {
   background-color: rgb(255, 120, 0);
 }
 

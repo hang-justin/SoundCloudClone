@@ -54,7 +54,7 @@ const Player = ({ setAudioPlayerRef }) => {
     )
   }
 
-  
+
   if (currentTrack && currentSong === undefined) {
     player.current.audio.current.src = '';
   }
@@ -70,6 +70,8 @@ const Player = ({ setAudioPlayerRef }) => {
             autoPlayAfterSrcChange
             onPlay={() => dispatch(isPlaying(true))}
             onPause={() => dispatch(isPlaying(false))}
+            showSkipControls={true}
+            showFilledVolume={true}
           />
 
         </div>

@@ -49,7 +49,7 @@ const SongCard = ({setOrToggleAudio, song}) => {
     }
 
     return (
-        <div key={`stream-song-${song.id}`} className='song-card-container'>
+        <div id={`stream-song-${song.id}`} className='song-card-container'>
             <div className='song-card-poster'>{artists[song.userId].username} posted a track</div>
 
             <div className='song-container' id={`song${song.id}`}>
@@ -63,15 +63,16 @@ const SongCard = ({setOrToggleAudio, song}) => {
 
             <div className='song-content'>
                 <div className='song-content-links'>
-                <button onClick={(e) => setOrToggleAudio(e, song)} id='stream-card-toggle-play-btn'>
-                    {/* <div className='song-content-links__play-button-wrapper'> */}
-                    <img id='stream-card-toggle-play-img' src={playPauseImg} alt='toggle-play-button' />
-                    {/* </div> */}
-                </button>
-                <div className='song-content-links__song-author-title'>
-                    <div className='song-card__artist-name'>{artists[song.userId].username}</div>
-                    <div className='song-card__song-title'>{song.title}</div>
-                </div>
+                    <button onClick={(e) => setOrToggleAudio(e, song)} id='stream-card-toggle-play-btn'>
+                        {/* <div className='song-content-links__play-button-wrapper'> */}
+                        <img id='stream-card-toggle-play-img' src={playPauseImg} alt='toggle-play-button' />
+                        {/* </div> */}
+                    </button>
+                    
+                    <div className='song-content-links__song-author-title'>
+                        <div className='song-card__artist-name'>{artists[song.userId].username}</div>
+                        <div className='song-card__song-title'>{song.title}</div>
+                    </div>
                 </div>
                 <div className='waveform-container'>
                 <img className='song-waveform-img' src='https://i.imgur.com/jsHWeIy.png' alt='waveform' />

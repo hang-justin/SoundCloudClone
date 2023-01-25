@@ -48,6 +48,9 @@ function App() {
   if (!isLoaded) return <div>Loading...</div>
 
   const setOrToggleAudio = (e, song, playlist) => {
+    // console.log(audioPlayerRef)
+    console.log(audioPlayerRef.current.audio)
+    console.log(audioPlayerRef.current.audio.current.currentTime)
     // Scenarios:
     //
     // User plays standalone song
@@ -60,25 +63,61 @@ function App() {
     //    - replay it
     // User plays different song
 
+    // If there is no song playing
+    // play new song
     if (!currentTrack) {
       dispatch(setActiveTrack(song, playlist))
       return
     };
 
-    if (song.id === currentTrack.id ) {
-      if (!!playlist && !!currentPlaylist && playlist.id === currentPlaylist.id) audioPlayerRef.current.togglePlay(e);
-      else {
-        console.log(audioPlayerRef, audioPlayerRef.current);
-        console.log('STOPPING AUDIO PLAYER');
-        dispatch(stopPlayer());
-      }
-      return;
-    }
-
-    if (song.id !== currentTrack.id) {
+    // If currentTrack doesn't match song source,
+    // play new song
+    if (currentTrack.id !== song.id) {
       dispatch(setActiveTrack(song, playlist));
       return;
     }
+
+    // If currentTrack matches
+    if (currentTrack.id === song.id) {
+      // if no playlist is in store and no playlist is passed in
+      // song is toggled from stream/song page
+      if (!currentPlaylist && !playlist) {
+        audioPlayerRef.current.togglePlay(e);
+        return;
+      }
+
+      // If the same song is played
+      // song is being played from the song/stream page and source is passed in from playlist
+      // song is being played from playlist and source is passed in from song/stream
+      // one of the playlists above will be falsy while the other is truthy
+      // stop player and load new audio source
+      if (!!currentPlaylist ^ !!playlist) {
+        // dispatch(stopPlayer());
+        audioPlayerRef.current.audio.current.currentTime = 0;
+        dispatch(setActiveTrack(song, playlist))
+        return;
+      }
+
+      // If the same song is played
+      // and there is a playlist in the store
+      // and source has a different playlist
+      // stop player and load new audio source
+      if (currentPlaylist.id !== playlist.id) {
+        // dispatch(stopPlayer());
+        audioPlayerRef.current.audio.current.currentTime = 0;
+        dispatch(setActiveTrack(song, playlist))
+        return;
+      }
+
+      if (currentPlaylist.id === playlist.id) {
+        audioPlayerRef.current.togglePlay(e)
+        return;
+      }
+    }
+
+    alert('Missed a case')
+    console.log(currentTrack, currentPlaylist)
+    console.log(song, playlist)
   }
 
   return isLoaded && (
