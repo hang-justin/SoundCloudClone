@@ -174,6 +174,7 @@ function App() {
 
         <Player
           setAudioPlayerRef={setAudioPlayerRef}
+          setOrToggleAudio={setOrToggleAudio}
         />
 
       </div>

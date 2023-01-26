@@ -44,12 +44,16 @@ div.rhap_time {
   display: none;
 }
 
+#audio-footer-right {
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
 .audio-footer-current-track.flx-row {
   width: calc(1225px * 0.3);
 
   box-sizing: border-box;
-  justify-content: flex-start;
-  align-items: center;
   padding: 0 15px;
   min-width: fit-content;
 }

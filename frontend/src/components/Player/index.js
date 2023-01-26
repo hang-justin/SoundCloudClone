@@ -12,8 +12,9 @@ import songsReducer from '../../store/song';
 
 import './Player.css'
 import CurrentTrackDisplay from './CurrentTrackDisplay';
+import CurrentPlaylistDisplay from './CurrentPlaylistDisplay';
 
-const Player = ({ setAudioPlayerRef }) => {
+const Player = ({ setAudioPlayerRef, setOrToggleAudio }) => {
   const dispatch = useDispatch();
   const player = useRef();
 
@@ -35,7 +36,7 @@ const Player = ({ setAudioPlayerRef }) => {
 
   useEffect(() => {
     // Displays the audio player once a track is played
-    if (playerVisibility !== '') setPlayerVisibility('');
+    if (currentTrack && playerVisibility !== '') setPlayerVisibility('');
 
     // if the current track was removed from the playlist
 
@@ -154,10 +155,10 @@ const Player = ({ setAudioPlayerRef }) => {
 
         </div>
 
-        <div className='audio-footer-current-track flx-row'>
+        <div id='audio-footer-right' className='audio-footer-current-track flx-row'>
           <CurrentTrackDisplay currentTrack={currentTrack} />
 
-          <span>another</span>
+          <CurrentPlaylistDisplay setOrToggleAudio={setOrToggleAudio}/>
         </div>
       </div>
 
