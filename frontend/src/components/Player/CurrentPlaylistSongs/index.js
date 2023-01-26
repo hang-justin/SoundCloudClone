@@ -3,6 +3,7 @@ import './CurrentPlaylistSongs.css';
 
 const CurrentPlaylistSongs = ({ setOrToggleAudio }) => {
     const currentPlaylist = useSelector(state => state.audioPlayer.currentPlaylist);
+    const allPlaylists = useSelector(state => state.playlists);
     const allSongs = useSelector(state => state.songs);
 
     if (!currentPlaylist) {
@@ -13,15 +14,18 @@ const CurrentPlaylistSongs = ({ setOrToggleAudio }) => {
         )
     }
 
+    const currentPlaylistId = currentPlaylist.id;
+    const playlist = allPlaylists[currentPlaylistId]
+
     return (
         <div id='playlist-songs' className='flx-col'>
-            <div>
-                Song 1
-            </div>
-
-            <div>
-                Song 2
-            </div>
+            {
+                Object.keys(playlist.songs).map((songId) =>
+                    <div key={songId} className='current-playlist-song-track flx-row'>
+                        {allSongs[songId].title}
+                    </div>
+                )
+            }
         </div>
     )
 };

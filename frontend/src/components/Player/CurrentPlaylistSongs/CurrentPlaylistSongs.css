@@ -8,3 +8,12 @@
     color: white;
     background-color: blue;
 }
+
+.current-playlist-song-track {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 2px 15px;
+    box-sizing: border-box;
+    height: 35px;
+}
