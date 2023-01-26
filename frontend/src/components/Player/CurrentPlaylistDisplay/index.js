@@ -5,13 +5,28 @@ import './CurrentPlaylistDisplay.css';
 const CurrentPlaylistDisplay = ({ setOrToggleAudio }) => {
     const [showPlaylistSongs, setShowPlaylistSongs] = useState(false);
 
+    const handleClick = () => {
+        console.log('clicking')
+        setShowPlaylistSongs(prev => !prev)
+    }
+
+    const isPlaylistShowing = showPlaylistSongs
+                                ? 'playlist-songs-displaying'
+                                : '';
+
     return (
         <>
-            <span id='player-playlist-icon' className="material-symbols-outlined" onClick={() => alert('hi')}>
+            <span
+                id='player-playlist-icon'
+                className={`material-symbols-outlined ${isPlaylistShowing}`}
+                onClick={handleClick}
+                >
                 playlist_play
             </span>
 
-            <CurrentPlaylistSongs setOrToggleAudio={setOrToggleAudio} />
+            {showPlaylistSongs &&
+                <CurrentPlaylistSongs setOrToggleAudio={setOrToggleAudio} />
+            }
         </>
     )
 };

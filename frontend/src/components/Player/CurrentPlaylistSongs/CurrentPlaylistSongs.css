@@ -1,3 +1,10 @@
 #playlist-songs {
     position: absolute;
+    top: 0;
+    right: 5px;
+    transform: translateY(calc(-100% - 5px));
+    width: calc(1225px * 0.4);
+
+    color: white;
+    background-color: blue;
 }

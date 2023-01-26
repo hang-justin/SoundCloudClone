@@ -1,3 +1,14 @@
 #player-playlist-icon {
+    padding: 5px;
     cursor: pointer;
+}
+
+#player-playlist-icon:hover {
+    background-color: rgba(128, 128, 128, 0.5);
+    border-radius: 5px;
+}
+
+.playlist-songs-displaying {
+    background-color: rgba(128, 128, 128, 0.5);
+    border-radius: 5px;
 }
