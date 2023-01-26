@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { addSongToPlaylist, getOnePlaylistWithSongs } from "../../store/playlists";
 import { onErrorImgCoverLoader } from "../../utils";
 import Social from "../Social";
@@ -15,18 +15,26 @@ const SinglePlaylist = ({ setOrToggleAudio }) => {
 
   const { userId, playlistId } = useParams();
 
-  const playlists = useSelector(state => state.playlists)
-  const allSongs = useSelector(state => state.songs)
-  const user = useSelector(state => state.session.user)
+  const playlists = useSelector(state => state.playlists);
+  const allSongs = useSelector(state => state.songs);
+  const user = useSelector(state => state.session.user);
+  const [failedPlaylistFetch, setFailedPlaylistFetch] = useState(false);
 
   const currentPlaylist = playlists[playlistId]
 
   useEffect(() => {
     dispatch(getOnePlaylistWithSongs(playlistId))
+    .catch(async e => await e.json())
+    .then(err => console.log('err is: ', err))
+    .then(() => setFailedPlaylistFetch(true))
   }, [playlistId])
 
+  if (failedPlaylistFetch && !currentPlaylist) {
+    return <Redirect to='/404' />
+  }
+
   // Implement another guard clause where no playlists are found?
-  if (!currentPlaylist) return <div>Loading...</div>
+  if (!currentPlaylist) return <div>Loading playlist...</div>
 
   if (!currentPlaylist.songs) return <div>Loading...</div>
   const songIds = Object.keys(currentPlaylist.songs)
@@ -51,14 +59,18 @@ const SinglePlaylist = ({ setOrToggleAudio }) => {
 
       <PlaylistSongBanner setOrToggleAudio={setOrToggleAudio} playlist={currentPlaylist} />
 
-      <div id='playlist-info-container'>
-        <EditPlaylistOptions playlist={currentPlaylist} setOrToggleAudio={setOrToggleAudio} />
+      <div id='playlist-content' className='flx-row'>
 
-        <PlaylistDetails setOrToggleAudio={setOrToggleAudio} playlist={currentPlaylist} />
-      </div>
+        <div id='playlist-info-container'>
+          <EditPlaylistOptions playlist={currentPlaylist} setOrToggleAudio={setOrToggleAudio} />
 
-      <div id='social-ad-container'>
-        <Social />
+          <PlaylistDetails setOrToggleAudio={setOrToggleAudio} playlist={currentPlaylist} />
+        </div>
+
+        <div id='social-ad-container'>
+          <Social />
+        </div>
+
       </div>
 
     </div>

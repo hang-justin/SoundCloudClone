@@ -4,6 +4,10 @@ div.rhap_container {
   box-shadow: none;
 }
 
+div.rhap_additional-controls {
+  flex: none;
+}
+
 div.rhap_progress-filled,
 div.rhap_volume-filled,
 div.rhap_volume-indicator,
