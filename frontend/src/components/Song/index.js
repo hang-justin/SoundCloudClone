@@ -1,6 +1,6 @@
 import playBtnImg from '../../img/play-btn.png';
 import pauseBtnImg from '../../img/pause-btn.png';
-import waveformImg from '../../img/waveform.png';
+import songWaveformImg from '../../img/waveform-no-bg.png';
 import commentBubbleImg from '../../img/comment-bubble.png';
 import noCommentsImg from '../../img/no-comments.png';
 
@@ -226,7 +226,7 @@ const Song = ({ setOrToggleAudio }) => {
             <div className='song-waveform'>
               <img
                 className='song-waveform-img'
-                src={waveformImg}
+                src={songWaveformImg}
                 onError={onErrorImgCoverLoader}
                 alt='waveform'
               />

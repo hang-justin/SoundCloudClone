@@ -1,6 +1,6 @@
 import playBtnImg from '../../img/play-btn.png';
 import pauseBtnImg from '../../img/pause-btn.png';
-import waveformImg from '../../img/waveform.png';
+import streamWaveformImg from '../../img/waveform-no-bg.png';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
@@ -115,7 +115,7 @@ const PlaylistSongBanner = ({ setOrToggleAudio, playlist }) => {
                     <div className='song-waveform'>
                         <img
                             className='song-waveform-img'
-                            src={waveformImg}
+                            src={streamWaveformImg}
                             alt='waveform'
                             onError={onErrorImgCoverLoader}
                         />

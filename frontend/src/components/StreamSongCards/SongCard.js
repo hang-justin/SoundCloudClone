@@ -1,6 +1,6 @@
 import playBtnImg from '../../img/play-btn.png';
 import pauseBtnImg from '../../img/pause-btn.png';
-import waveformImg from '../../img/waveform.png'
+import songWaveformImg from '../../img/waveform-white-bg.png'
 import { onErrorImgCoverLoader } from '../../utils';
 
 import { useState } from "react";
@@ -90,7 +90,7 @@ const SongCard = ({setOrToggleAudio, song}) => {
                 </div>
                 <div className='waveform-container'>
                     <img
-                        src={waveformImg}
+                        src={songWaveformImg}
                         className='song-waveform-img'
                         onError={onErrorImgCoverLoader}
                         alt='waveform'
