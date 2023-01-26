@@ -11,6 +11,7 @@ import { isPlaying, setActiveTrack, stopPlayer } from '../../store/audioPlayer';
 import songsReducer from '../../store/song';
 
 import './Player.css'
+import CurrentTrackDisplay from './CurrentTrackDisplay';
 
 const Player = ({ setAudioPlayerRef }) => {
   const dispatch = useDispatch();
@@ -61,37 +62,6 @@ const Player = ({ setAudioPlayerRef }) => {
     }
 
   }, [currentTrack, currentPlaylist, allPlaylists])
-
-  const displayCurrentTrack = (currentTrack) => {
-    if (!currentTrack || !currentSong) return (
-      <div className='current-track-info flx-row'>
-        <span id='footer-no-audio'>No audio selected. Please select a song.</span>
-      </div>
-    );
-
-    let artist = artists[currentSong.userId];
-    return (
-      <div className='current-track-info flx-row'>
-        <NavLink to={`/${artist.id}/songs/${currentSong.id}`}>
-          <img
-            id='footer-track-img'
-            src={currentSong.imageUrl}
-            onError={onErrorImgCoverLoader}
-            alt='song-cover-img'
-          />
-        </NavLink>
-
-        <div className='song-details flx-col'>
-            <NavLink to={`/${artist.id}/songs/${currentSong.id}`}>
-              <span id='footer-artist-name' className='footer-song-details'>{artist.username}</span>
-            </NavLink>
-            <NavLink to={`/${artist.id}/songs/${currentSong.id}`}>
-              <span id='footer-song-title' className='footer song-details'>{currentSong.title}</span>
-            </NavLink>
-        </div>
-      </div>
-    )
-  }
 
   const handleClickPrevious = (e) => {
     if (!currentPlaylist) {
@@ -185,7 +155,9 @@ const Player = ({ setAudioPlayerRef }) => {
         </div>
 
         <div className='audio-footer-current-track flx-row'>
-          {displayCurrentTrack(currentTrack)}
+          <CurrentTrackDisplay currentTrack={currentTrack} />
+
+          <span>another</span>
         </div>
       </div>
 
