@@ -56,15 +56,15 @@ const TrackCard = ({ songId, index, playlist, setOrToggleAudio }) => {
 
                 <div className='track-img-container'>
                     <img
-                        className='track-img'
                         src={song.imageUrl}
+                        className='track-img'
                         onError={(e) => onErrorImgCoverLoader(e)}
                         alt='track-cover-img'
                     />
 
                     <img
-                        className='track-img-play-pause-overlay'
                         src={playPauseBtnImgSrc}
+                        className='track-img-play-pause-overlay'
                         onError={(e) => onErrorImgCoverLoader(e)}
                         alt='is-playing-img'
                     />

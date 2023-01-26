@@ -49,8 +49,8 @@ function App() {
 
   const setOrToggleAudio = (e, song, playlist) => {
     // console.log(audioPlayerRef)
-    console.log(audioPlayerRef.current.audio)
-    console.log(audioPlayerRef.current.audio.current.currentTime)
+    // console.log(audioPlayerRef.current.audio)
+    // console.log(audioPlayerRef.current.audio.current.currentTime)
     // Scenarios:
     //
     // User plays standalone song

@@ -49,7 +49,11 @@ const audioPlayerReducer = (state = initialState, action) => {
         }
       }
 
-      newState.currentPlaylist = action.currentPlaylist
+      if (!!action.currentPlaylist) {
+        newState.currentPlaylist = { id: action.currentPlaylist.id}
+      } else {
+        newState.currentPlaylist = null;
+      }
 
       return newState;
 

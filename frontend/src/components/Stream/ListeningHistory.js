@@ -35,7 +35,7 @@ const ListeningHistory = ({ setOrToggleAudio }) => {
     const artist = allArtists[song.userId];
     let btnDisplay = 'hidden-play-btn';
 
-    if (currentTrack.id === songId) {
+    if (currentTrack && currentTrack.id === songId) {
       if (isPlaying) {
         btnDisplay = '';
         playPauseImg=pauseBtnImg;

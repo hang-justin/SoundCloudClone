@@ -24,9 +24,11 @@ const SinglePlaylist = ({ setOrToggleAudio }) => {
 
   useEffect(() => {
     dispatch(getOnePlaylistWithSongs(playlistId))
-    .catch(async e => await e.json())
-    .then(err => console.log('err is: ', err))
-    .then(() => setFailedPlaylistFetch(true))
+    .catch(async e => {
+      let data = await e.json()
+      console.log(data);
+      setFailedPlaylistFetch(true)
+    })
   }, [playlistId])
 
   if (failedPlaylistFetch && !currentPlaylist) {
