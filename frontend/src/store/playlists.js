@@ -8,6 +8,13 @@ const ADD_SONG_TO_PLAYLIST = 'playlists/ADD_SONG_TO_PLAYLIST';
 const REMOVE_SONG_FROM_PLAYLIST = 'playlists/REMOVE_SONG_FROM_PLAYLIST';
 const DELETE_PLAYLIST = 'playlists/DELETE_PLAYLIST';
 const EDIT_PLAYLIST = 'playlists/EDIT_PLAYLIST';
+const CLEAR_PLAYLISTS = 'playlists/CLEAR_PLAYLISTS';
+
+export const clearPlaylists = () => {
+  return {
+    type: CLEAR_PLAYLISTS
+  }
+}
 
 const editPlaylist = playlist => {
   return {
@@ -221,7 +228,7 @@ export const deletePlaylist = (playlist) => async dispatch => {
   }
 }
 
-const initialState = { currentUser: null };
+const initialState = {};
 
 const playlistsReducer = (state = initialState, action) => {
   let newState = JSON.parse(JSON.stringify(state))
@@ -275,6 +282,10 @@ const playlistsReducer = (state = initialState, action) => {
 
     case DELETE_PLAYLIST:
       delete newState[action.playlistId]
+      return newState;
+
+    case CLEAR_PLAYLISTS:
+      newState = {};
       return newState;
 
     default: return state;

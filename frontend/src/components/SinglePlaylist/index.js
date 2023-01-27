@@ -42,6 +42,12 @@ const SinglePlaylist = ({ setOrToggleAudio }) => {
   // Implement another guard clause where no playlists are found?
   if (!currentPlaylist) return <div>Loading playlist...</div>
 
+  const playlistOwnerId = currentPlaylist.userId;
+  if (playlistOwnerId !== user.id) {
+    return <Redirect to='/404' />
+  }
+
+
   if (!currentPlaylist.songs) return <div>Loading...</div>
   const songIds = Object.keys(currentPlaylist.songs)
   // console.log('songIds are ', songIds)

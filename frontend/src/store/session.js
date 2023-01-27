@@ -1,5 +1,7 @@
+import { clearUserPlaylists } from "./artists";
 import { removeListenHistory } from "./audioPlayer";
 import { csrfFetch } from "./csrf";
+import { clearPlaylists } from "./playlists";
 
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
@@ -39,13 +41,15 @@ export const logIn = (loginInfo) => async dispatch => {
   // Question: Should this function be returning a response here? Is it going to be needed?
 };
 
-export const logOut = () => async dispatch => {
+export const logOut = (userId) => async dispatch => {
   let response = await csrfFetch('/api/session', {
     method: 'DELETE'
   })
 
   dispatch(removeUser());
   dispatch(removeListenHistory());
+  dispatch(clearPlaylists());
+  dispatch(clearUserPlaylists(userId));
 }
 
 
