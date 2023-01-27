@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
-import { addSongToPlaylist, getOnePlaylistWithSongs } from "../../store/playlists";
-import { onErrorImgCoverLoader } from "../../utils";
+import { getOnePlaylistWithSongs } from "../../store/playlists";
 import Social from "../Social";
 import PlaylistSongBanner from "../PlaylistSongBanner";
 import EditPlaylistOptions from "./EditPlaylistOptions";
@@ -16,7 +15,6 @@ const SinglePlaylist = ({ setOrToggleAudio }) => {
   const { playlistId } = useParams();
 
   const playlists = useSelector(state => state.playlists);
-  const allSongs = useSelector(state => state.songs);
   const user = useSelector(state => state.session.user);
   const [failedPlaylistFetch, setFailedPlaylistFetch] = useState(false);
 
@@ -29,7 +27,7 @@ const SinglePlaylist = ({ setOrToggleAudio }) => {
       console.log(data);
       setFailedPlaylistFetch(true)
     })
-  }, [playlistId])
+  }, [playlistId, dispatch])
 
   if (!user) {
     return <Redirect to ='/' />
@@ -49,13 +47,11 @@ const SinglePlaylist = ({ setOrToggleAudio }) => {
 
 
   if (!currentPlaylist.songs) return <div>Loading...</div>
-  const songIds = Object.keys(currentPlaylist.songs)
+  // const songIds = Object.keys(currentPlaylist.songs)
   // console.log('songIds are ', songIds)
 
   // will want to hit /api/:playlistId
   // will return said playlist with included songs
-
-
 
   return (
     <div id='playlist-container'>

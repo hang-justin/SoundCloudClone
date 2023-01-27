@@ -1,8 +1,7 @@
 import logoWithText from '../../img/logo-w-text.png';
 import { onErrorImgCoverLoader } from '../../utils';
 
-import { useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignUpFormPage';
@@ -12,7 +11,6 @@ import SplashSongCards from './SplashSongCards';
 import './SplashPage.css';
 
 const SplashPage = ({ setOrToggleAudio }) => {
-  const history = useHistory();
 
   return (
     <div id='splash'>

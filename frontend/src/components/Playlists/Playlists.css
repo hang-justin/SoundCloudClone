@@ -2,6 +2,13 @@
   min-height: calc(100vh - 40px);
 }
 
+#playlists-component-header {
+  padding: 20px 85px;
+  /* font-size: larger;
+  font-weight: 600; */
+  /* color: gray; */
+}
+
 #user-playlist-container {
   display: flex;
   flex-direction: row;

@@ -36,8 +36,8 @@
     opacity: 0;
 }
 
-.playlist-tile:hover .play-playlist-tile-overlay,
-.playlist-tile:hover .playlist-tile-buffering-overlay {
+.playlist-link-container:hover .play-playlist-tile-overlay,
+.playlist-link-container:hover .playlist-tile-buffering-overlay {
     opacity: 1;
 }
 
@@ -48,4 +48,11 @@
     border-radius: 50%;
     border: none;
     padding: 0;
+}
+
+.playlist-link {
+    position: relative;
+    font-weight: 300;
+    text-decoration: none;
+    color: black;
 }
