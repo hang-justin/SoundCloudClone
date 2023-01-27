@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import CurrentPlaylistSongs from '../CurrentPlaylistSongs';
 import './CurrentPlaylistDisplay.css';
 
 const CurrentPlaylistDisplay = ({ setOrToggleAudio }) => {
+    const currentPlaylist = useSelector(state => state.audioPlayer.currentPlaylist);
     const [showPlaylistSongs, setShowPlaylistSongs] = useState(false);
 
     const handleClick = () => {
@@ -18,14 +20,17 @@ const CurrentPlaylistDisplay = ({ setOrToggleAudio }) => {
         <>
             <span
                 id='player-playlist-icon'
-                className={`material-symbols-outlined ${isPlaylistShowing}`}
+                className={`material-symbols-outlined ${isPlaylistShowing} orange-text`}
                 onClick={handleClick}
                 >
                 playlist_play
             </span>
 
             {showPlaylistSongs &&
-                <CurrentPlaylistSongs setOrToggleAudio={setOrToggleAudio} />
+                <CurrentPlaylistSongs
+                    setOrToggleAudio={setOrToggleAudio}
+                    setShowPlaylistSongs={setShowPlaylistSongs}
+                />
             }
         </>
     )

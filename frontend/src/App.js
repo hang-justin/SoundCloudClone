@@ -45,6 +45,12 @@ function App() {
       .then(() => setIsLoaded(true));
   }, [dispatch])
 
+  useEffect(() => {
+      (async () => {
+        await loadPlaylists(user)
+      })()
+  }, [user])
+
   if (!isLoaded) return <div>Loading...</div>
 
   const setOrToggleAudio = (e, song, playlist) => {
@@ -144,7 +150,7 @@ function App() {
               </Route>
 
               <Route exact path='/you/library'>
-                <Playlists />
+                <Playlists setOrToggleAudio={setOrToggleAudio} />
               </Route>
 
               <Route exact path='/:userId/songs/:songId'>
@@ -155,7 +161,7 @@ function App() {
               </Route>
 
               <Route exact path='/sets/:playlistId'>
-                <SinglePlaylist setOrToggleAudio={setOrToggleAudio}/>
+                <SinglePlaylist setOrToggleAudio={setOrToggleAudio} />
               </Route>
 
               <Route exact path='/upload'>

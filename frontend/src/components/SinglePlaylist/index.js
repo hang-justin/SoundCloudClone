@@ -13,7 +13,7 @@ import './SinglePlaylist.css'
 const SinglePlaylist = ({ setOrToggleAudio }) => {
   const dispatch = useDispatch();
 
-  const { userId, playlistId } = useParams();
+  const { playlistId } = useParams();
 
   const playlists = useSelector(state => state.playlists);
   const allSongs = useSelector(state => state.songs);
@@ -31,6 +31,10 @@ const SinglePlaylist = ({ setOrToggleAudio }) => {
     })
   }, [playlistId])
 
+  if (!user) {
+    return <Redirect to ='/' />
+  }
+
   if (failedPlaylistFetch && !currentPlaylist) {
     return <Redirect to='/404' />
   }
@@ -46,20 +50,11 @@ const SinglePlaylist = ({ setOrToggleAudio }) => {
   // will return said playlist with included songs
 
 
-  const needToImplement = () => {
-    alert('need to implement')
-  }
-
-  const testAddSong = () => {
-    dispatch(addSongToPlaylist(1, 8))
-    // playlistId, songId
-  }
-
 
   return (
     <div id='playlist-container'>
 
-      <PlaylistSongBanner setOrToggleAudio={setOrToggleAudio} playlist={currentPlaylist} />
+      <PlaylistSongBanner setOrToggleAudio={setOrToggleAudio} />
 
       <div id='playlist-content' className='flx-row'>
 

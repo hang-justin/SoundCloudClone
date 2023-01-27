@@ -9,6 +9,7 @@ span.listening-history-text{
 
 .listening-history-content {
   gap: 10px;
+  font-weight: 300;
 }
 
 div.listen-history-img-wrapper {

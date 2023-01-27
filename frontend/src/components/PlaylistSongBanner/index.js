@@ -9,18 +9,26 @@ import { onErrorImgCoverLoader } from '../../utils';
 import { useState } from 'react';
 
 import './PlaylistSongBanner.css';
+import BannerPlayButton from './BannerPlayButton';
+import BannerBuffering from './BannerBuffering';
 
-const PlaylistSongBanner = ({ setOrToggleAudio, playlist }) => {
+const PlaylistSongBanner = ({ setOrToggleAudio }) => {
     const dispatch = useDispatch();
     const { playlistId } = useParams();
 
-    const allSongs = useSelector(state => state.songs)
-    const allArtists = useSelector(state => state.artists)
-    const currentTrack = useSelector(state => state.audioPlayer.currentTrack)
-    const currentPlaylist = useSelector(state => state.audioPlayer.currentPlaylist)
-    const isPlaying = useSelector(state => state.audioPlayer.isPlaying)
+    const allSongs = useSelector(state => state.songs);
+    const allArtists = useSelector(state => state.artists);
+    const allPlaylists = useSelector(state => state.playlists);
+
+    const currentTrack = useSelector(state => state.audioPlayer.currentTrack);
+    const currentPlaylist = useSelector(state => state.audioPlayer.currentPlaylist);
+    const isPlaying = useSelector(state => state.audioPlayer.isPlaying);
 
     const [songNotFound, setSongNotFound] = useState(false);
+
+    const playlist = allPlaylists[playlistId];
+    const playlistSongIds = Object.keys(playlist.songs);
+    const isPlaylistEmpty = !playlistSongIds.length
 
     // First check playlist
     // Next check song
@@ -67,16 +75,6 @@ const PlaylistSongBanner = ({ setOrToggleAudio, playlist }) => {
     //     .then(() => setSongNotFound(true))
     // }
 
-    let playPauseBtnImg = playBtnImg;
-    if (isCurrentPlaylistPlaying) {
-        // If current playlist is being played
-        // Change logo depending on isPlaying
-            isPlaying
-            ? playPauseBtnImg=pauseBtnImg
-            : playPauseBtnImg=playBtnImg;
-
-    }
-
     if (songNotFound && !playlist) return <Redirect to='/404' />
 
     return (
@@ -85,14 +83,10 @@ const PlaylistSongBanner = ({ setOrToggleAudio, playlist }) => {
             <div className='song-banner__left'>
                 <div className='song-banner__left__top'>
 
-                    <button id='song-banner-toggle-play' onClick={(e) => setOrToggleAudio(e, currentTrack, playlist)}>
-                        <img
-                            id='song-component-toggle-play'
-                            src={playPauseBtnImg}
-                            alt='toggle-play button'
-                            onError={onErrorImgCoverLoader}
-                            />
-                    </button>
+                    {isPlaylistEmpty
+                        ? <BannerBuffering />
+                        : <BannerPlayButton playlistId={playlistId} setOrToggleAudio={setOrToggleAudio} />
+                    }
 
 
                     <div className='song-banner__top__song-info'>

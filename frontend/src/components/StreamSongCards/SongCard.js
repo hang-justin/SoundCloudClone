@@ -65,7 +65,7 @@ const SongCard = ({setOrToggleAudio, song}) => {
                     src={song.imageUrl}
                     className='song-image'
                     onError={onErrorImgCoverLoader}
-                    alt={`${song.title}'s co`}
+                    alt={`${song.title}'s cover img`}
                 />
                 </NavLink>
             </div>

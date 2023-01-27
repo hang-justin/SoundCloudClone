@@ -145,6 +145,12 @@ div.audio-footer-container {
   flex-direction: column;
 }
 
+.flx-col-align-start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .flx-col-justify-align-ctr {
   display: flex;
   flex-direction: column;
@@ -182,4 +188,8 @@ div.audio-footer-container {
 
 .disabled-btn:hover {
   cursor: not-allowed ;
+}
+
+.orange-text {
+  color: var(--orange-one);
 }

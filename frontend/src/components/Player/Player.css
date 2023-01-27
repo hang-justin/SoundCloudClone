@@ -1,4 +1,8 @@
 /* overwrite default values */
+button > svg {
+  color: var(--orange-one);
+}
+
 div.rhap_container {
   background-color: rgb(242, 242, 242);
   box-shadow: none;
@@ -69,6 +73,8 @@ img#footer-track-img {
 div.song-details.flx-col {
   height: 100%;
   gap: 5px;
+
+  font-weight: 300;
 }
 
 span#footer-artist-name {

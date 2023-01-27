@@ -1,0 +1,17 @@
+#banner-buffering-logo {
+    box-sizing: border-box;
+    height: 88px;
+    width: 88px;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+    background-color: rgb(253, 86, 43);
+    filter: brightness(0.7);
+    opacity: 1;
+}
+
+#dots-buffering-gif {
+    height: 88px;
+    width: 88px;
+    border-radius: 50%;
+}

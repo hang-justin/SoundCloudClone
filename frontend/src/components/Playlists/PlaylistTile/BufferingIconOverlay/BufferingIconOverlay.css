@@ -1,0 +1,16 @@
+.playlist-tile-buffering-overlay {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    transform: translate(-50%, -50%);
+    background-color: rgb(253, 86, 43);
+    filter: brightness(0.7);
+    opacity: 0;
+}
+
+.playlist-tile-buffering-overlay,
+.buffering-gif-overlay {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+}

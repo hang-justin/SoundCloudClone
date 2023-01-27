@@ -34,7 +34,7 @@ const ProfileButton = ({ user }) => {
 
   const logOut = async e => {
     e.preventDefault();
-    dispatch(sessionActions.logOut())
+    await dispatch(sessionActions.logOut())
       .then(() => history.push('/'));
   }
 
