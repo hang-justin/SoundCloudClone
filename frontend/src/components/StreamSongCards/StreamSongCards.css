@@ -1,3 +1,9 @@
+.song-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 div.song-card-container {
     display: flex;
     flex-direction: column;

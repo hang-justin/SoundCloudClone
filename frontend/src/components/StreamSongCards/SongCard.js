@@ -11,17 +11,22 @@ import * as songActions from '../../store/song'
 import EditSongFormModal from "../EditSongFormModal";
 import PlaylistModal from "../PlaylistModal";
 
-
-const SongCard = ({setOrToggleAudio, song}) => {
+const SongCard = ({setOrToggleAudio, songId}) => {
     const dispatch = useDispatch();
 
-    let sessionUser = useSelector(state => state.session.user)
-    let artists = useSelector(state => state.artists);
+    const sessionUser = useSelector(state => state.session.user)
+    const artists = useSelector(state => state.artists);
+    const allSongs = useSelector(state => state.songs)
+
     const currentTrack = useSelector(state => state.audioPlayer.currentTrack)
     const currentPlaylist = useSelector(state => state.audioPlayer.currentPlaylist)
     const isPlaying = useSelector(state => state.audioPlayer.isPlaying);
 
     const [showPlaylistModal, setShowPlaylistModal] = useState(false);
+
+    const song = allSongs[songId];
+
+    if(!song) return <div>Loading song...</div>
 
     const deleteTrack = (songId) => {
         dispatch(songActions.deleteTrack(songId));
@@ -32,15 +37,18 @@ const SongCard = ({setOrToggleAudio, song}) => {
 
         const editDeleteBtns = [
             <EditSongFormModal key={`edit-song-id-${song.id}`} song={song} />,
-            <button key={`delete-song-id-${song.id}`} className='alter-track-btns' id={song.id} onClick={(e) => deleteTrack(song.id)}>
-            <i className="fa-solid fa-trash"></i>
+            <button
+                key={`delete-song-id-${song.id}`}
+                className='alter-track-btns'
+                id={song.id}
+                onClick={(e) => deleteTrack(song.id)}
+                >
+                <i className="fa-solid fa-trash" />
             </button>
         ];
 
         return editDeleteBtns;
     }
-
-    if (song.Artist !== undefined) return null;
 
     let playPauseImg = playBtnImg;
 

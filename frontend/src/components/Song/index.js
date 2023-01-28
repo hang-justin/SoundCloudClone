@@ -3,20 +3,21 @@ import pauseBtnImg from '../../img/pause-btn.png';
 import songWaveformImg from '../../img/waveform-no-bg.png';
 import commentBubbleImg from '../../img/comment-bubble.png';
 import noCommentsImg from '../../img/no-comments.png';
+import { onErrorImgCoverLoader } from '../../utils';
 
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useParams } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 
 import { fetchCurrentSongWithComments, getSongComments } from "../../store/song";
 
 import AddComment from "../AddComment";
 import Comment from "../Comment";
 import Social from "../Social";
+import SongLoadingDisplay from './SongLoadingDisplay';
 
 import './Song.css';
-import { onErrorImgCoverLoader } from '../../utils';
 
 // Note, we can hit /:userId/songs/current where :songId === current
 //    and it will return a song obj with sessionUser's songs regardless of the userId wildcard
@@ -28,6 +29,7 @@ const Song = ({ setOrToggleAudio }) => {
   const { songId } = useParams();
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   let songs = useSelector(state => state.songs);
   let artists = useSelector(state => state.artists)
@@ -42,6 +44,7 @@ const Song = ({ setOrToggleAudio }) => {
   const [commentLimitTextMod, setCommentLimitTextMod] = useState('');
   const [commentLimitDisplay, setCommentLimitDisplay] = useState('hidden-span')
   const [songNotFound, setSongNotFound] = useState(false);
+  const [attemptedFetch, setAttemptedFetch] = useState(false);
 
   let playPauseImg = playBtnImg;
 
@@ -57,6 +60,17 @@ const Song = ({ setOrToggleAudio }) => {
     return (
       <Redirect to='/404' />
     )
+  }
+
+  if (attemptedFetch) {
+    // something went wrong here
+    // song fetch was attempted
+    //    404 wasn't returned
+    //    songNotFound wasn't set
+    //    unknown error
+
+    alert('Uh oh. Something went wrong. Redirecting to homepage.')
+    return <Redirect to='/' />
   }
 
   let song = songs[songId];
@@ -77,24 +91,22 @@ const Song = ({ setOrToggleAudio }) => {
   // HELP: HOW TO GRACEFULLY HANDLE THE ERROR MESSAGE RETURNED FROM
   // TRYING TO ACCESS A SONG THAT DOESN'T EXIST
 
-  if (Object.keys(songs).length > 0 && !song) {
+  if (Object.keys(songs).length > 0 && !song && !attemptedFetch) {
+    console.log('what... running this dispatch')
     dispatch(fetchCurrentSongWithComments(songId))
     .catch(async errRes => {
         const errMessage = await errRes.json();
 
-        // NOTE
-        // perhaps we can pass the errMessage into the redirect
-        // by setting songNotFound default to empty string
-        // then put errMessage in songNotFound with errMessage string
+        if (errMessage.statusCode === 401) return setSongNotFound(true);
       })
-      .then(() => setSongNotFound(true))
+    .then(() => setAttemptedFetch(true))
     }
 
-    if (!song) return <div>Loading...</div>
-    if (!song.userId) return <div>Loading...</div>
+    if (!song) return <SongLoadingDisplay />
+    if (!song.userId) return <div>Loading artist...</div>
 
     let artist = artists[song.userId];
-    if (!artist) return <div>Loading...</div>
+    if (!artist) return <div>Loading artist 2...</div>
 
     // Guard clauses/loading divs for when navigating directly to
     //    songs/songId page
@@ -142,7 +154,7 @@ const Song = ({ setOrToggleAudio }) => {
 
   if (!song.comments) {
     dispatch(getSongComments(songId))
-    return <div>Loading...</div>
+    return <SongLoadingDisplay />
   }
 
   // array of objs

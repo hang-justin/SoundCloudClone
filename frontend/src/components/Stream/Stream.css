@@ -36,12 +36,6 @@ h2#song-cards-header {
   padding-left: 15px;
 }
 
-.song-cards-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
 /* .song-container {
   display: flex;
   flex-direction: row;

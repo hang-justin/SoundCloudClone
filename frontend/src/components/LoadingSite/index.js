@@ -1,6 +1,3 @@
-import bufferingImg from '../../img/buffering-dots.gif';
-import { onErrorImgCoverLoader } from '../../utils';
-
 import './LoadingSite.css';
 
 const LoadingSite = () => {
@@ -8,17 +5,9 @@ const LoadingSite = () => {
     return (
         <div id='loading-site'>
             <div id='circle-container' className='flx-row-justify-align-ctr'>
-                <div className='site-circle site-circle1'></div>
-                <div className='site-circle site-circle2'></div>
-                <div className='site-circle site-circle3'></div>
-
-                <img
-                    src={bufferingImg}
-                    id='site-loading-dots'
-                    onError={onErrorImgCoverLoader}
-                    alt='loading'
-                />
-
+                <div className='site-circle circle1'></div>
+                <div className='site-circle circle2'></div>
+                <div className='site-circle circle3'></div>
             </div>
         </div>
     )

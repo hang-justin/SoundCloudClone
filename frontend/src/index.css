@@ -193,3 +193,26 @@ div.audio-footer-container {
 .orange-text {
   color: var(--orange-one);
 }
+
+@keyframes growAndFade {
+  0% {
+      opacity: .5;
+      transform: scale(0);
+  }
+  100% {
+      opacity: 0;
+      transform: scale(1);
+  }
+}
+
+.circle1 {
+  animation-delay: 0s;
+}
+
+.circle2 {
+  animation-delay: 0.15s;
+}
+
+.circle3 {
+  animation-delay: 0.3s;
+}

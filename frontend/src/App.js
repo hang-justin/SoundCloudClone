@@ -26,6 +26,7 @@ function App() {
   const user = useSelector(state => state.session.user);
   const currentTrack = useSelector(state => state.audioPlayer.currentTrack)
   const currentPlaylist = useSelector(state => state.audioPlayer.currentPlaylist);
+  const isPlaying = useSelector(state => state.audioPlayer.isPlaying);
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [audioPlayerRef, setAudioPlayerRef] = useState(null);
@@ -107,6 +108,7 @@ function App() {
         // dispatch(stopPlayer());
         audioPlayerRef.current.audio.current.currentTime = 0;
         dispatch(setActiveTrack(song, playlist))
+        if (!isPlaying) audioPlayerRef.current.togglePlay(e);
         return;
       }
 
@@ -117,7 +119,8 @@ function App() {
       if (currentPlaylist.id !== playlist.id) {
         // dispatch(stopPlayer());
         audioPlayerRef.current.audio.current.currentTime = 0;
-        dispatch(setActiveTrack(song, playlist))
+        dispatch(setActiveTrack(song, playlist));
+        if (!isPlaying) audioPlayerRef.current.togglePlay(e);
         return;
       }
 

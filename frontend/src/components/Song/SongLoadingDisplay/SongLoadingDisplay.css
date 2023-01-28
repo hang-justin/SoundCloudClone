@@ -1,18 +1,17 @@
-
-
-.playlist-loading-tile {
+#song-comp-loading-display {
     position: relative;
-    height: 200px;
-    width: 200px;
+
+    box-sizing: border-box;
+    height: calc(100vh - 40px);
 }
 
-.playlist-loading-gif {
-    position: absolute;
-    background-color: var(--orange-one);
-    border-radius: 50%;
+#song-circle-container {
+    position: relative;
+    height: 500px;
+    width: 500px;
 }
 
-.circle {
+.song-circle {
     position: absolute;
     top: 0;
     left: 0;
