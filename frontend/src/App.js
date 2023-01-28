@@ -1,5 +1,5 @@
-import { createRef, useEffect, useRef, useState } from 'react';
-import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Navigation from './components/Navigation';
 import Stream from './components/Stream';
@@ -9,15 +9,16 @@ import Player from './components/Player';
 import SplashPage from './components/SplashPage';
 
 // import LoginFormPage from "./components/LoginFormPage";
-import SignUpFormPage from './components/SignUpFormPage';
-import Library from './components/Library';
+// import SignUpFormPage from './components/SignUpFormPage';
+// import Library from './components/Library';
 import Playlists from './components/Playlists';
 import SinglePlaylist from './components/SinglePlaylist';
 
 import * as songActions from './store/song'
 import * as sessionActions from './store/session';
 import * as playlistsActions from './store/playlists';
-import { isPlaying, setActiveTrack, stopPlayer } from './store/audioPlayer';
+import { setActiveTrack } from './store/audioPlayer';
+import LoadingSite from './components/LoadingSite';
 
 
 function App() {
@@ -29,15 +30,15 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [audioPlayerRef, setAudioPlayerRef] = useState(null);
 
-  const loadPlaylists = (user) => {
-    if (!user) return;
-    dispatch(playlistsActions.getCurrentUserPlaylists());
-  }
-
   useEffect(() => {
     console.log('You like to look under the hood? Why not help us build the engine? https://soundcloud.com/jobs');
     console.log('')
     console.log('SonusNimbus is a clone of SoundCloud built for educational purposes. Check out the code base. https://github.com/hang-justin/SoundCloudClone')
+
+    const loadPlaylists = (user) => {
+      if (!user) return;
+      dispatch(playlistsActions.getCurrentUserPlaylists());
+    }
 
     dispatch(sessionActions.restoreSession())
       .then((user) => loadPlaylists(user))
@@ -46,12 +47,17 @@ function App() {
   }, [dispatch])
 
   useEffect(() => {
-      (async () => {
-        await loadPlaylists(user)
-      })()
-  }, [user])
+    const loadPlaylists = (user) => {
+      if (!user) return;
+      dispatch(playlistsActions.getCurrentUserPlaylists());
+    }
 
-  if (!isLoaded) return <div>Loading...</div>
+    (async () => {
+      await loadPlaylists(user)
+    })()
+  }, [dispatch, user])
+
+  if (!isLoaded) return <LoadingSite />
 
   const setOrToggleAudio = (e, song, playlist) => {
     // console.log(audioPlayerRef)

@@ -1,0 +1,46 @@
+@keyframes growAndFade {
+    0% {
+        opacity: .5;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+.playlist-loading-tile {
+    position: relative;
+    height: 200px;
+    width: 200px;
+}
+
+.playlist-loading-gif {
+    position: absolute;
+    background-color: var(--orange-one);
+    border-radius: 50%;
+}
+
+.circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    animation: growAndFade 2s infinite ease-out;
+    background-color: orange;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.circle1 {
+    animation-delay: 0.25s;
+}
+
+.circle2 {
+    animation-delay: 0.5s;
+}
+
+.circle3 {
+    animation-delay: 0.75s;
+}

@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 import TilePlayButton from './TilePlayButton';
 import BufferingIconOverlay from './BufferingIconOverlay';
+import PlaylistTileLoading from './PlaylistTileLoading';
 
 import './PlaylistTile.css';
 
@@ -12,8 +13,12 @@ const PlaylistTile = ({ playlistId, setOrToggleAudio }) => {
     const allPlaylists = useSelector(state => state.playlists);
 
     const playlist = allPlaylists[playlistId];
-    if (!playlist) return <div>Loading playlist...</div>
 
+    if (!playlist) return (
+        <div className='playlist-tile'>
+            <PlaylistTileLoading />
+        </div>
+    )
 
     const playlistSongIds = Object.keys(playlist.songs);
     const isPlaylistEmpty = !playlistSongIds.length;

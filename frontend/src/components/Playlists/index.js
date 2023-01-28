@@ -35,7 +35,7 @@ const Playlists = ({ setOrToggleAudio }) => {
     <div id='playlist-component'>
 
       <h2 id='playlists-component-header'>
-        {`Hear your own playlists and the playlists you’ve liked:`}
+        Hear your own playlists:
       </h2>
 
       <div id='user-playlist-container' className='flx-row'>
