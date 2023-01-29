@@ -11,6 +11,11 @@ const CreatePlaylistTile = () => {
     const [showCreatePlaylistModal, setShowCreatePlaylistModal] = useState(false);
     const [newPlaylistId, setNewPlaylistId] = useState(0);
 
+    const closeModal = () => {
+        setShowCreatePlaylistModal(false);
+        setNewPlaylistId(0);
+    }
+
     return (
         <div id='create-playlist-tile' className='playlist-tile flx-row-justify-align-ctr'>
             <div className='circle circle1'></div>
@@ -31,7 +36,7 @@ const CreatePlaylistTile = () => {
             </button>
 
             {showCreatePlaylistModal &&
-            <Modal onClose={() => setShowCreatePlaylistModal(false)}>
+            <Modal onClose={() => closeModal()}>
                 {!!newPlaylistId
                     ? (
                         <NewPlaylist

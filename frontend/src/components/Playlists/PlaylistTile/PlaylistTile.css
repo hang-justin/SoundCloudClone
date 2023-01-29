@@ -56,4 +56,5 @@
     font-weight: 300;
     text-decoration: none;
     color: black;
+    word-break: break-all;
 }

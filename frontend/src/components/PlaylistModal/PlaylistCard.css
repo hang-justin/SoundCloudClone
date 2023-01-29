@@ -20,6 +20,8 @@
     margin-left: auto;
     align-self: center;
 
+    box-sizing: border-box;
+    width: 125px;
     padding: 3px 10px;
     background-color: transparent;
     border-radius: 5px;
@@ -44,4 +46,10 @@
 
 .add-song-to-playlist:hover {
     border: 2px solid rgba(128, 128, 128, 1);
+}
+
+.playlist-name {
+    width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

@@ -66,6 +66,7 @@ span#song-info__song-title {
   padding: 0 6px;
   width: auto;
   display: inline-block;
+  word-break: break-all;
 }
 
 span#song-info__song-artist {
