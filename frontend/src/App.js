@@ -38,7 +38,7 @@ function App() {
 
     const loadPlaylists = (user) => {
       if (!user) return;
-      dispatch(playlistsActions.getCurrentUserPlaylists());
+      dispatch(playlistsActions.getCurrentUserPlaylists(user.id));
     }
 
     dispatch(sessionActions.restoreSession())
@@ -50,7 +50,7 @@ function App() {
   useEffect(() => {
     const loadPlaylists = (user) => {
       if (!user) return;
-      dispatch(playlistsActions.getCurrentUserPlaylists());
+      dispatch(playlistsActions.getCurrentUserPlaylists(user.id));
     }
 
     (async () => {

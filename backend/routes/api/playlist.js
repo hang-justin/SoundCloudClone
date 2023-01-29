@@ -147,6 +147,9 @@ const deletePlaylist = async (req, res, next) => {
 
 const getAllPlaylists = async (req, res, next) => {
   const userId = req.user.id;
+  console.log('')
+  console.log('userId from backend fetch is: ', userId)
+  console.log('')
 
   const playlists = await Playlist.findAll({
     where: { userId },
@@ -164,7 +167,7 @@ const getAllPlaylists = async (req, res, next) => {
   }
 
   res.statusCode = 200;
-  res.json({ Playlists: playlists })
+  return res.json({ Playlists: playlists })
 }
 
 // <-------------------- CRUD ROUTERS -------------------->
