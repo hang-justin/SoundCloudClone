@@ -1,0 +1,13 @@
+
+
+.playlist-loading-tile {
+    position: relative;
+    height: 200px;
+    width: 200px;
+}
+
+.playlist-loading-gif {
+    position: absolute;
+    background-color: var(--orange-one);
+    border-radius: 50%;
+}

@@ -1,0 +1,49 @@
+#new-playlist-display {
+    box-sizing: border-box;
+    width: 600px;
+    padding: 25px;
+
+    position: relative;
+}
+
+.new-playlist-img {
+    height: 100px;
+    width: 100px;
+}
+
+.new-playlist-name {
+    word-break: break-word;
+    margin: 0 15px;
+}
+
+#create-playlist-modal-btn-containers {
+    margin-left: auto;
+    gap: 5px;
+}
+
+#create-playlist-modal-btn-containers > button {
+    box-sizing: border-box;
+    height: 30px;
+    width: 175px;
+    background-color: rgb(255, 120, 0);
+    border: none;
+    border-radius: 5px;
+
+    color: white;
+    font-size: medium;
+    font-weight: 200;
+}
+
+#create-playlist-modal-btn-containers > button:hover {
+    font-weight: 400;
+}
+
+#create-another-playlist-btn {
+    height: 50px;
+    background-color: rgb(255, 120, 0);
+    border: none;
+    color: white;
+    border-radius: 5px;
+
+    font-size: medium;
+}

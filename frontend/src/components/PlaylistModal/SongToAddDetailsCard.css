@@ -1,0 +1,10 @@
+#add-playlist-song-details {
+    box-sizing: border-box;
+    width: calc(100% - 100px);
+    padding-left: 10px;
+}
+
+#add-playlist-song-img {
+    height: 100px;
+    width: 100px;
+}

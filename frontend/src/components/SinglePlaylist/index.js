@@ -1,58 +1,79 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { addSongToPlaylist, getOnePlaylistWithSongs } from "../../store/playlists";
-import PlaylistSongCard from "../PlaylistSongCard";
+import { Redirect, useParams } from "react-router-dom";
+import { getOnePlaylistWithSongs } from "../../store/playlists";
+import Social from "../Social";
+import PlaylistSongBanner from "../PlaylistSongBanner";
+import EditPlaylistOptions from "./EditPlaylistOptions";
+import PlaylistDetails from "./PlaylistDetails";
 
+import './SinglePlaylist.css'
 
-
-const SinglePlaylist = () => {
+const SinglePlaylist = ({ setOrToggleAudio }) => {
   const dispatch = useDispatch();
-  const playlists = useSelector(state => state.playlists)
-  const songs = useSelector(state => state.songs)
-  const { userId, playlistId } = useParams();
+
+  const { playlistId } = useParams();
+
+  const playlists = useSelector(state => state.playlists);
+  const user = useSelector(state => state.session.user);
+  const [failedPlaylistFetch, setFailedPlaylistFetch] = useState(false);
+
   const currentPlaylist = playlists[playlistId]
 
   useEffect(() => {
     dispatch(getOnePlaylistWithSongs(playlistId))
-  }, [playlistId])
+    .catch(async e => {
+      let data = await e.json()
+      console.log(data);
+      setFailedPlaylistFetch(true)
+    })
+  }, [playlistId, dispatch])
 
-  if (!currentPlaylist.Songs) return <div>Loading...</div>
-  const songIds = Object.keys(currentPlaylist.Songs)
-  console.log('songIds are ', songIds)
+  if (!user) {
+    return <Redirect to ='/' />
+  }
+
+  if (failedPlaylistFetch && !currentPlaylist) {
+    return <Redirect to='/404' />
+  }
+
+  // Implement another guard clause where no playlists are found?
+  if (!currentPlaylist) return <div>Loading playlist...</div>
+
+  const playlistOwnerId = currentPlaylist.userId;
+  if (playlistOwnerId !== user.id) {
+    return <Redirect to='/404' />
+  }
+
+
+  if (!currentPlaylist.songs) return <div>Loading...</div>
+  // const songIds = Object.keys(currentPlaylist.songs)
+  // console.log('songIds are ', songIds)
 
   // will want to hit /api/:playlistId
   // will return said playlist with included songs
 
-
-  const needToImplement = () => {
-    alert('need to implement')
-  }
-
-  const testAddSong = () => {
-    dispatch(addSongToPlaylist(1, 8))
-    // playlistId, songId
-  }
-
-
-  if (!currentPlaylist) return <div>Loading...</div>
-
   return (
-    <div>
-      <div>
-        <img className='playlist-img' src={currentPlaylist.imageUrl} alt={`${currentPlaylist.name} Img`} />
+    <div id='playlist-container'>
+
+      <PlaylistSongBanner setOrToggleAudio={setOrToggleAudio} />
+
+      <div id='playlist-content' className='flx-row'>
+
+        <div id='playlist-info-container'>
+          <EditPlaylistOptions playlist={currentPlaylist} setOrToggleAudio={setOrToggleAudio} />
+
+          <PlaylistDetails setOrToggleAudio={setOrToggleAudio} playlist={currentPlaylist} />
+        </div>
+
+        <div id='social-ad-container'>
+          <Social />
+        </div>
+
       </div>
-      <button onClick={needToImplement}>Edit</button>
 
-      {/* Note: only render below if playlist owner matches session user */}
-      <button onClick={needToImplement}>Delete</button>
-
-      <button onClick={testAddSong}>Add song 1 to playlist</button>
-
-      {
-        songIds.map(songId => (<PlaylistSongCard key={`playlist${playlistId}-song${songId}`} songId={songId} />))
-      }
     </div>
+
   );
 };
 

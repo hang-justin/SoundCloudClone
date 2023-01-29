@@ -1,0 +1,60 @@
+.playlist-tile {
+    box-sizing: border-box;
+    width: 200px;
+    height: 250px;
+    margin: 0 42.5px;
+    position: relative;
+}
+
+.playlist-img {
+    height: 200px;
+    width: 200px;
+}
+
+.active-play-playlist-tile-overlay,
+.play-playlist-tile-overlay {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+
+    transform: translate(-50%, -50%);
+
+    box-sizing: border-box;
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+
+    background-color: var(--orange-one);
+}
+
+.active-play-playlist-tile-overlay {
+    opacity: 1;
+}
+
+.play-playlist-tile-overlay {
+    opacity: 0;
+}
+
+.playlist-link-container:hover .play-playlist-tile-overlay,
+.playlist-link-container:hover .playlist-tile-buffering-overlay {
+    opacity: 1;
+}
+
+.playlist-tile-img-overlay {
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+}
+
+.playlist-link {
+    position: relative;
+    font-weight: 300;
+    text-decoration: none;
+    color: black;
+    word-break: break-all;
+}

@@ -1,7 +1,7 @@
+import logoWithText from '../../img/logo-w-text.png';
+import { onErrorImgCoverLoader } from '../../utils';
 
-
-import { useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignUpFormPage';
@@ -11,7 +11,6 @@ import SplashSongCards from './SplashSongCards';
 import './SplashPage.css';
 
 const SplashPage = ({ setOrToggleAudio }) => {
-  const history = useHistory();
 
   return (
     <div id='splash'>
@@ -23,7 +22,12 @@ const SplashPage = ({ setOrToggleAudio }) => {
 
         <div className='splash-navbar'>
           <div className='navbar-logo'>
-            <img className='splash-nav-logo' src='https://i.imgur.com/KUkoKgS.png' alt='SonusNimbus Splash Icon' />
+            <img
+              src={logoWithText}
+              className='splash-nav-logo'
+              onError={onErrorImgCoverLoader}
+              alt='SonusNimbus Splash Icon'
+            />
           </div>
 
           <div className='account-btns'>

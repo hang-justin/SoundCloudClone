@@ -61,7 +61,7 @@
   width: calc(80%/3);
   min-width: fit-content;
 
-  border-left: rgba(0, 0, 0, 1) 0.5px solid;
+  /* border-left: rgba(0, 0, 0, 1) 0.5px solid; */
   /* border-right: rgba(0, 0, 0, 1) 0.5px solid; */
 }
 

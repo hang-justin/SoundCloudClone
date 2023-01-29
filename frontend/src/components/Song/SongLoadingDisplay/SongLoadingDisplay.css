@@ -1,0 +1,24 @@
+#song-comp-loading-display {
+    position: relative;
+
+    box-sizing: border-box;
+    height: calc(100vh - 40px);
+}
+
+#song-circle-container {
+    position: relative;
+    height: 500px;
+    width: 500px;
+}
+
+.song-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    animation: growAndFade 2s infinite ease-out;
+    background-color: orange;
+    border-radius: 50%;
+    opacity: 0;
+}

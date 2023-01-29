@@ -1,0 +1,71 @@
+.current-playlist-song-track {
+    box-sizing: border-box;
+    height: 48px;
+    padding: 4px 30px;
+}
+
+.active-current-playlist-song-track {
+    box-sizing: border-box;
+    height: 48px;
+    padding: 4px 30px;
+    background-color: rgba(128, 128, 128, 0.2);
+}
+
+.active-current-playlist-song-track .playlist-popup-song-cover-img {
+    filter: none;
+}
+
+.playlist-popup-song-cover-img {
+    height: 40px;
+    width: 40px;
+}
+
+.half-brightness-filter {
+    filter: brightness(0.5);
+}
+
+.current-playlist-song-track:hover {
+    background-color: rgba(128, 128, 128, 0.2);
+}
+
+.current-playlist-song-track:hover .playlist-popup-song-cover-img {
+    filter: none;
+}
+
+.popup-song-cover-overlay {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 10px;
+    left: 10px;
+    border-radius: 50%;
+    background-color: var(--orange-one);
+    opacity: 0;
+}
+
+.active-current-playlist-song-track .popup-song-cover-overlay,
+.current-playlist-song-track:hover .popup-song-cover-overlay {
+    opacity: 1;
+}
+
+.playlist-popup-song-cover-img-container {
+    position: relative;
+    padding-right: 4px;
+}
+
+.playlist-popup-song-info {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.playlist-popup-song-info__artist-name {
+    color: gray
+}
+
+.playlist-popup-song-info__song-title {
+    color: black
+}
+
+.playlist-popup-song-info__song-title:hover {
+    font-weight: 400;
+}
