@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { deletePlaylistFromArtist } from '../../../store/artists';
+import { clearPlaylist } from '../../../store/audioPlayer';
 import { deletePlaylist } from '../../../store/playlists';
 import './PlaylistDeleteForm.css';
 
@@ -9,11 +10,15 @@ const PlaylistDeleteForm = ({ playlist, setShowPlaylistDeleteModal }) => {
     const history = useHistory();
     const dispatch = useDispatch();
 
+    const currentPlaylist = useSelector(state => state.currentPlaylist);
+
     const [showConfirmation, setShowConfirmation] = useState(false);
 
     const handleDeletePlaylist = async () => {
         dispatch(deletePlaylist(playlist))
-            .then(() => dispatch(deletePlaylistFromArtist(playlist)))
+            .then(() => {
+                dispatch(deletePlaylistFromArtist(playlist))
+            })
             .then(() => history.push('/you/library'))
             .catch(async err => {
                 console.log('err is :', err)
