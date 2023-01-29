@@ -2,7 +2,6 @@ import { useSelector } from "react-redux"
 
 import './AddToExistingPlaylist.css'
 import PlaylistCard from "./PlaylistCard"
-import SongToAddDetailsCard from "./SongToAddDetailsCard"
 
 
 const AddToExistingPlaylist = ({ songToAddRemove }) => {
