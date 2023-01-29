@@ -1,3 +1,6 @@
+import logoImg from '../../img/logo.png';
+import { onErrorImgCoverLoader } from '../../utils';
+
 import { useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
@@ -15,7 +18,6 @@ const Navigation = () => {
   ];
 
   const onLinkStyle = {backgroundColor: 'black'}
-
   return (
     <header className='nav-header'>
       <div className='nav-container-outer'>
@@ -23,7 +25,12 @@ const Navigation = () => {
         <div className='nav-container-left nav-containers flx-row'>
 
             <NavLink id='nav-left-1' activeStyle={onLinkStyle} className='header__navlink nav-container-left__navlink' to='/'>
-                <img className='nav-icon' src='https://i.imgur.com/ll6sl5v.png' alt='SonusNimbus Nav Icon' />
+                <img
+                  src={logoImg}
+                  className='nav-icon'
+                  onError={onErrorImgCoverLoader}
+                  alt='SonusNimbus Nav Icon'
+                />
             </NavLink>
 
             <NavLink id='nav-left-2' activeStyle={onLinkStyle} className='header__navlink nav-container-left__navlink' style={{display:'none'}} to='/discover'>

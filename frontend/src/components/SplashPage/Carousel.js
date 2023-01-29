@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { onErrorImgCoverLoader } from "../../utils";
 
 const Carousel = () => {
   const slideImages = [
@@ -13,7 +14,12 @@ const Carousel = () => {
     if (index === 0)
       return (
         <li key={`slide-image-${index + 1}`} data-active className='slide'>
-          <img className='carousel-img' src={imageLink} alt={`Splash Image ${index + 1}`} />
+          <img
+            src={imageLink}
+            className='carousel-img'
+            onError={onErrorImgCoverLoader}
+            alt={`Splash Image ${index + 1}`}
+          />
           <div className='slide-text-container flx-col'>
             <h1 className='slide-text-header'>Discover more with SonusNimbus</h1>
             <h3 className='slide-text-desc'>SonusNimbus doesn't let you listen offline, ad-free, with over 150 million tracks — and growing.</h3>
@@ -24,10 +30,21 @@ const Carousel = () => {
     else
       return (
         <li key={`slide-image-${index + 1}`} className='slide'>
-          <img className='carousel-img' src={imageLink} alt={`Splash Image ${index + 1}`} />
+          <img
+            src={imageLink}
+            className='carousel-img'
+            onError={onErrorImgCoverLoader}
+            alt={`Splash Image ${index + 1}`}
+          />
+
           <div className='slide-text-container flx-col'>
-            <h1 className='slide-text-header'>What's next in music is first on SoundCloud and is second on SonusNimbus</h1>
-            <h3 className='slide-text-desc'>Upload your first track and begin your journey. SonusNimbus gives you space to create, find your fans, and connect with other artists.</h3>
+            <h1 className='slide-text-header'>
+              What's next in music is first on SoundCloud and is second on SonusNimbus
+            </h1>
+
+            <h3 className='slide-text-desc'>
+              Upload your first track and begin your journey. SonusNimbus gives you space to create, find your fans, and connect with other artists.
+            </h3>
           </div>
         </li>
       )

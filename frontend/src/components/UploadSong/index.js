@@ -1,3 +1,5 @@
+import { onErrorImgCoverLoader } from "../../utils";
+
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -149,7 +151,12 @@ const UploadSongForm = () => {
   if (uploadedSong) return (
     <div className='return-uploaded-song-container'>
       <div className='uploaded-song-img-container'>
-        <img id='just-uploaded-song-img' src={uploadedSong.imageUrl} alt={`${uploadedSong.title}'s Image`} />
+        <img
+          src={uploadedSong.imageUrl}
+          id='just-uploaded-song-img'
+          onError={onErrorImgCoverLoader}
+          alt={`${uploadedSong.title}'s Image`}
+        />
       </div>
       <span className='uploaded-song-title'>{uploadedSong.title}</span>
       <NavLink to={`/${uploadedSong.userId}/songs/${uploadedSong.id}`}>Go to your track</NavLink>
@@ -244,9 +251,6 @@ const UploadSong = () => {
 
   return (
     <div className='upload-song-form-component'>
-      {/* <div className='upload-song-nav'>
-        <span>Your tracks</span>
-      </div> */}
       <UploadSongForm />
     </div>
   );

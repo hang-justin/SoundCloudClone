@@ -1,5 +1,26 @@
-.all-playlist-container {
+#playlist-component {
+  min-height: calc(100vh - 40px);
+}
+
+#playlists-component-header {
+  padding: 20px 85px;
+  /* font-size: larger;
+  font-weight: 600; */
+  /* color: gray; */
+}
+
+#user-playlist-container {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  row-gap: 40px;
+
+  padding: 0 42.5px;
+  margin-bottom: 150px;
+
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .playlist-img {

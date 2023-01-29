@@ -57,6 +57,37 @@ const addSongToPlaylist = async (req, res, next) => {
 
 }
 
+const deleteSongFromPlaylist = async (req, res, next) => {
+  const currentUserId = req.user.dataValues.id;
+  const { songId } = req.body;
+
+  const playlistId = req.params.playlistId;
+  const playlist = await Playlist.findByPk(playlistId, {
+    include: { model : User }
+  })
+
+  if (!playlist) return next(paramNotFoundErrFor(`Playlist`))
+  if (playlist.User.id !== currentUserId) return next(unauthorizedErrToEdit('playlist'));
+
+  const song = await Song.findByPk(songId);
+  if (!song) return next(paramNotFoundErrFor(`Song`))
+
+  let playlistsSong = await PlaylistsSong.findOne({
+    where: { playlistId: playlist.id, songId }
+  })
+
+  if(playlistsSong) {
+    await playlistsSong.destroy();
+
+    res.statusCode = 200;
+    return res.json({
+      message: `Successfully deleted.`,
+      statusCode: res.statusCode
+    })
+  }
+
+}
+
 const getPlaylistById = async (req, res, next) => {
   const { playlistId } = req.params;
   if (playlistId === 'current') return next();
@@ -68,6 +99,7 @@ const getPlaylistById = async (req, res, next) => {
       through: { attributes: [] } // <-- prevents mapping object from being added (join through table)
     }
   });
+
   if (!playlist) return next(paramNotFoundErrFor(`Playlist`))
 
   res.statusCode = 200;
@@ -116,7 +148,13 @@ const deletePlaylist = async (req, res, next) => {
 const getAllPlaylists = async (req, res, next) => {
   const userId = req.user.id;
 
-  const playlists = await Playlist.findAll({ where: { userId } })
+  const playlists = await Playlist.findAll({
+    where: { userId },
+    include: {
+      model: Song,
+      through: { attributes: [] }
+    }
+  })
 
   if (!playlists.length) {
     res.statusCode = 404;
@@ -131,11 +169,12 @@ const getAllPlaylists = async (req, res, next) => {
 
 // <-------------------- CRUD ROUTERS -------------------->
 router.get('/:playlistId', getPlaylistById);
-router.get('/current', requireAuth, getAllPlaylists)
+router.get('/current', requireAuth, getAllPlaylists);
 router.post('/', requireAuth, validatePlaylistPost, createPlaylist)
-router.post('/:playlistId/songs', requireAuth, addSongToPlaylist);
-router.put('/:playlistId', requireAuth, validatePlaylistPost, editPlaylist)
-router.delete('/:playlistId', requireAuth, deletePlaylist)
+router.post('/:playlistId/songs/add', requireAuth, addSongToPlaylist);
+router.post('/:playlistId/songs/delete', requireAuth, deleteSongFromPlaylist);
+router.put('/:playlistId', requireAuth, validatePlaylistPost, editPlaylist);
+router.delete('/:playlistId', requireAuth, deletePlaylist);
 
 // <-------------------- ERROR HANDLERS -------------------->
 router.use(unauthorizedEditErrHandler)

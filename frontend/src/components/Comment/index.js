@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTheseArtists } from '../../store/artists';
 
 import { deleteCommentFromSongReq } from '../../store/song';
+import { onErrorImgCoverLoader } from '../../utils';
 
 import './Comment.css';
 
@@ -56,7 +57,14 @@ const Comment = ({ commentInd, user, comment, song }) => {
       <div className='comment-wrapper__commenter-info'>
 
         <div className='commenterPic'>
-          {profilePicSrc && <img className='commenterPic' src={profilePicSrc} />}
+          {profilePicSrc &&
+            <img
+              src={profilePicSrc}
+              className='commenterPic'
+              onError={onErrorImgCoverLoader}
+              alt='commenter-pic'
+            />
+          }
         </div>
 
         <div className='commentInfo' id={`comment${comment.id}`}>

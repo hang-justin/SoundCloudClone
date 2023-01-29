@@ -1,3 +1,4 @@
+import { onErrorImgCoverLoader } from '../../utils';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,7 +34,7 @@ const ProfileButton = ({ user }) => {
 
   const logOut = async e => {
     e.preventDefault();
-    dispatch(sessionActions.logOut())
+    await dispatch(sessionActions.logOut(user.id))
       .then(() => history.push('/'));
   }
 
@@ -43,7 +44,7 @@ const ProfileButton = ({ user }) => {
         <div className='flx-row' id='profile-button-user-icon'>
         {/* <i className="fa-solid fa-user-ninja"></i> */}
           {userProfilePicSrc
-            ? <img id='nav-custom-user-profile-icon' src={userProfilePicSrc} />
+            ? <img id='nav-custom-user-profile-icon' src={userProfilePicSrc} alt='user-profile-pic' onError={onErrorImgCoverLoader}/>
             : <i className="fa-solid fa-user-ninja"></i>
           }
         </div>

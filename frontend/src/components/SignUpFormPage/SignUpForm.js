@@ -1,16 +1,19 @@
+import cancelBtnImg from '../../img/cancel-btn.png';
+import { onErrorImgCoverLoader } from '../../utils';
+
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import * as sessionActions from '../../store/session'
+import * as sessionActions from '../../store/session';
 
 import './SignUpForm.css';
 
 const SignUpForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+
   const user = useSelector(state => state.session.user)
   if (user) history.push('/');
-  const closeBtnImgSrc = 'https://i.imgur.com/1aSKStp.png';
 
 
   const [email, setEmail] = useState('');
@@ -57,7 +60,18 @@ const SignUpForm = ({ setShowModal }) => {
   // need info = { email, username, password, firstName, lastName }
   return (
     <div id='signup-form-div-wrapper' className='flx-col'>
-      <button onClick={() => setShowModal(false)} id='close-login-btn'><img id='close-login-img' src={closeBtnImgSrc} /></button>
+      <button
+        onClick={() => setShowModal(false)}
+        id='close-login-btn'
+      >
+        <img
+          id='close-login-img'
+          src={cancelBtnImg}
+          onError={onErrorImgCoverLoader}
+          alt='close'
+        />
+      </button>
+
       <h2 className='signup-header'>Create your SonusNimbus account</h2>
       <form id='signup-form' onSubmit={handleSignUp}>
 

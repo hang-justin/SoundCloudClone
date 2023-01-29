@@ -176,9 +176,10 @@ div.banner-top-offset {
   justify-content: space-evenly;
 }
 
-.splash-song-card.flx-col {
+.splash-song-card {
   padding-bottom: 15px;
   width: 250px;
+  height: 300px;
 }
 
 .splash-song-card-img {

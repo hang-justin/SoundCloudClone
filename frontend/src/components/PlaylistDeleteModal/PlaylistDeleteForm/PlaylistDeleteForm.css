@@ -1,0 +1,50 @@
+#delete-playlist-modal-form {
+    width: 400px;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#confirmation-text {
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+#confirm-btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.first-confirm-btns,
+.second-confirm-btns {
+    border: 2px solid transparent;
+    padding: 5px 15px;
+    border-radius: 5px;
+
+    color: white;
+    background-color: var(--orange-one);
+}
+
+.first-confirm-btns:hover,
+.second-confirm-btns:hover {
+    border: 2px solid black;
+    font-weight: bold;
+}
+
+#second-confirm-btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+}
+
+.first-confirm-btns {
+    width: 110px;
+    box-sizing: border-box;
+}
+
+.second-confirm-btns {
+    width: 230px;
+    box-sizing: border-box;
+}

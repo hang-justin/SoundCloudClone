@@ -50,6 +50,7 @@ p.edit-song-label-header {
 
 .edit-song-input:focus {
   background-color: rgba(255, 120, 0, 0.2);
+  outline: 1px solid black;
 }
 
 input.edit-song-input {
@@ -66,12 +67,12 @@ textarea.edit-song-textarea {
   resize: vertical;
 }
 
-button#save-edit-song-btn {
+.button-edit-song {
   display: flex;
   align-self: flex-end;
 
-  border: none;
-  margin-top: 10px;
+  border: 1px solid transparent;
+  /* margin-top: 10px; */
   padding: 10px;
   background-color: rgb(255, 120, 0);
   color: white;
@@ -84,4 +85,9 @@ button#save-edit-song-btn {
 
 .title-of-req-field {
   color: red;
+}
+
+.edit-song-modal-button-containers {
+  justify-content: flex-end;
+  gap: 10px;
 }

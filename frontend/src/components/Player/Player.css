@@ -1,11 +1,21 @@
 /* overwrite default values */
+button > svg {
+  color: var(--orange-one);
+}
+
 div.rhap_container {
   background-color: rgb(242, 242, 242);
   box-shadow: none;
 }
 
+div.rhap_additional-controls {
+  flex: none;
+}
+
 div.rhap_progress-filled,
-div.rhap_volume-bar {
+div.rhap_volume-filled,
+div.rhap_volume-indicator,
+div.rhap_progress-indicator {
   background-color: rgb(255, 120, 0);
 }
 
@@ -38,13 +48,17 @@ div.rhap_time {
   display: none;
 }
 
+#audio-footer-right {
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
 .audio-footer-current-track.flx-row {
   width: calc(1225px * 0.3);
 
   box-sizing: border-box;
-  justify-content: flex-start;
-  align-items: center;
-  padding-left: 15px;
+  padding: 0 15px;
   min-width: fit-content;
 }
 
@@ -59,6 +73,8 @@ img#footer-track-img {
 div.song-details.flx-col {
   height: 100%;
   gap: 5px;
+
+  font-weight: 300;
 }
 
 span#footer-artist-name {

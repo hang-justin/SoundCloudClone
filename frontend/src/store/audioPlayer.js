@@ -1,13 +1,21 @@
 const SET_CURRENT_TRACK = 'audioPlayer/SET_CURRENT_TRACK';
+const STOP_PLAYER = 'audioplayer/STOP_PLAYER';
 const IS_PLAYING = 'audioPlayer/IS_PLAYING';
 const REMOVE_LISTEN_HISTORY = 'audioPlayer/REMOVE_LISTEN_HISTORY';
 
-export const setActiveTrack = (track) => {
+export const setActiveTrack = (track, playlist) => {
   return {
     type: SET_CURRENT_TRACK,
-    currentTrack: track
+    currentTrack: track,
+    currentPlaylist: playlist
   };
 };
+
+export const stopPlayer = () => {
+  return {
+    type: STOP_PLAYER
+  }
+}
 
 export const isPlaying = (isPlaying) => {
   return {
@@ -34,10 +42,25 @@ const audioPlayerReducer = (state = initialState, action) => {
 
       if (!newState.history) newState.history = [action.currentTrack.id];
       else {
-        newState.history = [...newState.history];
-        newState.history.push(action.currentTrack.id);
+        const lastSongIdPlayed = newState.history[newState.history.length - 1];
+        if (lastSongIdPlayed !== action.currentTrack.id) {
+          newState.history = [...newState.history];
+          newState.history.push(action.currentTrack.id);
+        }
       }
 
+      if (!!action.currentPlaylist) {
+        newState.currentPlaylist = { id: action.currentPlaylist.id}
+      } else {
+        newState.currentPlaylist = null;
+      }
+
+      return newState;
+
+    case STOP_PLAYER:
+      newState = { ... state };
+      newState.currentTrack = null;
+      newState.currentPlaylist = null;
       return newState;
 
     case IS_PLAYING:
