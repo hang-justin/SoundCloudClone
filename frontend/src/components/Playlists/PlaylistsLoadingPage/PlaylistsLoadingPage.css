@@ -1,0 +1,26 @@
+#playlists-loading-page {
+    position: relative;
+    height: calc(100vh - 40px);
+    width: 100%;
+    overflow: hidden;
+}
+
+#playlists-loading-circle-container {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+}
+
+.playlist-circle {
+    position: absolute;
+    height: 500px;
+    width: 500px;
+
+    animation: growAndFade 1.5s infinite ease-out;
+    background-color: orange;
+    border-radius: 50%;
+    opacity: 0;
+}
