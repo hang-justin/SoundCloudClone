@@ -3,11 +3,13 @@ import { Modal } from '../../../context/Modal';
 import plusImg from '../../../img/plus.png';
 import { onErrorImgCoverLoader } from '../../../utils';
 import CreatePlaylistModalForm from '../CreatePlaylistModalForm';
+import NewPlaylist from '../NewPlaylist';
 
 import './CreatePlaylistTile.css';
 
 const CreatePlaylistTile = () => {
     const [showCreatePlaylistModal, setShowCreatePlaylistModal] = useState(false);
+    const [newPlaylistId, setNewPlaylistId] = useState(0);
 
     return (
         <div id='create-playlist-tile' className='playlist-tile flx-row-justify-align-ctr'>
@@ -24,13 +26,25 @@ const CreatePlaylistTile = () => {
                     src={plusImg}
                     id='create-playlist-icon'
                     onError={onErrorImgCoverLoader}
-                    alt='add-svg'
+                    alt='create-playlist'
                 />
             </button>
 
             {showCreatePlaylistModal &&
             <Modal onClose={() => setShowCreatePlaylistModal(false)}>
-                <CreatePlaylistModalForm setShowCreatePlaylistModal={setShowCreatePlaylistModal} />
+                {!!newPlaylistId
+                    ? (
+                        <NewPlaylist
+                            playlistId={newPlaylistId}
+                            setNewPlaylistId={setNewPlaylistId}
+                            setShowCreatePlaylistModal={setShowCreatePlaylistModal}
+                        />)
+                    : (
+                        <CreatePlaylistModalForm
+                            setShowCreatePlaylistModal={setShowCreatePlaylistModal}
+                            setNewPlaylistId={setNewPlaylistId}
+                        />)
+                }
             </Modal>
             }
         </div>

@@ -1,14 +1,15 @@
+import cancelBtn from '../../../img/cancel-btn.png';
+import { onErrorImgCoverLoader } from '../../../utils';
+
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 import { createPlaylistRequest } from '../../../store/playlists';
 
 import './CreatePlaylistModalForm.css';
 
-const CreatePlaylistModalForm = ({ setShowCreatePlaylistModal }) => {
+const CreatePlaylistModalForm = ({ setShowCreatePlaylistModal, setNewPlaylistId }) => {
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const [playlistTitle, setPlaylistTitle] = useState('')
     const [charLimitReached, setCharLimitReached] = useState('');
@@ -49,7 +50,7 @@ const CreatePlaylistModalForm = ({ setShowCreatePlaylistModal }) => {
         };
 
         dispatch(createPlaylistRequest(playlist))
-            .then(playlistInfo => console.log(playlistInfo))
+            .then(playlistInfo => setNewPlaylistId(playlistInfo.id))
     }
 
     return (
@@ -57,6 +58,16 @@ const CreatePlaylistModalForm = ({ setShowCreatePlaylistModal }) => {
             id='create-new-playlist-form'
             onSubmit={handleCreateNewPlaylist}
             >
+
+            <button id='close-playlist-modal-form-btn' onClick={() => setShowCreatePlaylistModal(false)}>
+                <img
+                    src={cancelBtn}
+                    id='close-playlist-modal-img'
+                    onError={onErrorImgCoverLoader}
+                    alt='close'
+                />
+            </button>
+
             <label>
                 <p
                     className='create-new-playlist-label'>

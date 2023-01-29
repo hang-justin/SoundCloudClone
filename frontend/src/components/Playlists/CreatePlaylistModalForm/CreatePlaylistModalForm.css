@@ -1,7 +1,22 @@
 #create-new-playlist-form {
     box-sizing: border-box;
     width: 600px;
-    padding: 20px;
+    padding: 25px;
+    position: relative;
+}
+
+#close-playlist-modal-form-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 5px;
+
+    background-color: transparent;
+    border: none;
+}
+
+#close-playlist-modal-img {
+    height: 10px;
 }
 
 .create-new-playlist-label {

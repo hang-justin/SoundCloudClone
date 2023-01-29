@@ -1,0 +1,12 @@
+#new-playlist-display {
+    box-sizing: border-box;
+    width: 600px;
+    padding: 25px;
+
+    position: relative;
+}
+
+.new-playlist-img {
+    height: 100px;
+    width: 100px;
+}
