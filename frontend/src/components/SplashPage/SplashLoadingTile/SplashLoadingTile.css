@@ -17,27 +17,3 @@
     border-radius: 50%;
     background-color: var(--orange-one);
 }
-
-.circle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    animation: growAndFade 2s infinite ease-out;
-    background-color: orange;
-    border-radius: 50%;
-    opacity: 0;
-}
-
-.circle1 {
-    animation-delay: 0.25s;
-}
-
-.circle2 {
-    animation-delay: 0.5s;
-}
-
-.circle3 {
-    animation-delay: 0.75s;
-}

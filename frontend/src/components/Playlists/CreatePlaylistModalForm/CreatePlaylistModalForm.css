@@ -1,0 +1,45 @@
+#create-new-playlist-form {
+    box-sizing: border-box;
+    width: 600px;
+    padding: 20px;
+}
+
+.create-new-playlist-label {
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.create-new-playlist-input {
+    display: block;
+    box-sizing: border-box;
+    padding: 5px;
+    width: 100%;
+}
+
+.create-new-playlist-input:focus {
+    background-color: rgba(255, 120, 0, 0.2);
+}
+
+#create-new-playlist {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    justify-self: baseline;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: larger;
+}
+
+.disabled-create-playlist-btn {
+    cursor: not-allowed;
+    background-color: gray;
+}
+
+.disabled-create-playlist-btn:hover {
+    cursor: not-allowed;
+}
+
+.active-create-playlist-btn {
+    background-color: rgb(255, 120, 0);
+}

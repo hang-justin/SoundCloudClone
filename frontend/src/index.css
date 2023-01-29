@@ -196,13 +196,25 @@ div.audio-footer-container {
 
 @keyframes growAndFade {
   0% {
-      opacity: .5;
+      opacity: 0.5;
       transform: scale(0);
   }
   100% {
-      opacity: 0;
+      opacity: 0.25;
       transform: scale(1);
   }
+}
+
+.circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  animation: growAndFade 2s infinite ease-out;
+  background-color: orange;
+  border-radius: 50%;
+  opacity: 0;
 }
 
 .circle1 {

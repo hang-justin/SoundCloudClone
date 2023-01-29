@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { addSongToPlaylist, createPlaylistRequest } from "../../store/playlists"
+import { createPlaylistRequest } from "../../store/playlists"
 
 import './CreateNewPlaylistForSong.css'
 import NewPlaylistCreated from "./NewPlaylistCreated"
@@ -16,7 +16,7 @@ const CreateNewPlaylistForSong = ({ song }) => {
     const [playlistCharTitleLimitDisplay, setPlaylistCharTitleLimitDisplay] = useState('hidden-span')
     const [charLimitReached, setCharLimitReached] = useState('');
     const [playlistImageUrl, setPlaylistImageUrl] = useState('');
-    const [activeButton, setActiveButton] = useState(false)
+    const [activeButton, setActiveButton] = useState(false);
 
     useEffect(() => {
         if (playlistTitle.length > 0) setPlaylistCharTitleLimitDisplay('')
@@ -69,7 +69,6 @@ const CreateNewPlaylistForSong = ({ song }) => {
                         </p>
 
                         <input
-                            id='create-new-playlist'
                             className='create-new-playlist-input'
                             type='text'
                             value={playlistTitle}

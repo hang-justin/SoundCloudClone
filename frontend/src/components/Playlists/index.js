@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect} from 'react-router-dom';
 import { getCurrentUserPlaylists } from "../../store/playlists";
+import CreatePlaylistTile from "./CreatePlaylistTile";
 
 import './Playlists.css'
 import PlaylistTile from "./PlaylistTile";
@@ -39,6 +40,8 @@ const Playlists = ({ setOrToggleAudio }) => {
       </h2>
 
       <div id='user-playlist-container' className='flx-row'>
+        <CreatePlaylistTile />
+
         {userPlaylistIds.map((playlistId) =>
           <PlaylistTile
             key={playlistId}

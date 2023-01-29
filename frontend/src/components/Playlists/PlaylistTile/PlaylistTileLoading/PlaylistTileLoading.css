@@ -11,15 +11,3 @@
     background-color: var(--orange-one);
     border-radius: 50%;
 }
-
-.circle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    animation: growAndFade 2s infinite ease-out;
-    background-color: orange;
-    border-radius: 50%;
-    opacity: 0;
-}

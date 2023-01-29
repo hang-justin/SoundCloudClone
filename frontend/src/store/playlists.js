@@ -82,7 +82,10 @@ export const createPlaylistRequest = (playlist, song) => async dispatch => {
     await dispatch(loadNewPlaylist(playlistInfo))
 
     // dispatch to send post request then update store
-    await dispatch(addSongToPlaylist(song.id, playlistInfo.id))
+    if (song) {
+      await dispatch(addSongToPlaylist(song.id, playlistInfo.id))
+    }
+    
     return playlistInfo
   }
 
