@@ -1,4 +1,5 @@
 import { loadArtistPlaylist, loadNewPlaylist } from "./artists";
+import { clearPlaylist } from "./audioPlayer";
 import { csrfFetch } from "./csrf";
 
 const CREATE_PLAYLIST = 'playlists/CREATE_PLAYLIST';
@@ -223,6 +224,7 @@ export const deletePlaylist = (playlist) => async dispatch => {
     })
 
   if (response.ok) {
+      dispatch(clearPlaylist(playlist.id))
       dispatch(removePlaylist(playlist.id))
       let responseMessage = await response.json();
       return responseMessage;

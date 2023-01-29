@@ -14,7 +14,6 @@ const BannerPlayButton = ({ playlistId, setOrToggleAudio }) => {
     const isPlaying = useSelector(state => state.audioPlayer.isPlaying);
 
     const playlist = allPlaylists[playlistId];
-    console.log('playlist in the component before clicking: ', playlist)
 
     const isCurrentPlaylistPlaying = currentPlaylist
                                         ? playlist.id === currentPlaylist.id
