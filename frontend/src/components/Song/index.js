@@ -8,7 +8,7 @@ import { onErrorImgCoverLoader } from '../../utils';
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory, useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 
 import { fetchCurrentSongWithComments, getSongComments } from "../../store/song";
 
@@ -29,7 +29,6 @@ const Song = ({ setOrToggleAudio }) => {
   const { songId } = useParams();
 
   const dispatch = useDispatch();
-  const history = useHistory();
 
   let songs = useSelector(state => state.songs);
   let artists = useSelector(state => state.artists)
@@ -39,7 +38,7 @@ const Song = ({ setOrToggleAudio }) => {
   const isPlaying = useSelector(state => state.audioPlayer.isPlaying);
   const profilePics = useSelector(state => state.profilePics)
 
-  const [hasLoaded, setHasLoaded] = useState(false);
+  // const [hasLoaded, setHasLoaded] = useState(false);
   const [comment, setComment] = useState('');
   const [commentLimitTextMod, setCommentLimitTextMod] = useState('');
   const [commentLimitDisplay, setCommentLimitDisplay] = useState('hidden-span')

@@ -1,36 +1,37 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect} from 'react-router-dom';
 import { getCurrentUserPlaylists } from "../../store/playlists";
 import CreatePlaylistTile from "./CreatePlaylistTile";
 
 import './Playlists.css'
+import PlaylistsLoadingPage from "./PlaylistsLoadingPage";
 import PlaylistTile from "./PlaylistTile";
 
 const Playlists = ({ setOrToggleAudio }) => {
   const dispatch = useDispatch();
 
-  const user = useSelector(state => state.session.user)
-  const artists = useSelector(state => state.artists)
-  const playlists = useSelector(state => state.playlists)
+  const user = useSelector(state => state.session.user);
+  const artists = useSelector(state => state.artists);
+  const userPlaylists = useSelector(state => state.playlists);
+
+  const [attemptedPlaylistFetch, setAttemptedPlaylistFetch] = useState(false);
 
   if (!user) {
     return <Redirect to='/' />
   }
 
-  if (!playlists) {
-    dispatch(getCurrentUserPlaylists())
-    return <div>Loading playlists...</div>
+  if (!userPlaylists) {
+    dispatch(getCurrentUserPlaylists(user.id))
+      .then(() => setAttemptedPlaylistFetch(true));
+    return <PlaylistsLoadingPage />
   }
 
-  if (!artists[user.id]) {
-    return <div>Loading artist...</div>
+  if (!artists[user.id] && !attemptedPlaylistFetch) {
+    return <PlaylistsLoadingPage />
   }
 
-  if (!artists[user.id].playlists) {
-    return <div>Loading user's playlists...</div>
-  }
-
-  const userPlaylistIds = Object.keys(artists[user.id].playlists)
+  let userPlaylistIds = Object.keys(userPlaylists)
 
   return (
     <div id='playlist-component'>

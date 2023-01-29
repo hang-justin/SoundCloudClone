@@ -1,4 +1,4 @@
-import { deletePlaylistFromArtist, loadArtistPlaylist, loadNewPlaylist } from "./artists";
+import { loadArtistPlaylist, loadNewPlaylist } from "./artists";
 import { csrfFetch } from "./csrf";
 
 const CREATE_PLAYLIST = 'playlists/CREATE_PLAYLIST';
@@ -33,7 +33,6 @@ export const editPlaylistRequest = (playlist) => async dispatch => {
   })
 
   if (response.ok) {
-    console.log('edit went through')
     let playlist = await response.json();
     dispatch(editPlaylist(playlist))
     return playlist;
@@ -85,7 +84,7 @@ export const createPlaylistRequest = (playlist, song) => async dispatch => {
     if (song) {
       await dispatch(addSongToPlaylist(song.id, playlistInfo.id))
     }
-    
+
     return playlistInfo
   }
 
@@ -112,8 +111,7 @@ export const addSongToPlaylist = (songId, playlistId) => async dispatch => {
 
   if (response.ok) {
     let playlistSong = await response.json();
-    // console.log('successful response from adding playlist... need to update store next');
-    // console.log(playlistSong)
+
     dispatch(addSongToPlaylistStore(playlistSong))
   }
 
@@ -137,7 +135,7 @@ export const deleteSongFromPlaylist = (songId, playlistId) => async dispatch => 
   })
 
   if (response.ok) {
-    let data = await response.json();
+    // let data = await response.json();
     // console.log('data from remove song from playlist: ', data)
     dispatch(removeSongFromPlaylistStore(songId, playlistId))
   }
@@ -145,7 +143,7 @@ export const deleteSongFromPlaylist = (songId, playlistId) => async dispatch => 
 
 const loadCurrentUserPlaylists = (payload) => {
   let playlists = {};
-  // console.log('playlists are : ', payload)
+
   payload.forEach(singlePlaylist => playlists[singlePlaylist.id] = singlePlaylist)
   return {
     type: LOAD_USER_PLAYLISTS,
@@ -153,7 +151,7 @@ const loadCurrentUserPlaylists = (payload) => {
   }
 }
 
-export const getCurrentUserPlaylists = () => async dispatch => {
+export const getCurrentUserPlaylists = (userId) => async dispatch => {
   // returns 404 if user doesn't have any playlists
   // TEST: test for response where use doesn't have any playlists
 
@@ -166,7 +164,7 @@ export const getCurrentUserPlaylists = () => async dispatch => {
     })
 
   if (response === 'No playlists found.') {
-    dispatch(loadCurrentUserPlaylists([]));
+    dispatch(loadCurrentUserPlaylists([]))
     return;
   }
 

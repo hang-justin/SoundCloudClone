@@ -2,11 +2,19 @@ import { csrfFetch } from './csrf';
 
 const GET_ARTIST_DETAILS = 'users/GET_ARTIST_DETAILS';
 const LOAD_ARTIST_PLAYLISTS = 'artists/LOAD_ARTIST_PLAYLISTS';
+const LOAD_ARTIST_NO_PLAYLISTS = 'artists/LOAD_ARTIST_NO_PLAYLISTS';
 const LOAD_NEW_PLAYLIST = 'artists/LOAD_NEW_PLAYLIST';
 const DELETE_PLAYLIST_FROM_ARTIST = 'artists/DELETE_PLAYLIST_FROM_ARTIST';
 const CLEAR_ARTIST_PLAYLISTS = 'artists/CLEAR_ARTIST_PLAYLISTS';
 
 const initialState = {};
+
+export const loadNoPlaylists = (userId) => {
+  return {
+    type: LOAD_ARTIST_NO_PLAYLISTS,
+    userId
+  }
+}
 
 export const clearUserPlaylists = (userId) => {
   return {
@@ -46,7 +54,7 @@ export const getTheseArtists = (artistIds) => async dispatch => {
   let count = 0;
   while (count < artistIds.length) {
 
-    response = await csrfFetch(`/api/users/${artistIds[count]}`)
+    await csrfFetch(`/api/users/${artistIds[count]}`)
       .then(res => res.json())
       .then(artist => dispatch(loadArtist(artist)));
 
@@ -77,9 +85,16 @@ const artistsReducer = (state = initialState, action) => {
         if (!newState[playlist.userId].playlists) newState[playlist.userId].playlists = {}
         newState[playlist.userId].playlists[playlist.id] = playlist.id
       })
+
+      return newState;
+
+    case LOAD_ARTIST_NO_PLAYLISTS:
+      newState[action.userId].playlists = {};
       return newState;
 
     case LOAD_NEW_PLAYLIST:
+      if (!newState[action.playlistInfo.userId].playlists) newState[action.playlistInfo.userId].playlists = {};
+
       newState[action.playlistInfo.userId].playlists[action.playlistInfo.id] = action.playlistInfo.id;
       return newState;
 
