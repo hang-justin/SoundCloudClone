@@ -14,7 +14,7 @@ const EditSongForm = ({ song, setShowModal }) => {
 
   const [title, setTitle] = useState(song.title);
   const [description, setDescription] = useState(song.description === null ? '' : song.description);
-  const [imageUrl, setImageUrl] = useState(song.imageUrl);
+  const [imageUrl, setImageUrl] = useState(song.imageUrl === null ? '' : song.imageUrl);
 
   // useStates below are for regulating character limit and
   //  letting users know about character limit
@@ -94,13 +94,14 @@ const EditSongForm = ({ song, setShowModal }) => {
 
     if (errors.length > 0) return;
 
-    if (imageUrl?.trim().length === 0) setImageUrl(null);
-    if (description?.trim().length === 0) setDescription(null);
-
     const newSong = { ...song };
     newSong.title = title;
-    newSong.description = description;
-    newSong.imageUrl = imageUrl;
+    newSong.description = description.trim().length === 0
+                            ? null
+                            : description;
+    newSong.imageUrl = imageUrl.trim().length === 0
+                        ? null
+                        : imageUrl;
 
     dispatch(editSongRequest(newSong))
       .then(() => setShowModal(false))
