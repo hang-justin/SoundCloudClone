@@ -30,6 +30,9 @@ const SongCard = ({setOrToggleAudio, songId}) => {
 
     const deleteTrack = (songId) => {
         dispatch(songActions.deleteTrack(songId));
+        if (currentTrack.id === songId) {
+            return;
+        }
     }
 
     const doesUserOwn = (song) => {

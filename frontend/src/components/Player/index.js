@@ -50,7 +50,17 @@ const Player = ({ setAudioPlayerRef, setOrToggleAudio }) => {
       // what if the currentTrack was removed from the playlist?
       // if trackIndex is >=  length of new playlist.songs
       if (indexOfCurrentTrack === -1) {
-        dispatch(setActiveTrack(currentTrack))
+        if (playlistSongs.length === 0) {
+          // if the playlist has all of its songs removed
+          // stop the player
+          dispatch(stopPlayer());
+          return;
+        }
+
+        // otherwise, play the playlist's first song and reset index to 0
+        const firstSongId = playlistSongs[0];
+        const song = allSongs[firstSongId];
+        dispatch(setActiveTrack(song, playlist));
         return;
       }
 

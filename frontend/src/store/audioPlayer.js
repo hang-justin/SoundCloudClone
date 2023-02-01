@@ -45,6 +45,7 @@ const audioPlayerReducer = (state = initialState, action) => {
 
   switch(action.type) {
     case SET_CURRENT_TRACK:
+      console.log('current track is: ', action.currentTrack)
       newState = {...state};
       newState.currentTrack = action.currentTrack;
 
@@ -69,7 +70,7 @@ const audioPlayerReducer = (state = initialState, action) => {
       if (newState.currentPlaylist && newState.currentPlaylist.id === action.playlistId) {
         newState.currentPlaylist = null;
       }
-      
+
       return newState;
 
     case STOP_PLAYER:

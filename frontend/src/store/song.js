@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 import { getTheseArtists } from "./artists";
+import { removeSongFromAllPlaylists } from "./playlists";
 
 const CREATE_SONG = 'songs/CREATE_SONG';
 const GET_ALL_SONGS = 'songs/GET_ALL_SONGS';
@@ -198,7 +199,8 @@ export const deleteTrack = (songId) => async dispatch => {
   });
 
   if (response.ok) {
-    dispatch(deleteSong(songId));
+    await dispatch(deleteSong(songId));
+    await dispatch(removeSongFromAllPlaylists(songId))
   }
 }
 

@@ -11,10 +11,18 @@ import './CurrentPlaylistTrack.css';
 const CurrentPlaylistTrack = ({ setOrToggleAudio, playlist, songId }) => {
     const history = useHistory();
 
-    const song = useSelector(state => state.songs[songId]);
-    const artist = useSelector(state => state.artists[song.userId]);
     const currentTrack = useSelector(state => state.audioPlayer.currentTrack);
     const isPlaying = useSelector(state => state.audioPlayer.isPlaying);
+
+    const allSongs = useSelector(state => state.songs);
+    const allArtists = useSelector(state => state.artists);
+
+    const song = allSongs[songId];
+    if (!song) return;
+
+    const artistId = song.userId;
+    const artist = allArtists[artistId];
+
 
     const isSongPlaying = song.id === currentTrack.id;
 

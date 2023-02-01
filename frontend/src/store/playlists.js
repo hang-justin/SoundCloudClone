@@ -10,6 +10,15 @@ const REMOVE_SONG_FROM_PLAYLIST = 'playlists/REMOVE_SONG_FROM_PLAYLIST';
 const DELETE_PLAYLIST = 'playlists/DELETE_PLAYLIST';
 const EDIT_PLAYLIST = 'playlists/EDIT_PLAYLIST';
 const CLEAR_PLAYLISTS = 'playlists/CLEAR_PLAYLISTS';
+const REMOVE_SONG_FROM_ALL_PLAYLISTS = 'playlists/REMOVE_SONG_FROM_ALL_PLAYLISTS';
+
+export const removeSongFromAllPlaylists = (songId) => {
+  return {
+    type: REMOVE_SONG_FROM_ALL_PLAYLISTS,
+    songId
+  }
+}
+
 
 export const clearPlaylists = () => {
   return {
@@ -277,6 +286,17 @@ const playlistsReducer = (state = initialState, action) => {
 
     case REMOVE_SONG_FROM_PLAYLIST:
       delete newState[action.playlistId].songs[action.songId];
+      return newState;
+
+    case REMOVE_SONG_FROM_ALL_PLAYLISTS:
+      console.log('newState is: ', newState);
+      // Case for when user deletes a song from a playlist
+      // update all playlists in the user's store if user has the playlist
+      for (const playlistId in newState) {
+          if (!newState[playlistId].songs[action.songId]) continue;
+
+          delete newState[playlistId].songs[action.songId];
+      };
       return newState;
 
     case EDIT_PLAYLIST:
