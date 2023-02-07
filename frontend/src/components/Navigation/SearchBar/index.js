@@ -4,19 +4,19 @@ import SearchResults from '../SearchResults';
 import './SearchBar.css';
 
 const SearchBar = () => {
-    const [userSearchInput, setUserSearchInput] = useState('');
+    const [searchInput, setSearchInput] = useState('');
 
     return (
         <div id='search-bar' className='flx-row-align-ctr'>
             <input
                 id='search-input'
-                onChange={e => setUserSearchInput(e.target.value)}
+                onChange={e => setSearchInput(e.target.value)}
                 placeholder='Search'
-                value={userSearchInput}
+                value={searchInput}
             />
 
+            <SearchResults searchInput={searchInput} setSearchInput={setSearchInput}/>
             <SearchButton />
-            <SearchResults searchInput={userSearchInput}/>
         </div>
     )
 };

@@ -3,5 +3,10 @@
     top: 40px;
     left: 0;
     width: 100%;
-    background-color: gray;
+    background-color: #333;
+}
+
+#no-matches-found {
+    height: 40px;
+    font-weight: 300;
 }

@@ -27,3 +27,11 @@
     outline: none;
     color: black;
 }
+
+#search-bar #search-results {
+    /* display: none; */
+}
+
+#search-input:focus + #search-results {
+    display: flex;
+}
