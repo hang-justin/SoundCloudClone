@@ -19,8 +19,7 @@ form#signup-form {
   justify-items: stretch;
   align-content: center;
 
-  width: auto;
-  min-width: 350px;
+  width: 400px;
 
   gap: 5px;
   padding: 20px 10px;

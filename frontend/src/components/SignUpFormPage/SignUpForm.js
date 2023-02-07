@@ -26,13 +26,26 @@ const SignUpForm = ({ setShowModal }) => {
 
   const handleSignUp = (e) => {
     e.preventDefault();
+    const signUpErrors = [];
 
-    if (password !== confirmPassword) {
-      setErrors(['Passwords must match']);
+    if (username.trim().length < 4) signUpErrors.push('Username must be at least 4 characters');
+    if (username.trim().length > 20) signUpErrors.push('Username must be 20 characters or less');
+
+    if (password.length < 6) signUpErrors.push('Password must be at least 6 characters');
+    if (password.length > 20) signUpErrors.push('Password must be at most 20 characters');
+    if (password !== confirmPassword) signUpErrors.push('Passwords must match');
+
+    if (firstName.trim().length < 1) signUpErrors.push('Please enter your first name');
+    if (firstName.length > 20) signUpErrors.push('First name must be at most 20 characters');
+
+    if (lastName.trim().length < 1) signUpErrors.push('Please enter your last name');
+    if (lastName.length > 20) signUpErrors.push('Last name must be at most 20 characters');
+
+    if (signUpErrors.length > 0) {
+      console.log(signUpErrors)
+      setErrors(signUpErrors);
       return;
     }
-
-    setErrors([]);
 
     const signUpInfo = {
       email,
@@ -86,10 +99,10 @@ const SignUpForm = ({ setShowModal }) => {
             <input
               className='signupform-input'
               id='signup-email'
-              type='text'
+              type='email'
               placeholder='Email'
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value.trim())}
               required
             />
           </label>
@@ -102,7 +115,7 @@ const SignUpForm = ({ setShowModal }) => {
               type='text'
               placeholder='Username'
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value.trim())}
               required
             />
           </label>
@@ -141,7 +154,7 @@ const SignUpForm = ({ setShowModal }) => {
               type='text'
               placeholder='First Name'
               value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              onChange={(e) => setFirstName(e.target.value.trim())}
               required
             />
           </label>
@@ -154,7 +167,7 @@ const SignUpForm = ({ setShowModal }) => {
               type='text'
               placeholder='Last Name'
               value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              onChange={(e) => setLastName(e.target.value.trim())}
               required
             />
           </label>
