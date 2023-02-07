@@ -13,6 +13,7 @@ const SearchBar = () => {
                 onChange={e => setSearchInput(e.target.value)}
                 placeholder='Search'
                 value={searchInput}
+                autocomplete='off'
             />
 
             <SearchResults searchInput={searchInput} setSearchInput={setSearchInput}/>
