@@ -21,7 +21,7 @@ const Playlists = ({ setOrToggleAudio }) => {
     return <Redirect to='/' />
   }
 
-  if (!userPlaylists) {
+  if (!userPlaylists && !attemptedPlaylistFetch) {
     dispatch(getCurrentUserPlaylists(user.id))
       .then(() => setAttemptedPlaylistFetch(true));
     return <PlaylistsLoadingPage />
