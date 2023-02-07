@@ -45,7 +45,6 @@ const audioPlayerReducer = (state = initialState, action) => {
 
   switch(action.type) {
     case SET_CURRENT_TRACK:
-      console.log('current track is: ', action.currentTrack)
       newState = {...state};
       newState.currentTrack = action.currentTrack;
 

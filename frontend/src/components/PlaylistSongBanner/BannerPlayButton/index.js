@@ -29,7 +29,6 @@ const BannerPlayButton = ({ playlistId, setOrToggleAudio }) => {
     }
 
     const handlePlayBtn = e => {
-        console.log('playlist after clicking the play btn: ', playlist)
         const playlistSongIds = Object.keys(playlist.songs);
 
         // can't play a playlist if it has 0 songs

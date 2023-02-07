@@ -63,8 +63,6 @@ const EditBasicInfo = ({ playlist, setShowPlaylistEditModal }) => {
             name: playlistName
         }
 
-        console.log(typeof playlist.id)
-
         dispatch(editPlaylistRequest(playlistInfo))
             .then(() => setShowPlaylistEditModal(false))
 

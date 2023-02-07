@@ -91,7 +91,6 @@ const Song = ({ setOrToggleAudio }) => {
   // TRYING TO ACCESS A SONG THAT DOESN'T EXIST
 
   if (Object.keys(songs).length > 0 && !song && !attemptedFetch) {
-    console.log('what... running this dispatch')
     dispatch(fetchCurrentSongWithComments(songId))
     .catch(async errRes => {
         const errMessage = await errRes.json();

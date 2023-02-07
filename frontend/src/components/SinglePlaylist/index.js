@@ -24,7 +24,7 @@ const SinglePlaylist = ({ setOrToggleAudio }) => {
     dispatch(getOnePlaylistWithSongs(playlistId))
     .catch(async e => {
       let data = await e.json()
-      console.log(data);
+      // console.log(data);
       setFailedPlaylistFetch(true)
     })
   }, [playlistId, dispatch])

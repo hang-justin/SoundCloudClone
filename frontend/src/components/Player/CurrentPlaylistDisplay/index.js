@@ -8,7 +8,6 @@ const CurrentPlaylistDisplay = ({ setOrToggleAudio }) => {
     const [showPlaylistSongs, setShowPlaylistSongs] = useState(false);
 
     const handleClick = () => {
-        console.log('clicking')
         setShowPlaylistSongs(prev => !prev)
     }
 
