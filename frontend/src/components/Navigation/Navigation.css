@@ -58,7 +58,7 @@
   box-sizing: border-box;
   height: 40px;
 
-  width: calc(80%/3);
+  width: 40%;
   min-width: fit-content;
 
   /* border-left: rgba(0, 0, 0, 1) 0.5px solid; */
@@ -84,15 +84,8 @@ img.nav-icon {
 }
 
 .nav-container-middle.nav-containers.flx-row {
-  width: 0px;
-  /* width: 40%; */
+  width: 40%;
   box-sizing: border-box;
-}
-
-.search-container {
-  width: 100%;
-  text-align: center;
-  align-self: center;
 }
 
 .nav-container-right.nav-containers.flx-row {
