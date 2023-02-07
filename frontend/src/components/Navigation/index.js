@@ -8,6 +8,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignUpFormModal from "../SignUpFormPage";
 
 import './Navigation.css';
+import SearchBar from './SearchBar';
 
 const Navigation = () => {
   let user = useSelector(state => state.session.user)
@@ -18,6 +19,7 @@ const Navigation = () => {
   ];
 
   const onLinkStyle = {backgroundColor: 'black'}
+
   return (
     <header className='nav-header'>
       <div className='nav-container-outer'>
@@ -47,8 +49,8 @@ const Navigation = () => {
 
         </div>
 
-        <div className='nav-container-middle nav-containers flx-row'>
-          <div className='search-container'></div>
+        <div id='search-bar-container' className='nav-container-middle nav-containers flx-row'>
+          <SearchBar />
         </div>
 
         <div className='nav-container-right nav-containers flx-row'>

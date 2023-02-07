@@ -72,6 +72,8 @@ const CurrentPlaylistSongs = ({ setOrToggleAudio, setShowPlaylistSongs }) => {
                 <img
                     src={cancelBtnImg}
                     id='close-playlist-songs-popup'
+                    onError={onErrorImgCoverLoader}
+                    alt='close'
                 />
             </div>
 
