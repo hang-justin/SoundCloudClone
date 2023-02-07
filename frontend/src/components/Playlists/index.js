@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect} from 'react-router-dom';
 import { getCurrentUserPlaylists } from "../../store/playlists";
@@ -17,19 +17,23 @@ const Playlists = ({ setOrToggleAudio }) => {
 
   const [attemptedPlaylistFetch, setAttemptedPlaylistFetch] = useState(false);
 
+  useEffect(() => {
+    if (!user) return;
+    if (attemptedPlaylistFetch) return;
+    if (userPlaylists) return;
+
+    dispatch(getCurrentUserPlaylists(user.id))
+      .then(() => setAttemptedPlaylistFetch(true));
+
+  }, [dispatch])
+
   if (!user) {
     return <Redirect to='/' />
   }
 
-  if (!userPlaylists && !attemptedPlaylistFetch) {
-    dispatch(getCurrentUserPlaylists(user.id))
-      .then(() => setAttemptedPlaylistFetch(true));
-    return <PlaylistsLoadingPage />
-  }
+  if (!userPlaylists && !attemptedPlaylistFetch) return <PlaylistsLoadingPage />
 
-  if (!artists[user.id] && !attemptedPlaylistFetch) {
-    return <PlaylistsLoadingPage />
-  }
+  if (!artists[user.id] && !attemptedPlaylistFetch) return <PlaylistsLoadingPage />
 
   let userPlaylistIds = Object.keys(userPlaylists)
 
