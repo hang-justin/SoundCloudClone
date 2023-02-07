@@ -7,7 +7,7 @@ const SearchResultCard = ({ songId, setSearchInput }) => {
     const history = useHistory();
     const song = useSelector(state => state.songs[songId]);
 
-    const navToSongPage = () => {
+    const navToSongPage = (e) => {
         history.push(`/${song.userId}/songs/${song.id}`);
         setSearchInput('');
     }

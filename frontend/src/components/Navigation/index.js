@@ -49,7 +49,7 @@ const Navigation = () => {
 
         </div>
 
-        <div className='nav-container-middle nav-containers flx-row'>
+        <div id='search-bar-container' className='nav-container-middle nav-containers flx-row'>
           <SearchBar />
         </div>
 

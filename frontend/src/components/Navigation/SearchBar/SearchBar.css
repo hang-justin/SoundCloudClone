@@ -29,9 +29,10 @@
 }
 
 #search-bar #search-results {
-    /* display: none; */
+    display: none;
 }
 
-#search-input:focus + #search-results {
+#search-input:focus + #search-results,
+#search-bar>#search-results:hover {
     display: flex;
 }
