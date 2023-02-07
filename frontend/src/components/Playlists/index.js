@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect} from 'react-router-dom';
 import { getCurrentUserPlaylists } from "../../store/playlists";
+import { getTheseArtists } from "../../store/artists";
 import CreatePlaylistTile from "./CreatePlaylistTile";
 
 import './Playlists.css'
@@ -17,32 +18,39 @@ const Playlists = ({ setOrToggleAudio }) => {
 
   const [attemptedPlaylistFetch, setAttemptedPlaylistFetch] = useState(false);
 
-  useEffect(() => {
-    console.log('Running the useEffect')
-    if (!user) return;
-    if (attemptedPlaylistFetch) return;
-    if (userPlaylists) return;
-    console.log('Made it pass the guard clauses in the useEffect')
+  // useEffect(() => {
+  //   console.log('Running the useEffect')
+  //   if (!user) return;
+  //   if (attemptedPlaylistFetch) return;
+  //   if (userPlaylists) return;
+  //   console.log('Made it pass the guard clauses in the useEffect')
 
-    dispatch(getCurrentUserPlaylists(user.id))
-      .then(() => setAttemptedPlaylistFetch(true));
-    console.log('Successfully ran the dispatches')
-  }, [dispatch])
+  //   dispatch(getCurrentUserPlaylists(user.id))
+  //     .then(() => setAttemptedPlaylistFetch(true));
+  //   console.log('Successfully ran the dispatches')
+  // }, [dispatch, attemptedPlaylistFetch])
 
   if (!user) {
     return <Redirect to='/' />
   }
 
-  console.log('userPlaylists is ', userPlaylists)
-  console.log('artists[user.id is ', artists[user.id])
-  console.log('attemptedPlaylistFetch is ', attemptedPlaylistFetch)
+  if (!artists[user.id]) {
+    dispatch(getTheseArtists(user.id));
+    return <PlaylistsLoadingPage />
+  }
+
+  if (!userPlaylists) {
+    dispatch(getCurrentUserPlaylists(user.id))
+      .then(() => setAttemptedPlaylistFetch(true))
+    return <PlaylistsLoadingPage />
+  }
 
   if (!userPlaylists && !attemptedPlaylistFetch) return <PlaylistsLoadingPage />
 
-  if (!artists[user.id] && !attemptedPlaylistFetch) return <PlaylistsLoadingPage />
+  // if (!artists[user.id] && !attemptedPlaylistFetch) return <PlaylistsLoadingPage />
 
-  let userPlaylistIds = Object.keys(userPlaylists)
-
+  let userPlaylistIds = Object.keys(userPlaylists);
+  
   return (
     <div id='playlist-component'>
 
