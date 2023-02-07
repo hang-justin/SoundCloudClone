@@ -147,9 +147,6 @@ const deletePlaylist = async (req, res, next) => {
 
 const getAllPlaylists = async (req, res, next) => {
   const userId = req.user.id;
-  console.log('')
-  console.log('userId from backend fetch is: ', userId)
-  console.log('')
 
   const playlists = await Playlist.findAll({
     where: { userId },

@@ -21,7 +21,6 @@ const PlaylistDeleteForm = ({ playlist, setShowPlaylistDeleteModal }) => {
             })
             .then(() => history.push('/you/library'))
             .catch(async err => {
-                console.log('err is :', err)
                 alert('Uh oh... Something went wrong. Please try again later.')
             })
         };

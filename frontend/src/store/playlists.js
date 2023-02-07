@@ -289,7 +289,6 @@ const playlistsReducer = (state = initialState, action) => {
       return newState;
 
     case REMOVE_SONG_FROM_ALL_PLAYLISTS:
-      console.log('newState is: ', newState);
       // Case for when user deletes a song from a playlist
       // update all playlists in the user's store if user has the playlist
       for (const playlistId in newState) {

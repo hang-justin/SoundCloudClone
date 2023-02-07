@@ -14,10 +14,6 @@ const CurrentPlaylistSongs = ({ setOrToggleAudio, setShowPlaylistSongs }) => {
     const currentPlaylist = useSelector(state => state.audioPlayer.currentPlaylist);
     const allPlaylists = useSelector(state => state.playlists);
 
-    console.log('RENDERING CURRENTPLAYLISTSONGS')
-
-
-
     const navToPlaylistsPage = (e) => {
         e.stopPropagation();
         history.push(`/you/library`)
@@ -54,7 +50,6 @@ const CurrentPlaylistSongs = ({ setOrToggleAudio, setShowPlaylistSongs }) => {
 
     const currentPlaylistId = currentPlaylist.id;
     const playlist = allPlaylists[currentPlaylistId]
-    console.log('CURRENTPLAYLISTSSONGS PLAYLIST IS: ', playlist)
 
     const navToPlaylist = () => {
         history.push(`/sets/${playlist.id}`)
