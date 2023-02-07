@@ -18,18 +18,24 @@ const Playlists = ({ setOrToggleAudio }) => {
   const [attemptedPlaylistFetch, setAttemptedPlaylistFetch] = useState(false);
 
   useEffect(() => {
+    console.log('Running the useEffect')
     if (!user) return;
     if (attemptedPlaylistFetch) return;
     if (userPlaylists) return;
+    console.log('Made it pass the guard clauses in the useEffect')
 
     dispatch(getCurrentUserPlaylists(user.id))
       .then(() => setAttemptedPlaylistFetch(true));
-
+    console.log('Successfully ran the dispatches')
   }, [dispatch])
 
   if (!user) {
     return <Redirect to='/' />
   }
+
+  console.log('userPlaylists is ', userPlaylists)
+  console.log('artists[user.id is ', artists[user.id])
+  console.log('attemptedPlaylistFetch is ', attemptedPlaylistFetch)
 
   if (!userPlaylists && !attemptedPlaylistFetch) return <PlaylistsLoadingPage />
 
