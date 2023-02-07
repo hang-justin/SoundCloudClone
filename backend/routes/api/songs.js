@@ -50,7 +50,7 @@ const getAllSongs = async (req, res) => {
   size = parseInt(size);
 
   if (isNaN(page) || page < 1) page = 1;
-  if (isNaN(size) || size < 1 || size > 20) size = 20;
+  if (isNaN(size) || size < 1 || size > 50) size = 50;
 
   pagination.offset = size * (page - 1);
   pagination.limit = size;
