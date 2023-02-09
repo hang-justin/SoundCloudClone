@@ -55,17 +55,9 @@ const Song = ({ setOrToggleAudio }) => {
     else setCommentLimitDisplay('hidden-span');
   }, [comment])
 
-  if (songNotFound) {
-    console.log('in songNotFound if statement - songNotFound is: ', songNotFound)
-    console.log('in songNotFound if statement - attemptedFetch: ', attemptedFetch)
-    return (
-      <Redirect to='/404' />
-    )
-  }
+  if (songNotFound) return <Redirect to='/404' />
 
   if (attemptedFetch) {
-    console.log('in attemptedFetch if statement - songNotFound is: ', songNotFound)
-    console.log('in attemptedFetch if statement - attempted fetch: ', attemptedFetch)
     // something went wrong here
     // song fetch was attempted
     //    404 wasn't returned
@@ -98,7 +90,7 @@ const Song = ({ setOrToggleAudio }) => {
     dispatch(fetchCurrentSongWithComments(songId))
     .catch(async errRes => {
       const errMessage = await errRes.json();
-        console.log('catch statement running')
+
         if (errMessage.statusCode === 404) setSongNotFound(true);
       })
     .then(() => {
