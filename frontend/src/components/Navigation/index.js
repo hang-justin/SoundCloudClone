@@ -44,7 +44,7 @@ const Navigation = () => {
             </NavLink>
 
             <NavLink id='nav-left-4' activeStyle={onLinkStyle} className='header__navlink nav-container-left__navlink' to='/you/library'>
-              Library
+              Playlists
             </NavLink>
 
         </div>

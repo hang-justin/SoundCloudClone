@@ -26,7 +26,7 @@ import './Song.css';
 //    an error due to it trying to retrieve comments that belong to songId === 'current'
 
 const Song = ({ setOrToggleAudio }) => {
-  const { songId } = useParams();
+  const { userId, songId } = useParams();
 
   const dispatch = useDispatch();
 
@@ -55,11 +55,7 @@ const Song = ({ setOrToggleAudio }) => {
     else setCommentLimitDisplay('hidden-span');
   }, [comment])
 
-  if (songNotFound) {
-    return (
-      <Redirect to='/404' />
-    )
-  }
+  if (songNotFound) return <Redirect to='/404' />
 
   if (attemptedFetch) {
     // something went wrong here
@@ -93,15 +89,20 @@ const Song = ({ setOrToggleAudio }) => {
   if (Object.keys(songs).length > 0 && !song && !attemptedFetch) {
     dispatch(fetchCurrentSongWithComments(songId))
     .catch(async errRes => {
-        const errMessage = await errRes.json();
+      const errMessage = await errRes.json();
 
-        if (errMessage.statusCode === 401) return setSongNotFound(true);
+        if (errMessage.statusCode === 404) setSongNotFound(true);
       })
-    .then(() => setAttemptedFetch(true))
+    .then(() => {
+      console.log('this is running!')
+      setAttemptedFetch(true)
+    })
     }
 
     if (!song) return <SongLoadingDisplay />
     if (!song.userId) return <div>Loading artist...</div>
+
+    if (+userId !== +song.userId) return <Redirect to={`/${song.userId}/songs/${song.id}`} />
 
     let artist = artists[song.userId];
     if (!artist) return <div>Loading artist 2...</div>
